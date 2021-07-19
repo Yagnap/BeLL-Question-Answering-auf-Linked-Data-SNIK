@@ -1,1 +1,1 @@
-# BeLL-Question-Answering-auf-Linked-Data-SNIK
+# BeLL Question Answering auf Linked Data SNIK
