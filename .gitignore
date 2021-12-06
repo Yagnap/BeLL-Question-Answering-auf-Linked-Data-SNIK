@@ -28,3 +28,5 @@
 *.synctex.gz
 *.fls
 *.fdb_latexmk
+thesis.run.xml
+thesis-blx.bib
