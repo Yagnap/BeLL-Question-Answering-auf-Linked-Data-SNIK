@@ -12,26 +12,20 @@ Die Medizinische Informatik beschäftigt sich mit der Unterstützung von Persona
 
 SNIK ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
 Es fasst Informationen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
-In der Ontologie sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf dem öffentlich erreichbaren Graph dargestellt sind.
+In der Wissensbasis sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf dem öffentlich erreichbaren Graph dargestellt sind.
 
 Diese Daten liegen strukturiert und für Menschen nicht leicht lesbar vor, daher braucht es andere Methoden, durch sie zu navigieren.
-Dazu gibt es verschiedene Lösungen, zum Beispiel das verwenden eines RDF-Browsers, der RDF-Informationen einzeln darstellt, den SNIK-Graph oder "SPARQL Endpunkt", eine Sprache zur Durchsuchung von RDF.
-
-1. Was ist medizinische Informatik?
-2. Krankenhaus-Informationsmanagement/Informationsmanagement im Gesundheitswesen
-3. SNIK-Projekt
-=> Verschiedene Tools, Daten liegen strukturiert vor, für Menschen nicht leicht verarbeitbar => Tools, dies besser zu machen (RDF-Browser (=> ein Begriff), SNIK-Graph (=> Zusammenhänge), SPARQL Endpunkt (=> höchste Expressivität)); Diese besitzen Vor- und Nachteile
-
+Dazu gibt es verschiedene Lösungen, zum Beispiel das verwenden eines RDF-Browsers, der RDF-Informationen einzeln darstellt, den SNIK-Graph oder \enquote{SPARQL Endpunkt}, eine Sprache zur Durchsuchung von RDF.
 
 \section{Problemstellung}
 
 Momentan müssen Studierende der Medizininformatik, die nach Wissen suchen wollen, eine der drei oben genannten Optionen verwenden.
 Alle dieser Möglichkeiten haben jedoch große Nachteile. Der RDF-Browser gibt nur ein sehr beschränktes Ergebnis aus, und RDF selbst zu lesen ist schwer und unpraktisch.
-Im Fall von SPARQL nimmt es den Medizininformatik-Studierenden wertvolle Zeit, da sie sich dort erst in die Synthax des Programms und das Vokabular des Fachbereichs einarbeiten müssen.
+Im Fall von SPARQL nimmt es den Medizininformatik-Studierenden wertvolle Zeit, da sie sich dort erst in die Syntax des Programms und das Vokabular des Fachbereichs einarbeiten müssen.
 
 Ein Ansatz für die Lösung dieses Problems ist Question Answering.
 Dabei wird eine Frage als ganzer Satz eingegeben, dessen Bedeutung das System versteht und auf Grundlage dessen eine Antwort ausgibt.
-Die Implementierung eines Question Answering-Systems mit adequater Qualität der Antworten benötigt allerdings mehr Zeit, als es im Rahmen einer BeLL möglich ist.
+Die Implementierung eines Question Answering-Systems mit adäquater Qualität der Antworten benötigt allerdings mehr Zeit, als es im Rahmen einer BeLL möglich ist.
 
 \begin{itemize}
 \item Problem P1: Intuitivität und Expressivität
