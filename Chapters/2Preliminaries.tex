@@ -1,4 +1,3 @@
-
 %*****************************************
 \chapter{Grundlagen}\label{ch:preliminaries}
 %*****************************************
@@ -7,16 +6,16 @@
 
 \subsection{Informationssysteme im Gesundheitswesen}
 
-\begin{definition}{System}
-Ein System ist eine Menge an Elementen und deren Beziehungen. (Winter et al., 2010: 30)
+\begin{definition}[System]\todo{Definition mit Name in eckigen Klammern. Habe es hier für dich schon geändert, bitte überall so machen.}
+Ein System ist eine Menge an Elementen und deren Beziehungen. (Winter et al., 2010: 30)\todo{mit LaTeX-Kommandos zitieren nicht als Text. z.B. \citep[S.~30]{bb}}
 \end{definition}
 
 \begin{definition}{Informationssystem}
-Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet. (Winter et al., 2010: 30)
+Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet. (Winter et al., 2010: 30)\todo{mit LaTeX-Kommandos zitieren nicht als Text.}
 \end{definition}
 
 \begin{definition}{Informationssystem im Gesundheitswesen}
-\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst.} (Winter et al., 2010: 37)
+\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst.} (Winter et al., 2010: 37)\todo{mit LaTeX-Kommandos zitieren nicht als Text.}
 \end{definition}
 
 \subsection{Daten, Informationen, Wissen}
@@ -28,30 +27,34 @@ Wissen ist eine generelle Information über ein Konzept. (Winter et al., 2010: 2
 
 \subsection{URIs, IRIs und URLs}
 Uniform Resource Identifier (URI) werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet.
+\todo{Quellen angeben für alles, z.B. URI IRI, URL, WWW, RDF,.... URI ist z.B. hier definiert: https://www.ietf.org/rfc/rfc2396.txt.
+Aber bitte nicht einfach als Fußnote sondern richtig einen bibtex Eintrag erstellen. Typ müsste "techreport" sein.}
 Ein Uniform Resource Locator (URL) ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource.
 Ein Internationalized Resorce Identifier (IRI) ist ein URI mit einer größeren Anzahl an möglichen Zeichen, da es auch nichtlateinische Schriftzeichen erlaubt.
 
 \subsection{World Wide Web}
 Das World Wide Web (WWW) wurde 1991 von Tim Berners-Lee entwickelt.
 Es ermöglicht freien Zugriff auf und Austausch von Daten über das Hypertext Transfer Protocol (HTTP).
-Die Standards zu dieser Kommunikation setzt das World Wide Web Consortium (W3C), dessen Direktor Berners-Lee ist.
+Die Standards zu dieser Kommunikation setzt das World Wide Web Consortium (W3C), dessen Direktor Berners-Lee ist.\todo{Diese Standards auch alle referenzieren.}
 Das Format der Dokumente wird durch die Hypertext Markup Language (HTML) beschrieben, welche ebenfalls vom W3C kontrolliert wird.
 
 \subsection{RDF}
-Das Resource Development Framework (RDF) ist das grundlegende Darstellungsformat des Semantic Webs.
+Das Resource Development Framework (RDF) ist das grundlegende Darstellungsformat des Semantic Webs.\todo{quelle, ist kein darstellungsformat. es geht um die beschreibung von ressourcen, nicht die darstellung.}
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch W3C spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
-Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut geeignet.
-RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen Satz.
+Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut geeignet.\todo{in der einleitung schreibst du aber gerade, es ist nicht gut für nutzer geeignet, der satz ist zu schwammig.}
+RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen Satz.\todo{was ist normal? satz in welcher sprache?}
 
 \subsection{Ontologien}
 Eine Ontologie ist eine in RDF erstellte Modellierung von Wissen.
+\todo{das ist keine gute definition, es kann eine ontologie auch ohne rdf geben. man kann ontologien zwar in rdf modellieren aber das muss man nicht. außerdem ist das keine definition des begriffs ontologie.}
+\todo{bitte eine gängige definition von ontologie referenzieren, z.B. von Gruber}
 Sie befassen sich oft mit nur einem Themenbereich, wie zum Beispiel die SNIK-Ontologie mit Wissen aus dem Gesundheitswesen.
 
 \subsection{Linked (Open) Data}
 
 
 \subsection{SPARQL}
-SPARQL Protocol and RDF Query Language (SPARQL) ist eine Abfragesprache für RDF, das heißt mit diesem W3C-Standard kann man in einer in RDF verfassten Ontologie Wissen abfragen.
+SPARQL Protocol and RDF Query Language (SPARQL) ist eine Abfragesprache für RDF, das heißt mit diesem W3C-Standard kann man in einer in RDF verfassten Ontologie Wissen abfragen.\todo{standard referenzieren}
 
 \section{Semantisches Question Answering}
 
