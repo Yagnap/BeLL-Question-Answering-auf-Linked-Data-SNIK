@@ -1,29 +1,29 @@
 %************************************************
 \chapter{Einleitung}\label{ch:introduction}
 %************************************************
-\todo{Den Beispieltext aus der Vorlage überall rausnehmen wenn du das jeweilige Kapitel füllst.}
-Eine Abschlussarbeit ist mit einem Projekt vergleichbar und in der Einleitung wird die Aufgabenstellung in ähnlicher Weise beschrieben wie in dem Strukturplan eines Projektes.
-Daher sollte die Einleitung mit Hilfe der \enquote{5-Stufen-Methode zur systematischen Strukturplanung}~\citep{ob}\footnotemark{} vorgenommen werden.
-\footnotetext{Das Buch ist für Studierende der Medizininformatik an der Universität Leipzig im Moodle verfügbar.
-Schauen Sie in den von ihnen belegten Modulen nach.}
 
 \section{Gegenstand}
-\todo{Es geht nicht nur um Personal bei der MI. Suche dir mal eine eingängige Definition und zitiere die.}
-Die Medizinische Informatik beschäftigt sich mit der Unterstützung von Personal im Gesundheitswesen, unter anderem durch Aufbereitung und Bereitstellung von Informationen.
+\enquote{Die Medizinische Informatik ist die Wissenschaft der systematischen Erschließung, Verwaltung, Aufbewahrung, Verarbeitung und Bereitstellung von Daten, Informationen und Wissen in der Medizin und im Gesundheitswesen. Sie ist von dem Streben geleitet, damit zur Gestaltung der bestmöglichen Gesundheitsversorgung beizutragen.} (Sax, 2021)
 
 SNIK ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
-Es fasst Informationen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.\todo{Nicht nur Information sondern Wissen.}
-In der Wissensbasis sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf dem öffentlich erreichbaren Graph dargestellt sind.\todo{Graph hast du hier noch nicht definiert.}
+Es fasst Wissen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
+In der Wissensbasis sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.
 
-Diese Daten liegen strukturiert und für Menschen nicht leicht lesbar vor, daher braucht es andere Methoden, durch sie zu navigieren.\todo{Strukturiert ist nichts schlimmes, es klingt so als würde sich das daher auch mit darauf beziehen.}
-Dazu gibt es verschiedene Lösungen, zum Beispiel das verwenden eines RDF-Browsers, der RDF-Informationen einzeln darstellt, den SNIK-Graph oder \enquote{SPARQL Endpunkt}, eine Sprache zur Durchsuchung von RDF.
-\todo{Ein SPARQL Endpunkt ist keine Sprache, SPARQL ist eine Sprache. Durchsuchung trifft es nicht ganz.}
+Diese Daten liegen strukturiert, aber für Menschen nicht leicht lesbar vor. Daher braucht es andere Methoden, durch sie zu navigieren.
+Dazu gibt es verschiedene Lösungen,
+\begin{enumerate}
+\item das verwenden eines RDF-Browsers, der RDF-Informationen einzeln darstellt,
+\item den SNIK-Graph oder
+\item \enquote{SPARQL}, eine Sprache Abfragesprache für RDF.
+\end{enumerate}
+
 \section{Problemstellung}
 
-Momentan müssen Studierende der Medizininformatik, die nach Wissen suchen wollen, eine der drei oben genannten Optionen verwenden.\todo{oben nummerieren, geht auch inline. Außerdem sagst du dort "zum Beispiel" aber hier gibt es nur noch genau die drei.}
-Alle dieser Möglichkeiten haben jedoch große Nachteile.\todo{jeden Satz auf eine separate Zeile. Das ist besser fürs git.} Der RDF-Browser gibt nur ein sehr beschränktes Ergebnis aus, und RDF selbst zu lesen ist schwer und unpraktisch.
+Momentan müssen Studierende der Medizininformatik, die nach Wissen suchen wollen, eine der drei oben genannten Optionen verwenden.
+Alle dieser Möglichkeiten haben jedoch große Nachteile.
+Der RDF-Browser gibt nur ein sehr beschränktes Ergebnis aus, und serialisiertes RDF selbst zu lesen ist schwer und unpraktisch.
 Im Fall von SPARQL nimmt es den Medizininformatik-Studierenden wertvolle Zeit, da sie sich dort erst in die Syntax des Programms und das Vokabular des Fachbereichs einarbeiten müssen.
-\todo{RDF selbst kann man nicht lesen, sondern eines der Serialisierungsformate.}
+
 Ein Ansatz für die Lösung dieses Problems ist Question Answering.
 Dabei wird eine Frage als ganzer Satz eingegeben, dessen Bedeutung das System versteht und auf Grundlage dessen eine Antwort ausgibt.\todo{Quelle finden.}
 Die Implementierung eines Question Answering-Systems mit adäquater Qualität der Antworten benötigt allerdings mehr Zeit, als es im Rahmen einer BeLL möglich ist.
@@ -36,45 +36,11 @@ Die Implementierung eines Question Answering-Systems mit adäquater Qualität de
 
 \section{Motivation}
 
-\begin{itemize}
-\item Warum lohnt es sich, die genannten Probleme zu lösen?
-\item Wer wird welchen Nutzen von dieser Abschlussarbeit haben?
-\item Warum ist die Arbeit wichtig?
-\item Wer wartet sehnlichst auf die Fertigstellung der Arbeit
-\end{itemize}
-\todo{nimm mal den ganzen Vorlagetext raus}
-Ohne ausreichende Gegenstands-, Problem- und Motivationsbeschreibung kann eine Leser:in nicht verstehen, warum z.\,B. eine entwickelte Software sinnvoll ist bzw. zur Lösung welches Problems sie verwendet werden soll.
-Gerade für die Medizinische Informatik als eine problemorientierte Disziplin ergibt sich der Wert einer Lösung, z.\,B. einer Software, aber vor allem daraus, ob bzw. wie weit sie ein Problem löst.
-
-Für die Autor:in bedeutet daher eine unzureichende Gegenstands-, Problem- und Motivationsbeschreibung die Gefahr, dass sie oder er sich die zu lösende Problematik nicht ausreichend klar gemacht hat.
-Bei der Erstellung der Arbeit besteht dann die Gefahr, dass man möglicherweise methodisch aufregende Lösungen entwirft und realisiert, für die aber ein Problem gar nicht besteht oder die für die Lösung der tatsächlichen Probleme nicht geeignet sind.
-Trotz einer möglicherweise brillanten Lösung wäre dann doch eine schlechte Bewertung der Lösung und damit der Arbeit zu erwarten.
-Außerdem sollte sich -- auch bei einer Abschlussarbeit -- die Arbeit auch lohnen, d.h. es sollte genügend Motivation geben, viel Zeit und Energie zu investieren.
-Aus diesem Grund sollten die Kapitel 1.1 bis 1.3 ausführlich sein.
-Ein Umfang von weniger als drei Seiten wird in der Regel nicht ausreichen.
-Mit einem Augenzwinkern hier noch Motivationen, die wir nicht gerne in einer Abschlussarbeit sehen:\\
-~~\\
-
-\begin{tabulary}{\textwidth}{LL}
-Warum lohnt es sich, die genannten Probleme zu lösen?						&\enquote{Weil ich mein Studium endlich hinter mir haben will}, \enquote{Damit ich eine gute Note habe.}, \enquote{Weil Prof. Winter/mein Betreuer es so will.}\\
-Wer wird welchen Nutzen von dieser Abschlussarbeit haben?					&\enquote{Ich, weil ich dann endlich mit studieren fertig bin / in den Master darf.}\\
-Warum ist die Arbeit wichtig?												&\enquote{Weil mein Betreuer es möchte.}, \enquote{Weil es X noch nicht gibt.}, \enquote{Weil es X nur mit Technik Y gibt, aber nicht mit Z}, \enquote{Weil die Vorarbeiten so schlecht sind}\\
-Wer wartet sehnlichst auf die Fertigstellung der Arbeit?					&\enquote{Ich / Mein Betreuer / Prof. Winter / meine Oma} (außer es ist eine Eigenentwicklung für speziell diese Personen)\\
-\end{tabulary}
+\todo{Motivation}
 
 \section{Zielsetzung}\label{sec:zielsetzung}
 
-\begin{itemize}
-\item Welche Ergebnisse werden mit dieser Abschlussarbeit angestrebt und welche der o.\,g. Probleme sollen damit jeweils gelöst werden?
-\end{itemize}
-Bitte jedes Ziel kurz oder ggf. mit Stichworten beschreiben:
-\begin{itemize}
-\item Ziel(e)/angestrebte(s) Ergebnis(se) zur Lösung von Problem P1:
-	\begin{itemize}
-	\item Ziel Z1: Benchmark für Semantisches Question Answering für SNIK
-	\item Ziel Z2: Semantisches Question Answering System, welches Fragen zu SNIK mit hoher Qualität beantwortet.
-	\end{itemize}
-\end{itemize}
+\todo{Zielsetzung}
 
 \section{Aufgabenstellung}
 
