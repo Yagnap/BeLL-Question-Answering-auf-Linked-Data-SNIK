@@ -2,16 +2,39 @@
 \chapter{Stand der Forschung}\label{ch:relatedWork}
 %*****************************************
 
-Kann auch im Grundlagenkapitel mit integriert werden! Wenn es zwei Kapitel sind, ist das Grundlagenkapitel für bekanntes \enquote{Lehrbuchwissen} gedacht, der \enquote{Stand der Forschung} für Vorarbeiten in Publikationen.
+\section{Die Ontologie: SNIK}
 
-Grundlage für eine Abschlussarbeit ist eine gründliche Recherche im Themenumfeld.
-Dabei ist es ausdrücklich nicht hinreichend, mit bekannten Suchmaschinen im Internet zu recherchieren.
-Vielmehr wird von den Studierenden erwartet, dass sie auch referierte Veröffentlichungen (wissenschaftliche Zeitschriften (auch elektronisch), Bücher) in die Erarbeitung einbeziehen (und mit entsprechenden Quellenangaben belegen).
-Informationen zum Thema der Literaturrecherche finden sich in den \href{http://www.imise.uni-leipzig.de/Lehre/MedInf/Abschlussarbeiten/Literaturrecherche}{Hinweisen zur Literaturrecherche}.
-Wir empfehlen Ihnen, Kurse zur Literaturrecherche zu belegen, z.B. beim \href{https://home.uni-leipzig.de/academiclab/}{Academic Lab} oder der \href{https://www.ub.uni-leipzig.de/service/workshops-und-online-tutorials/}{Universitätsbibliothek}.
-Im \href{https://home.uni-leipzig.de/schreibportal/}{Onlineportal zum Wissenschaftlichen Schreiben der Uni Leipzig} finden Sie wertvolle Hinweise und Übungen zu Textstruktur, Stilistik, Schreibprozess sowie Quellen und Zitaten.
+Das Semantische Netz des Informationsmanagements im Krankenhaus (SNIK) ist eine die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie.
+Sie behandelt,
+
+\begin{sidewaysfigure}[htbp!]
+\centering
+\includegraphics[width=.8\textwidth, height=.9\textheight, keepaspectratio]{Images/snik-metamodel.pdf}
+\caption[SNIK Metamodell Version 8]{Das SNIK Metamodell Version 8. Quelle: \url{https://www.snik.eu/public/SNIK_Metamodell_V8.svg}}
+\label{fig:snik-metamodel}
+\end{sidewaysfigure}
+
+\section{Techniken}
+
+
+\section{Question Answering-Programme}
+
+\subsection{gAnswer}
+\subsection{DeepPavlov}
+DeepPavlov ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
+Es ist in \emph{Models} und \emph{Skills} organisiert.
+
+\paragraph{Architektur}
+Ein Model ist eine in TensorFlow implementierte Funktion einer NLP-Pipeline,
+die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
+Models können auch andere Models enthalten.
+
+Ein Skill besteht aus Models, jedoch kann er nur Zeichenketten als Ein-/Ausgabe haben.
+Sie werden deshalb im Dialog verwendet.
+
+\subsection{Rasa}
+
 
 \paragraph{Beispielzitierungen}
 \citet{sniktec} beschreiben ein Verfahren zur X von Y auf Basis von Z.
 Alternativ: X von Y lässt sich auf Basis von Z ermitteln~\citep{sniktec}.
-
