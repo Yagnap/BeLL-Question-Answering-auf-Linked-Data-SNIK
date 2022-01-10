@@ -7,43 +7,42 @@
 \subsection{Informationssysteme im Gesundheitswesen}
 
 \begin{definition}[System]
-Ein System ist eine Menge an Elementen und deren Beziehungen. (Winter et al., 2010: 30)\todo{mit LaTeX-Kommandos zitieren nicht als Text. z.B. \citep[S.~30]{bb}}
+Ein System ist eine Menge an Elementen und deren Beziehungen. \citep[S.~30]{bb}
 \end{definition}
 
 \begin{definition}[Informationssystem]
-Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet. (Winter et al., 2010: 30)\todo{mit LaTeX-Kommandos zitieren nicht als Text.}
+Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet. \citep[S.~30]{bb}
 \end{definition}
 
 \begin{definition}[Informationssystem im Gesundheitswesen]
-\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst.} (Winter et al., 2010: 37)\todo{mit LaTeX-Kommandos zitieren nicht als Text.}
+\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst. \citep[S.~37]{bb}}
 \end{definition}
 
 \subsection{Daten, Informationen, Wissen}
 Daten sind die physische Repräsentation von Informationen oder Wissen, also zum Beispiel die Zeichenkette \enquote{SNIK}. Daten können neu interpretiert werden.
 Informationen hingegen sind Fakten, die gegebenenfalls aus Daten hervorgehen.
-Wissen ist eine generelle Information über ein Konzept. (Winter et al., 2010: 29)
+Wissen ist eine generelle Information über ein Konzept. \citep[S.~29]{bb}
 
 \section{Semantic Web}
 
 \subsection{URIs, IRIs und URLs}
-Uniform Resource Identifier (URI) werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet.
-\todo{Quellen angeben für alles, z.B. URI IRI, URL, WWW, RDF,.... URI ist z.B. hier definiert: https://www.ietf.org/rfc/rfc2396.txt.
-Aber bitte nicht einfach als Fußnote sondern richtig einen bibtex Eintrag erstellen. Typ müsste "techreport" sein.}
-Ein Uniform Resource Locator (URL) ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource.
+Uniform Resource Identifier (URI) werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet. \citep{uri}
+Ein Uniform Resource Locator (URL) ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource. \citep{url}
 Ein Internationalized Resorce Identifier (IRI) ist ein URI mit einer größeren Anzahl an möglichen Zeichen, da es auch nichtlateinische Schriftzeichen erlaubt.
 
 \subsection{World Wide Web}
 Das World Wide Web (WWW) wurde 1991 von Tim Berners-Lee entwickelt.
 Es ermöglicht freien Zugriff auf und Austausch von Daten über das Hypertext Transfer Protocol (HTTP).
 Die Standards zu dieser Kommunikation setzt das World Wide Web Consortium (W3C), dessen Direktor Berners-Lee ist.\todo{Diese Standards auch alle referenzieren.}
-Das Format der Dokumente wird durch die Hypertext Markup Language (HTML) beschrieben, welche ebenfalls vom W3C kontrolliert wird.
+Das Format der Dokumente wird durch die Hypertext Markup Language (HTML) beschrieben, welche ebenfalls vom W3C kontrolliert wird. \citep{www}
 
 \subsection{Semantic Web}
 Im Gegensatz zu WWW, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
-\todo{Semantic Web; Artikel von Berners-Lee zitieren}
+Es ist außerdem nicht nur ein verwendbares Artefakt wie das WWW, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte "Knowledge Graphs", auf die hier aber nicht weiter eingegangen werden wird.
+Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum WWW, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 
 \subsection{RDF}
-Das Resource Development Framework (RDF) ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format. (Winter et al., 35)
+Das Resource Development Framework (RDF) ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format. \citep[S.~35]{bb}
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch W3C spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen deutschen Satz.
@@ -60,8 +59,8 @@ Deshalb werden Ontologien als auf dem \enquote{semantischen} Level stehend anges
 Durch ihre Unabhängigkeit von Datenmodellen niedrigeren Levels werden Ontologien zum Integrieren von heterogenen Datenbanken genutzt, was die Benutzbarkeit über verschiedene Systeme erlaubt, und die Spezifizierung von unabhängigen, wissensbasierten  Dienstleistungen ermöglicht.
 Im Technologie-Stack der Semantic Web Standards sind Ontologien ihre eigene Schicht.
 Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open-Source Werkzeugen, um Ontologien zu erstellen und mit ihnen zu arbeiten.
-\end{definition} (Gruber, 2008)
-\todo{hinzuschreiben, dass es eine Übersetzung ist}
+(Aus dem Englischen von \citet{ontologygruber})
+\end{definition}
 \subsection{Linked (Open) Data}
 \todo{Linked Data}
 
@@ -95,12 +94,19 @@ was z.B. den Kontext vom vorherigen Beispiel bereitstellen würde.
 
 \subsection{Neuronales Netz}
 
+
+
 \subsection{Deep Learning}
+
+
 
 \subsection{Natural Language Processing (NLP)}
 
+
+
 \subsection{NLP-Pipeline}
+
+
 
 \subsection{Regelbasiertes System}
 
-\todo{Quellen: https://www.researchgate.net/, https://scholar.google.com/}
