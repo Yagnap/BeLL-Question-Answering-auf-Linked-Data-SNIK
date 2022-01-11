@@ -8,8 +8,8 @@
 
 \begin{definition}[System]
 Ein System ist eine Menge an Elementen und deren Beziehungen. \citep[S.~30]{bb}
+\todo{bb ist zweimal definiert in deinen .bib dateien, das führt zu fehlern. siehe tex log.}
 \end{definition}
-
 \begin{definition}[Informationssystem]
 Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet. \citep[S.~30]{bb}
 \end{definition}
@@ -26,6 +26,7 @@ Wissen ist eine generelle Information über ein Konzept. \citep[S.~29]{bb}
 \section{Semantic Web}
 
 \subsection{URIs, IRIs und URLs}
+\todo{citep vor das Komma, nicht danach. Also blablabla~backslashcitep\{blubb\}.}
 Uniform Resource Identifier (URI) werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet. \citep{uri}
 Ein Uniform Resource Locator (URL) ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource. \citep{url}
 Ein Internationalized Resorce Identifier (IRI) ist ein URI mit einer größeren Anzahl an möglichen Zeichen, da es auch nichtlateinische Schriftzeichen erlaubt.
@@ -43,6 +44,7 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
 
 \subsection{RDF}
 Das Resource Development Framework (RDF) ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format. \citep[S.~35]{bb}
+\todo{bb ist nicht die beste Quelle für RDF}
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch W3C spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen deutschen Satz.
@@ -59,7 +61,7 @@ Deshalb werden Ontologien als auf dem \enquote{semantischen} Level stehend anges
 Durch ihre Unabhängigkeit von Datenmodellen niedrigeren Levels werden Ontologien zum Integrieren von heterogenen Datenbanken genutzt, was die Benutzbarkeit über verschiedene Systeme erlaubt, und die Spezifizierung von unabhängigen, wissensbasierten  Dienstleistungen ermöglicht.
 Im Technologie-Stack der Semantic Web Standards sind Ontologien ihre eigene Schicht.
 Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open-Source Werkzeugen, um Ontologien zu erstellen und mit ihnen zu arbeiten.
-(Aus dem Englischen von \citet{ontologygruber})
+(Aus dem Englischen von \citet{ontologygruber})\todo{sieht komisch aus mit der doppelklammer, versuch das mal besser zu formatieren.}
 \end{definition}
 \subsection{Linked (Open) Data}
 \todo{Linked Data}
@@ -67,7 +69,7 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 \subsection{SPARQL}
 
 SPARQL Protocol and RDF Query Language (SPARQL) ist eine Abfragesprache für RDF, das heißt mit diesem W3C-Standard kann man in einer in RDF verfassten Ontologie Wissen abfragen.\todo{standard referenzieren}
-
+\todo{für SPARQL braucht man keine Ontologie! RDF und Ontologien sind zwar verbunden aber nicht das gleiche.}
 \section{Semantisches Question Answering}
 
 \begin{definition}{Question Answering}
