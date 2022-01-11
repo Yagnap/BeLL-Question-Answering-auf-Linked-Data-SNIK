@@ -43,14 +43,14 @@ Es ist außerdem nicht nur ein verwendbares Artefakt wie das WWW, sondern auch e
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum WWW, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 
 \subsection{RDF}
-Das Resource Development Framework (RDF) ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format. \citep[S.~35]{bb}
-\todo{bb ist nicht die beste Quelle für RDF}
+Das Resource Development Framework (RDF) ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format. \citep[S.~35]{semanticwebgrundlagen}
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch W3C spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen deutschen Satz.
 
 \subsection{Ontologien}
 \begin{definition}[Ontologie]
+\enquote{
 Im Kontext der Informatik ist eine Ontologie eine Menge von repräsentativen Primitiven, welche einen Bereich des Wissens oder eines Diskurses modellieren.
 Die repräsentativen Primitiven sind typischerweise Klassen (oder Mengen), Attribute (oder Eigenschaften), und Zusammenhänge (oder Beziehungen zwischen Klassenelementen).
 Die Definitionen der repräsentativen Primitiven enthalten Informationen über ihre Bedeutung und Beschränkungen ihrer logisch konsistenten Anwendung.
@@ -61,8 +61,28 @@ Deshalb werden Ontologien als auf dem \enquote{semantischen} Level stehend anges
 Durch ihre Unabhängigkeit von Datenmodellen niedrigeren Levels werden Ontologien zum Integrieren von heterogenen Datenbanken genutzt, was die Benutzbarkeit über verschiedene Systeme erlaubt, und die Spezifizierung von unabhängigen, wissensbasierten  Dienstleistungen ermöglicht.
 Im Technologie-Stack der Semantic Web Standards sind Ontologien ihre eigene Schicht.
 Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open-Source Werkzeugen, um Ontologien zu erstellen und mit ihnen zu arbeiten.
-(Aus dem Englischen von \citet{ontologygruber})\todo{sieht komisch aus mit der doppelklammer, versuch das mal besser zu formatieren.}
+}
+\textcolor{darkgray}{Aus dem Englischen von \citet{ontologygruber}}
 \end{definition}
+
+\subsection{Taxonomie}
+
+Nur Beziehungen Subklassen->Klassen
+
+\subsection{Individuen und Klassen}
+Die Beziehung zwischen Individuum und Klasse in der Mathematik ist eine Elementbeziehung
+Beziehungen zwischen Klassen ==> Teilmengenbeziehung (nur für Beziehung zw. Unterklassen und Oberklassen)
+Beziehungen zwischen Individuen untereinander ==> Relationen
+\paragraph{Relationen}
+\todo{"Properties in RDF}
+Object-Properties (=> Klassen als Wertebereich) und Data-Properties (=> Literale)
+In RDF alle Relationen zweistellig (Paare)
+\paragraph{Wissensbasen}
+\todo{A-box (Individuen) und T-box (Klassen)}
+\paragraph{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
+
+
+
 \subsection{Linked (Open) Data}
 \todo{Linked Data}
 
@@ -111,4 +131,3 @@ was z.B. den Kontext vom vorherigen Beispiel bereitstellen würde.
 
 
 \subsection{Regelbasiertes System}
-
