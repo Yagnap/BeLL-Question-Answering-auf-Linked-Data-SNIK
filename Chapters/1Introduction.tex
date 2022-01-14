@@ -3,23 +3,21 @@
 %************************************************
 
 \section{Gegenstand}
-\todo{Da ist je ein überflüssiges Leerzeichen neben den Anführungszeichen. Bitte überall im Dokument auf sowas prüfen. Kommt vom Zeilenumbruch.}
 \begin{flushright}{\slshape
-\enquote{
-Die Medizinische Informatik ist die Wissenschaft der systematischen Erschließung, Verwaltung, Aufbewahrung, Verarbeitung und Bereitstellung von Daten, Informationen und Wissen in der Medizin und im Gesundheitswesen.
+\enquote{Die Medizinische Informatik ist die Wissenschaft der systematischen Erschließung, Verwaltung, Aufbewahrung, Verarbeitung und Bereitstellung von Daten, Informationen und Wissen in der Medizin und im Gesundheitswesen.
 Sie ist von dem Streben geleitet, damit zur Gestaltung der bestmöglichen Gesundheitsversorgung beizutragen.\footnote{\url{https://www.gmds.de/de/aktivitaeten/medizinische-informatik/}, abgerufen am 11. Januar 2022}
 }}
 \end{flushright}
-SNIK ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
+\ac{snik} ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
 Es fasst Wissen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
-In der Wissensbasis \todo{Umformulieren!} sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.
+In der Wissensbasis\todo{Umformulieren!} sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.
 
 Diese Daten liegen strukturiert, aber für Menschen nicht leicht lesbar vor. Daher braucht es andere Methoden, durch sie zu navigieren.
 Dazu gibt es verschiedene Lösungen,
 \begin{enumerate}
-\item das Verwenden eines RDF-Browsers, der RDF-Informationen einzeln darstellt,
-\item den SNIK-Graphen oder
-\item \enquote{SPARQL}, eine Sprache Abfragesprache für RDF.\todo{wie besprochen Anführungszeichen weg bei allen solchen Fällen.}
+\item das Verwenden eines \acs{rdf}-Browsers, der \acs{rdf}-Informationen einzeln darstellt,
+\item den \ac{snik}-Graphen oder
+\item \acs{sparql}, eine Sprache Abfragesprache für \acs{rdf}.
 \end{enumerate}
 
 \section{Problemstellung}
@@ -45,15 +43,15 @@ Die Implementierung eines Question Answering-Systems mit adäquater Qualität de
 
 \section{Zielsetzung}\label{sec:zielsetzung}
 	\begin{itemize}
-	\item Ziel Z1: Benchmark für Semantisches Question Answering für SNIK
-	\item Ziel Z2: Semantisches Question Answering System, welches Fragen zu SNIK mit hoher Qualität beantwortet.
+	\item Ziel Z1: Benchmark für Semantisches Question Answering für \ac{snik}
+	\item Ziel Z2: Semantisches Question Answering System, welches Fragen zu \ac{snik} mit hoher Qualität beantwortet.
 	\end{itemize}
 \section{Aufgabenstellung}
 
 \begin{itemize}
 \item Aufgaben zu Ziel Z1:
 	\begin{itemize}
-	\item Aufgabe A1.1: Sammlung von typischen Benutzerfragen an SNIK
+	\item Aufgabe A1.1: Sammlung von typischen Benutzerfragen an \ac{snik}
 	\item Aufgabe A1.2: Beantwortung dieser Fragen
 	\item Aufgabe A1.3: Methodik entwickeln, um ein System anhand dieser Fragen und Antworten zu bewerten (Benchmark)
 \item Aufgaben zu Ziel Z2:

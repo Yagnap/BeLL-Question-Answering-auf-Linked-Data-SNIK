@@ -7,52 +7,48 @@
 \subsection{Informationssysteme im Gesundheitswesen}
 
 \begin{definition}[System]
-Ein System ist eine Menge an Elementen und deren Beziehungen. \citep[S.~30]{bb}
-\todo{bb ist zweimal definiert in deinen .bib dateien, das führt zu fehlern. siehe tex log.}
-\todo{haben wir das nicht am Dienstag dem 11. korrigiert? wieso steht das noch da?}
+\enquote{Ein System ist eine Menge an Elementen und deren Beziehungen.} \citep[S.~30]{bb}
 \end{definition}
 \begin{definition}[Informationssystem]
-Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet. \citep[S.~30]{bb}
+\enquote{Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet.} \citep[S.~30]{bb}
 \end{definition}
 
 \begin{definition}[Informationssystem im Gesundheitswesen]
-\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst. \citep[S.~37]{bb}}
+\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst.} \citep[S.~37]{bb}
 \end{definition}
 
 \subsection{Daten, Informationen, Wissen}
-Daten sind die physische Repräsentation von Informationen oder Wissen, also zum Beispiel die Zeichenkette \enquote{SNIK}. Daten können neu interpretiert werden.
+Daten sind die physische Repräsentation von Informationen oder Wissen, also zum Beispiel die Zeichenkette \enquote{\ac{snik}}. Daten können neu interpretiert werden.
 Informationen hingegen sind Fakten, die gegebenenfalls aus Daten hervorgehen.
 Wissen ist eine generelle Information über ein Konzept. \citep[S.~29]{bb}
 
 \section{Semantic Web}
 
 \subsection{URIs, IRIs und URLs}
-\todo{citep vor das Komma, nicht danach. Also blablabla~backslashcitep\{blubb\}.}
-Uniform Resource Identifier (URI) werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet. \citep{uri}
-Ein Uniform Resource Locator (URL) ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource. \citep{url}
-Ein Internationalized Resorce Identifier (IRI) ist ein URI mit einer größeren Anzahl an möglichen Zeichen, da es auch nichtlateinische Schriftzeichen erlaubt.
+\ac{uri} werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet \citep{uri}.
+\acf{url} ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource \citep{url}.
+Ein \ac{iri} ist ein URI mit einer größeren Anzahl an möglichen Zeichen, da es auch nichtlateinische Schriftzeichen erlaubt.
 
 \subsection{World Wide Web}
-Das World Wide Web (WWW) wurde 1991 von Tim Berners-Lee entwickelt.
-Es ermöglicht freien Zugriff auf und Austausch von Daten über das Hypertext Transfer Protocol (HTTP).
-Die Standards zu dieser Kommunikation setzt das World Wide Web Consortium (W3C), dessen Direktor Berners-Lee ist.\todo{Diese Standards auch alle referenzieren.}
-Das Format der Dokumente wird durch die Hypertext Markup Language (HTML) beschrieben, welche ebenfalls vom W3C kontrolliert wird. \citep{www}
+Das \ac{www} wurde 1991 von Tim Berners-Lee entwickelt.
+Es ermöglicht freien Zugriff auf und Austausch von Daten über das \ac{http}.
+Die Standards zu dieser Kommunikation setzt das \ac{w3c}, dessen Direktor Berners-Lee ist.
+Das Format der Dokumente wird durch die \ac{html} beschrieben, welche ebenfalls vom \ac{w3c} kontrolliert wird \citep{www}.
 
 \subsection{Semantic Web}
-Im Gegensatz zu WWW, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
-Es ist außerdem nicht nur ein verwendbares Artefakt wie das WWW, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte "Knowledge Graphs", auf die hier aber nicht weiter eingegangen werden wird.
-Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum WWW, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
+Im Gegensatz zu \ac{www}, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
+Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
+Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 
 \subsection{RDF}
-Das Resource Development Framework (RDF) ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format. \citep[S.~35]{semanticwebgrundlagen}
-Mithilfe dieser formalen Sprache, die erstmals 1999 durch W3C spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
+Das \ac{rdf} ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format \citep[S.~35]{semanticwebgrundlagen}.
+Mithilfe dieser formalen Sprache, die erstmals 1999 durch \ac{w3c} spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen deutschen Satz.
 
 \subsection{Ontologien}
 \begin{definition}[Ontologie]
-\enquote{
-Im Kontext der Informatik ist eine Ontologie eine Menge von repräsentativen Primitiven, welche einen Bereich des Wissens oder eines Diskurses modellieren.
+\enquote{Im Kontext der Informatik ist eine Ontologie eine Menge von repräsentativen Primitiven, welche einen Bereich des Wissens oder eines Diskurses modellieren.
 Die repräsentativen Primitiven sind typischerweise Klassen (oder Mengen), Attribute (oder Eigenschaften), und Zusammenhänge (oder Beziehungen zwischen Klassenelementen).
 Die Definitionen der repräsentativen Primitiven enthalten Informationen über ihre Bedeutung und Beschränkungen ihrer logisch konsistenten Anwendung.
 Im Kontext von Datenbanksystemen kann eine Ontologie als ein Level der Abstraktion von Datenmodellen, analog zu hierarchischen und relationalen Modellen, gesehen werden, aber dazu gedacht, Wissen über Individuen, deren Attribute, und deren Beziehungen zu anderen Individuen zu modellieren.
@@ -63,9 +59,8 @@ Durch ihre Unabhängigkeit von Datenmodellen niedrigeren Levels werden Ontologie
 Im Technologie-Stack der Semantic Web Standards sind Ontologien ihre eigene Schicht.
 Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open-Source Werkzeugen, um Ontologien zu erstellen und mit ihnen zu arbeiten.
 }
-\textcolor{darkgray}{Aus dem Englischen von \citet{ontologygruber}}
 \end{definition}
-\todo{wie bei dem anderen zitat leerzeichen entfernen. 'Aus dem Englischen...' würde ich nicht mit kursiv setzen.}
+\textcolor{darkgray}{Aus dem Englischen von \citet{ontologygruber}}
 \subsection{Taxonomie}
 
 Nur Beziehungen Subklassen->Klassen
@@ -75,11 +70,12 @@ Die Beziehung zwischen Individuum und Klasse in der Mathematik ist eine Elementb
 Beziehungen zwischen Klassen ==> Teilmengenbeziehung (nur für Beziehung zw. Unterklassen und Oberklassen)
 Beziehungen zwischen Individuen untereinander ==> Relationen
 \paragraph{Relationen}
-\todo{"Properties in RDF}
+\todo{Properties in RDF}
 Object-Properties (=> Klassen als Wertebereich) und Data-Properties (=> Literale)
 In RDF alle Relationen zweistellig (Paare)
 \paragraph{Wissensbasen}
-\todo{A-box (Individuen) und T-box (Klassen)}
+Es wird teilweise auch zwischen A- und TBoxen unterschieden.
+Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
 \paragraph{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
 
 
@@ -87,9 +83,10 @@ In RDF alle Relationen zweistellig (Paare)
 \subsection{Linked (Open) Data}
 \todo{Linked Data}
 
+
 \subsection{SPARQL}
 
-SPARQL Protocol and RDF Query Language (SPARQL) ist eine Abfragesprache für RDF, das heißt mit diesem W3C-Standard kann man in einer in RDF verfassten Ontologie Wissen abfragen.\todo{standard referenzieren}
+\ac{sparql} ist eine Abfragesprache für \ac{rdf}, das heißt mit diesem \ac{w3c}-Standard kann man in einer in \ac{rdf} verfassten Ontologie Wissen abfragen.
 \todo{für SPARQL braucht man keine Ontologie! RDF und Ontologien sind zwar verbunden aber nicht das gleiche.}
 \section{Semantisches Question Answering}
 
@@ -107,9 +104,9 @@ welche Deutung impliziert wird, was zum Beispiel mit mehr Daten,
 wie etwa dem vorherigen Suchverlauf (Hat sich die Person vorher nach Parks/Geldfilialen erkundigt?)
 oder persönlichen Daten, wie dem Alter, möglich wäre.
 
-Diese Arbeit beschränkt sich jedoch auf Question Answering mit geschlossener Domäne, SNIK (siehe Kapitel 3).
+Diese Arbeit beschränkt sich jedoch auf Question Answering mit geschlossener Domäne, \ac{snik} (siehe \ref{ch:relatedWork}).
 Solche Question Answering-Programme beschränken sich auf einen Fachbereich,
-was z.B. den Kontext vom vorherigen Beispiel bereitstellen würde.
+was etwa den Kontext vom vorherigen Beispiel bereitstellen würde.
 
 \begin{definition}{Semantisches Question Answering}
 \todo{Definition Semantisches Question Answering}
@@ -123,9 +120,9 @@ was z.B. den Kontext vom vorherigen Beispiel bereitstellen würde.
 
 
 
-\subsection{Natural Language Processing (NLP)}
+\subsection{Natural Language Processing}
 
-
+\ac{nlp}
 
 \subsection{NLP-Pipeline}
 
