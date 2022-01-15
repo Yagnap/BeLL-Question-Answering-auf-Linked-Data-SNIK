@@ -42,9 +42,31 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
 
 \subsection{RDF}
 Das \ac{rdf} ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format \citep[S.~35]{semanticwebgrundlagen}.
-Mithilfe dieser formalen Sprache, die erstmals 1999 durch \ac{w3c} spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
+Mithilfe dieser formalen Sprache, die erstmals 1999 durch das \ac{w3c} spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
-RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert. Es verhält sich hierbei wie in einem normalen deutschen Satz.
+RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert.
+Es verhält sich hierbei wie in einem normalen deutschen Satz, das Prädikat beschreibt also die Beziehung zwischen dem Subjekt und Objekt.
+Alle drei werden normalerweise als \acp{uri} angegeben \citep{linkeddatadesignissues}.
+Beispiel für solche Tripel aus \acp{uri} sind in \ref{tab:rdftripleexample} zu sehen:
+Wilhelm Ostwald (Subjekt) hat den Preis (Prädikat) Nobelpreis der Chemie (Objekt).
+Im zweiten Beispiel ist Leipzig das Subjekt und eine Abbildung des Weihnachtsmarktes das Objekt, was noch einmal verdeutlicht, dass \acp{uri} Ressourcen darstellen.
+Das dritte Beispiel zeigt, dass für manche Informationen \acp{uri} nur teilweise angeben, was diese Information ist, hier eine nicht negative Ganzzahl.
+Die Informationen wurden von DBPedia heruntergeladen\footnote{\url{https://dbpedia.org/page/Leipzig} und \url{https://dbpedia.org/page/Wilhelm_Ostwald}, abgerufen am 14. Januar 2022}.
+\begin{table}[h]
+  \tiny
+  \begin{tabulary}{\textwidth}{rcl}
+    \toprule
+    Subjekt & Prädikat & Objekt \\
+    \midrule
+    <http://dbpedia.org/resource/Wilhelm\_Ostwald> & <http://dbpedia.org/ontology/award> & <http://dbpedia.org/resource/Nobel\_Prize\_in\_Chemistry> \\
+    <http://dbpedia.org/resource/Leipzig> & <http://xmlns.com/foaf/0.1/depiction> & <http://commons.wikimedia.org/wiki/Special:FilePath/Leipziger\_Weihnachtsmarkt\_Eingang.jpg> \\
+    <http://dbpedia.org/resource/Leipzig> & <http://dbpedia.org/ontology/populationTotal> & "605407"^^<http://www.w3.org/2001/XMLSchema\#nonNegativeInteger> \\
+    \bottomrule
+  \end{tabulary}
+  \caption{Beispiele für RDF-Tripel}
+  \label{tab:rdftripleexample}
+\end{table}
+\todo{Formatierungsfehler Zeile 4 Objekt; Tabelle zentrieren}
 
 \subsection{Ontologien}
 \begin{definition}[Ontologie]
@@ -69,19 +91,19 @@ Nur Beziehungen Subklassen->Klassen
 Die Beziehung zwischen Individuum und Klasse in der Mathematik ist eine Elementbeziehung
 Beziehungen zwischen Klassen ==> Teilmengenbeziehung (nur für Beziehung zw. Unterklassen und Oberklassen)
 Beziehungen zwischen Individuen untereinander ==> Relationen
-\paragraph{Relationen}
+\subsubsection{Relationen}
 \todo{Properties in RDF}
 Object-Properties (=> Klassen als Wertebereich) und Data-Properties (=> Literale)
 In RDF alle Relationen zweistellig (Paare)
-\paragraph{Wissensbasen}
+\subsubsection{Wissensbasen}
 Es wird teilweise auch zwischen A- und TBoxen unterschieden.
 Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
-\paragraph{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
+\subsubsection{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
 
 
 
 \subsection{Linked (Open) Data}
-\todo{Linked Data}
+
 Linked Data beschreibt öffentlich verfügbare Informationen, die mittels \acp{uri} erreichbar und in für Maschinen lesbarer Form vorhanden sind \citep{linkeddata}.
 Es sollen verschiedene open-source lizensierte Datenquellen in \ac{rdf} umgeformt und verbunden werden, was allerdings Probleme im Sinne von fehlender Konsistenz der Daten führen kann \citep{semanticwebreview}.
 Berners-Lee verfasste vier Regeln für das veröffentlichen von Daten im Internet, um ein umfassendes Linked Data-System zu ermöglichen \citep{linkeddatadesignissues}.
@@ -93,8 +115,9 @@ Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen sta
 \todo{für SPARQL braucht man keine Ontologie! RDF und Ontologien sind zwar verbunden aber nicht das gleiche.}
 \section{Semantisches Question Answering}
 
-\begin{definition}{Question Answering}
-\todo{Definition Question Answering}
+\begin{definition}[Question Answering]
+Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
+Ein Question Answering-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
 \end{definition}
 
 Es existieren sowohl \emph{closed-domain} als auch \emph{open-domain} Question Answering.
@@ -111,8 +134,11 @@ Diese Arbeit beschränkt sich jedoch auf Question Answering mit geschlossener Do
 Solche Question Answering-Programme beschränken sich auf einen Fachbereich,
 was etwa den Kontext vom vorherigen Beispiel bereitstellen würde.
 
-\begin{definition}{Semantisches Question Answering}
-\todo{Definition Semantisches Question Answering}
+\begin{definition}[Semantisches Question Answering]
+Semantisches Question Answering ist die Beantwortung von Fragen, die in natürlicher Sprache gestellt wurden.
+Ein Programm für Semantisches Question Answering erkennt verschiedene semantische Strukturen in der Frage,
+also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
+Dafür wird \acs{nlp} verwendet.
 \end{definition}
 
 \subsection{Neuronales Netz}
