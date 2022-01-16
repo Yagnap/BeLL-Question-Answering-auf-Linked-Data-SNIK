@@ -143,15 +143,25 @@ Dafür wird \acs{nlp} verwendet.
 
 \subsection{Neuronales Netz}
 
-
+Neuronale Netze sollen, indem sie die Struktur des menschlichen Gehirns nachstellen, komplexe Aufgaben, wie etwa das autonome Fahren oder \ac{nlp}, ausführen.
+Dazu werden Knoten in verschieden Schichten miteinander verbunden.
+Es gibt drei Arten von diesen: Eingabe- (input), versteckte (hidden) und Ausgabe-Schichten (output).
+Zwischen den Schichten sind die Knoten verbunden, jede Verbindung hat ein bestimmtes Gewicht.
+Mit diesem Gewicht wird der weitergereichte Wert multipliziert, welcher in der Eingabeschicht erstmals festgelegt wird.
+Bei jedem Knoten werden die aus den niederen Schichten ankommenden Werte addiert, sodass ein neuer Wert entsteht.
+Diese Summe wird dann mithilfe einer Funktion, meistens einer hyperbolischen oder Sigmoidfunktion, verändert und dann wieder weitergereicht.
+Es werden genau diese Funktionen genommen, da deren Ableitungen die Fehlerberechnung leichter machen \citep{deeplearningarchitecturesreview}.
+So kann das, je nach der Anzahl der versteckten Schichten, lange weitergehen.
+Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} enstanden.
 
 \subsection{Deep Learning}
 
-
+Deep Learning ist ein Teilgebiet des maschinellen Lernens, dass \acp{nn} mit mehreren versteckte Schichten enthält \citep{deeplearningreview}.
+Es befasst sich mit Tiefen Neuronalen Netzen (\acsp{dnn}), welche eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
 
 \subsection{Natural Language Processing}
 
-\ac{nlp}
+\acf{nlp}
 
 \subsection{NLP-Pipeline}
 
