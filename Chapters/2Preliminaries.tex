@@ -41,32 +41,31 @@ Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern a
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 
 \subsection{RDF}
+
+\begin{table}[h]\centering\scriptsize
+  \begin{tabulary}{\textwidth}{rcl}
+    \toprule
+    Subjekt & Prädikat & Objekt \\
+    \midrule
+    \aurl{dbr}{Wilhelm\_Ostwald} & \aurl{dbo}{award} & \aurl{dbr}{Nobel\_Prize\_in\_Chemistry} \\
+    \aurl{dbr}{Leipzig} & \aurl{dbo}{populationTotal} & "605407" \aurl{xsd}{nonNegativeInteger} \\
+    \aurl{dbr}{Wilhelm\_Ostwald} & \aurl{dbo}{wikiPageWikiLink} & \aurl{dbr}{Albert\_Einstein} \\
+    \bottomrule
+  \end{tabulary}
+  \caption{Beispiele für RDF-Tripel}
+  \label{tab:rdftripleexample}
+\end{table}
+
 Das \ac{rdf} ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format \citep[S.~35]{semanticwebgrundlagen}.
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch das \ac{w3c} spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert.
 Es verhält sich hierbei wie in einem normalen deutschen Satz, das Prädikat beschreibt also die Beziehung zwischen dem Subjekt und Objekt.
 Alle drei werden normalerweise als \acp{uri} angegeben \citep{linkeddatadesignissues}.
-Beispiel für solche Tripel aus \acp{uri} sind in \ref{tab:rdftripleexample} zu sehen:
+Beispiel für solche Tripel aus \acp{uri} sind in \cref{tab:rdftripleexample} zu sehen:
 Wilhelm Ostwald (Subjekt) hat den Preis (Prädikat) Nobelpreis der Chemie (Objekt).
-Im zweiten Beispiel ist Leipzig das Subjekt und eine Abbildung des Weihnachtsmarktes das Objekt, was noch einmal verdeutlicht, dass \acp{uri} Ressourcen darstellen.
-Das dritte Beispiel zeigt, dass für manche Informationen \acp{uri} nur teilweise angeben, was diese Information ist, hier eine nicht negative Ganzzahl.
+Das zweite Beispiel zeigt, dass für manche Informationen \acp{uri} nur teilweise angeben, was diese Information ist, hier eine nicht negative Ganzzahl.
 Die Informationen wurden von DBPedia heruntergeladen\footnote{\url{https://dbpedia.org/page/Leipzig} und \url{https://dbpedia.org/page/Wilhelm_Ostwald}, abgerufen am 14. Januar 2022}.
-\begin{table}[h]
-  \tiny
-  \begin{tabulary}{\textwidth}{rcl}
-    \toprule
-    Subjekt & Prädikat & Objekt \\
-    \midrule
-    <http://dbpedia.org/resource/Wilhelm\_Ostwald> & <http://dbpedia.org/ontology/award> & <http://dbpedia.org/resource/Nobel\_Prize\_in\_Chemistry> \\
-    <http://dbpedia.org/resource/Leipzig> & <http://xmlns.com/foaf/0.1/depiction> & <http://commons.wikimedia.org/wiki/Special:FilePath/Leipziger\_Weihnachtsmarkt\_Eingang.jpg> \\
-    <http://dbpedia.org/resource/Leipzig> & <http://dbpedia.org/ontology/populationTotal> & "605407"^^<http://www.w3.org/2001/XMLSchema\#nonNegativeInteger> \\
-    \bottomrule
-  \end{tabulary}
-  \caption{Beispiele für RDF-Tripel}
-  \label{tab:rdftripleexample}
-\end{table}
-\todo{Formatierungsfehler Zeile 4 Objekt; Tabelle zentrieren}
 
 \subsection{Ontologien}
 \begin{definition}[Ontologie]
@@ -108,6 +107,8 @@ Linked Data beschreibt öffentlich verfügbare Informationen, die mittels \acp{u
 Es sollen verschiedene open-source lizensierte Datenquellen in \ac{rdf} umgeformt und verbunden werden, was allerdings Probleme im Sinne von fehlender Konsistenz der Daten führen kann \citep{semanticwebreview}.
 Berners-Lee verfasste vier Regeln für das veröffentlichen von Daten im Internet, um ein umfassendes Linked Data-System zu ermöglichen \citep{linkeddatadesignissues}.
 Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen standardisiert durch \ac{rdf} und \ac{sparql} weitere nützliche Informationen und Links zu anderen \acp{uri} enthalten sollen.
+Dies ist etwa auch auf DBPedia der Fall, wo jede Ressource ein Attribut namens \enquote{\aurl{dbo}{wikiPageWikiLink}} hat, \ac{http}-\acp{uri} wo zum Thema zugehörige Ressourcen stehen,
+wie zum Beispiel Albert Einstein unter Wilhelm Ostwald (siehe \cref{tab:rdftripleexample}).
 
 \subsection{SPARQL}
 
@@ -130,7 +131,7 @@ welche Deutung impliziert wird, was zum Beispiel mit mehr Daten,
 wie etwa dem vorherigen Suchverlauf (Hat sich die Person vorher nach Parks/Geldfilialen erkundigt?)
 oder persönlichen Daten, wie dem Alter, möglich wäre.
 
-Diese Arbeit beschränkt sich jedoch auf Question Answering mit geschlossener Domäne, \ac{snik} (siehe \ref{ch:relatedWork}).
+Diese Arbeit beschränkt sich jedoch auf Question Answering mit geschlossener Domäne, \ac{snik} (siehe \cref{ch:relatedWork}).
 Solche Question Answering-Programme beschränken sich auf einen Fachbereich,
 was etwa den Kontext vom vorherigen Beispiel bereitstellen würde.
 
