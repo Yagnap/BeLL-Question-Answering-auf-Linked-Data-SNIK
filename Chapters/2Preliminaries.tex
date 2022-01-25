@@ -50,6 +50,7 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
     \aurl{dbr}{Wilhelm\_Ostwald} & \aurl{dbo}{award} & \aurl{dbr}{Nobel\_Prize\_in\_Chemistry} \\
     \aurl{dbr}{Leipzig} & \aurl{dbo}{populationTotal} & "605407" \aurl{xsd}{nonNegativeInteger} \\
     \aurl{dbr}{Wilhelm\_Ostwald} & \aurl{dbo}{wikiPageWikiLink} & \aurl{dbr}{Albert\_Einstein} \\
+    \aurl{dbr}{Leipzig} & \aurl{dbo}{leaderName} & \aurl{dbr}{Burkhard\_Jung} \\
     \bottomrule
   \end{tabulary}
   \caption{Beispiele für RDF-Tripel}
@@ -66,7 +67,8 @@ Beispiel für solche Tripel aus \acp{uri} sind in \cref{tab:rdftripleexample} zu
 Wilhelm Ostwald (Subjekt) hat den Preis (Prädikat) Nobelpreis der Chemie (Objekt).
 Das zweite Beispiel zeigt, dass für manche Informationen \acp{uri} nur teilweise angeben, was diese Information ist, hier eine nicht negative Ganzzahl.
 Die Informationen wurden von DBPedia heruntergeladen\footnote{\url{https://dbpedia.org/page/Leipzig} und \url{https://dbpedia.org/page/Wilhelm_Ostwald}, abgerufen am 14. Januar 2022}.
-
+Diese Information wird auch \emph{Literal} genannt, mehr dazu in \cref{sec:individuenundklassen}
+\todo{Prefixe}
 \subsection{Ontologien}
 \begin{definition}[Ontologie]
 \enquote{Im Kontext der Informatik ist eine Ontologie eine Menge von repräsentativen Primitiven, welche einen Bereich des Wissens oder eines Diskurses modellieren.
@@ -87,16 +89,37 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 Nur Beziehungen Subklassen->Klassen
 
 \subsection{Individuen und Klassen}
-Die Beziehung zwischen Individuum und Klasse in der Mathematik ist eine Elementbeziehung
-Beziehungen zwischen Klassen ==> Teilmengenbeziehung (nur für Beziehung zw. Unterklassen und Oberklassen)
-Beziehungen zwischen Individuen untereinander ==> Relationen
+\label{sec:individuenundklassen}
+Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung,
+für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
+Dahingegen ist die Beziehung zwischen Unterklassen $U$ und Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$), das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
+Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält, das nicht in $U$ ist \citep[S.~261]{semanticwebgrundlagen}.
 \subsubsection{Relationen}
-\todo{Properties in RDF}
-Object-Properties (=> Klassen als Wertebereich) und Data-Properties (=> Literale)
-In RDF alle Relationen zweistellig (Paare)
+Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
+Relationen können als Teilmenge von Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden, also gilt $(a,b) \in R$, wenn $R \subset A \times B$ ist.
+Als Kurzform kann auch $aRb$ geschrieben werden \citep[S.~263]{semanticwebgrundlagen}.
+Es gibt nicht nur \emph{binäre} Relationen, also Relationen zweier Elemente, hier werden aber nur diese benötigt.
+
+In \ac{rdf} sind nämlich alle Relationen zweistellig, also Paare.
+Die Beschreibung dieser Relation wird \enquote{Property}, also Attribut oder Eigenschaft, genannt.
+Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{dbo}{award} ein Property von \aurl{dbr}{Wilhelm\_Ostwald} mit dem Wert \aurl{dbr}{Nobel\_Price\_in\_Chemistry}.
+Sie können auch eingeschränkt werden, indem man ihnen mit \ac{rdf} ihren \emph{Definitionsbereich} mit und \emph{Wertebereich} verändert.
+Damit lässt sich einstellen, welche Datentypen als Subjekt und Objekt akzeptiert werden \citep[S.~76]{semanticwebgrundlagen}.
+Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über \aurl{rdfs}{range} bearbeitet.
+
+\emph{Literale}, oder auch \emph{Data}-Properties, erfüllen die Funktion der Datentypen.
+Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
+In \cref{tab:rdftripleexample} wird in Zeile 2 nicht auf eine andere Entität verwiesen, sondern direkt auf die Bevölkerungszahl.
+Die Zahl ist ein \aurl{xsd}{nonNegativeInteger} und keine Zeichenkette.
+
+Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
+So ist in \cref{tab:rdftripleexample} \aurl{dbo}{leaderName} ein Property mit \aurl{dbo}{PopulatedPlace} als Definitions- und \aurl{dbo}{Person} als Wertebereich.
+Sie sind also Eigenschaften von Objekten, wie oben etwa Wilhelm Ostwald oder Leipzig.
+
 \subsubsection{Wissensbasen}
 Es wird teilweise auch zwischen A- und TBoxen unterschieden.
 Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
+
 \subsubsection{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
 
 
