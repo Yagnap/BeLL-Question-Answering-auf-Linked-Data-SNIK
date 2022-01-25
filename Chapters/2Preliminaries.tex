@@ -168,7 +168,7 @@ Dafür wird \acs{nlp} verwendet.
 \subsection{Neuronales Netz}
 
 Neuronale Netze sollen, indem sie die Struktur des menschlichen Gehirns nachstellen, komplexe Aufgaben, wie etwa das autonome Fahren oder \ac{nlp}, ausführen.
-Dazu werden Knoten in verschieden Schichten miteinander verbunden.
+Dazu werden \emph{Knoten} oder \emph{Neuronen} in verschieden Schichten miteinander verbunden.
 Es gibt drei Arten von diesen: Eingabe- (input), versteckte (hidden) und Ausgabe-Schichten (output).
 Zwischen den Schichten sind die Knoten verbunden, jede Verbindung hat ein bestimmtes Gewicht.
 Mit diesem Gewicht wird der weitergereichte Wert multipliziert, welcher in der Eingabeschicht erstmals festgelegt wird.
@@ -178,10 +178,43 @@ Es werden genau diese Funktionen genommen, da deren Ableitungen die Fehlerberech
 So kann das, je nach der Anzahl der versteckten Schichten, lange weitergehen.
 Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} enstanden.
 
-\subsection{Deep Learning}
+\subsubsection{Deep Learning}
 
 Deep Learning ist ein Teilgebiet des maschinellen Lernens, dass \acp{nn} mit mehreren versteckte Schichten enthält \citep{deeplearningreview}.
-Es befasst sich mit Tiefen Neuronalen Netzen (\acsp{dnn}), welche eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
+Es befasst sich mit Tiefen Neuronalen Netzen (\acp{dnn}), welche eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
+Für \ac{dnn} gibt es verschiedene Architekturen.
+
+\subsubsection{Konvolutionelles neuronales Netz}
+
+\acp{cnn} werden vor allem zur Bilderkennung und \ac{nlp} verwendet.
+Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht.
+Die Neuronen sind auf jeder Schicht, welche hier auch \emph{Filter} oder \emph{Kern} genannt werden,
+zweidimensional aufgebaut, aber nicht wie sonst zu jedem Neuron der nächsten Schicht verbunden,
+sondern nur zu einem \emph{lokalen rezeptiven Feld} \citep{deeplearningarchitecturesreview},
+also einer kleineren Gruppe an Knoten, in der nächsten Schicht zusammengeschlossen.
+Dies verkürzt die Trainingszeit, da jeder Knoten nur einen Teil der Eingabe sieht, aber alle nach dem gleichen Muster suchen.
+Die kürzere Trainingszeit ist auch dadurch bedingt, dass manche Schichten ihre Gewichte teilen.
+Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hinteren Schichten vollständig verbunden.
+
+
+\subsubsection{Rekurrentes neuronales Netz}
+
+In einem \ac{rnn} formen die Knoten einen Kreis, sodass die Ausgabe der einen Schicht die Eingabe einer anderen wird,
+wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind.
+Typischerweise gibt es in solchen \acp{nn} nur eine Schicht.
+Ein Vorteil dieser Art von \acp{nn} ist, das sowohl eine Reihe an Eingaben als auch eine Reihe an Ausgaben möglich wird.
+Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep{deeplearningarchitecturesreview}.
+
+\subsubsection{Long short-term memory}
+
+\ac{lstm}, zu Deutsch \enquote{langes Kurzzeitgedächtnis}, ist eine Form von \acp{rnn} \citep{lstm}.
+Es wird zum Beispiel von Google und Amazon für deren Stimmenerkennungssoftware genutzt.
+Im Gegensatz zu \acp{rnn} hat \ac{lstm} nicht das Problem, dass der Gradient langsam verringert wird,
+indem es aus mehreren Zellen, durch die eingegeben, ausgegeben und vergessen werden kann.
+
+\subsubsection{Training von \acp{nn}}
+
+Supvervised, unsupervised, semi-supervised
 
 \subsection{Natural Language Processing}
 
