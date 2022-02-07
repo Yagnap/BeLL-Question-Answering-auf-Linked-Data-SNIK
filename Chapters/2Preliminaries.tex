@@ -120,11 +120,14 @@ Sie sind also Eigenschaften von Objekten, wie oben etwa Wilhelm Ostwald oder Lei
 Es wird teilweise auch zwischen A- und TBoxen unterschieden.
 Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
 Das heißt, dass ABoxen speziellere Informationen und TBoxen allgemeinere Informationen, also Wissen, enthalten.
-Man kann TBoxen deshalb auch \emph{Wissensbasen} nennen.
+Man kann A- und TBoxen deshalb auch \emph{Wissensbasen} nennen.
 
 \subsubsection{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
-
-
+Relationale Datenbanken sind Datenbanken, in welchen die Daten in einer eindeutigen Struktur von Entitäten (Tabellen) vorliegen.
+In den Entitäten sind spezielle Informationen über die Individuen enthalten.
+Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen den Individuen.
+Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
+Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
 
 \subsection{Linked (Open) Data}
 
@@ -182,7 +185,6 @@ So kann das, je nach der Anzahl der versteckten Schichten, lange weitergehen.
 Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} enstanden.
 
 \subsubsection{Deep Learning}
-
 Deep Learning ist ein Teilgebiet des maschinellen Lernens, das \acp{nn}, zu Deutsch \emph{neuronale Netze}, mit mehreren versteckte Schichten enthält \citep{deeplearningreview}.
 Es befasst sich mit \acp{dnn}, welche häufig eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
 Das bedeutet, dass die Ergebnisse für weniger oder gleich viel Training bessere Ergebnisse erzielen.
@@ -191,7 +193,6 @@ Hier wird dem \ac{nn} ein Bild als Eingabe gegeben, welches es dann einordnen un
 Für Deep Learning gibt es verschiedene Architekturen.
 
 \subsubsection{Convolutional Neural Network}
-
 \acp{cnn} werden vor allem zur Bilderkennung und \ac{nlp} verwendet.
 Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht.
 Die Neuronen sind auf jeder Schicht, welche hier auch \emph{Filter} oder \emph{Kern} genannt werden,
@@ -202,9 +203,7 @@ Dies verkürzt die Trainingszeit, da jeder Knoten nur einen Teil der Eingabe sie
 Die kürzere Trainingszeit ist auch dadurch bedingt, dass manche Schichten ihre Gewichte teilen.
 Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hinteren Schichten vollständig verbunden.
 
-
 \subsubsection{Recurrent Neural Network}
-
 In einem \ac{rnn} formen die Knoten einen Kreis, sodass die Ausgabe der einen Schicht die Eingabe einer anderen wird,
 wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind.
 Typischerweise gibt es in solchen \acp{nn} nur eine Schicht.
@@ -212,14 +211,12 @@ Ein Vorteil dieser Art von \acp{nn} ist, das sowohl eine Reihe an Eingaben als a
 Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep{deeplearningarchitecturesreview}.
 
 \subsubsection{Long short-term memory}
-
 \ac{lstm}, zu Deutsch \enquote{langes Kurzzeitgedächtnis}, ist eine Form von \acp{rnn} \citep{lstm}.
 Es wird zum Beispiel von Google und Amazon für deren Stimmenerkennungssoftware genutzt.
 Im Gegensatz zu \acp{rnn} hat \ac{lstm} nicht das Problem, dass der Gradient langsam verringert wird,
 indem es aus mehreren Zellen, durch die eingegeben, ausgegeben und vergessen werden kann.
 
 \subsubsection{Training von neuronalen Netzen}
-
 Neuronale Netze basieren darauf, trainiert zu werden.
 Bei diesem Training werden die Gewichte der einzelnen Verbindungen zufällig verändert, sodass am Ende selbst die programmierende Person nicht weiß, wie genau es funktioniert.
 Es gibt viele Trainingstypen, aber es wird vor allem zwischen zwei unterschieden: \emph{überwachtes} (supervised) und \emph{unüberwachtes} (unsupervised) Lernen \citep{mllearning}.
@@ -234,14 +231,13 @@ Ohne die Ausgaben hätte man nämlich unüberwachtes Lernen.
 Dieses gibt dem zu trainierenden \ac{nn} keine Lösung vor und ist eher zur allgemeinen Mustererkennung gut.
 
 \subsubsection{Regelbasiertes System}
-
 Vor neuronalen Netzen wurden vor allem die äußerst strikten regelbasierten Systeme zur Lösung von komplexen Problemen genutzt.
 Sie bestehen aus einer Wissensbasis und einem Regelinterpreter.
 Die Wissensbasis enthält Regeln, welche aus einer \emph{Atendenz} (Bedingung) und einer \emph{Konsequenz} (Resultat) bestehen, und Fakten.
 Wenn die Bedingung einer Regel wahr wird, folgt das Resultat.
 Regelbasierte Systeme ermöglichen ausführliche Begründungen, welche stark dem subjektiven menschlichen Denken ähneln.
 Wissen lässt sich außerdem häufig leicht in einer solchen Regelform ausdrücken.
-Es gelten nicht immer alle Regeln und Fakten, sie können dynamisch ein- und ausgeschaltet werden.
+Es gelten nicht immer alle Regeln und Fakten, sie können dynamisch ein- und ausgeschaltet werden \citep{rulebasedsystem}.
 Regelbasierte Systeme werden heute weniger benutzt, in Verbindung mit neuronalen Netzen können sie jedoch immer noch sehr nützlich sein.
 
 \subsection{Natural Language Processing}
@@ -263,7 +259,6 @@ Desweiteren muss es analysieren, wer mit \enquote{sein} überhaupt gemeint ist.
 Dafür kann auch mehr Kontext nötig sein, welcher je nach Eingabe nicht immer vorhanden ist.
 
 \subsubsection{NLP-Pipeline}
-
 Eine \ac{nlp}-Pipeline ist ein Programm, das die oben genannten Aufgaben ausführt.
 Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
 \ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
