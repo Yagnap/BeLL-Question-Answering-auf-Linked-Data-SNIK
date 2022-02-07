@@ -27,7 +27,7 @@ wie zum Beispiel dem englischsprachigen Wikipedia mit etwa 2,5 Millionen Wörter
 oder dem BooksCorpus \citep{bookscorpus},
 einer Sammlung von Sätzen aus Büchern mit insgesamt etwa 800 Millionen Wörtern,
 trainiert \citep{BERT}.
-Mit \emph{finetuning-} oder \emph{feature-basiertem} Training
+Mit \emph{fine-tuning-} oder \emph{feature-basiertem} Training\todo{fine-tuning- und feature-basiertes Training}
 
 \subsection{ELMo}
 
@@ -49,16 +49,13 @@ DeepPavlov ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
 Es ist in \emph{Models} und \emph{Skills} organisiert.
 
 \paragraph{Architektur}
-Ein Model ist eine in TensorFlow\todo{erklären was tensorflow ist} implementierte Funktion einer \ac{nlp}-Pipeline,
+
+Ein \emph{Model} ist eine in TensorFlow\todo{erklären was tensorflow ist} implementierte Funktion einer \ac{nlp}-Pipeline,
 die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
 Models können auch andere Models enthalten.
-
-Ein Skill besteht aus Models, jedoch kann er nur Zeichenketten als Ein-/Ausgabe haben.
-Sie werden deshalb im Dialog verwendet.
-
-\subsection{Rasa}
-
-
-\paragraph{Beispielzitierungen}
-\citet{sniktec} beschreiben ein Verfahren zur X von Y auf Basis von Z.
-Alternativ: X von Y lässt sich auf Basis von Z ermitteln~\citep{sniktec}.
+Ein \emph{Skill} besteht aus Models, jedoch kann er nur Zeichenketten als Ein-/Ausgabe haben.
+Sie werden deshalb häufig im Dialog verwendet.
+Die Models in Skills werden über einen \emph{Chainer} verbunden, der die Konfigurationsdatei einliest und so die Parameter der Models festsetzt.
+Skills und Models werden gleich implementiert und unterscheiden sich nur in den Unterschiedlichen Ein- und Ausgabemöglichkeiten.
+Mehrere Skills formen einen \emph{Agent}.
+Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhaltung mit dem Benutzer verwenden und zwischen ihnen wechseln.
