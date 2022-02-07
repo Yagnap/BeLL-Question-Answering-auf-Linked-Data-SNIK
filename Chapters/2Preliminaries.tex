@@ -137,6 +137,7 @@ wie zum Beispiel Albert Einstein unter Wilhelm Ostwald (siehe \cref{tab:rdftripl
 
 \ac{sparql} ist eine Abfragesprache für \ac{rdf}, das heißt mit diesem \ac{w3c}-Standard kann man in einer in \ac{rdf} verfassten Ontologie Wissen abfragen.
 \todo{für SPARQL braucht man keine Ontologie! RDF und Ontologien sind zwar verbunden aber nicht das gleiche.}
+
 \section{Semantisches Question Answering}
 
 \begin{definition}[Question Answering]
@@ -215,13 +216,13 @@ Es wird zum Beispiel von Google und Amazon für deren Stimmenerkennungssoftware 
 Im Gegensatz zu \acp{rnn} hat \ac{lstm} nicht das Problem, dass der Gradient langsam verringert wird,
 indem es aus mehreren Zellen, durch die eingegeben, ausgegeben und vergessen werden kann.
 
-\subsubsection{Training von \acp{nn}}
+\subsubsection{Training von neuronalen Netzen}
 
 Neuronale Netze basieren darauf, trainiert zu werden.
 Bei diesem Training werden die Gewichte der einzelnen Verbindungen zufällig verändert, sodass am Ende selbst die programmierende Person nicht weiß, wie genau es funktioniert.
 Es gibt viele Trainingstypen, aber es wird vor allem zwischen zwei unterschieden: \emph{überwachtes} (supervised) und \emph{unüberwachtes} (unsupervised) Lernen \citep{mllearning}.
 Diese haben jeweils noch Untertypen, diese werden hier allerdings nicht weiter betrachtet.
-Beim überwachten Lernen hat das Programm eine kurierte und beschriftete Eingabe, das Programm erhält ein Paar aus Eingabe und erwarteter Ausgabe.
+Beim überwachten Lernen hat das Programm eine kurierte und annotierte Eingabe, das Programm erhält ein Paar aus Eingabe und erwarteter Ausgabe.
 Um zum Beispiel Bücher digitalisieren zu können sind viele Trainingsdaten nötig.
 Dafür hat die Carnegie Melon University in Pittsburgh reCAPTCHA entwickelt, welches in seiner ersten Version ein Wort zeigte, welches der Benutzer abschreiben sollte \citep{recaptchabooks}.
 Google kaufte es, um damit Bücher und Hausnummern automatisch zu digitalisieren.
@@ -233,10 +234,24 @@ Dieses gibt dem zu trainierenden \ac{nn} keine Lösung vor und ist eher zur allg
 \subsection{Natural Language Processing}
 
 \acf{nlp} ist die automatische Verarbeitung von natürlicher Sprache, also Sprache, wie sie Menschen sprechen und schreiben.
+Das große Ziel von \ac{nlp} ist, menschliche Sprache maschinell perfekt verstehen zu können.
+Es behandelt dabei viele Aspekte, von maschineller Übersetzung, womit das Feld überhaupt begann \citep{nlphistory}, Question Answering, wie es in dieser Arbeit behandelt wird.
+Bei \ac{nlp} wird Sprache in vier Leveln betrachtet \citep{nlpreviewtts}.
+\emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern
+\emph{Morphologie} beschreibt die Satzstruktur und den Syntax des Satzes.
+Während der Betrachtung des Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
+Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
+Eine mögliche Implementationsart ist, dem bei der Syntaxbetrachtung erstellten Baumaufbau gewichtete positive bzw. negative Wertungen mitzugeben.
+Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satzes zu verstehen, also zum Beispiel die Bedeutung von Pronomen oder die Deutung von Sätzen die mehrere Aussagen bedeuten können.
+Ein Satz wie \enquote{Das Kind rief seine Eltern mit seinem Rucksack.} kann entweder bedeuten, dass das Kind seine Eltern mithilfe seines Rucksacks ruft, oder dass die Eltern den Rucksack des Kindes haben.
+Es ist natürlich deutlich wahrscheinlicher, dass die Eltern des Kindes den Rucksack haben,was ein \ac{nlp}-Programm erkennen muss.
+Mit mehr Informationen könnte allerdings auch die andere Deutung möglich sein, ein \ac{nlp}-Programm steht stets in der Gefahr, voreilige Schlüsse zu ziehen.
+Desweiteren muss es analysieren, wer mit \enquote{sein} überhaupt gemeint ist.
+Dafür kann auch mehr Kontext nötig sein, welcher je nach Eingabe nicht immer vorhanden ist.
 
+\subsubsection{NLP-Pipeline}
 
-\subsection{NLP-Pipeline}
-
-
-
-\subsection{Regelbasiertes System}
+Eine \ac{nlp}-Pipeline ist ein Programm, das die oben genannten Aufgaben ausführt.
+Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
+\ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
+Zwei Pipelines werden in \cref{ch:relatedWork} näher betrachtet.
