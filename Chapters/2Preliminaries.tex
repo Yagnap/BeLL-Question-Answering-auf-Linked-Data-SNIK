@@ -7,20 +7,31 @@
 \subsection{Informationssysteme im Gesundheitswesen}
 
 \begin{definition}[System]
-\enquote{Ein System ist eine Menge an Elementen und deren Beziehungen.} \citep[S.~30]{bb}
+\enquote{Ein System ist eine Menge an Elementen und deren Beziehungen.}
+(Aus dem Englischen von \citet[S.~30]{bb})
 \end{definition}
 \begin{definition}[Informationssystem]
-\enquote{Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet.} \citep[S.~30]{bb}
+\enquote{Ein Informationssystem ist ein System das Daten, Informationen und Wissen speichert und verarbeitet.}
+(Aus dem Englischen von \citet[S.~30]{bb})
 \end{definition}
 
 \begin{definition}[Informationssystem im Gesundheitswesen]
-\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst.} \citep[S.~37]{bb}
+\enquote{Ein Krankenhausinformationssystem ist das sozioökonomische Subsystem eines Krankenhauses, welches die gesamte Informationsverarbeitung sowie die zugehörigen menschlichen Akteure in deren respektiven Informationsverarbeitungsrollen umfasst.}
+(Aus dem Englischen von \citet[S.~37]{bb})
 \end{definition}
 
 \subsection{Daten, Informationen, Wissen}
-Daten sind die physische Repräsentation von Informationen oder Wissen, also zum Beispiel die Zeichenkette \enquote{\ac{snik}}. Daten können neu interpretiert werden.
-Informationen hingegen sind Fakten, die gegebenenfalls aus Daten hervorgehen.
-Wissen ist eine generelle Information über ein Konzept. \citep[S.~29]{bb}
+Daten sind die physische Repräsentation von Informationen oder Wissen, also zum Beispiel die Zeichenkette \enquote{Universitätsklinikum}.
+Daten können neu interpretiert werden.
+Informationen hingegen sind Fakten, die gegebenenfalls aus Daten hervorgehen, also zum Beispiel die Information, dass Frau Musterfrau verantwortlich für das jährliche IT-Budget des Uniklinikum Leipzigs ist.
+Wissen ist eine generelle Information über einen Begriff \citep[S.~29]{bb}, also zum Beispiel, dass die Leiterin des Informationsmanagements für das jährliche IT-Budget ihrer Einrichtung verantwortlich ist.
+Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings diese verwendet.
+%
+%\section{Menschliche Sprache}
+%
+%\subsection{Begriff}
+%\subsection{Synonyme und Homonyme}
+%\subsection{Ambiguität}
 
 \section{Semantic Web}
 
@@ -69,6 +80,7 @@ Das zweite Beispiel zeigt, dass für manche Informationen \acp{uri} nur teilweis
 Die Informationen wurden von DBPedia heruntergeladen\footnote{\url{https://dbpedia.org/page/Leipzig} und \url{https://dbpedia.org/page/Wilhelm_Ostwald}, abgerufen am 14. Januar 2022}.
 Diese Information wird auch \emph{Literal} genannt, mehr dazu in \cref{sec:individuenundklassen}
 \todo{Prefixe}
+
 \subsection{Ontologien}
 \begin{definition}[Ontologie]
 \enquote{Im Kontext der Informatik ist eine Ontologie eine Menge von repräsentativen Primitiven, welche einen Bereich des Wissens oder eines Diskurses modellieren.
@@ -84,16 +96,18 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 }
 \end{definition}
 \textcolor{darkgray}{Aus dem Englischen von \citet{ontologygruber}}
+
 \subsection{Taxonomie}
 
-Nur Beziehungen Subklassen->Klassen
+Nur Beziehungen Subklassen->Klassen \todo{Taxonomie}
 
 \subsection{Individuen und Klassen}
 \label{sec:individuenundklassen}
-Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung,
-für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
+Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
+Aus dem vorherigen Beispiel ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements.
 Dahingegen ist die Beziehung zwischen Unterklassen $U$ und Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$), das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
 Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält, das nicht in $U$ ist \citep[S.~261]{semanticwebgrundlagen}.
+
 \subsubsection{Relationen}
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
 Relationen können als Teilmenge von Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden, also gilt $(a,b) \in R$, wenn $R \subset A \times B$ ist.

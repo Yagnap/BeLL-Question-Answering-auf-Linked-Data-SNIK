@@ -48,8 +48,7 @@ Mit \emph{fine-tuning-} oder \emph{feature-basiertem} Training\todo{fine-tuning-
 DeepPavlov ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
 Es ist in \emph{Models} und \emph{Skills} organisiert.
 
-\paragraph{Architektur}
-
+\subsubsection{Architektur}
 Ein \emph{Model} ist eine in TensorFlow\todo{erklären was tensorflow ist} implementierte Funktion einer \ac{nlp}-Pipeline,
 die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
 Models können auch andere Models enthalten.
@@ -57,5 +56,12 @@ Ein \emph{Skill} besteht aus Models, jedoch kann er nur Zeichenketten als Ein-/A
 Sie werden deshalb häufig im Dialog verwendet.
 Die Models in Skills werden über einen \emph{Chainer} verbunden, der die Konfigurationsdatei einliest und so die Parameter der Models festsetzt.
 Skills und Models werden gleich implementiert und unterscheiden sich nur in den Unterschiedlichen Ein- und Ausgabemöglichkeiten.
-Mehrere Skills formen einen \emph{Agent}.
+Mehrere Skills formen einen \emph{Agent}, wie in \cref{fig:deeppavlov-architektur} sichtbar ist.
 Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhaltung mit dem Benutzer verwenden und zwischen ihnen wechseln.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics{Images/DeepPavlovArchitecture.png}%[width=.8\textwidth, height=.9\textheight, keepaspectratio]
+\caption[SNIK Metamodell Version 8]{Die Architektur von DeepPavlov. Quelle: \citet{deeppavlov}}
+\label{fig:deeppavlov-architektur}
+\end{figure}
