@@ -165,7 +165,7 @@ also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
 
-\subsection{Neuronales Netz}
+\subsection{Maschinelles Lernen und neuronale Netze}
 
 Neuronale Netze sollen, indem sie die Struktur des menschlichen Gehirns nachstellen, komplexe Aufgaben, wie etwa das autonome Fahren oder \ac{nlp}, ausführen.
 Dazu werden \emph{Knoten} oder \emph{Neuronen} in verschieden Schichten miteinander verbunden.
@@ -180,11 +180,14 @@ Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von die
 
 \subsubsection{Deep Learning}
 
-Deep Learning ist ein Teilgebiet des maschinellen Lernens, dass \acp{nn} mit mehreren versteckte Schichten enthält \citep{deeplearningreview}.
-Es befasst sich mit Tiefen Neuronalen Netzen (\acp{dnn}), welche eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
-Für \ac{dnn} gibt es verschiedene Architekturen.
+Deep Learning ist ein Teilgebiet des maschinellen Lernens, das \acp{nn}, zu Deutsch \emph{neuronale Netze}, mit mehreren versteckte Schichten enthält \citep{deeplearningreview}.
+Es befasst sich mit \acp{dnn}, welche häufig eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
+Das bedeutet, dass die Ergebnisse für weniger oder gleich viel Training bessere Ergebnisse erzielen.
+Die Qualität der Ergebnisse lässt sich z.B. bei der Klassifizierung von Bildern gut ermitteln.
+Hier wird dem \ac{nn} ein Bild als Eingabe gegeben, welches es dann einordnen und beispielsweise die dargestellten Objekte, wie zum Beispiel Ampeln, erkennen soll.
+Für Deep Learning gibt es verschiedene Architekturen.
 
-\subsubsection{Konvolutionelles neuronales Netz}
+\subsubsection{Convolutional Neural Network}
 
 \acp{cnn} werden vor allem zur Bilderkennung und \ac{nlp} verwendet.
 Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht.
@@ -197,7 +200,7 @@ Die kürzere Trainingszeit ist auch dadurch bedingt, dass manche Schichten ihre 
 Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hinteren Schichten vollständig verbunden.
 
 
-\subsubsection{Rekurrentes neuronales Netz}
+\subsubsection{Recurrent Neural Network}
 
 In einem \ac{rnn} formen die Knoten einen Kreis, sodass die Ausgabe der einen Schicht die Eingabe einer anderen wird,
 wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind.
@@ -214,11 +217,23 @@ indem es aus mehreren Zellen, durch die eingegeben, ausgegeben und vergessen wer
 
 \subsubsection{Training von \acp{nn}}
 
-Supvervised, unsupervised, semi-supervised
+Neuronale Netze basieren darauf, trainiert zu werden.
+Bei diesem Training werden die Gewichte der einzelnen Verbindungen zufällig verändert, sodass am Ende selbst die programmierende Person nicht weiß, wie genau es funktioniert.
+Es gibt viele Trainingstypen, aber es wird vor allem zwischen zwei unterschieden: \emph{überwachtes} (supervised) und \emph{unüberwachtes} (unsupervised) Lernen \citep{mllearning}.
+Diese haben jeweils noch Untertypen, diese werden hier allerdings nicht weiter betrachtet.
+Beim überwachten Lernen hat das Programm eine kurierte und beschriftete Eingabe, das Programm erhält ein Paar aus Eingabe und erwarteter Ausgabe.
+Um zum Beispiel Bücher digitalisieren zu können sind viele Trainingsdaten nötig.
+Dafür hat die Carnegie Melon University in Pittsburgh reCAPTCHA entwickelt, welches in seiner ersten Version ein Wort zeigte, welches der Benutzer abschreiben sollte \citep{recaptchabooks}.
+Google kaufte es, um damit Bücher und Hausnummern automatisch zu digitalisieren.
+Die Möglichkeiten dieser Technologie erstrecken sich bis hin zum autonomen Fahren, wo zur Erkennung von Straßenschildern, Ampeln und anderen Verkehrsteilnehmern enorme Datenmengen benötigt werden.
+Google hat die Eingaben, muss sich für die Ausgaben allerdings an seine Nutzer wenden \citep{recaptchaav}.
+Ohne die Ausgaben hätte man nämlich unüberwachtes Lernen.
+Dieses gibt dem zu trainierenden \ac{nn} keine Lösung vor und ist eher zur allgemeinen Mustererkennung gut.
 
 \subsection{Natural Language Processing}
 
-\acf{nlp}
+\acf{nlp} ist die automatische Verarbeitung von natürlicher Sprache, also Sprache, wie sie Menschen sprechen und schreiben.
+
 
 \subsection{NLP-Pipeline}
 
