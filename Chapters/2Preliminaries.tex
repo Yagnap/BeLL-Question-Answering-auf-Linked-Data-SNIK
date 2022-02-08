@@ -217,6 +217,13 @@ Bei \ac{nlp} wird Sprache in vier Stufen betrachtet \citep{nlpreviewtts}.
 Während der Betrachtung des Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
 Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
 Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satzes zu verstehen, also zum Beispiel die Bedeutung von Pronomen oder die Deutung von Sätzen die mehrere Aussagen bedeuten können.
+\begin{figure}%[htbp!]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/syntaxtree.png}
+\caption[Beispielhafter Syntaxbaum]{Beispielhafter Syntaxbaum. Erstellt mit \url{www.mshang.ca/syntree} und \citet{grammarparser}. \emph{S: Sentence; NP: noun phrase; VP: verb phrase; ADJP: adjective phrase; PP: prepositional phrase}.
+Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Budget of the Universitätsklinikum Leipzig.}}
+\label{fig:syntaxtree}
+\end{figure}
 %Ein Satz wie \enquote{Das Kind rief seine Eltern mit seinem Rucksack.} kann entweder bedeuten, dass das Kind seine Eltern mithilfe seines Rucksacks ruft, oder dass die Eltern den Rucksack des Kindes haben.\todo{Beispiel aus Fachgebiet!}
 %Es ist natürlich deutlich wahrscheinlicher, dass die Eltern des Kindes den Rucksack haben, was ein \ac{nlp}-Programm erkennen muss.
 %Mit mehr Informationen könnte allerdings auch die andere Deutung möglich sein, ein \ac{nlp}-Programm steht stets in der Gefahr, voreilige Schlüsse zu ziehen.
@@ -225,8 +232,7 @@ Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satz
 
 \subsection{NLP-Pipeline}
 In einer Pipeline werden verschiedene Komponenenten eines Algorithmus oder Verfahren nacheinander ausgeführt.
-
-Eine \ac{nlp}-Pipeline ist ein Programm, das die oben genannten Aufgaben ausführt.
+Eine \ac{nlp}-Pipeline führt verschiedene Teilprogramme aus, da das Feld an sich zu komplex ist, als dass die Arbeit eines Programms es vollkommen lösen könnte.
 Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
 \ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
 Zwei Pipelines werden in \cref{ch:relatedWork} näher betrachtet.
@@ -295,7 +301,7 @@ Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hintere
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/CNN.png}
-\caption[Struktur von CNNs]{Die Struktur eines \ac{cnn}. Quelle: \citet{deeplearningarchitecturesreview}}
+\caption[Struktur von CNNs]{Die Struktur eines \ac{cnn} \citep{deeplearningarchitecturesreview}.}
 \label{fig:struktur-cnn}
 \end{figure}
 
@@ -309,7 +315,7 @@ Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/RNN.png}
-\caption[Struktur von RNNs]{Die Struktur eines \ac{rnn}. Quelle: \citet{deeplearningarchitecturesreview}}
+\caption[Struktur von RNNs]{Die Struktur eines \ac{rnn} \citep{deeplearningarchitecturesreview}.}
 \label{fig:struktur-rnn}
 \end{figure}
 
