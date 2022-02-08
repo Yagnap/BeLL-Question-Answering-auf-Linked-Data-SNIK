@@ -7,7 +7,7 @@
 Das semantische Netz des Informationsmanagements im Krankenhaus (\ac{snik}) ist eine die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie.
 Sie behandelt
 \todo{SNIK}
-
+\todo{Textbücher referenzieren}
 \begin{sidewaysfigure}[htbp!]
 \centering
 \includegraphics[width=.8\textwidth, height=.9\textheight, keepaspectratio]{Images/snik-metamodel.pdf}
@@ -17,33 +17,14 @@ Sie behandelt
 
 \subsection{\enquote{Eine Ontologie von Ontologien}}
 
-
-
-\section{NLP-Modelle}
-
-Modelle für \acl{nlp} verwenden heutzutage meistens Deep Learning.
-Dazu werden sie vortrainiert, dass heißt sie werden schon vor der Anwendung mit einem Verzeichnis an Wörtern bzw. Sätzen,
-wie zum Beispiel dem englischsprachigen Wikipedia mit etwa 2,5 Millionen Wörtern,
-oder dem BooksCorpus \citep{bookscorpus},
-einer Sammlung von Sätzen aus Büchern mit insgesamt etwa 800 Millionen Wörtern,
-trainiert \citep{BERT}.
-Mit \emph{fine-tuning-} oder \emph{feature-basiertem} Training\todo{fine-tuning- und feature-basiertes Training}
-
-\subsection{ELMo}
-
-\ac{elmo}
-% feature-basiert
-
-\subsection{BERT}
-
-\ac{bert}
-% finetuning-basiert
-
-\subsection{Andere Technologien}
-
 \section{Question Answering-Programme}
 
-\subsection{gAnswer}
+\subsection{gAnswer 2}
+
+gAnswer 2 wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
+Hierfür werden die Fragen in Unterfragen aufgespalten und daraus je ein Syntaxbaum erstellt.
+
+
 \subsection{DeepPavlov}
 DeepPavlov ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
 Es ist in \emph{Models} und \emph{Skills} organisiert.
@@ -61,7 +42,7 @@ Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhal
 
 \begin{figure}[htbp!]
 \centering
-\includegraphics{Images/DeepPavlovArchitecture.png}%[width=.8\textwidth, height=.9\textheight, keepaspectratio]
-\caption[SNIK Metamodell Version 8]{Die Architektur von DeepPavlov. Quelle: \citet{deeppavlov}}
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/DeepPavlovArchitecture.png}
+\caption[DeepPavlov Architektur]{Die Architektur von DeepPavlov. Quelle: \citet{deeppavlov}}
 \label{fig:deeppavlov-architektur}
 \end{figure}

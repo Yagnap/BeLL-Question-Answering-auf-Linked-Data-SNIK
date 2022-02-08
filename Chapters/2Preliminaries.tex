@@ -23,15 +23,36 @@
 \subsection{Daten, Informationen, Wissen}
 Daten sind die physische Repräsentation von Informationen oder Wissen, also zum Beispiel die Zeichenkette \enquote{Universitätsklinikum}.
 Daten können neu interpretiert werden.
-Informationen hingegen sind Fakten, die gegebenenfalls aus Daten hervorgehen, also zum Beispiel die Information, dass Frau Musterfrau verantwortlich für das jährliche IT-Budget des Uniklinikum Leipzigs ist.
+Informationen hingegen sind Fakten, die gegebenenfalls aus Daten hervorgehen, also zum Beispiel die Information, dass Frau Mustermann verantwortlich für das jährliche IT-Budget des Uniklinikum Leipzigs ist.
 Wissen ist eine generelle Information über einen Begriff \citep[S.~29]{bb}, also zum Beispiel, dass die Leiterin des Informationsmanagements für das jährliche IT-Budget ihrer Einrichtung verantwortlich ist.
 Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings diese verwendet.
-%
-%\section{Menschliche Sprache}
-%
-%\subsection{Begriff}
-%\subsection{Synonyme und Homonyme}
-%\subsection{Ambiguität}
+
+\section{Geschriebene Sprache}
+
+In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
+Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet
+
+\subsection{Begriff und Konzept}
+
+Ein \emph{Begriff} ist ein Wort, welches ein
+
+\subsection{Synonyme und Homonyme}
+
+Synonyme existieren, wenn zwei Begriffe auf das gleiche Konzept verweisen.
+Homonyme meinen, dass ein Wort zwei verschiedene Begriffe beschreibt, also z.B. die Bank, welche entweder ein Geldinstitut oder eine Parkbank sein kann.
+
+\subsection{Ambiguität}
+
+Ambiguität oder Mehrdeutigkeit bedeutet, dass ein Satz oder eine Wortgruppe verschieden interpretiert werden kann.
+Zur Auflösung dieser Unklarheit wird meistens mehr Kontext benötigt.
+
+\subsection{Satzglieder}
+
+
+
+\subsection{Wortarten}
+
+
 
 \section{Semantic Web}
 
@@ -50,19 +71,18 @@ Das Format der Dokumente wird durch die \ac{html} beschrieben, welche ebenfalls 
 Im Gegensatz zu \ac{www}, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
 Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
-\daurl{bb}{http://www.snik.eu/ontology}
+\daurl{bb}{http://www.snik.eu/ontology/bb/}
+\daurl{coix}{http://www.snik.eu/ontology/coix/}
+\daurl{ex}{http://www.example.org/}
 \subsection{RDF}
-\todo{Beispiele aus https://www.snik.eu/ontology/bb statt dbpedia}
 \begin{table}[h]\centering\scriptsize
   \begin{tabulary}{\textwidth}{rcl}
     \toprule
     Subjekt & Prädikat & Objekt \\
     \midrule
-    \aurl{dbr}{Wilhelm\_Ostwald} & \aurl{dbo}{award} & \aurl{dbr}{Nobel\_Prize\_in\_Chemistry} \\
-    \aurl{dbr}{Leipzig} & \aurl{dbo}{populationTotal} & "605407" \aurl{xsd}{nonNegativeInteger} \\
-    \aurl{dbr}{Wilhelm\_Ostwald} & \aurl{dbo}{wikiPageWikiLink} & \aurl{dbr}{Albert\_Einstein} \\
-    \aurl{dbr}{Leipzig} & \aurl{dbo}{leaderName} & \aurl{dbr}{Burkhard\_Jung} \\
-    \aurl{bb}{ChiefInformationOfficer} \\ \aurl{meta}{isResponsibleForEntityType} \\ \aurl{bb}{AnnualITBudget} \\
+    \aurl{bb}{ChiefInformationOfficer} & \aurl{meta}{isResponsibleForEntityType} & \aurl{bb}{AnnualITBudget} \\
+    \aurl{ex}{ErikaMustermann} & \aurl{rdf}{type} & \aurl{coix}{ChiefInformationOfficer} \\
+  %  \aurl{}
     \bottomrule
   \end{tabulary}
   \caption{Beispiele für RDF-Tripel}
@@ -73,27 +93,30 @@ Das \ac{rdf} ist das grundlegende zur Beschreibung des Semantic Webs genutzte Fo
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch das \ac{w3c} spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
 Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert.
-Es verhält sich hierbei wie in einem normalen deutschen Satz, das Prädikat beschreibt also die Beziehung zwischen dem Subjekt und Objekt.
+Es verhält sich hierbei wie in einem einfachen deutschen Satz, das Prädikat beschreibt also die Beziehung zwischen dem Subjekt und Objekt.
 Alle drei werden normalerweise als \acp{uri} angegeben \citep{linkeddatadesignissues}.
 Beispiel für solche Tripel aus \acp{uri} sind in \cref{tab:rdftripleexample} zu sehen:
-Wilhelm Ostwald (Subjekt) hat den Preis (Prädikat) Nobelpreis der Chemie (Objekt).
-Das zweite Beispiel zeigt, dass für manche Informationen \acp{uri} nur teilweise angeben, was diese Information ist, hier eine nicht negative Ganzzahl.
-Die Informationen wurden von DBPedia heruntergeladen\footnote{\url{https://dbpedia.org/page/Leipzig} und \url{https://dbpedia.org/page/Wilhelm_Ostwald}, abgerufen am 14. Januar 2022}.
-Diese Information wird auch \emph{Literal} genannt, mehr dazu in \cref{sec:individuenundklassen}
-\todo{Prefixe}
+Die Leiterin des Informationsmanagements (Subjekt) verantwortet (Prädikat) das jährliche IT-Budget (Objekt).
+Beim zweiten Beispiel ist wichtig, dass \aurl{bb}{ChiefInformationOfficer} und \aurl{coix} nicht auf das gleiche Wissen zeigen.
+Durch den \emph{Prefix} wird die genaue und einzigartige Adresse festgelegt.
+Die Wahl des Präfixes ist hierbei den Verantwortlichen überlassen, wichtig ist nur, sie auf eine \ac{http}-Adresse verweisen zu lassen.
+Der Präfix \enquote{ex:} wird z.B. häufig für Beispiele benutzt.
 
 \subsection{Ontologien}
+
 \enquote{Im Kontext der Informatik ist eine Ontologie eine Menge von repräsentativen Primitiven, welche einen Bereich des Wissens oder eines Diskurses modellieren.
 Die repräsentativen Primitiven sind typischerweise Klassen (oder Mengen), Attribute (oder Eigenschaften), und Zusammenhänge (oder Beziehungen zwischen Klassenelementen).
 Die Definitionen der repräsentativen Primitiven enthalten Informationen über ihre Bedeutung und Beschränkungen ihrer logisch konsistenten Anwendung.
-Im Kontext von Datenbanksystemen kann eine Ontologie als ein Level der Abstraktion von Datenmodellen, analog zu hierarchischen und relationalen Modellen, gesehen werden, aber dazu gedacht, Wissen über Individuen, deren Attribute, und deren Beziehungen zu anderen Individuen zu modellieren.
+Im Kontext von Datenbanksystemen kann eine Ontologie als ein Level der Abstraktion von Datenmodellen, analog zu hierarchischen und relationalen Modellen,
+gesehen werden, aber dazu gedacht, Wissen über Individuen, deren Attribute, und deren Beziehungen zu anderen Individuen zu modellieren.
 Ontologien sind typischerweise in Sprachen, die Abstraktionen weg von Datenstrukturen und Implementationsstrategien ermöglichen spezifiziert;
 In Praxis sind die Sprachen von Ontologien in der expressiven Kraft näher an Logik erster Ordnung als alle anderen zur Modellierung von Datenbanken genutzten Sprachen.
 Deshalb werden Ontologien als auf dem \enquote{semantischen} Level stehend angesehen, wohingegen andere Datenbankschemen auf dem \enquote{logischen} oder \enquote{physischen} Level sind.
-Durch ihre Unabhängigkeit von Datenmodellen niedrigeren Levels werden Ontologien zum Integrieren von heterogenen Datenbanken genutzt, was die Benutzbarkeit über verschiedene Systeme erlaubt, und die Spezifizierung von unabhängigen, wissensbasierten  Dienstleistungen ermöglicht.
+Durch ihre Unabhängigkeit von Datenmodellen niedrigeren Levels werden Ontologien zum Integrieren von heterogenen Datenbanken genutzt,
+was die Benutzbarkeit über verschiedene Systeme erlaubt, und die Spezifizierung von unabhängigen, wissensbasierten  Dienstleistungen ermöglicht.
 Im Technologie-Stack der Semantic Web Standards sind Ontologien ihre eigene Schicht.
 Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open-Source Werkzeugen, um Ontologien zu erstellen und mit ihnen zu arbeiten.
-}
+}\\
 \textcolor{darkgray}{Aus dem Englischen von \citet{ontologygruber}}
 
 \subsection{Taxonomie}
@@ -103,7 +126,7 @@ Nur Beziehungen Subklassen->Klassen \todo{Taxonomie}
 \subsection{Individuen und Klassen}
 \label{sec:individuenundklassen}
 Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
-Aus dem vorherigen Beispiel ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements.
+Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements.
 Dahingegen ist die Beziehung zwischen Unterklassen $U$ und Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$), das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
 Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält, das nicht in $U$ ist \citep[S.~261]{semanticwebgrundlagen}.
 
@@ -123,8 +146,6 @@ Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über
 
 \emph{Literale}, oder auch \emph{Data}-Properties, erfüllen die Funktion der Datentypen.
 Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
-In \cref{tab:rdftripleexample} wird in Zeile 2 nicht auf eine andere Entität verwiesen, sondern direkt auf die Bevölkerungszahl.
-Die Zahl ist ein \aurl{xsd}{nonNegativeInteger} und keine Zeichenkette.
 
 Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
 So ist in \cref{tab:rdftripleexample} \aurl{dbo}{leaderName} ein Property mit \aurl{dbo}{PopulatedPlace} als Definitions- und \aurl{dbo}{Person} als Wertebereich.
@@ -141,7 +162,8 @@ Relationale Datenbanken sind Datenbanken, in welchen die Daten in einer eindeuti
 In den Entitäten sind spezielle Informationen über die Individuen enthalten.
 Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen den Individuen.
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
-Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein. \todo{relationale datenbanken können n-stellig sein, wissensbasen nur 2-stellig}
+Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
+Desweiteren sind Wissensbasen auf zweistellige Relationen beschränkt, wohingegen relationale Datenbanken theoretisch unendlich viele Attribute haben können.
 
 \subsection{Linked (Open) Data}
 
@@ -149,8 +171,6 @@ Linked Data beschreibt öffentlich verfügbare Informationen, die mittels \acp{u
 Es sollen verschiedene open-source lizensierte Datenquellen in \ac{rdf} umgeformt und verbunden werden, was allerdings Probleme im Sinne von fehlender Konsistenz der Daten führen kann \citep{semanticwebreview}.
 Berners-Lee verfasste vier Regeln für das veröffentlichen von Daten im Internet, um ein umfassendes Linked Data-System zu ermöglichen \citep{linkeddatadesignissues}.
 Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen standardisiert durch \ac{rdf} und \ac{sparql} weitere nützliche Informationen und Links zu anderen \acp{uri} enthalten sollen.
-Dies ist etwa auch auf DBPedia der Fall, wo jede Ressource ein Attribut namens \enquote{\aurl{dbo}{wikiPageWikiLink}} hat, \ac{http}-\acp{uri} wo zum Thema zugehörige Ressourcen stehen,
-wie zum Beispiel Albert Einstein unter Wilhelm Ostwald (siehe \cref{tab:rdftripleexample}).
 
 \subsection{SPARQL}
 
@@ -185,20 +205,75 @@ also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
 
-\subsection{Maschinelles Lernen und neuronale Netze}
+\section{Automatische Sprachverarbeitung}
 
-Neuronale Netze sollen, indem sie die Struktur des menschlichen Gehirns nachstellen, komplexe Aufgaben, wie etwa das autonome Fahren oder \ac{nlp}, ausführen.
+\acf{nlp}, auf Deutsch \emph{automatische Sprachverarbeitung}, ist die automatische Verarbeitung von natürlicher Sprache, also Sprache, wie sie Menschen sprechen und schreiben.
+Das große Ziel von \ac{nlp} ist, menschliche Sprache maschinell perfekt verstehen zu können, weshalb das Feld auch \ac{nlu} genannt wird.
+Es behandelt dabei viele Aspekte, von maschineller Übersetzung, womit das Feld überhaupt begann \citep{nlphistory}, über Question Answering,
+wie es in dieser Arbeit behandelt wird, bis zu Verarbeitung gesprochener Sprache.
+Bei \ac{nlp} wird Sprache in vier Stufen betrachtet \citep{nlpreviewtts}.
+\emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern und ist deshalb für diese Arbeit nicht relevant.
+\emph{Morphologie} beschreibt die Satzstruktur und den Syntax des Satzes.
+Während der Betrachtung des Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
+Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
+Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satzes zu verstehen, also zum Beispiel die Bedeutung von Pronomen oder die Deutung von Sätzen die mehrere Aussagen bedeuten können.
+%Ein Satz wie \enquote{Das Kind rief seine Eltern mit seinem Rucksack.} kann entweder bedeuten, dass das Kind seine Eltern mithilfe seines Rucksacks ruft, oder dass die Eltern den Rucksack des Kindes haben.\todo{Beispiel aus Fachgebiet!}
+%Es ist natürlich deutlich wahrscheinlicher, dass die Eltern des Kindes den Rucksack haben, was ein \ac{nlp}-Programm erkennen muss.
+%Mit mehr Informationen könnte allerdings auch die andere Deutung möglich sein, ein \ac{nlp}-Programm steht stets in der Gefahr, voreilige Schlüsse zu ziehen.
+%Desweiteren muss es analysieren, wer mit \enquote{sein} überhaupt gemeint ist.
+%Dafür kann auch mehr Kontext nötig sein, welcher je nach Eingabe nicht immer vorhanden ist.
+
+\subsection{NLP-Pipeline}
+In einer Pipeline werden verschiedene Komponenenten eines Algorithmus oder Verfahren nacheinander ausgeführt.
+
+Eine \ac{nlp}-Pipeline ist ein Programm, das die oben genannten Aufgaben ausführt.
+Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
+\ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
+Zwei Pipelines werden in \cref{ch:relatedWork} näher betrachtet.
+
+\subsection{NLP-Modelle}
+
+Modelle für \acl{nlp} verwenden heutzutage meistens Deep Learning.
+Dazu werden sie vortrainiert, dass heißt sie werden schon vor der Anwendung mit einem Verzeichnis an Wörtern bzw. Sätzen,
+wie zum Beispiel dem englischsprachigen Wikipedia mit etwa 2,5 Millionen Wörtern,
+oder dem BooksCorpus \citep{bookscorpus},
+einer Sammlung von Sätzen aus Büchern mit insgesamt etwa 800 Millionen Wörtern,
+trainiert \citep{BERT}.
+Mit \emph{fine-tuning-} oder \emph{feature-basiertem} Training\todo{fine-tuning- und feature-basiertes Training}
+
+\subsubsection{ELMo}
+
+\ac{elmo}
+% feature-basiert
+
+\subsubsection{BERT}
+
+\ac{bert}
+% finetuning-basiert
+
+\subsubsection{Andere Technologien}
+
+
+\section{Maschinelles Lernen und neuronale Netze}
+
+Neuronale Netze sollen, indem sie die Struktur des menschlichen Gehirns nachstellen, komplexe Aufgaben, wie etwa das autonome Fahren oder \acl{nlp}, ausführen.
 Dazu werden \emph{Knoten} oder \emph{Neuronen} in verschieden Schichten miteinander verbunden.
 Es gibt drei Arten von diesen: Eingabe- (input), versteckte (hidden) und Ausgabe-Schichten (output).
-Zwischen den Schichten sind die Knoten verbunden, jede Verbindung hat ein bestimmtes Gewicht.
+Zwischen den Schichten sind die Knoten verbunden, jede Verbindung hat ein bestimmtes Gewicht, wie in \cref{fig:struktur-nn} dargestellt wird.
 Mit diesem Gewicht wird der weitergereichte Wert multipliziert, welcher in der Eingabeschicht erstmals festgelegt wird.
 Bei jedem Knoten werden die aus den niederen Schichten ankommenden Werte addiert, sodass ein neuer Wert entsteht.
-Diese Summe wird dann mithilfe einer Funktion, meistens einer hyperbolischen oder Sigmoidfunktion, verändert und dann wieder weitergereicht.
+Diese Summe wird dann mithilfe einer Funktion, meistens einer hyperbolischen oder Sigmoidfunktion ($sig(t)=\frac{1}{1+e^{t-1}}$), verändert und dann wieder weitergereicht.
 Es werden genau diese Funktionen genommen, da deren Ableitungen die Fehlerberechnung leichter machen \citep{deeplearningarchitecturesreview}.
 So kann das, je nach der Anzahl der versteckten Schichten, lange weitergehen.
 Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} enstanden.
+\begin{figure}%[htbp!]
+\centering
+\includegraphics[width=.8\textwidth, height=.9\textheight, keepaspectratio]{Images/NeuralNetwork.png}
+\caption[Struktur von DNNs]{Darstellung der Struktur eines mehrschichtigen neuronalen Netzes und der Fehlerberechnung. Quelle: \citet{deeplearningarchitecturesreview}}
+\label{fig:struktur-nn}
+\end{figure}
 
-\subsubsection{Deep Learning}
+\subsection{Deep Learning}
 Deep Learning ist ein Teilgebiet des maschinellen Lernens, das \acp{nn}, zu Deutsch \emph{neuronale Netze}, mit mehreren versteckte Schichten enthält \citep{deeplearningreview}.
 Es befasst sich mit \acp{dnn}, welche häufig eine deutlich höhere Effizienz als \acp{nn} mit nur einer versteckten Schicht aufweisen.
 Das bedeutet, dass die Ergebnisse für weniger oder gleich viel Training bessere Ergebnisse erzielen.
@@ -206,9 +281,10 @@ Die Qualität der Ergebnisse lässt sich z.B. bei der Klassifizierung von Bilder
 Hier wird dem \ac{nn} ein Bild als Eingabe gegeben, welches es dann einordnen und beispielsweise die dargestellten Objekte, wie zum Beispiel Ampeln, erkennen soll.
 Für Deep Learning gibt es verschiedene Architekturen.
 
-\subsubsection{Convolutional Neural Network}
+\subsection{Convolutional Neural Network}
 \acp{cnn} werden vor allem zur Bilderkennung und \ac{nlp} verwendet.
-Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht.
+Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht,
+welche in \cref{fig:struktur-cnn} dargestellt ist.
 Die Neuronen sind auf jeder Schicht, welche hier auch \emph{Filter} oder \emph{Kern} genannt werden,
 zweidimensional aufgebaut, aber nicht wie sonst zu jedem Neuron der nächsten Schicht verbunden,
 sondern nur zu einem \emph{lokalen rezeptiven Feld} \citep{deeplearningarchitecturesreview},
@@ -216,21 +292,35 @@ also einer kleineren Gruppe an Knoten, in der nächsten Schicht zusammengeschlos
 Dies verkürzt die Trainingszeit, da jeder Knoten nur einen Teil der Eingabe sieht, aber alle nach dem gleichen Muster suchen.
 Die kürzere Trainingszeit ist auch dadurch bedingt, dass manche Schichten ihre Gewichte teilen.
 Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hinteren Schichten vollständig verbunden.
+\begin{figure}%[htbp!]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/CNN.png}
+\caption[Struktur von CNNs]{Die Struktur eines \ac{cnn}. Quelle: \citet{deeplearningarchitecturesreview}}
+\label{fig:struktur-cnn}
+\end{figure}
 
-\subsubsection{Recurrent Neural Network}
+
+\subsection{Recurrent Neural Network}
 In einem \ac{rnn} formen die Knoten einen Kreis, sodass die Ausgabe der einen Schicht die Eingabe einer anderen wird,
-wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind.
+wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind (siehe \cref{fig:struktur-rnn}).
 Typischerweise gibt es in solchen \acp{nn} nur eine Schicht.
 Ein Vorteil dieser Art von \acp{nn} ist, das sowohl eine Reihe an Eingaben als auch eine Reihe an Ausgaben möglich wird.
 Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep{deeplearningarchitecturesreview}.
+\begin{figure}%[htbp!]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/RNN.png}
+\caption[Struktur von RNNs]{Die Struktur eines \ac{rnn}. Quelle: \citet{deeplearningarchitecturesreview}}
+\label{fig:struktur-rnn}
+\end{figure}
 
-\subsubsection{Long short-term memory}
+
+\subsection{Long short-term memory}
 \ac{lstm}, zu Deutsch \enquote{langes Kurzzeitgedächtnis}, ist eine Form von \acp{rnn} \citep{lstm}.
 Es wird zum Beispiel von Google und Amazon für deren Stimmenerkennungssoftware genutzt.
 Im Gegensatz zu \acp{rnn} hat \ac{lstm} nicht das Problem, dass der Gradient langsam verringert wird,
 indem es aus mehreren Zellen, durch die eingegeben, ausgegeben und vergessen werden kann.
 
-\subsubsection{Training von neuronalen Netzen}
+\subsection{Training von neuronalen Netzen}
 Neuronale Netze basieren darauf, trainiert zu werden.
 Bei diesem Training werden die Gewichte der einzelnen Verbindungen zufällig verändert, sodass am Ende selbst die programmierende Person nicht weiß, wie genau es funktioniert.
 Es gibt viele Trainingstypen, aber es wird vor allem zwischen zwei unterschieden: \emph{überwachtes} (supervised) und \emph{unüberwachtes} (unsupervised) Lernen \citep{mllearning}.
@@ -244,7 +334,7 @@ Google hat die Eingaben, muss sich für die Ausgaben allerdings an seine Nutzer 
 Ohne die Ausgaben hätte man nämlich unüberwachtes Lernen.
 Dieses gibt dem zu trainierenden \ac{nn} keine Lösung vor und ist eher zur allgemeinen Mustererkennung gut.
 
-\subsubsection{Regelbasiertes System}
+\subsection{Regelbasiertes System}
 Vor neuronalen Netzen wurden vor allem die äußerst strikten regelbasierten Systeme zur Lösung von komplexen Problemen genutzt.
 Sie bestehen aus einer Wissensbasis und einem Regelinterpreter.
 Die Wissensbasis enthält Regeln, welche aus einer \emph{Atendenz} (Bedingung) und einer \emph{Konsequenz} (Resultat) bestehen, und Fakten.
@@ -253,27 +343,3 @@ Regelbasierte Systeme ermöglichen ausführliche Begründungen, welche stark dem
 Wissen lässt sich außerdem häufig leicht in einer solchen Regelform ausdrücken.
 Es gelten nicht immer alle Regeln und Fakten, sie können dynamisch ein- und ausgeschaltet werden \citep{rulebasedsystem}.
 Regelbasierte Systeme werden heute weniger benutzt, in Verbindung mit neuronalen Netzen können sie jedoch immer noch sehr nützlich sein.
-
-\subsection{Natural Language Processing}
-
-\acf{nlp} ist die automatische Verarbeitung von natürlicher Sprache, also Sprache, wie sie Menschen sprechen und schreiben.
-Das große Ziel von \ac{nlp} ist, menschliche Sprache maschinell perfekt verstehen zu können, weshalb das Feld auch \ac{nlu} genannt wird.
-Es behandelt dabei viele Aspekte, von maschineller Übersetzung, womit das Feld überhaupt begann \citep{nlphistory}, Question Answering, wie es in dieser Arbeit behandelt wird.
-Bei \ac{nlp} wird Sprache in vier Leveln betrachtet \citep{nlpreviewtts}.
-\emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern
-\emph{Morphologie} beschreibt die Satzstruktur und den Syntax des Satzes.
-Während der Betrachtung des Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
-Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
-Eine mögliche Implementationsart ist, dem bei der Syntaxbetrachtung erstellten Baumaufbau gewichtete positive bzw. negative Wertungen mitzugeben.
-Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satzes zu verstehen, also zum Beispiel die Bedeutung von Pronomen oder die Deutung von Sätzen die mehrere Aussagen bedeuten können.
-Ein Satz wie \enquote{Das Kind rief seine Eltern mit seinem Rucksack.} kann entweder bedeuten, dass das Kind seine Eltern mithilfe seines Rucksacks ruft, oder dass die Eltern den Rucksack des Kindes haben.
-Es ist natürlich deutlich wahrscheinlicher, dass die Eltern des Kindes den Rucksack haben,was ein \ac{nlp}-Programm erkennen muss.
-Mit mehr Informationen könnte allerdings auch die andere Deutung möglich sein, ein \ac{nlp}-Programm steht stets in der Gefahr, voreilige Schlüsse zu ziehen.
-Desweiteren muss es analysieren, wer mit \enquote{sein} überhaupt gemeint ist.
-Dafür kann auch mehr Kontext nötig sein, welcher je nach Eingabe nicht immer vorhanden ist.
-
-\subsubsection{NLP-Pipeline}
-Eine \ac{nlp}-Pipeline ist ein Programm, das die oben genannten Aufgaben ausführt.
-Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
-\ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
-Zwei Pipelines werden in \cref{ch:relatedWork} näher betrachtet.
