@@ -50,9 +50,9 @@ Das Format der Dokumente wird durch die \ac{html} beschrieben, welche ebenfalls 
 Im Gegensatz zu \ac{www}, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
 Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
-
+\daurl{bb}{http://www.snik.eu/ontology}
 \subsection{RDF}
-\todo{bb aurl definieren; Beispiele aus https://www.snik.eu/ontology/bb statt dbpedia}
+\todo{Beispiele aus https://www.snik.eu/ontology/bb statt dbpedia}
 \begin{table}[h]\centering\scriptsize
   \begin{tabulary}{\textwidth}{rcl}
     \toprule
@@ -131,7 +131,7 @@ So ist in \cref{tab:rdftripleexample} \aurl{dbo}{leaderName} ein Property mit \a
 Sie sind also Eigenschaften von Objekten, wie oben etwa Wilhelm Ostwald oder Leipzig.
 
 \subsubsection{Wissensbasen}
-Es wird teilweise auch zwischen A- und TBoxen unterschieden.
+Es wird teilweise auch zwischen A- und TBoxen unterschieden. \todo{abox wissensbasis, tbox taxonomie}
 Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
 Das heißt, dass ABoxen speziellere Informationen und TBoxen allgemeinere Informationen, also Wissen, enthalten.
 Man kann A- und TBoxen deshalb auch \emph{Wissensbasen} nennen.
@@ -141,7 +141,7 @@ Relationale Datenbanken sind Datenbanken, in welchen die Daten in einer eindeuti
 In den Entitäten sind spezielle Informationen über die Individuen enthalten.
 Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen den Individuen.
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
-Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
+Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein. \todo{relationale datenbanken können n-stellig sein, wissensbasen nur 2-stellig}
 
 \subsection{Linked (Open) Data}
 
