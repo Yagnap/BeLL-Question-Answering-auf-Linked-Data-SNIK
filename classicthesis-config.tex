@@ -312,3 +312,9 @@
 \daurl{wiki-commons}{http://commons.wikimedia.org/wiki/}
 % et al. statt u.a. bei Bibtex
 \DefineBibliographyStrings{german}{andothers={et\addabbrvspace al\adddot}}
+% Umlaute in Codeblöcken
+\lstset{
+  literate={ö}{{\"o}}1
+           {ä}{{\"a}}1
+           {ü}{{\"u}}1
+}

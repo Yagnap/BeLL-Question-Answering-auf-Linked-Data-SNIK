@@ -67,4 +67,39 @@ Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhal
 \subsection{TeBaQA}
 
 TeBaQA wurde von der DICE group an der Universität Paderborn entwickelt.
-Es basiert darauf, 
+Es basiert darauf, Fragen anhand ihrer Struktur in Gruppen zu gruppieren.
+Dabei werden isomorphe \ac{sparql}-Anfragen, d.h. Anfragen gleicher Struktur, einer Vorlage zugeordnet.
+Somit können schnellere Antwortzeiten ermöglicht werden.
+Mit Struktur ist die Form der RDF-Relationen gemeint, wobei diese als Kanten zwischen den verschiedenen Informationen gesehen werden.
+
+\subsubsection{Architektur}
+
+TeBaQA wird in fünf Phasen aufgebaut.
+In der ersten Phase, dem \emph{Preprocessing} (Vorverarbeitung), werden Wörter, die keinen semantischen Wert und somit keine Information tragen, entfernt.
+Das können etwa Artikel sein, wodurch die Assoziation der Wörter mit vielen unzusammenhängenden Einträgen vermieden wird.
+Damit solche Wörter, die auch Teil der Entitäten, wie z.B. \enquote{the} in \aurl{bb}{AdaptabilityOfTheHIS},
+nicht auch dort herausgefiltert werden, müssen die Wörter gruppiert und die resultierenden Gruppen überprüft werden.
+Die zweite Phase befasst sich mit der Isomorphie der Abfragegraphen und der Vorlagenklassifizierung.
+Hier wird die zu nutzende Vorlage der Abfrage identifiziert und darüber Eigenschaften der Frage, also z.B. Fragewörter,
+Anzahl der Nomen, mindestens benötigte Tripel oder ob Personen referenziert werden.
+Die Einordnung in eine Vorlage geschieht, wie vorher schon erwähnt, über die Struktur der \ac{sparql}-Abfrage.
+Beispielsweise resultiert die Frage \enquote{Wofür ist die Leiterin des Informationsmanagements zuständig?}
+in einer Abfrage mit der gleichen Struktur wie die Abfrage der Frage \enquote{Wovon wird 3LGM² erzeigt?}.
+Die \ac{sparql}-Abfrage könnte bei beiden so aussehen, bei der ersten Abfrage wäre das Individuum im Subjekt \aurl{bb}{ChiefInformationOfficer} und das Prädikat \aurl{meta}{isResponsibleForEntityType},
+bei der zweiten Frage das Subjekt \aurl{bb}{3LGM2} und das Prädikat \aurl{meta}{isBasedOn}.
+\begin{lstlisting}
+  PREFIX bb: http://snik.eu/ontology/bb/
+  PREFIX meta: http://snik.eu/ontology/meta/
+  SELECT ?uri
+  WHERE
+    { <Subjekt> <Prädikat> ?uri }
+\end{lstlisting}
+Das Ergebnis, ?uri, ist \aurl{bb}{AnnualITBudget} bzw. \aurl{bb}{UmlClassDiagram}, also beide Male eine Entität.
+Wenn die Vorlage zugeordnet wurde, können Eigenschaften der Frage, wie oben beschrieben, in einen Vektor getan und weiterverwendet werden.
+Im dritten Schritt werden speziell referenzierte Individuen und Klassen identifiziert, also nicht nur wie im 2. Schritt generelle Informationen über den Inhalt der Frage.
+Hier werden auch verschiedene Synonyme der eingegebenen Wörter untersucht, um ein möglichst genaues Ergebnis zu erreichen.
+Im vierten Schritt wird die Anfrage geschrieben, also die Vorlage gefüllt und eventuelle Parameter gesetzt.
+Die letzte Phase behandelt das Auswählen der Lösung, die dem Nutzer übergeben werden soll.
+Dazu wird wieder auf das Fragewort geblickt, um herauszufinden, in was für einer Form, z.B. einem Datum, der Nutzer die Antwort erwartet.
+Das erste Substantiv nach dem Fragewort wird überprüft, um den Numerus der Frage zu erkennen.
+Desweiteren werden die Lösungskandidaten auf ihre Ähnlichkeit mit der Frage überprüft, woraus eine Bewertung und letztendlich die zu präsentierende Antwort berechnet wird.
