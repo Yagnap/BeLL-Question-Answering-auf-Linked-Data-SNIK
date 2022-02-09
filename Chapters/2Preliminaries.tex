@@ -32,24 +32,31 @@ Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings di
 In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
 Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet
 
-\subsection{Begriff und Konzept}
+\subsection{Wort, Begriff und Konzept}
 
 Ein \emph{Begriff} ist ein Wort, welches ein
+\todo{Wort, Begriff und Konzept}
+\todo{Beispiel aus SNIK}
 
 \subsection{Synonyme und Homonyme}
 
-Synonyme existieren, wenn zwei Begriffe auf das gleiche Konzept verweisen.
+Synonyme existieren, wenn zwei Wörter auf den gleichen Begriff verweisen.
 Homonyme meinen, dass ein Wort zwei verschiedene Begriffe beschreibt, also z.B. die Bank, welche entweder ein Geldinstitut oder eine Parkbank sein kann.
+\todo{evtl. Beispiel aus SNIK}
+\todo{evtl. ausführlicher}
 
 \subsection{Ambiguität}
 
 Ambiguität oder Mehrdeutigkeit bedeutet, dass ein Satz oder eine Wortgruppe verschieden interpretiert werden kann.
 Zur Auflösung dieser Unklarheit wird meistens mehr Kontext benötigt.
+\todo{Verweis auf Homonyme}
+\todo{Beispiel aus SNIK}
 
 \subsection{Syntax, Semantik und Lexik}
 
 Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
-
+\todo{Semantik ausführlicher}
+\todo{Beispiel aus SNIK}
 Die \emph{Lexik} beschreibt die Wortarten.
 Es wird zwischen flektierbaren und unflektierbaren Wortarten unterschieden.
 Verben, Substantive, Adjektive, Artikel und Pronomen kann man konjugieren bzw. deklinieren.
@@ -74,7 +81,7 @@ Im Gegensatz zu \ac{www}, einem Web der Dokumente, ist das Semantic Web ein Web 
 Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 \daurl{bb}{http://www.snik.eu/ontology/bb/}
-\daurl{coix}{http://www.snik.eu/ontology/coix/}
+\daurl{ciox}{http://www.snik.eu/ontology/ciox/}
 \daurl{ex}{http://www.example.org/}
 \subsection{RDF}
 \begin{table}[h]\centering\scriptsize
@@ -83,7 +90,7 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
     Subjekt & Prädikat & Objekt \\
     \midrule
     \aurl{bb}{ChiefInformationOfficer} & \aurl{meta}{isResponsibleForEntityType} & \aurl{bb}{AnnualITBudget} \\
-    \aurl{ex}{ErikaMustermann} & \aurl{rdf}{type} & \aurl{coix}{ChiefInformationOfficer} \\
+    \aurl{ex}{ErikaMustermann} & \aurl{rdf}{type} & \aurl{ciox}{ChiefInformationOfficer} \\
   %  \aurl{}
     \bottomrule
   \end{tabulary}
@@ -99,7 +106,7 @@ Es verhält sich hierbei wie in einem einfachen deutschen Satz, das Prädikat be
 Alle drei werden normalerweise als \acp{uri} angegeben \citep{linkeddatadesignissues}.
 Beispiel für solche Tripel aus \acp{uri} sind in \cref{tab:rdftripleexample} zu sehen:
 Die Leiterin des Informationsmanagements (Subjekt) verantwortet (Prädikat) das jährliche IT-Budget (Objekt).
-Beim zweiten Beispiel ist wichtig, dass \aurl{bb}{ChiefInformationOfficer} und \aurl{coix} nicht auf das gleiche Wissen zeigen.
+Beim zweiten Beispiel ist wichtig, dass \aurl{bb}{ChiefInformationOfficer} und \aurl{ciox}{ChiefInformationOfficer} nicht auf das gleiche Wissen zeigen.
 Durch den \emph{Prefix} wird die genaue und einzigartige Adresse festgelegt.
 Die Wahl des Präfixes ist hierbei den Verantwortlichen überlassen, wichtig ist nur, sie auf eine \ac{http}-Adresse verweisen zu lassen.
 Der Präfix \enquote{ex:} wird z.B. häufig für Beispiele benutzt.
@@ -135,13 +142,13 @@ Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $
 \subsubsection{Relationen}
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
 Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden, also gilt $(a,b) \in R$, wenn $R \subset A \times B$ ist.
-\todo{nochmal drüberschauen}
+\todo{über den gesamten Absatz nochmal drüberschauen}
 Als Kurzform kann auch $aRb$ geschrieben werden \citep[S.~263]{semanticwebgrundlagen}.
 Es gibt nicht nur \emph{binäre} Relationen, also Relationen zweier Elemente, hier werden aber nur diese benötigt.
 
 In \ac{rdf} sind nämlich alle Relationen zweistellig, also Paare.
 Die Beschreibung dieser Relation wird \enquote{Property}, also Attribut oder Eigenschaft, genannt.
-Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{dbo}{award} ein Property von \aurl{dbr}{Wilhelm\_Ostwald} mit dem Wert \aurl{dbr}{Nobel\_Price\_in\_Chemistry}.
+Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{meta}{isResponsibleForEntityType} ein Property von \aurl{bb}{ChiefInformationOfficer} mit dem Wert \aurl{bb}{AnnualITBudget}.
 Sie können auch eingeschränkt werden, indem man ihnen mit \ac{rdf} ihren \emph{Definitionsbereich} mit und \emph{Wertebereich} verändert.
 Damit lässt sich einstellen, welche Datentypen als Subjekt und Objekt akzeptiert werden \citep[S.~76]{semanticwebgrundlagen}.
 Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über \aurl{rdfs}{range} bearbeitet.
@@ -150,14 +157,14 @@ Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über
 Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
 
 Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
-So ist in \cref{tab:rdftripleexample} \aurl{dbo}{leaderName} ein Property mit \aurl{dbo}{PopulatedPlace} als Definitions- und \aurl{dbo}{Person} als Wertebereich.
-Sie sind also Eigenschaften von Objekten, wie oben etwa Wilhelm Ostwald oder Leipzig.
+So ist in \cref{tab:rdftripleexample} \aurl{dbo}{leaderName} ein Property mit \aurl{dbo}{PopulatedPlace} als Definitions- und \aurl{dbo}{Person} als Wertebereich,
+sie sind also Eigenschaften von Objekten.
 
 \subsubsection{Wissensbasen}
-Es wird teilweise auch zwischen A- und TBoxen unterschieden. \todo{abox wissensbasis, tbox taxonomie}
+Es wird teilweise auch zwischen A- und TBoxen unterschieden.
 Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
 Das heißt, dass ABoxen speziellere Informationen und TBoxen allgemeinere Informationen, also Wissen, enthalten.
-Man kann A- und TBoxen deshalb auch \emph{Wissensbasen} nennen.
+Man kann ABoxen deshalb auch \emph{Wissensbasen} und TBoxen Taxonomien nennen.
 
 \subsubsection{Unterschied zwischen relationalen Datenbanken und Wissenbasen}
 Relationale Datenbanken sind Datenbanken, in welchen die Daten in einer eindeutigen Struktur von Entitäten (Tabellen) vorliegen.
@@ -178,6 +185,8 @@ Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen sta
 
 \ac{sparql} ist eine Abfragesprache für \ac{rdf}, das heißt mit diesem \ac{w3c}-Standard kann man in einer in \ac{rdf} verfassten Ontologie Wissen abfragen.
 \todo{für SPARQL braucht man keine Ontologie! RDF und Ontologien sind zwar verbunden aber nicht das gleiche.}
+\todo{SPARQL}
+\todo{Beispielhafte Anfrage}
 
 \section{Semantisches Question Answering}
 
@@ -217,12 +226,13 @@ Bei \ac{nlp} wird Sprache in vier Stufen betrachtet \citep{nlpreviewtts}.
 \emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern und ist deshalb für diese Arbeit nicht relevant.
 \emph{Morphologie} beschreibt die Satzstruktur und den Syntax des Satzes.
 Während der Betrachtung des Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
+Ein Beispiel hierfür ist \cref{fig:syntaxtree}.
 Die \emph{Semantik} des Satzes wird als Drittes betrachtet.
 Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satzes zu verstehen, also zum Beispiel die Bedeutung von Pronomen oder die Deutung von Sätzen die mehrere Aussagen bedeuten können.
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/syntaxtree.png}
-\caption[Beispielhafter Syntaxbaum]{Beispielhafter Syntaxbaum. Erstellt mit \url{www.mshang.ca/syntree} und \citet{grammarparser}.
+\caption[Beispielhafter Syntaxbaum]{Beispielhafter Syntaxbaum. Erstellt mit Link Grammar \citep{grammarparser} und \url{www.mshang.ca/syntree}.
 \emph{S: Sentence; NP: noun phrase; VP: verb phrase; ADJP: adjective phrase; PP: prepositional phrase}.
 Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Budget of the Universitätsklinikum Leipzig.}}
 \label{fig:syntaxtree}
@@ -249,19 +259,20 @@ oder dem BooksCorpus \citep{bookscorpus},
 einer Sammlung von Sätzen aus Büchern mit insgesamt etwa 800 Millionen Wörtern,
 trainiert \citep{BERT}.
 Mit \emph{fine-tuning-} oder \emph{feature-basiertem} Training\todo{fine-tuning- und feature-basiertes Training}
+\todo{jetzige subsubsections evtl. in State of the Art umlegen?}
 
 \subsubsection{ELMo}
-
 \ac{elmo}
 % feature-basiert
+\todo{ELMo}
 
 \subsubsection{BERT}
-
 \ac{bert}
 % finetuning-basiert
+\todo{BERT}
 
 \subsubsection{Andere Technologien}
-
+\todo{Kurz andere Modelle erwähnen}
 
 \section{Maschinelles Lernen und neuronale Netze}
 
@@ -344,7 +355,7 @@ Ohne die Ausgaben hätte man nämlich unüberwachtes Lernen.
 Dieses gibt dem zu trainierenden \ac{nn} keine Lösung vor und ist eher zur allgemeinen Mustererkennung gut.
 Ein weiterer Trainingsansatz ist das \ac{zsl}.
 Hier soll das Programm anhand einer Beschreibung von Objekten lernen, sie zu erkennen.
-Der große Vorteil hieran ist, dass nicht große Mengen an Daten benötigt werden, um auch seltene oder neue Vorkommnisse sicher erkennen zu können.
+Der große Vorteil hieran ist, dass keine annotierten Daten benötigt werden, um auch seltene oder neue Vorkommnisse sicher erkennen zu können.
 Im Gegensatz zum überwachten Lernen sind die Daten hier nicht gekennzeichnet, d.h. dem Programm wird nicht übermittelt, was in der Eingabe ist \citep{zsl}.
 
 \subsection{Regelbasiertes System}

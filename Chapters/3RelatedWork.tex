@@ -4,10 +4,12 @@
 
 \section{Die Ontologie: SNIK}
 
-Das semantische Netz des Informationsmanagements im Krankenhaus (\ac{snik}) ist eine die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie.
-Sie behandelt
-\todo{SNIK}
-\todo{Textbücher referenzieren}
+Das semantische Netz des Informationsmanagements im Krankenhaus (\ac{snik}) ist eine am \ac{imise} der Universität Leipzig entwickelte,
+die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie \citep{domaene}.
+Sie behandelt Wissen über Krankenhausinformationssysteme und deren Management.
+Dieses wurde aus drei Lehrbüchern (\citet{bb}, \citet{ob} und \citet{he}) manuell extrahiert und in RDF modelliert.
+Desweiteren wurde auch noch ein Interview mit dem Leiter des Informationsmanagements des Universitätsklinkum Leipzigs, Stefan Smers, geführt.
+
 \begin{sidewaysfigure}[htbp!]
 \centering
 \includegraphics[width=.8\textwidth, height=.9\textheight, keepaspectratio]{Images/snik-metamodel.pdf}
@@ -15,7 +17,28 @@ Sie behandelt
 \label{fig:snik-metamodel}
 \end{sidewaysfigure}
 
-\subsection{\enquote{Eine Ontologie von Ontologien}}
+\subsection{\enquote{Eine Ontologie von Ontologien} - Die Architektur SNIKs}
+
+Die einzelnen Bücher liegen jeweils in einer eigenen Subontologie vor.
+Es gibt also drei große Teilontologien der \ac{snik}-Ontologie, die die Präfixe \emph{bb}, \emph{ob} und \emph{he} haben.
+Das Interview mit dem Leiter des Informationsmanagements befindet sich in der Subontologie mit dem Präfix \emph{ciox}.
+Zur Beschreibung der Relationen gibt es eine Ontologie mit dem Präfix \emph{meta}, in der größtenteils Properties stehen.
+Diese enthalten dann jeweils Klassen von Individuen, z.B. \aurl{bb}{ChiefInformationOfficer} anstelle von \aurl{ex}{ErikaMustermann}.
+Es geht hier nämlich, wie gesagt, um Textbuchwissen und nicht um spezielle Vorgänge \ac{sniktec}.
+
+Die Entitäten\ac{snik}s in einer Subontologie sind, wie in \cref{fig:snik-metamodel} zu sehen, primär nach ihrem Typ gegliedert.
+Es gibt Rollen, die eine Person einnehmen kann, wie z.B. \aurl{bb}{ChiefInformationOfficer}, Aufgaben, die eine Rolle hat, wie z.B. \aurl{bb}{HISBudgetPlanning},
+und Objekttypen, die Informationen, die für diese Aufgabe benötigt werden, repräsentieren, wie z.B. \aurl{bb}{AnnualITBudget}.
+Zwischen diesen gibt es Relationen, die deren Beziehung beschreiben.
+
+
+\subsection{Der SNIK-Graph}
+
+Der \ac{snik}-Graph\footnote{Erreichbar über \url{https://www.snik.eu/graph/}} ist die Visualisierung von \ac{snik}.
+Hier werden die einzelnen Entitäten nach ihrer entsprechenden Subontologie gefärbt visuell dargestellt.
+Die beschrifteten Verbindungen bzw. Kanten zwischen den Formen stellen Relationen dar,
+welche, wenn sie zwischen zwei Entitäten unterschiedlicher Subontologien verlaufen, keine Richtung haben.
+Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten die verschiedenen Entitäten.
 
 \section{Question Answering-Programme}
 
@@ -66,8 +89,8 @@ Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhal
 
 \subsection{TeBaQA}
 
-TeBaQA wurde von der DICE group an der Universität Paderborn entwickelt.
-Es basiert darauf, Fragen anhand ihrer Struktur in Gruppen zu gruppieren.
+TeBaQA \citep{tebaqa} wird von der DICE group an der Universität Paderborn entwickelt.
+Es basiert darauf, Fragen anhand ihrer Struktur zu gruppieren.
 Dabei werden isomorphe \ac{sparql}-Anfragen, d.h. Anfragen gleicher Struktur, einer Vorlage zugeordnet.
 Somit können schnellere Antwortzeiten ermöglicht werden.
 Mit Struktur ist die Form der RDF-Relationen gemeint, wobei diese als Kanten zwischen den verschiedenen Informationen gesehen werden.
@@ -83,6 +106,7 @@ Die zweite Phase befasst sich mit der Isomorphie der Abfragegraphen und der Vorl
 Hier wird die zu nutzende Vorlage der Abfrage identifiziert und darüber Eigenschaften der Frage, also z.B. Fragewörter,
 Anzahl der Nomen, mindestens benötigte Tripel oder ob Personen referenziert werden.
 Die Einordnung in eine Vorlage geschieht, wie vorher schon erwähnt, über die Struktur der \ac{sparql}-Abfrage.
+Die Reihenfolge der Elemente wird hierbei nicht betrachtet.
 Beispielsweise resultiert die Frage \enquote{Wofür ist die Leiterin des Informationsmanagements zuständig?}
 in einer Abfrage mit der gleichen Struktur wie die Abfrage der Frage \enquote{Wovon wird 3LGM² erzeigt?}.
 Die \ac{sparql}-Abfrage könnte bei beiden so aussehen, bei der ersten Abfrage wäre das Individuum im Subjekt \aurl{bb}{ChiefInformationOfficer} und das Prädikat \aurl{meta}{isResponsibleForEntityType},
