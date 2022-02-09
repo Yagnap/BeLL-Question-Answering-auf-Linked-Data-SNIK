@@ -46,21 +46,15 @@ Homonyme meinen, dass ein Wort zwei verschiedene Begriffe beschreibt, also z.B. 
 Ambiguität oder Mehrdeutigkeit bedeutet, dass ein Satz oder eine Wortgruppe verschieden interpretiert werden kann.
 Zur Auflösung dieser Unklarheit wird meistens mehr Kontext benötigt.
 
-\subsection{Syntax}
+\subsection{Syntax, Semantik und Lexik}
 
+Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
 
-
-\subsection{Lexik}
-
-Die Lexik beschreibt die Wortarten.
+Die \emph{Lexik} beschreibt die Wortarten.
 Es wird zwischen flektierbaren und unflektierbaren Wortarten unterschieden.
 Verben, Substantive, Adjektive, Artikel und Pronomen kann man konjugieren bzw. deklinieren.
 Sie werden auch flektierbar genannt.
-Die Form unflektierbarer Wortarten ist unveränderlich, sie enthalten Partikel wie Adverbien und Interjektionen . %todo: \citep[S.~505]{deutschbuch}
-
-\subsection{Semantik}
-
-
+Die Form unflektierbarer Wortarten ist unveränderlich, sie enthalten Partikel wie Adverbien und Interjektionen \citep[S.~505]{deutschbuch}.
 
 \section{Semantic Web}
 
@@ -192,7 +186,7 @@ Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfr
 Ein Question Answering-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
 \end{definition}
 
-Es existieren sowohl \emph{closed-domain} als auch \emph{open-domain} Question Answering.
+Es existieren sowohl \ac{cdqa} als auch \ac{odqa}.
 Question Answering-Programme mit offener Domäne sind schwieriger zu entwickeln,
 da sie Fragen von allen möglichen Domänen verstehen müssen.
 Ein Beispiel hierfür wäre die Frage, wo eine Bank zu finden sei.
@@ -223,12 +217,13 @@ Bei \ac{nlp} wird Sprache in vier Stufen betrachtet \citep{nlpreviewtts}.
 \emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern und ist deshalb für diese Arbeit nicht relevant.
 \emph{Morphologie} beschreibt die Satzstruktur und den Syntax des Satzes.
 Während der Betrachtung des Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
-Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders auf Präpositionen, Adjektive und Adverben.
+Die \emph{Semantik} des Satzes wird als Drittes betrachtet.
 Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satzes zu verstehen, also zum Beispiel die Bedeutung von Pronomen oder die Deutung von Sätzen die mehrere Aussagen bedeuten können.
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/syntaxtree.png}
-\caption[Beispielhafter Syntaxbaum]{Beispielhafter Syntaxbaum. Erstellt mit \url{www.mshang.ca/syntree} und \citet{grammarparser}. \emph{S: Sentence; NP: noun phrase; VP: verb phrase; ADJP: adjective phrase; PP: prepositional phrase}.
+\caption[Beispielhafter Syntaxbaum]{Beispielhafter Syntaxbaum. Erstellt mit \url{www.mshang.ca/syntree} und \citet{grammarparser}.
+\emph{S: Sentence; NP: noun phrase; VP: verb phrase; ADJP: adjective phrase; PP: prepositional phrase}.
 Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Budget of the Universitätsklinikum Leipzig.}}
 \label{fig:syntaxtree}
 \end{figure}
@@ -277,7 +272,7 @@ Zwischen den Schichten sind die Knoten verbunden, jede Verbindung hat ein bestim
 Mit diesem Gewicht wird der weitergereichte Wert multipliziert, welcher in der Eingabeschicht erstmals festgelegt wird.
 Bei jedem Knoten werden die aus den niederen Schichten ankommenden Werte addiert, sodass ein neuer Wert entsteht.
 Diese Summe wird dann mithilfe einer Funktion, meistens einer hyperbolischen oder Sigmoidfunktion ($sig(t)=\frac{1}{1+e^{t-1}}$), verändert und dann wieder weitergereicht.
-Es werden genau diese Funktionen genommen, da deren Ableitungen die Fehlerberechnung leichter machen \citep{deeplearningarchitecturesreview}.
+Es werden genau diese Funktionen genommen, da deren Ableitungen die Fehlerberechnung leichter machen \citep{deeplearningnature}.
 So kann das, je nach der Anzahl der versteckten Schichten, lange weitergehen.
 Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} enstanden.
 \begin{figure}%[htbp!]
@@ -301,7 +296,7 @@ Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidime
 welche in \cref{fig:struktur-cnn} dargestellt ist.
 Die Neuronen sind auf jeder Schicht, welche hier auch \emph{Filter} oder \emph{Kern} genannt werden,
 zweidimensional aufgebaut, aber nicht wie sonst zu jedem Neuron der nächsten Schicht verbunden,
-sondern nur zu einem \emph{lokalen rezeptiven Feld} \citep{deeplearningarchitecturesreview},
+sondern nur zu einem \emph{lokalen rezeptiven Feld} \citep{deeplearningnature},
 also einer kleineren Gruppe an Knoten, in der nächsten Schicht zusammengeschlossen.
 Dies verkürzt die Trainingszeit, da jeder Knoten nur einen Teil der Eingabe sieht, aber alle nach dem gleichen Muster suchen.
 Die kürzere Trainingszeit ist auch dadurch bedingt, dass manche Schichten ihre Gewichte teilen.
@@ -326,7 +321,7 @@ Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep
 \caption[Struktur von RNNs]{Die Struktur eines \ac{rnn} \citep{deeplearningarchitecturesreview}.}
 \label{fig:struktur-rnn}
 \end{figure}
-
+\todo{Attention}
 
 \subsection{Long short-term memory}
 \ac{lstm}, zu Deutsch \enquote{langes Kurzzeitgedächtnis}, ist eine Form von \acp{rnn} \citep{lstm}.
@@ -347,6 +342,10 @@ Die Möglichkeiten dieser Technologie erstrecken sich bis hin zum autonomen Fahr
 Google hat die Eingaben, muss sich für die Ausgaben allerdings an seine Nutzer wenden \citep{recaptchaav}.
 Ohne die Ausgaben hätte man nämlich unüberwachtes Lernen.
 Dieses gibt dem zu trainierenden \ac{nn} keine Lösung vor und ist eher zur allgemeinen Mustererkennung gut.
+Ein weiterer Trainingsansatz ist das \ac{zsl}.
+Hier soll das Programm anhand einer Beschreibung von Objekten lernen, sie zu erkennen.
+Der große Vorteil hieran ist, dass nicht große Mengen an Daten benötigt werden, um auch seltene oder neue Vorkommnisse sicher erkennen zu können.
+Im Gegensatz zum überwachten Lernen sind die Daten hier nicht gekennzeichnet, d.h. dem Programm wird nicht übermittelt, was in der Eingabe ist \citep{zsl}.
 
 \subsection{Regelbasiertes System}
 Vor neuronalen Netzen wurden vor allem die äußerst strikten regelbasierten Systeme zur Lösung von komplexen Problemen genutzt.
