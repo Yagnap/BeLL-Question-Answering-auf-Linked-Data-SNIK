@@ -46,7 +46,7 @@ Die beschrifteten Verbindungen bzw. Kanten zwischen den Formen stellen Relatione
 welche, wenn sie zwischen zwei Entitäten unterschiedlicher Subontologien verlaufen, keine Richtung haben.
 Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten die verschiedenen Typen.
 
-\section{Question Answering-Programme}
+\section{Question Answering-Systeme}
 
 Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} bzw. \ac{cdqa} verwendet.
 Außerdem wurde über die Herausforderung \ac{qald}, wo mithilfe eines Fragenkatalogs versucht wird, Question Answering-Systeme objektiv zu bewerten.
@@ -58,14 +58,19 @@ Die Daten sind frei und in verschiedenen Formaten, wie z.B. als \ac{rdf}-Tripel,
 Über \ac{sparql} können auch direkt online Abfragen getätigt werden.
 DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 
+\subsection{Leaderboard}
+
+Das Question Answering-Leaderboard \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
+das häufig als sehr uneinheitlich \citep{diefenbachkbqa} beschriebene Feld des \ac{kbqa} 
+
 \subsection{gAnswer}
 
-gAnswer wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
-Hierfür werden die Fragen in Unterfragen aufgespalten und daraus je ein Syntaxbaum erstellt \citep{ganswer2}.
+gAnswer \citep{ganswer2} wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
+Hierfür werden die Fragen in Unterfragen aufgespalten und daraus je ein Syntaxbaum erstellt.
 Es erzielte durch eine durchdachte Vorbereitung der Trainingsdaten sehr schnelle Trainingszeiten bei niedrigem Speicherverbrauch und hoher Genauigkeit bei der Beantwortung von Fragen.
-Das Programm hat außerdem die Umformung von natürlicher Sprache in \ac{sparql}-Abfragen als das Problem,
-Subontologien zu vergleichen, erkannt, und somit einen neuen Ansatz zur Lösung des Problems der Homonymität geboten.
-Das bedeutet, dass Wörter, die verschiedenes bedeuten können, erst nach anfänglicher Lokalisierung des Kontexts betrachtet werden.
+Das System hat außerdem die Umformung von natürlicher Sprache in \ac{sparql}-Abfragen als das Problem,\todo{besser erklären, nochmal drüberschauen bzw. Satz entwirren}
+Subgraphen zu vergleichen, erkannt, und somit einen neuen Ansatz zur Lösung des Problems der Homonymität geboten.
+Das bedeutet, dass Wörter, die Verschiedenes bedeuten können, erst nach anfänglicher Lokalisierung des Kontexts betrachtet werden.
 Es werden also zuerst Wörter, deren Bedeutung eindeutig ist, betrachtet, und von da aus die kürzeste Verbindung zu einer Bedeutung des fragwürdigen Wortes \citep{ganswerapproach}.
 Darauf bauen viele andere Question Answering-Systeme auf.
 
@@ -95,7 +100,7 @@ Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhal
 
 \subsection{TeBaQA}
 
-TeBaQA \citep{tebaqa} wird von der DICE group an der Universität Paderborn entwickelt.
+TeBaQA \citep{tebaqa} wird von der Forschungsgruppe DICE an der Universität Paderborn entwickelt.
 Es basiert darauf, Fragen anhand ihrer Struktur zu gruppieren.
 Dabei werden isomorphe \ac{sparql}-Anfragen, d.h. Anfragen gleicher Struktur, einer Vorlage zugeordnet.
 Somit können schnellere Antwortzeiten ermöglicht werden.
