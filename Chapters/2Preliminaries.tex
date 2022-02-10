@@ -85,13 +85,13 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
 \daurl{ex}{http://www.example.org/}
 \subsection{RDF}
 \begin{table}[h]\centering\scriptsize
-  \begin{tabulary}{\textwidth}{rcl}
+  \begin{tabulary}{\textwidth}{rrl}
     \toprule
-    Subjekt & Prädikat & Objekt \\
+    Funktion & Beispiel 1 & Beispiel 2 \\
     \midrule
-    \aurl{bb}{ChiefInformationOfficer} & \aurl{meta}{isResponsibleForEntityType} & \aurl{bb}{AnnualITBudget} \\
-    \aurl{ex}{ErikaMustermann} & \aurl{rdf}{type} & \aurl{ciox}{ChiefInformationOfficer} \\
-  %  \aurl{}
+    Subjekt & \aurl{bb}{ChiefInformationOfficer} & \aurl{ex}{ErikaMustermann} \\
+    Prädikat & \aurl{meta}{isResponsibleForEntityType} & \aurl{rdf}{type} \\
+    Objekt & \aurl{bb}{AnnualITBudget} & \aurl{ciox}{ChiefInformationOfficer} \\
     \bottomrule
   \end{tabulary}
   \caption{Beispiele für RDF-Tripel}
@@ -110,6 +110,26 @@ Beim zweiten Beispiel ist wichtig, dass \aurl{bb}{ChiefInformationOfficer} und \
 Durch den \emph{Prefix} wird die genaue und einzigartige Adresse festgelegt.
 Die Wahl des Präfixes ist hierbei den Verantwortlichen überlassen, wichtig ist nur, sie auf eine \ac{http}-Adresse verweisen zu lassen.
 Der Präfix \enquote{ex:} wird z.B. häufig für Beispiele benutzt.
+Alle in dieser Arbeit verwendeten Präfixe sind in \cref{tab:prefixes} mit ihren \acp{uri} aufgelistet.
+
+\begin{table}[h]\centering
+  \begin{tabulary}{\textwidth}{rl}
+    \toprule
+    Präfix & \ac{uri} \\
+    \midrule
+    bb & \url{http://snik.eu/ontology/bb/} \\
+    coix & \url{http://snik.eu/ontology/coix/} \\
+    he & \url{http://snik.eu/ontology/he/} \\
+    ob & \url{http://snik.eu/ontology/ob/} \\
+    meta & \url{http://snik.eu/ontology/meta/} \\
+    rdf & \url{http://www.w3.org/1999/02/22-rdf-syntax-ns\#} \\
+    rdfs & \url{http://www.w3.org/2000/01/rdf-schema\#} \\
+    ex & \url{http://beispiel.de/} \\
+    \bottomrule
+  \end{tabulary}
+  \caption{In dieser Arbeit verwendete Präfixe}
+  \label{tab:prefixes}
+\end{table}
 
 \subsection{Ontologien}
 
@@ -157,7 +177,7 @@ Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über
 Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
 
 Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
-So ist in \cref{tab:rdftripleexample} \aurl{dbo}{leaderName} ein Property mit \aurl{dbo}{PopulatedPlace} als Definitions- und \aurl{dbo}{Person} als Wertebereich,
+So ist in \cref{tab:rdftripleexample} \aurl{bb}{isResponsibleForEntityType} ein Property mit \aurl{meta}{Role} als Definitions- und \aurl{meta}{EntityType} als Wertebereich,
 sie sind also Eigenschaften von Objekten.
 
 \subsubsection{Wissensbasen}

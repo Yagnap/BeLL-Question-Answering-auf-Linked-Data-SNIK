@@ -31,6 +31,12 @@ Es gibt Rollen, die eine Person einnehmen kann, wie z.B. \aurl{bb}{ChiefInformat
 und Objekttypen, die Informationen, die für diese Aufgabe benötigt werden, repräsentieren, wie z.B. \aurl{bb}{AnnualITBudget}.
 Zwischen diesen gibt es Relationen, die deren Beziehung beschreiben.
 
+Die Subontologien sind theoretisch unabhängig voneinander. Sie sind größtenteils dann verbunden,
+wenn sie ähnliche Prinzipien wie ein anderer Punkt einer anderen Subontologie darstellen.
+Für das Tripel mit dem Subjekt \aurl{bb}{ChiefInformationOfficer} gibt es das Prädikat \aurl{skos}{closeMatch} mit dem Objekt \aurl{ciox}{ChiefInformationOfficer}.
+Es gibt dieses Tripel auch mit diesem als Subjekt und dem anderen als Objekt.
+Dies erklärt auch, weshalb auf dem Pfeil zwischen ihnen keine Richtung zu sehen ist.
+
 
 \subsection{Der SNIK-Graph}
 
@@ -38,7 +44,7 @@ Der \ac{snik}-Graph\footnote{Erreichbar über \url{https://www.snik.eu/graph/}} 
 Hier werden die einzelnen Entitäten nach ihrer entsprechenden Subontologie gefärbt visuell dargestellt.
 Die beschrifteten Verbindungen bzw. Kanten zwischen den Formen stellen Relationen dar,
 welche, wenn sie zwischen zwei Entitäten unterschiedlicher Subontologien verlaufen, keine Richtung haben.
-Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten die verschiedenen Entitäten.
+Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten die verschiedenen Typen.
 
 \section{Question Answering-Programme}
 
@@ -112,8 +118,8 @@ in einer Abfrage mit der gleichen Struktur wie die Abfrage der Frage \enquote{Wo
 Die \ac{sparql}-Abfrage könnte bei beiden so aussehen, bei der ersten Abfrage wäre das Individuum im Subjekt \aurl{bb}{ChiefInformationOfficer} und das Prädikat \aurl{meta}{isResponsibleForEntityType},
 bei der zweiten Frage das Subjekt \aurl{bb}{3LGM2} und das Prädikat \aurl{meta}{isBasedOn}.
 \begin{lstlisting}
-  PREFIX bb: http://snik.eu/ontology/bb/
-  PREFIX meta: http://snik.eu/ontology/meta/
+  PREFIX bb: <http://snik.eu/ontology/bb/>
+  PREFIX meta: <http://snik.eu/ontology/meta/>
   SELECT ?uri
   WHERE
     { <Subjekt> <Prädikat> ?uri }
