@@ -83,7 +83,7 @@ Die Zahl nach dem Doppelpunkt zeigt die Position im Satz an, \enquote{peace} ist
 Elasticsearch verwendet \ac{rest}-\acp{api}, also Programmierschnittstellen, die mittels \ac{http}-Anfragen mit Seiten im \ac{xml}-Format, wie z.B. \ac{html}, kommunizieren.
 Mit diesen kann es in der Tabelle nach Informationen suchen.
 Das tut es, indem es die Seiten und Positionen, auf denen die eingegebenen Wörter stehen, mithilfe der invertierten Indizes heraussucht.
-Je näher die eingegebenen Wörter aneinanderstehen, und je eher die gefundenen Wörter mit den eingegebenen übereinstimmen, desto besser ist das Ergebnis und desto eher wird es angezeigt.
+Je näher die eingegebenen Wörter aneinanderstehen, und je eher die gefundenen Wörter mit den eingegebenen übereinstimmen, desto besser ist das Ergebnis und desto eher wird es angezeigt \citep[S.~23]{elasticsearch}.
 Es können auch verschiedene Synonyme und phonetisch ähnlich klingende Wörter ausprobiert werden.
 
 \section{Question Answering-Systeme}
@@ -101,7 +101,11 @@ DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 \subsection{Leaderboard}
 
 Das Question Answering-Leaderboard\footnote{\url{https://github.com/KGQA/leaderboard}} \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
-das häufig als sehr uneinheitlich \citep{diefenbachkbqa} beschriebene Feld des \ac{kbqa}\todo{Leaderboard}
+dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des \ac{kbqa} eine vereinheitliche Liste mit verfügbaren Question Answering-Systemen zu geben.
+Hier sind werden Fragenkataloge wie \ac{qald9} als Benchmarks auf die verschiedenen \ac{kbqa}-Systeme angewendet und die Ergebnisse aufgezeichnet.
+Desweiteren sind die 98 Systeme in einer Liste mit dem Namen des Systems, einer Beschreibung und Links zu dem originalen Paper und einer Demonstration,
+\ac{rest}-\ac{api} oder dem GitHub-Projekt, falls diese öffentlich verfügbar existieren, ausgestattet.
+Dies vereinfacht eine systematische Suche enorm, da viele Systeme schwer auffindbar sind, sowohl in der Dokumentation als auch in Form des implementierten Systems selbst.
 
 \subsection{gAnswer}
 
