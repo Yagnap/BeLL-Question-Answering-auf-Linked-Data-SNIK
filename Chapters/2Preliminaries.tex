@@ -210,10 +210,26 @@ Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen sta
 \subsection{SPARQL}
 
 \ac{sparql} ist ein \ac{w3c}-Standard als Abfragesprache für RDF.
-Mit ihr kann man durch eine standardisierten Syntax
-\todo{für SPARQL braucht man keine Ontologie! RDF und Ontologien sind zwar verbunden aber nicht das gleiche.}
-\todo{SPARQL}
-\todo{Beispielhafte Anfrage}
+Mit ihr kann man durch eine standardisierte Syntax in RDF geschriebenes Wissen abfragen.
+Es müssen zuerst die verwendeten Präfixe definiert werden, dann die auszugebenden Variablen genannt und dann die eigentliche Anfrage formuliert werden \citep[S.~203]{semanticwebgrundlagen}.
+Möglich ist auch, in dieser Abfrage eine weitere Variable genannt wird.
+Dies könnte zu mehreren Ergebnissen führen.
+Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
+\begin{lstlisting}
+  # Ich bin ein Kommentar.
+  # Definition der Präfixe:
+  PREFIX bb: <http://snik.eu/ontology/bb/>
+  PREFIX meta: <http://snik.eu/ontology/meta/>
+  # Auszugebende Variablen nennen:
+  SELECT ?aufgabe
+  # Anfrage:
+  WHERE
+    { ?rolle meta:isResponsibleForEntityType bb:AnnualITBudget .
+      ?rolle meta:isResponsibleForFunction ?aufgabe . }
+\end{lstlisting}
+Es zeigt alle Aufgaben an, welche die Rolle, die das jährliche IT-Budget verändern kann, hat.
+Die einzige Person, die dies verändern kann, ist \aurl{bb}{ChiefInformationOfficer}.
+Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf der SNIK-Website\footnote{\url{https://www.snik.eu/sparql}} ausführt, \aurl{bb}{InformationManagement}.
 
 \section{Semantisches Question Answering}
 
