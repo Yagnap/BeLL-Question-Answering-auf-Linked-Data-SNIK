@@ -40,11 +40,51 @@ Dies erklärt auch, weshalb auf dem Pfeil zwischen ihnen keine Richtung zu sehen
 
 \subsection{Der SNIK-Graph}
 
-Der \ac{snik}-Graph\footnote{\url{https://www.snik.eu/graph/}} ist die Visualisierung von \ac{snik}.
+Der \ac{snik}-Graph\footnote{\url{https://www.snik.eu/graph}} ist die Visualisierung von \ac{snik}.
 Hier werden die einzelnen Entitäten nach ihrer entsprechenden Subontologie gefärbt visuell dargestellt.
 Die beschrifteten Verbindungen bzw. Kanten zwischen den Formen stellen Relationen dar,
 welche, wenn sie zwischen zwei Entitäten unterschiedlicher Subontologien verlaufen, keine Richtung haben.
 Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten die verschiedenen Typen.
+
+\section{Stichwortsuche}
+
+Die Stichwortsuche ist wohl mit die am weitesten verbreitete Form, um sich Informationen anzueignen.
+Im Gegensatz zu Question Answering werden hier statt ganzen Sätzen nur einzelne Stichwörter eingegeben, womit letztendlich Ergebnisse angezeigt werden.
+Das Problem (bzw. der Ansatz) dabei ist nicht unbedingt, den Nutzer zu verstehen, sondern in abertausenden Möglichkeiten die möglichst relevantesten herauszusuchen.
+Dazu werden oft Listen, wo die Antwortmöglichkeiten indiziert sind, verwendet.
+Stichwortsuche wird nicht nur im \ac{www}, sondern auch in vielen anderen Bereichen eingesetzt.
+Manche Question Answering-Systeme verwenden es z.B. auch für bestimmte Module.
+
+\subsection{Elasticsearch}
+
+Elasticsearch\footnote{\url{https://www.elastic.co}} ist ein Open-Source Programm, das einfaches Indizieren, Suchen und Analysieren von Daten ermöglichen soll \citep[S.~8]{elasticsearch}.
+Es kann verschiedenste Datentypen durchsuchen, auch Text und Zahlen.
+Dazu serialisiert es Dokumente in \ac{json}, einer für die Programmiersprache JavaScript, welche häufig auf Webseiten verwendet wird, lesbare Notation.
+In dieser Serialisierung nutzt es einen \emph{invertierten Index}, d.h. es indiziert das Dokument für alle verschieden vorkommenden Wörter \citep{invertedindex}.
+Das Wort bzw. die Zeichenkette ist also ein Schlüssel mit den Dokumenten als Wert.
+Nehme man z.B. die beiden Sätze \enquote{War is peace.} und \enquote{Freedom is slavery.}\todo{Orwell zitieren/Beispiel aus SNIK} als eigene Dokumente, würde es wie in \cref{tab:invertedindexexample} aussehen.
+Das Wort \enquote{is} kommt sowohl in Dokument 1 und 2, das Wort \enquote{war} nur in Satz 1 und das Wort \enquote{freedom} in nur in Satz 2.
+Die Zahl nach dem Doppelpunkt zeigt die Position im Satz an, \enquote{peace} ist z.B. an dritter Stelle im ersten Satz.
+\begin{table}[h]\centering
+  \begin{tabulary}{\textwidth}{rl}
+    \toprule
+    Schlüssel & Wert(e) \\
+    \midrule
+    war & 1:1 \\
+    is & 1:2,2:2 \\
+    peace & 1:3 \\
+    freedom & 2:1 \\
+    slavery & 2:3 \\
+    \bottomrule
+  \end{tabulary}
+  \caption{Beispiel für invertierte Indizes}
+  \label{tab:invertedindexexample}
+\end{table}
+Elasticsearch verwendet \ac{rest}-\acp{api}, also Programmierschnittstellen, die mittels \ac{http}-Anfragen mit Seiten im \ac{xml}-Format, wie z.B. \ac{html}, kommunizieren.
+Mit diesen kann es in der Tabelle nach Informationen suchen.
+Das tut es, indem es die Seiten und Positionen, auf denen die eingegebenen Wörter stehen, mithilfe der invertierten Indizes heraussucht.
+Je näher die eingegebenen Wörter aneinanderstehen, und je eher die gefundenen Wörter mit den eingegebenen übereinstimmen, desto besser ist das Ergebnis und desto eher wird es angezeigt.
+Es können auch verschiedene Synonyme und phonetisch ähnlich klingende Wörter ausprobiert werden.
 
 \section{Question Answering-Systeme}
 
@@ -60,12 +100,12 @@ DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 
 \subsection{Leaderboard}
 
-Das Question Answering-Leaderboard \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
+Das Question Answering-Leaderboard\footnote{\url{https://github.com/KGQA/leaderboard}} \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
 das häufig als sehr uneinheitlich \citep{diefenbachkbqa} beschriebene Feld des \ac{kbqa}\todo{Leaderboard}
 
 \subsection{gAnswer}
 
-gAnswer \citep{ganswer2} wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
+gAnswer\footnote{\url{https://github.com/pkumod/gAnswer}} \citep{ganswer2} wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
 Hierfür werden die Fragen in Unterfragen aufgespalten und daraus je ein Syntaxbaum erstellt.
 Es erzielte durch eine durchdachte Vorbereitung der Trainingsdaten sehr schnelle Trainingszeiten bei niedrigem Speicherverbrauch und hoher Genauigkeit bei der Beantwortung von Fragen.
 Das System hat außerdem die Umformung von natürlicher Sprache in \ac{sparql}-Abfragen als das Problem,\todo{besser erklären, nochmal drüberschauen bzw. Satz entwirren}
@@ -75,13 +115,13 @@ Es werden also zuerst Wörter, deren Bedeutung eindeutig ist, betrachtet, und vo
 Darauf bauen viele andere Question Answering-Systeme auf.
 
 \subsection{DeepPavlov}
-DeepPavlov ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
+DeepPavlov\footnote{\url{https://www.deeppavlov.ai}} \citep{deeppavlov} ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
 Es ist in \emph{Models} und \emph{Skills} organisiert.
 Das System ist hochdynamisch und auf verschiedenste Aufgaben ausgelegt, vor allem aber Dialogsysteme bzw. Chat Bots.
 Für Question Answering gibt es bisher nur Ansätze bezüglich \ac{odqa}.
 
 \subsubsection{Architektur}
-Ein \emph{Model} ist eine in TensorFlow, eine Schnittstelle für maschinelles Lernen \citep{tensorflow}, implementierte Funktion einer \ac{nlp}-Pipeline,
+Ein \emph{Model} ist eine in TensorFlow \citep{tensorflow}, einer Schnittstelle für maschinelles Lernen, implementierte Funktion einer \ac{nlp}-Pipeline,
 die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
 Models können auch andere Models enthalten.
 Ein \emph{Skill} besteht aus Models, jedoch kann er nur Zeichenketten als Ein-/Ausgabe haben.
@@ -100,7 +140,7 @@ Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhal
 
 \subsection{TeBaQA}
 
-TeBaQA \citep{tebaqa} wird von der Forschungsgruppe DICE an der Universität Paderborn entwickelt.
+TeBaQA\footnote{\url{https://github.com/dice-group/TeBaQA}} \citep{tebaqa} wird von der Forschungsgruppe DICE an der Universität Paderborn entwickelt.
 Es basiert darauf, Fragen anhand ihrer Struktur zu gruppieren.
 Dabei werden isomorphe \ac{sparql}-Anfragen, d.h. Anfragen gleicher Struktur, einer Vorlage zugeordnet.
 Somit können schnellere Antwortzeiten ermöglicht werden.
