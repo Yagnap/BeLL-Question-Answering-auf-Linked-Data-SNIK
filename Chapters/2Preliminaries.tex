@@ -346,7 +346,6 @@ Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hintere
 \label{fig:struktur-cnn}
 \end{figure}
 
-
 \subsection{Recurrent Neural Network}
 In einem \ac{rnn} formen die Knoten einen Kreis, sodass die Ausgabe der einen Schicht die Eingabe einer anderen wird,
 wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind (siehe \cref{fig:struktur-rnn}).
@@ -359,13 +358,25 @@ Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep
 \caption[Struktur von RNNs]{Die Struktur eines \ac{rnn} \citep{deeplearningarchitecturesreview}.}
 \label{fig:struktur-rnn}
 \end{figure}
-\todo{Attention}
 
-\subsection{Long short-term memory}
+\acp{rnn} werden außerdem für Encoder-Decoder-Modelle \citep{seq2seqB} verwendet.
+Diese bestehen aus zwei \acp{rnn}, eines von ihnen ist ein Encoder (Verschlüsseler), das andere ein Decoder (Entschlüsseler
+Besonders ist, dass die einzelnen \acp{nn} nicht einzeln, sondern das gesamte System zusammen trainiert wird \citep{seq2seqA}.
+Sie wurden zuerst für maschinelle Übersetzung eingesetzt, sind jetzt aber als Methode etabliert.
+
+Der sogenannte Attention-Mechanismus (Aufmerksamkeitsmechanismus) basiert auf dem Encoder-Decoder-Modell.
+Es löst das Problem des Modells, dass dort alle Informationen der Eingabe in einen Vektor bestimmter Länge getan werden müssen
+und somit Probleme bei langen Sätzen wie diesem hier entstehen könnten.
+Der Attention-Mechanismus löst dieses Problem, indem bei jeder Iteration ein variabler Kontextvektor erzeugt wird \citep{attentionintro}.
+Dieser ähnelt sehr der menschlichen Aufmerksamkeit, was den Namen des Mechanismus erklärt.
+Für die \ac{rnn} werden statt \acsp{lstm} \acsp{gru} verwendet.
+
+\subsection{Long short-term memory und Gated Research Units}
 \ac{lstm}, zu Deutsch \enquote{langes Kurzzeitgedächtnis}, ist eine Form von \acp{rnn} \citep{lstm}.
 Es wird zum Beispiel von Google und Amazon für deren Stimmenerkennungssoftware genutzt.
 Im Gegensatz zu \acp{rnn} hat \ac{lstm} nicht das Problem, dass der Gradient langsam verringert wird,
 indem es aus mehreren Zellen, durch die eingegeben, ausgegeben und vergessen werden kann.
+\ac{gru} sind ein anderer Typ simpler \acp{rnn} und wurden von \citet{gru} entwickelt.
 
 \subsection{Training von neuronalen Netzen}
 Neuronale Netze basieren darauf, trainiert zu werden.
