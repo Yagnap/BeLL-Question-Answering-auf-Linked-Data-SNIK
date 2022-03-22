@@ -182,3 +182,66 @@ Die letzte Phase behandelt das Auswählen der Lösung, die dem Nutzer übergeben
 Dazu wird wieder auf das Fragewort geblickt, um herauszufinden, in was für einer Form, z.B. einem Datum, der Nutzer die Antwort erwartet.
 Das erste Substantiv nach dem Fragewort wird überprüft, um den Numerus der Frage zu erkennen.
 Desweiteren werden die Lösungskandidaten auf ihre Ähnlichkeit mit der Frage überprüft, woraus eine Bewertung und letztendlich die zu präsentierende Antwort berechnet wird.
+
+\subsection{Qanswer KG}
+
+QAnswer KG \citep{qanswer} ist ein an der Universtität Saint-Étienne entwickeltes Question Answering-System,
+das vor allem das von \citet{diefenbachkbqa} genannte Problem der fehlenden Portabilität in diesem Feld lösen soll:
+Viele Systeme wurden als Forschungsprojekt für Benchmarks wie \ac{qald}-9 geschrieben und sind deshalb nur mit großen Ontologien wie DBpedia oder Wikidata kompatibel.
+Hier ist es jedoch möglich, auf einer Website einfach eigene Daten hochzuladen und dort Question Answering zu betreiben.
+Die Modelle müssen aber noch auf die Fragen trainiert werden, das vortrainierte Modell soll nur Sprache an sich verstehen können und nicht den speziellen Datensatz.
+Alles in allem kann man dennoch sagen, dass das System vergleichsweise sehr leicht zu verwenden ist.
+Selbst ein fast nicht trainiertes System bietet oft noch akzeptable Antworten.
+Es ist leider nicht open-source, steht online\footnote{Demo: \url{https://qanswer-frontend.univ-st-etienne.fr}\\Website: \url{https://www.qanswer.eu}} aber frei zur Verfügung.
+
+\subsubsection{Architektur}
+
+\begin{figure}%[htbp!]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/QAnswerWorkflow.png}
+\caption[QAnswer KG Arbeisablauf]{Arbeitsablauf von QAnswer KG \citep{qanswer}.}
+\label{fig:qanswerworkflow}
+\end{figure}
+
+QAnswer KG beantwortet eine Frage in vier Schritten, die in \cref{fig:qanswerworkflow} dargestellt sind.
+Zuerst werden alle sogenannten \emph{N-Gramme} gebildet, d.h. alle möglichen Kombinationen von aufeinanderfolgenden Wörtern mit der maximalen Länge n.
+Die maximale Länge hier ist die Anzahl der Wörter im Satz, d.h. der Satz selbst ist auch ein N-Gramm.
+Wenn man zum Beispiel die Frage \enquote{Is war peace?} stellt,
+sucht das Programm für jedes Wort sowie für die Kombinationen \enquote{is war}, \enquote{war peace} und \enquote{is war peace}
+mithilfe des auf natürliche Sprache vortrainierten Modells die am ehesten passenden Werte im Datensatz heraus.
+Dabei werden normalerweise auch viele falsche Ressourcen ausgewählt, da besonders bei längeren Fragen viele N-Gramme existieren.
+Danach werden aus all diesen Werten alle möglichen \ac{sparql}-Anfragen erstellt.
+Dabei werden auch die falschen Interpretationen weitergeführt, jedoch sollte auch die richtige dabei sein.
+Deshalb müssen die Abfragen im dritten Schritt bewertet werden.
+Dazu werden, mithilfe von verschiedenen Parametern wie der Anzahl der in der Abfrage verwendeten mit einer Ressource assoziierten Wörter verglichen mit der Anzahl der Wörter in der Frage,
+oder die Ähnlichkeit der Label, welche über \aurl{rdfs}{label} festgelegt werden, mit den Wörtern, und einer trainierten künstlichen Intelligenz die Kandidaten evaluiert.
+Dadurch soll die Interpretation, die der Intention der Frage am nächsten kommt, am höchsten gewertet sein.
+Diese wird im letzten Schritt analysiert und es wird entschieden, ob es die richtige Antwort ist.
+Damit wird ein \enquote{confidence score}, zu Deutsch etwa \enquote{Vertrauenswert}, erstellt.
+Sollte dieser unter 50\% liegen, gilt die Frage als falsch beantwortet.
+Sie wird jedoch trotzdem ausgegeben.
+
+\subsubsection{Vorteile, Grenzen und Probleme}
+
+Im Gegensatz zu anderen Ansätzen verwendet QAnswer KG kein herkömmliches \ac{nlp}, wo auf sprachliche Eigenschaften acht gegeben wird, wie man bei TeBaQA gut sehen kann.
+Dies führt dazu, dass auch Stichwortsuche und Fragen mit fragwürdiger Grammatik und teils auch Rechtschreibung beantwortet werden können, was in der Praxis sehr hilfreich ist.
+Nicht jede die Applikation benutzende Person ist in diesen Bereichen sicher, besonders, wenn das Programm auch im öffentlichen Bereich einsetzbar sein soll.
+Ein weiterer ausschlaggebender Punkt ist, dass dadurch Fragen in verschiedenen Fragen gestellt werden können, solange die Ontologie in diesen verfügbar ist.
+Außerdem können verschiedene Ontologien gleichzeitig durchsucht werden, was insbesondere in Zeiten von Linked Open Data hilfreich ist.
+Systeme wie gAnswer benötigten die Daten auch in einer speziellen Form, um sie verarbeiten zu können, hier reichen die \ac{rdf}-Daten aus.
+Das hilft der Intuitivität/Benutzerfreundlichkeit des Systems weiter.
+
+Diese die Semantik des Satzes nicht beachtende Methode bringt allerdings auch Nachteile mit sich.
+Der größte ist wohl, dass das Wissen sich in einer bestimmten Form befinden muss.
+Es müssen \aurl{rdfs}{label}s o.ä. verwendet werden, anderes wird nicht erkannt.
+Desweiteren müssen die Label eine Annotation, die deren Sprache bestimmt, haben, also zum Beispiel \emph{\enquote{Chief Information Officer}@en, \enquote{Leiter des Informationsmanagements}@de},
+für das Label vom \aurl{bb}{ChiefInformationOfficer}, besitzen.
+Bei \ac{snik} und den meisten anderen Ontologien ist das allerdings kein Problem, da sie es bereits besitzen.
+Das zieht allerdings auch mit sich, dass andere Informationen, die in der Ontologie existieren, aber nicht im Label gespeichert sind, nicht mit betrachtet werden.
+Eine weitere bedeutende Grenze ist die Limitierung der Komplexität der \ac{sparql}-Abfrage auf maximal drei Tripel, sodass besonders komplexe Fragen mit kompliziertem Muster nicht beantwortet werden können.
+In der Praxis sollten diese allerdings für die meisten Fragen ausreichen.
+Gäbe es diese Limitation nicht, würde die Beantwortung längerer Fragen aufgrund des Versuches, aus den N-Grammen zu komplexe Muster zu erstellen,
+vermutlich mit einer geringeren Genauigkeit der Ergebnisse und einer langsameren Geschwindigkeit ausfallen.
+
+QAnswer KG kann, wie man an Benchmarks sieht, mit den bisher existierenden Systemen mithalten, ist jedoch in der Intuitivität und Portabilität weit über ihnen.
+Mit Training kann auch eine sehr hohe Genauigkeit erzielt werden.
