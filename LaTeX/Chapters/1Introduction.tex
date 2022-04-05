@@ -10,7 +10,7 @@ Sie ist von dem Streben geleitet, damit zur Gestaltung der bestmöglichen Gesund
 \end{flushright}
 \ac{snik} ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
 Es fasst Wissen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
-In der Wissensbasis\todo{Umformulieren!} sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.
+In der Ontologie (siehe \cref{sub:ontology}) sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.
 
 Diese Daten liegen strukturiert, aber für Menschen nicht leicht lesbar vor. Daher braucht es andere Methoden, durch sie zu navigieren.
 Dazu gibt es verschiedene Lösungen,
@@ -20,7 +20,7 @@ Dazu gibt es verschiedene Lösungen,
 	\item \acs{sparql}, eine Sprache Abfragesprache für \acs{rdf}.
 \end{enumerate}
 
-\section{Problemstellung}
+\section{Problemstellung}\label{sec:problemstellung}
 
 Momentan müssen Studierende der Medizininformatik, die nach Wissen suchen wollen, eine der drei oben genannten Optionen verwenden.
 Alle dieser Möglichkeiten haben jedoch große Nachteile.
@@ -32,8 +32,8 @@ Dabei wird eine Frage als ganzer Satz eingegeben, dessen Bedeutung das System ve
 Die Implementierung eines Question Answering-Systems mit adäquater Qualität der Antworten benötigt allerdings mehr Zeit, als es im Rahmen einer BeLL möglich ist.
 
 \begin{itemize}
-	\item Problem P1: Intuitivität und Expressivität
-	\item Problem P2: Für die Implementierung von Question Answering benötigter Aufwand
+	\item Problem P1: Für die Implementierung von Question Answering benötigter Aufwand
+	\item Problem P2: Fehlende Intuitivität und Expressivität anderer Lösungsansätze
 \end{itemize}
 
 
@@ -42,13 +42,19 @@ Die Implementierung eines Question Answering-Systems mit adäquater Qualität de
 \todo{Motivation}
 
 \section{Zielsetzung}\label{sec:zielsetzung}
+
+Im Folgenden wird jedem in \cref{sec:problemstellung} benannten Problem P\textsubscript{i} ein Ziel Z\textsubscript{i} zugeordnet.
+
 	\begin{itemize}
 		\item Ziel Z1: Benchmark für Semantisches Question Answering für \ac{snik}
 		\item Ziel Z2: Semantisches Question Answering System, welches Fragen zu \ac{snik} mit hoher Qualität beantwortet.
 	\end{itemize}
 \section{Aufgabenstellung}
 
+Den Zielen Z\textsubscript{i} sind hier jeweils Aufgaben A\textsubscript{i} zugeordnet.
+
 \begin{itemize}
+
 	\item Aufgaben zu Ziel Z1:
 	\begin{itemize}
 		\item Aufgabe A1.1: Sammlung von typischen Benutzerfragen an \ac{snik}
@@ -65,3 +71,9 @@ Die Implementierung eines Question Answering-Systems mit adäquater Qualität de
 \end{itemize}
 
 \section{Aufbau der Arbeit}
+
+Einleitend werden in Kapitel 1 die Problemstellung, Ziele und daraus folgende Aufgaben beschrieben.
+Danach werden in Kapitel 2 grundlegende Begriffe und für die Arbeit relevante Themengebiete geklärt.
+In Kapitel 3 wird der aktuelle Stand der Forschung beschrieben, besonders in Hinsicht auf verschiedene Question Answering-Systeme.
+Kapitel 4 beinhaltet die Lösungsansätze für die oben benannten Aufgaben, Kapitel 5 die Ausführung dieser und Kapitel 6 Ergebnisse.
+Kapitel 7 ist die kritische Auseinandersetzung mit den Ergebnissen in der Diskussion und ein Ausblick auf mögliche zukünftige Arbeit.
