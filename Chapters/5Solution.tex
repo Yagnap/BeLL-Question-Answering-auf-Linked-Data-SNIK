@@ -17,5 +17,28 @@ Dieses Kapitel kann auch in mehrere Kapitel aufgeteilt werden, wenn das sinnvoll
     \end{itemize}
     \item Docker-Image mit SNIK-Ontologie, TeBaQA und ElasticSearch 6.6.1
   \end{itemize}
-
+  \item QAnswer KG
+  \begin{itemize}
+    \item nur eine Ergebnisquery anstatt potenziell mehrerer (\aurl{meta}{isResponsibleForFunction}, \aurl{meta}{isResponsibleForEntityType})
+    \item erkennt Prädikate auch, wenn diese nicht beieinander stehen (\enquote{Wofür ist der Leiter des Informationsmanagements verantwortlich?})
+    \begin{itemize}
+      \item Hierzu müsste FILTER genutzt werden (?p1 = :x || ?p1 = :y || ?p1 = :z)
+      \item Training?
+    \end{itemize}
+    \item wenn keine Lösung gefunden, wird oft Ressource, die im Subjekt steht, ausgegeben
+    \item \url{https://doc.qanswer.eu/Tutorial-UI/doc1.6}
+    \begin{itemize}
+      \item http://www.w3.org/2004/02/skos/core\#definition für Definition ==> Fehler 500
+    \end{itemize}
+    \item stop words
+    \begin{itemize}
+      \item rausnehmen: for
+      \item verbleibend: a, about, all, an, and, are, as, at, be, by, can, define, describe, did, do, does, from, give, goes, had, has, have, here, how, in, into, is, its, list, many, most, my, no, of, on, or, s, show, some, something, such, tell, the, their, these, they, this, to, using, was, were, what, which, will, with, yes
+    \end{itemize}
+    \item hidden properties
+    \begin{itemize}
+      \item http://www.w3.org/1999/02/22-rdf-syntax-ns\#type entfernen
+    \end{itemize}
+    \item bevor \enquote{for} hersausgenommen wurde, hat es \enquote{responsible for} selten verstanden, jetzt fast immer als Prädikat
+  \end{itemize}
 \end{itemize}
