@@ -1,6 +1,6 @@
 [
 {
-"question": "Who is responsible for the Annual IT Budget?",
+"question": "What is the Chief Information Officer responsible for?",
 "language": "en",
 "id":2,
 "sparql":"SELECT DISTINCT ?o1 WHERE { ?s1 ?p1 ?o1 FILTER ((?p1 = meta:isResponsibleForFunction || ?p1 = meta:isResponsibleForEntityType  || ?p1 = meta:isResponsibleForRole) && (?s1 = bb:ChiefInformationOfficer || ?s1 = ciox:ChiefInformationOfficer || ?s1 = ob:ChiefInformationOfficer))} LIMIT 1000"
