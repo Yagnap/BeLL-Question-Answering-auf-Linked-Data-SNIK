@@ -297,7 +297,7 @@ Dazu werden sie vortrainiert, dass heißt sie werden schon vor der Anwendung mit
 wie zum Beispiel dem englischsprachigen Wikipedia mit etwa 2,5 Millionen Wörtern,
 oder dem BooksCorpus \citep{bookscorpus},
 einer Sammlung von Sätzen aus Büchern mit insgesamt etwa 800 Millionen Wörtern,
-trainiert \citep{BERT}.
+trainiert \citep{bert}.
 Dadurch lernen sie, diese gut zu repräsentieren und können diese dann auch bei anderen Aufgaben anwenden.
 Es können unbeabsichtigte, aber nützliche, Zusammenhänge zwischen Wörtern abgebildet werden,
 so kann beispielsweise der Vektor zwischen \enquote{Mutter} und \enquote{Vater} derselbe wie der zwischen \enquote{Tante} und \enquote{Onkel} sein \citep{mikolov2013a}.
@@ -306,19 +306,32 @@ so kann beispielsweise der Vektor zwischen \enquote{Mutter} und \enquote{Vater} 
 Mit \emph{fine-tuning-} oder \emph{feature-basiertem Training} können solche vortrainierten Repräsentationen auch spezifischere Aufgaben erfüllen,
 also bei einem großen Wortcorpus vortrainiert und für eine weniger häufige Aufgabe verwendet werden.
 Bei feature-basiertem Training werden der Aufgabe spezifische Architekturen verwendet, wie etwa \acs{elmo}, siehe auch \cref{subsub:elmo}.
-Erst später werden für weitere Funktionen über Repräsentationen hinzugefügt.
+Erst später werden für weitere Funktionen über Repräsentationen hinzugefügt.eep contextualized word representations
 Fine-tuning-basiertes Training basiert auf solchen Repräsentationen, hier werden nur minimal aufgabenspezifische Parameter verwendet.
 Beispiele für solch ein Vorgehen sind \acs{bert}, siehe hierfür \cref{subsub:bert}, und OpenAI GPT \citep{openaigpt}.
 
 \subsubsection{ELMo}\label{subsub:elmo}
-\ac{elmo} \citep{ELMo}
+\ac{elmo}
 % feature-basiert
-\todo{ELMo}
+\citep{elmo} ist ein \ac{nlp}-Modell, welches Wortsequenzen als Vektoren repräsentiert und dadurch sowohl komplexe Wortstrukturen wie Syntax und Semantik und den Kontext der Wörter behält.
+Im Gegensatz zu anderen Represäntationsmodellen wird bei \ac{elmo} also jedes Wort im Kontext des Auftretens repräsentiert.
+Es basiert auf \acsp{lstm}, welche später in \cref{sub:lstm} betrachtet werden.
+Diese werden mit einem Wortcorpus vortrainiert und somit gut einsetzbar, und können beisielsweise ohne Veränderung bei Disambiguationsaufgaben verwendet werden.
+\ac{elmo} ermöglichte zu der Zeit eine große Verbesserung der Leistung bei \ac{nlp}-Aufgaben.
 
 \subsubsection{BERT}\label{subsub:bert}
 \ac{bert}
 % finetuning-basiert
-\todo{BERT} \citep{BERT}
+\citep{bert} ist auch ein \ac{nlp}-Modell, jedoch mit dem hier neuen Ansatz bidirektionaler Transformer \citep{attention}.
+\ac{bert} nutzt eine von der Cloze-Prozedur inspirierte Vorgensweise namens \ac{mlm}, also \enquote{maskiertes Sprachmodell}.
+Bei dem Cloze-Verfahren werden zufällig Wörter zensiert, wodurch deren Effekt auf die Lesbarkeit von Sätzen getestet wurde.
+Der Name selbst basiert auf dem Phänomen, dass das menschliche Gehirn unvollkommene Muster vervollständigt.
+Bei \ac{mlm} wird wie bei der Cloze-Prozedur auch versucht, das zufällig gelöschte Wort anhand des Kontexts wiedereinzufügen.
+Der bi-, also zweidirektionale, Transformer betrachtet den Kontext von beiden anstatt von vorher nur einer Seite, sodass bessere Ergebnisse erzielt werden können.
+Erst durch diese Vorgensweise kann von den sehr aufgabenspezifischen Architekturen weg- und zu fine-tuning-basierten Ansätzen hingegangen werden.
+Dadurch erreicht in Benchmarks sehr gute \ac{bert} Ergebnisse, verglichen mit anderen Modellen.
+\ac{bert} verwendet sogenannte Transformer, welche auf dem in \cref{sub:rnn} und in \citet{annotatedtransformer} erklärten Aufmerksamkeitsmechanismus basieren.
+Es ist außerdem ein \acs{dnn}, welche im folgenden Abschnitt genauer betrachtet werden.
 
 \section{Maschinelles Lernen und neuronale Netze}
 
@@ -365,7 +378,7 @@ Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hintere
 \label{fig:struktur-cnn}
 \end{figure}
 
-\subsection{Recurrent Neural Network}
+\subsection{Recurrent Neural Network}\label{sub:rnn}
 In einem \ac{rnn} formen die Knoten einen Kreis, sodass die Ausgabe der einen Schicht die Eingabe einer anderen wird,
 wodurch dem \ac{nn} Informationen über die Ausgaben aus den vorherigen Schichten bekannt sind (siehe \cref{fig:struktur-rnn}).
 Typischerweise gibt es in solchen \acp{nn} nur eine Schicht.
@@ -390,7 +403,7 @@ Der Attention-Mechanismus löst dieses Problem, indem bei jeder Iteration ein va
 Dieser ähnelt sehr der menschlichen Aufmerksamkeit, was den Namen des Mechanismus erklärt.
 Für die \ac{rnn} werden statt \acsp{lstm} \acsp{gru} verwendet.
 
-\subsection{Long short-term memory und Gated Research Units}
+\subsection{Long short-term memory und Gated Research Units}\label{sub:lstm}
 \ac{lstm}, zu Deutsch \enquote{langes Kurzzeitgedächtnis}, ist eine Form von \acp{rnn} \citep{lstm}.
 Es wird zum Beispiel von Google und Amazon für deren Stimmenerkennungssoftware genutzt.
 Im Gegensatz zu \acp{rnn} hat \ac{lstm} nicht das Problem, dass der Gradient langsam verringert wird,
