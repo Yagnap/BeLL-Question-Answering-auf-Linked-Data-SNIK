@@ -291,7 +291,7 @@ Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-P
 \ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
 Zwei Pipelines werden in \cref{ch:relatedWork} näher betrachtet.
 
-\subsection{NLP-Modelle}
+\subsection{NLP-Modelle und -Repräsentationen}
 
 Modelle für \acl{nlp} verwenden heutzutage meistens Deep Learning.
 Dazu werden sie vortrainiert, dass heißt sie werden schon vor der Anwendung mit einem Verzeichnis an Wörtern bzw. Sätzen,
@@ -299,21 +299,27 @@ wie zum Beispiel dem englischsprachigen Wikipedia mit etwa 2,5 Millionen Wörter
 oder dem BooksCorpus \citep{bookscorpus},
 einer Sammlung von Sätzen aus Büchern mit insgesamt etwa 800 Millionen Wörtern,
 trainiert \citep{BERT}.
-Mit \emph{fine-tuning-} oder \emph{feature-basiertem} Training\todo{fine-tuning- und feature-basiertes Training}
-\todo{jetzige subsubsections evtl. in State of the Art umlegen?}
+Dadurch lernen sie, diese gut zu repräsentieren und können diese dann auch bei anderen Aufgaben anwenden.
+Es können unbeabsichtigte, aber nützliche, Zusammenhänge zwischen Wörtern abgebildet werden,
+so kann beispielsweise der Vektor zwischen \enquote{Mutter} und \enquote{Vater} derselbe wie der zwischen \enquote{Tante} und \enquote{Onkel} sein \citep{mikolov2013a}.
+Ähnlich funktioniert es auch bei komplexeren Zusammenhängen zwischen Wörtern \citep{mikolov2013b}, was sehr bei der Universalität von Repräsentationen hilft.
 
-\subsubsection{ELMo}
+Mit \emph{fine-tuning-} oder \emph{feature-basiertem Training} können solche vortrainierten Repräsentationen auch spezifischere Aufgaben erfüllen,
+also bei einem großen Wortcorpus vortrainiert und für eine weniger häufige Aufgabe verwendet werden.
+Bei feature-basiertem Training werden der Aufgabe spezifische Architekturen verwendet, wie etwa \acs{elmo}, siehe auch \cref{subsub:elmo}.
+Erst später werden für weitere Funktionen über Repräsentationen hinzugefügt.
+Fine-tuning-basiertes Training basiert auf solchen Repräsentationen, hier werden nur minimal aufgabenspezifische Parameter verwendet.
+Beispiele für solch ein Vorgehen sind \acs{bert}, siehe hierfür \cref{subsub:bert}, und OpenAI GPT \citep{openaigpt}.
+
+\subsubsection{ELMo}\label{subsub:elmo}
 \ac{elmo}
 % feature-basiert
 \todo{ELMo}
 
-\subsubsection{BERT}
+\subsubsection{BERT}\label{subsub:bert}
 \ac{bert}
 % finetuning-basiert
 \todo{BERT}
-
-\subsubsection{Andere Technologien}
-\todo{Kurz andere Modelle erwähnen}
 
 \section{Maschinelles Lernen und neuronale Netze}
 
