@@ -1,4 +1,28 @@
 %*****************************************
 \chapter{Lösungsansatz}\label{ch:approach}
 %*****************************************
-Der Lösungsansatz ist eine kurze Beschreibung der Arbeitshypothese sowie des Vorgehens zur Lösung der in der Einleitung beschriebenen Probleme.
+
+\section{Lösungsansatz zum Problem P1}
+
+Das erste Problem befasst sich mit der Situation, dass ein Question Answering-System nicht gut selbst entwickelt werden kann.
+Hierzu müssen andere Systeme anhand eines Benchmarks evaluiert werden.
+Für diesen müssen typische Nutzerfragen und Antworten auf diese gesammelt werden.
+Dazu bieten sich die Fragen aus den Büchern an, welche schon von \citet{arneba} gesammelt und hinsichtlich der Beantwortbarkeit mit der \ac{snik}-Ontologie klassifiziert worden sind.
+Für diese müssen Antworten herausgesucht und in \ac{sparql}-Abfragen umgeformt werden, um das Training zu ermöglichen.
+Da dies jedoch nicht unbedingt genug Fragen sind, müssen weitere durch \ac{snik} beantwortbare Fragen formuliert werden.
+Dies soll jedoch aufgrund der Zeitbeschränkung und etwas besserem Training von Modellen nur in der englischen Sprache geschehen.
+Etwa die Hälfte der Fragen soll zum Training, die andere Hälfte zur Kontrolle, jeweils vor und nach dem Training, genutzt werden,
+um Daten hinsichtlich der Effektivität des Trainings und letztendlich des Systems in der Fragenbeantwortung zu erhalten.
+
+\section{Lösungsansatz zum Problem P2}
+
+Das zweite Problem betrifft die mangelhafte Nützlichkeit der anderen Möglichkeiten und somit den Zwang, für solch ein System Question Answering zu verwenden.
+Deshalb muss nach funktionierenden und somit portablen Systemen, die nach Möglichkeit trainiert werden können und vor allem nicht nur Ontologien wie DBpedia als Quelle verwenden,
+sondern es auch ermöglichen, eigene Daten zu nutzen.
+Zur Recherche sollen, wie bereits in \cref{ch:relatedWork} dargelegt, Surveys und das Question Answering Leaderboard verwendet werden.
+Diese geben über die Güte der Antworten und die grundlegende Funktionsweise Aufschluss, können aber, besonders bei Forschungsprojekten,
+die nur über eine bestimmte Zeit finanzielle Mittel erhalten und somit die Pflege nicht gewährleistet werden kann, schnell veralten.
+Besonders bei Benchmarks wie \ac{qald}-9 ist es außerdem oft so, dass Systeme nur für Ontologien wie Wikidata und die Fragen im Benchmark erstellt wurden und somit nicht portabel sind.
+Gerade das Leaderboard ist jedoch eine nützliche Ressource, da hier viele Question Answering-Systeme mit dem entsprechenden Paper, was sonst auch nicht überall vorliegt, und, falls diese existiert,
+eine Demo des Systems, was der anfänglichen Evaluation hilft.
+Ziel ist es, mindestens ein System zu finden, und, falls mehr, aus den gefundenen das beste System auszuwählen.
