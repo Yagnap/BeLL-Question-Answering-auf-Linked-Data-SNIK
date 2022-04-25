@@ -89,12 +89,13 @@ Es können auch verschiedene Synonyme und phonetisch ähnlich klingende Wörter 
 \section{Question Answering-Systeme}
 
 Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} bzw. \ac{cdqa} verwendet.
+\todo{Außerdem wurde ... da fehlt etwas}
 Außerdem wurde über die Herausforderung \ac{qald}, wo mithilfe eines Fragenkatalogs versucht wird, Question Answering-Systeme objektiv zu bewerten.
 Als Trainingssatz wird DBpedia verwendet \citep{qald9}.
-
-DBpedia ist eine Ontologie, die aus den Daten Wikipedias besteht.
-Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von Question Answering-Programmen genutzt.
-Die Daten sind frei und in verschiedenen Formaten, wie z.B. als \ac{rdf}-Tripel, verfügbar.
+\todo{Das verstehe ich nicht, meinst du bei QA oder KBQA/SQA systemen allgemein wird DBpedia immer als Trainingssatz benutzt oder bei QALD? Beides stimmt nicht. Wenn es sich auf QALD bezieht kannst du dazu ja auch einen extra Absatz machen zu benchmarking oder nur zu QALD. Es gibt auch verschiedene QALD-Jahre. Einmal war z.B. auch CubeQA mit dabei da wurde LinkedSpending als Trainingssatz benutzt für diesen Untertask und nicht DBpedia :-)}
+DBpedia ist eine Ontologie, die aus den Daten Wikipedias besteht.\todo{Nein, DBpedia ist eine Wissensbasis, keine Ontologie. Es gibt zwar eine DBpedia-Ontologie aber die ist vergleichsweise klein. Das meiste sind Instanzdaten.}
+Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von Question Answering-Programmen genutzt.\todo{häufig stimmt schon eher aber warum dann das hier und oben nochmal aber als stärkere Aussage?}
+Die Daten sind frei und in verschiedenen Formaten, wie z.B. als \ac{rdf}-Tripel, verfügbar.\todo{Nee, RDF-Tripel sind es immer. Es ist immer das gleiche Format, nämlich RDF. Davon gibt es aber verschiedene Serialisierungen.}
 Über \ac{sparql} können auch direkt online Abfragen getätigt werden.
 DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 
@@ -125,6 +126,7 @@ Das System ist hochdynamisch und auf verschiedenste Aufgaben ausgelegt, vor alle
 Für Question Answering gibt es bisher nur Ansätze bezüglich \ac{odqa}.
 
 \subsubsection{Architektur}
+\todo{Model, Skill und so auf Deutsch übersetzen? Das klingt sonst so Denglisch.}
 Ein \emph{Model} ist eine in TensorFlow \citep{tensorflow}, einer Schnittstelle für maschinelles Lernen, implementierte Funktion einer \ac{nlp}-Pipeline,
 die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
 Models können auch andere Models enthalten.
