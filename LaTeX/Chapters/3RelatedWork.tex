@@ -89,13 +89,14 @@ Es können auch verschiedene Synonyme und phonetisch ähnlich klingende Wörter 
 \section{Question Answering-Systeme}
 
 Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} bzw. \ac{cdqa} verwendet.
-\todo{Außerdem wurde ... da fehlt etwas}
-Außerdem wurde über die Herausforderung \ac{qald}, wo mithilfe eines Fragenkatalogs versucht wird, Question Answering-Systeme objektiv zu bewerten.
-Als Trainingssatz wird DBpedia verwendet \citep{qald9}.
-\todo{Das verstehe ich nicht, meinst du bei QA oder KBQA/SQA systemen allgemein wird DBpedia immer als Trainingssatz benutzt oder bei QALD? Beides stimmt nicht. Wenn es sich auf QALD bezieht kannst du dazu ja auch einen extra Absatz machen zu benchmarking oder nur zu QALD. Es gibt auch verschiedene QALD-Jahre. Einmal war z.B. auch CubeQA mit dabei da wurde LinkedSpending als Trainingssatz benutzt für diesen Untertask und nicht DBpedia :-)}
-DBpedia ist eine Ontologie, die aus den Daten Wikipedias besteht.\todo{Nein, DBpedia ist eine Wissensbasis, keine Ontologie. Es gibt zwar eine DBpedia-Ontologie aber die ist vergleichsweise klein. Das meiste sind Instanzdaten.}
+Außerdem wurde über die Herausforderung \ac{qald}, wo mithilfe eines Fragenkatalogs versucht wird, versucht, Question Answering-Systeme objektiv zu bewerten.
+Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9.
+In jeder dieser Versionen gibt es unterschiedliche Trainingsdatensätze und Teilnehmer.
+Die Teilnehmer müssen zu dem jeweiligne Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen, also das grundlegende Problem des Question Answerings lösen.
+Der jetzige Trainingssatz ist DBpedia \citep{qald9}.
+DBpedia ist eine Wissensbasis, die aus den Daten Wikipedias besteht.
 Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von Question Answering-Programmen genutzt.\todo{häufig stimmt schon eher aber warum dann das hier und oben nochmal aber als stärkere Aussage?}
-Die Daten sind frei und in verschiedenen Formaten, wie z.B. als \ac{rdf}-Tripel, verfügbar.\todo{Nee, RDF-Tripel sind es immer. Es ist immer das gleiche Format, nämlich RDF. Davon gibt es aber verschiedene Serialisierungen.}
+Die Daten sind frei und in verschiedenen Serialisierungen, wie z.B. im sogenannten Turtle-Format, verfügbar.
 Über \ac{sparql} können auch direkt online Abfragen getätigt werden.
 DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 
@@ -113,8 +114,7 @@ Dies vereinfacht eine systematische Suche enorm, da viele Systeme schwer auffind
 gAnswer\footnote{\url{https://github.com/pkumod/gAnswer}} \citep{ganswer2} wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
 Hierfür werden die Fragen in Unterfragen aufgespalten und daraus je ein Syntaxbaum erstellt.
 Es erzielte durch eine durchdachte Vorbereitung der Trainingsdaten sehr schnelle Trainingszeiten bei niedrigem Speicherverbrauch und hoher Genauigkeit bei der Beantwortung von Fragen.
-Das System hat außerdem die Umformung von natürlicher Sprache in \ac{sparql}-Abfragen als das Problem,\todo{besser erklären, nochmal drüberschauen bzw. Satz entwirren}
-Subgraphen zu vergleichen, erkannt, und somit einen neuen Ansatz zur Lösung des Problems der Homonymität geboten.
+Das System hat außerdem erkannt, dass man, um effizientes Question Answering zu erreichen, Subgraphen vergleichen kann und somit auch einen neuen Ansatz für die Homonymität hat.
 Das bedeutet, dass Wörter, die Verschiedenes bedeuten können, erst nach anfänglicher Lokalisierung des Kontexts betrachtet werden.
 Es werden also zuerst Wörter, deren Bedeutung eindeutig ist, betrachtet, und von da aus die kürzeste Verbindung zu einer Bedeutung des fragwürdigen Wortes \citep{ganswerapproach}.
 Darauf bauen viele andere Question Answering-Systeme auf.
@@ -126,16 +126,15 @@ Das System ist hochdynamisch und auf verschiedenste Aufgaben ausgelegt, vor alle
 Für Question Answering gibt es bisher nur Ansätze bezüglich \ac{odqa}.
 
 \subsubsection{Architektur}
-\todo{Model, Skill und so auf Deutsch übersetzen? Das klingt sonst so Denglisch.}
-Ein \emph{Model} ist eine in TensorFlow \citep{tensorflow}, einer Schnittstelle für maschinelles Lernen, implementierte Funktion einer \ac{nlp}-Pipeline,
+Ein \emph{Modell} ist eine in TensorFlow \citep{tensorflow}, einer Schnittstelle für maschinelles Lernen, implementierte Funktion einer \ac{nlp}-Pipeline,
 die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
-Models können auch andere Models enthalten.
-Ein \emph{Skill} besteht aus Models, jedoch kann er nur Zeichenketten als Ein-/Ausgabe haben.
+Modelle können auch andere Modelle enthalten.
+Eine \emph{Fähigkeit} besteht aus Modellen, jedoch kann sie nur Zeichenketten als Ein-/Ausgabe haben.
 Sie werden deshalb häufig im Dialog verwendet.
-Die Models in Skills werden über einen \emph{Chainer} verbunden, der die Konfigurationsdatei einliest und so die Parameter der Models festsetzt.
-Skills und Models werden gleich implementiert und unterscheiden sich nur in den Unterschiedlichen Ein- und Ausgabemöglichkeiten.
-Mehrere Skills formen einen \emph{Agent}, wie in \cref{fig:deeppavlov-architektur} sichtbar ist.
-Ein Agent kann die verschiedenen Skills, aus denen er besteht, in einer Unterhaltung mit dem Benutzer verwenden und zwischen ihnen wechseln.
+Die Modelle in Fähigkeiten werden über einen \emph{Chainer} verbunden, der die Konfigurationsdatei einliest und so die Parameter der Modelle festsetzt.
+Fähigkeiten und Modelle werden gleich implementiert und unterscheiden sich nur in den unterschiedlichen Ein- und Ausgabemöglichkeiten.
+Mehrere Fähigkeiten formen einen \emph{Agenten}, wie in \cref{fig:deeppavlov-architektur} sichtbar ist.
+Ein Agent kann die verschiedenen Fähigkeiten, aus denen er besteht, in einer Unterhaltung mit dem Benutzer verwenden und zwischen ihnen wechseln.
 
 \begin{figure}[htbp!]
 \centering
