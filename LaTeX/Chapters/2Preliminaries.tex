@@ -150,21 +150,43 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 }\\
 \textcolor{darkgray}{Aus dem Englischen von \citet{ontologygruber}}
 
-\subsection{Taxonomie}
+\subsection{Klassen}
 
-Nur Beziehungen Subklassen->Klassen \todo{Taxonomie}
+Als Taxonomie in der Informationsverarbeitung werden Klassifikationen bezeichnet, die eine monohierarchische Struktur aufweisen. Dabei wird jeder Klasse nur eine Oberklasse zugeordnet, so dass die gesamte Klassifikation eine Baumstruktur abbildet. In dieser Struktur enthalten die der Wurzel nahestehenden Elemente allgemeine Informationen. Mit einer zunehmenden Verzweigung der Taxonomie wird das darin hinterlegte Wissen immer spezifischer. Durch diese Art der Klassifizierung von Wissensbereichen innerhalb einer Hierarchie entsteht eine einfache Semantik.
+
+In der Informatik beschreiben Klassen die Abstraktion und Kategorisierung von Wissen.
+Solche Klassen können auch Subklassen von anderen sein, Subklassen können auch weitere Subklassen haben.
+die Beziehung zwischen Sub- bzw. Unterklassen $U$ und Eltern- bzw. Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$),
+das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
+Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält,
+das nicht in $U$ ist \citep[S.~261]{semanticwebgrundlagen}.
+
+Das Beispiel in \cref{fig:snikhierarchy} zeigt eine Baumstruktur, das heißt jede Subklasse hat nur eine Elternklasse.
+Es stellt die Hierarchie der Klassen dar.
+Alle Chief Information Officers sind auch gleichzeitig Teil des Krankenhauspersonals, aber nicht des technischen Personals.
+Die Taxonomie befasst sich als Wissenschaft mit solchen Hierarchien.
+Andere Graphformen beinhalten auch die des Diamanten, bei dem eine Subklasse mehrere Eltern haben kann
+Die Darstellungen solcher Hierarchien müssen allerdings immer ein \ac{dag} sein.
+Die Beziehungen müssen gerichtet sein und die Form darf keinen Kreis bilden.
+Ohne einen \ac{dag} würde man entweder aufgrund fehlender Richtung unklare Beziehungen zwischen voneinander abhängigen Klassen haben, da nicht klar ist, welche eine Subklasse von welcher ist.
+Wäre eine Kreisbildung möglich, wären Klassen von sich selbst abhängig.
+
+\begin{figure}%[htbp!]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/hierarchy.pdf}
+\caption[Beispiel für Hierarchie]{Eine beispielhafte Hierarchie aus der \ac{snik}-Ontologie.}
+\label{fig:snikhierarchy}
+\end{figure}
 
 \subsection{Individuen und Klassen}
 \label{sec:individuenundklassen}
 Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
-Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements.
-Dahingegen ist die Beziehung zwischen Unterklassen $U$ und Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$), das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
-Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält, das nicht in $U$ ist \citep[S.~261]{semanticwebgrundlagen}.
+Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements \citep[S.~261]{semanticwebgrundlagen}.
 
 \subsubsection{Relationen}
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
-Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden, also gilt $(a,b) \in R$, wenn $R \subset A \times B$ ist.
-\todo{über den gesamten Absatz nochmal drüberschauen}
+Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden,
+also gilt $(a,b) \in R$, wenn $R \subseteq A \times B$ ist.
 Als Kurzform kann auch $aRb$ geschrieben werden \citep[S.~263]{semanticwebgrundlagen}.
 Es gibt nicht nur \emph{binäre} Relationen, also Relationen zweier Elemente, hier werden aber nur diese benötigt.
 
