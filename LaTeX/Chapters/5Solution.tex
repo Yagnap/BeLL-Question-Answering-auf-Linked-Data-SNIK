@@ -1,22 +1,81 @@
 %*****************************************
 \chapter{Ausführung der Lösung}\label{ch:solution}
 %*****************************************
-Dieses Kapitel kann auch in mehrere Kapitel aufgeteilt werden, wenn das sinnvoll ist!
 
-\section{Unterkapitel n}
+\section{Auswahl eines Kandidaten}
 
-\subsection{Unterunterkapitel n}
+Die Auswahl eines oder mehrerer Kandidaten gestaltete sich aufgrund von nicht instand gehaltener Programme
+und der Spezialisierung von vielen Systemen auf DBpedia oder ähnlichen Wissensbasen sehr schwierig.
+Bei gAnswer2 war es beispielsweise nicht möglich, überhaupt ein Programm, was man hätte ausprobieren können, zu finden,
+bei gAnswer war die Vorbereitung der Daten sehr aufwändig und die gegebenen Werkzeuge kaputt.
+DeepPavlov war am Anfang sehr vielversprechend, besonders aufgrund des modularen Aufbaus.
+Jedoch gab es keine Möglichkeit, andere Daten als Wikidata zu verwenden, weshalb es für die Verwendung mit \ac{snik} nicht verwendbar ist.
+In der Dokumentation\footnote{\url{http://docs.deeppavlov.ai/en/master/features/models/kbqa.html}, abgerufen am 9. Mai 2022} wird allerdings geschrieben,
+dass in der Zukunft auch die Verwendung anderer Quellen möglich sein sollen.
+All diese und andere Probleme beschrieb bereits \citet{diefenbachkbqa}.
+Er nannte speziell die Probleme der
+\begin{itemize}
+  \item Mehrsprachigkeit,
+  \item Portabilität,
+  \item Skalierbarkeit,
+  \item Robustheit,
+  \item Fähigkeit, über mehrere Dateien zu suchen und
+  \item Präsentation der Antwort.
+\end{itemize}
+Hier waren vor allem die Portabilität und Robustheit, aber auch teilweise die Präsentation der Antwort problematisch.
+
+\subsection{TeBaQA}
+
+TeBaQA war anfangs sehr vielversprechend, mehr noch als DeepPavlov.
+Es sollte die Verwendung von eigenen \ac{rdf}-Tripeln ermöglichen, indem man die \texttt{indexing.properties}-Datei so verändert, dass die eigene Ontologie verwendet wird.
+Es gab zwei Ordner, einen namens \texttt{ontology} und einen namens \texttt{data}.
+Da \ac{snik}, wie in \cref{sec:snik} schon erwähnt, eine Ontologien aus Ontologien ist, kam in den \texttt{ontology}-Ordner nur die \texttt{meta.ttl}, wo die Properties gespeichert sind.
+Die restlichen Tripel kamen alle in den \texttt{data}-Ordner, da es TeBaQA auch möglich sein sollte, mehrere Dateien als Quelle zu verwenden.
+Die auf \texttt{.flag} endenden Variablen wurden auf \texttt{true} gesetzt.
+Andere Dateien wurden nicht verändert.
+
+Leider warf das System immer wieder Fehler bezüglich der ElasticSearch-Konfiguration, weshalb wir ein Docker-Image,
+also quasi eine auf Anwendungsebene virtuelle Umgebung, mit ElasticSearch 6.6.1, TeBaQA und der \ac{snik}-Ontolgie erstellt.
+Diese war zusätzlich noch ein weiteres Mal darin, da es Probleme mit der Reihenfolge des Ladens der Daten gab.
+Letztendlich konnten wir aber nicht alle Probleme und Fehler beheben, da es immer wieder zu Laufzeitfehlern kam.
+
+\subsection{QAnswer KG}
+
+QAnswer KG präsentierte sich als einfache Methode, mithilfe von eigenen Daten Question Answering zu betreiben.
+Es funktioniert, indem man auf der Website\footnote{\url{https://qanswer-frontend.univ-st-etienne.fr/}} einen Account erstellt und in diesem seine Daten hochlädt.
+Auf der Startseite ist bereits ein Beispiel mit Wikidata vorhanden.
+
+\subsubsection{Anfängliche Konfiguration und Probleme}
+
+Beim Einrichten der Umgebung wurde die Sprache auf Englisch gestellt, da in dieser auch die Fragen beantwortet werden sollen.
+QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete \ac{sparql}-Abfrage dar.
+Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
+\aurl{meta}{isResponsibleForEntityType}, \aurl{meta}{isResponsibleForFunction} und \aurl{meta}{isResponsibleForRole} gemeint sein könnten.
+Der Ansatz für die Lösung dises Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \texttt{FILTER} zu verwenden,
+mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen kann: \texttt{FILTER (?p1 = :x || ?p1 = :y || ?p1 = :z)}.
+
+Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
+Somit konnte erahnt werden, warum es das macht, was es macht.
+
+Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \ac{bb}{ChiefInformationOfficer}.
+Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
+Die Präzision der Ergebnisse ohne jegliches fine-tuning ist aber trotzdem erstaunlich.
+
+Mit der Konfiguration an sich konnten auch schon viele Fehler behoben werden.
+So gibt es eine Liste von \enquote{stop words}, welche nicht betrachtet werden.
+Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
+Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
+Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
+besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
+Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
+\texttt{a, about, all, an, and, are, as, at, be, by, can, define, describe, did, do, does, from, give, goes, had, has, have, here, how, in, into, is, its, list, many, most, my, no, of, on, or, s, show, some, something, such, tell, the, their, these, they, this, to, using, was, were, what, which, will, with, yes}.
+
+Aus den \enquote{hidden properties}, welche Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.
+Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500.
+
+\subsubsection{Training}
 
 \begin{itemize}
-  \item{TeBaQA}
-  \begin{itemize}
-    \item TeBaQA \enquote{indexing.properties} verändern, sodass SNIK-Ontologie verwendet wird
-    \begin{itemize}
-      \item meta.ttl in ontology-, Rest in data-Ordner
-      \item index flags auf true gesetzt
-    \end{itemize}
-    \item Docker-Image mit SNIK-Ontologie, TeBaQA und ElasticSearch 6.6.1
-  \end{itemize}
   \item QAnswer KG
   \begin{itemize}
     \item nur eine Ergebnisquery anstatt potenziell mehrerer (\aurl{meta}{isResponsibleForFunction}, \aurl{meta}{isResponsibleForEntityType})
@@ -33,7 +92,7 @@ Dieses Kapitel kann auch in mehrere Kapitel aufgeteilt werden, wenn das sinnvoll
     \item stop words
     \begin{itemize}
       \item rausnehmen: for
-      \item verbleibend: a, about, all, an, and, are, as, at, be, by, can, define, describe, did, do, does, from, give, goes, had, has, have, here, how, in, into, is, its, list, many, most, my, no, of, on, or, s, show, some, something, such, tell, the, their, these, they, this, to, using, was, were, what, which, will, with, yes
+      \item verbleibend: \texttt{a, about, all, an, and, are, as, at, be, by, can, define, describe, did, do, does, from, give, goes, had, has, have, here, how, in, into, is, its, list, many, most, my, no, of, on, or, s, show, some, something, such, tell, the, their, these, they, this, to, using, was, were, what, which, will, with, yes}
     \end{itemize}
     \item hidden properties
     \begin{itemize}
