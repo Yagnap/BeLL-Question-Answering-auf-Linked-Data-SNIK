@@ -88,15 +88,17 @@ Es können auch verschiedene Synonyme und phonetisch ähnlich klingende Wörter 
 
 \section{Question Answering-Systeme}
 
-Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} bzw. \ac{cdqa} verwendet.
-Außerdem wurde über die Herausforderung \ac{qald}, wo mithilfe eines Fragenkatalogs versucht wird, versucht, Question Answering-Systeme objektiv zu bewerten.
-Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9.
+Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} und \ac{cdqa} verwendet.
+Außerdem wurden über die Herausforderung \ac{qald} weitere Systeme evaluiert.
+Bei \ac{qald} werden Question Answering-Systeme anhand eines Benchmark objektiv bewertet.
+Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9 \citep{qald9}.
 In jeder dieser Versionen gibt es unterschiedliche Trainingsdatensätze und Teilnehmer.
-Die Teilnehmer müssen zu dem jeweiligne Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen, also das grundlegende Problem des Question Answerings lösen.
-Der jetzige Trainingssatz ist DBpedia \citep{qald9}.
-DBpedia ist eine Wissensbasis, die aus den Daten Wikipedias besteht.
-Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von Question Answering-Programmen genutzt.\todo{häufig stimmt schon eher aber warum dann das hier und oben nochmal aber als stärkere Aussage?}
-Die Daten sind frei und in verschiedenen Serialisierungen, wie z.B. im sogenannten Turtle-Format, verfügbar.
+Die Teilnehmer müssen zu dem jeweiligen Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen, also das grundlegende Problem des Question Answerings lösen.
+Der jetzige Trainingssatz ist DBpedia.
+
+DBpedia ist eine Wissensbasis, welche aus den Daten Wikipedias besteht.
+Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von Question Answering-Programmen genutzt.
+Die Daten sind frei verfügbar und in verschiedenen Serialisierungen, wie z.B. im \ac{turtle}-Format, verfügbar.
 Über \ac{sparql} können auch direkt online Abfragen getätigt werden.
 DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 
