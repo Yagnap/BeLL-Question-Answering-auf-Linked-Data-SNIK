@@ -57,7 +57,7 @@ mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen
 Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
 Somit konnte erahnt werden, warum es das macht, was es macht.
 
-Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \ac{bb}{ChiefInformationOfficer}.
+Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \aurl{bb}{ChiefInformationOfficer}.
 Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
 Die Präzision der Ergebnisse ohne jegliches fine-tuning ist aber trotzdem erstaunlich.
 
@@ -68,36 +68,9 @@ Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
 Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
-\texttt{a, about, all, an, and, are, as, at, be, by, can, define, describe, did, do, does, from, give, goes, had, has, have, here, how, in, into, is, its, list, many, most, my, no, of, on, or, s, show, some, something, such, tell, the, their, these, they, this, to, using, was, were, what, which, will, with, yes}.
+\texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{define}, \texttt{describe}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
 Aus den \enquote{hidden properties}, welche Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.
-Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500.
+Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500, also einen internen Fehler des Servers.
 
 \subsubsection{Training}
-
-\begin{itemize}
-  \item QAnswer KG
-  \begin{itemize}
-    \item nur eine Ergebnisquery anstatt potenziell mehrerer (\aurl{meta}{isResponsibleForFunction}, \aurl{meta}{isResponsibleForEntityType})
-    \item erkennt Prädikate auch, wenn diese nicht beieinander stehen (\enquote{Wofür ist der Leiter des Informationsmanagements verantwortlich?})
-    \begin{itemize}
-      \item Hierzu müsste FILTER genutzt werden (?p1 = :x || ?p1 = :y || ?p1 = :z)
-      \item Training?
-    \end{itemize}
-    \item wenn keine Lösung gefunden, wird oft Ressource, die im Subjekt steht, ausgegeben
-    \item \url{https://doc.qanswer.eu/Tutorial-UI/doc1.6}
-    \begin{itemize}
-      \item http://www.w3.org/2004/02/skos/core\#definition für Definition ==> Fehler 500
-    \end{itemize}
-    \item stop words
-    \begin{itemize}
-      \item rausnehmen: for
-      \item verbleibend: \texttt{a, about, all, an, and, are, as, at, be, by, can, define, describe, did, do, does, from, give, goes, had, has, have, here, how, in, into, is, its, list, many, most, my, no, of, on, or, s, show, some, something, such, tell, the, their, these, they, this, to, using, was, were, what, which, will, with, yes}
-    \end{itemize}
-    \item hidden properties
-    \begin{itemize}
-      \item http://www.w3.org/1999/02/22-rdf-syntax-ns\#type entfernen
-    \end{itemize}
-    \item bevor \enquote{for} hersausgenommen wurde, hat es \enquote{responsible for} selten verstanden, jetzt fast immer als Prädikat
-  \end{itemize}
-\end{itemize}
