@@ -250,3 +250,15 @@ vermutlich mit einer geringeren Genauigkeit der Ergebnisse und einer langsameren
 
 QAnswer KG kann, wie man an Benchmarks sieht, mit den bisher existierenden Systemen mithalten, ist jedoch in der Intuitivität und Portabilität weit über ihnen.
 Mit Training kann auch eine sehr hohe Genauigkeit erzielt werden.
+
+\subsection{AskNow QA}
+
+AskNow QA \citep{asknow} ist ein an der Universität Bonn entwickeltes System, welches darauf basiert,
+die eingegebene Frage erst in eine \ac{nqs}, auf Deutsch etwa \emph{normalisierte Fragenstruktur}, umzuformen, also in eine einheitliche Syntaxstruktur.
+Dazu wird auch \emph{\ac{pos}-Tagging} verwendet.
+Hier bekommen Wörter \emph{Tags}, welche die (kontextuelle) Funktion und Art des Wortes beschreiben.
+So bedeutet hier beispielsweise der Tag \texttt{DT} \emph{Determiner}, also ein Wort wie \enquote{many}, welches die Anzahl von etwas bestimmen kann.
+Ein Syntaxbaum mit syntaktischen Tags wurde bereits in \cref{fig:syntaxtree} gezeigt, diese unterscheiden sich allerdings von \ac{pos}-Tags.
+Mehr dazu in \cref{ch:tagging}.
+
+\subsubsection{Architektur}
