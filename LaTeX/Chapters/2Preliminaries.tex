@@ -152,8 +152,6 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 
 \subsection{Klassen}
 
-Als Taxonomie in der Informationsverarbeitung werden Klassifikationen bezeichnet, die eine monohierarchische Struktur aufweisen. Dabei wird jeder Klasse nur eine Oberklasse zugeordnet, so dass die gesamte Klassifikation eine Baumstruktur abbildet. In dieser Struktur enthalten die der Wurzel nahestehenden Elemente allgemeine Informationen. Mit einer zunehmenden Verzweigung der Taxonomie wird das darin hinterlegte Wissen immer spezifischer. Durch diese Art der Klassifizierung von Wissensbereichen innerhalb einer Hierarchie entsteht eine einfache Semantik.
-
 In der Informatik beschreiben Klassen die Abstraktion und Kategorisierung von Wissen.
 Solche Klassen können auch Subklassen von anderen sein, Subklassen können auch weitere Subklassen haben.
 die Beziehung zwischen Sub- bzw. Unterklassen $U$ und Eltern- bzw. Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$),
@@ -225,7 +223,7 @@ Es sollen verschiedene open-source lizensierte Datenquellen in \ac{rdf} umgeform
 Berners-Lee verfasste vier Regeln für das veröffentlichen von Daten im Internet, um ein umfassendes Linked Data-System zu ermöglichen \citep{linkeddatadesignissues}.
 Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen standardisiert durch \ac{rdf} und \ac{sparql} weitere nützliche Informationen und Links zu anderen \acp{uri} enthalten sollen.
 
-\subsection{SPARQL}
+\subsection{SPARQL}\label{sub:sparql}
 
 \ac{sparql} ist ein \ac{w3c}-Standard als Abfragesprache für RDF.
 Mit ihr kann man durch eine standardisierte Syntax in RDF geschriebenes Wissen abfragen.
@@ -277,6 +275,13 @@ also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
 
+Des Weiteren unterscheidet man zwischen komplexen und simplen Fragen.
+Diese unterscheiden sich größtenteils darin, wie viele Zeilen die \ac{sparql}-Abfrage hat, also wie viele Ressourcen zur Verknüpfung der Frage zur Antwort gebraucht werden.
+So ist die Frage \enquote{Woer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
+da hier nur die Beziehung zwischen \aurl{bb}{AnnualITBudget} und den jeweiligen Antworten benötigt werden.
+Die Frage \enquote{Welche Aufgaben hat die Person, welche auch für das jährliche IT-Budget verantwortlich ist?} könnte schon als komplex gelten, da hier, wie schon in \cref{sub:sparql} gezeigt,
+zwei Zeilen für die eigentliche \ac{sparql}-Abfrage benötigt werden.
+
 \section{Automatische Sprachverarbeitung}
 
 \acf{nlp}, auf Deutsch \emph{automatische Sprachverarbeitung}, ist die automatische Verarbeitung von natürlicher Sprache, also Sprache, wie sie Menschen sprechen und schreiben.
@@ -305,6 +310,7 @@ Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Bu
 %Dafür kann auch mehr Kontext nötig sein, welcher je nach Eingabe nicht immer vorhanden ist.
 
 \subsection{NLP-Pipeline}
+
 In einer Pipeline werden verschiedene Komponenenten eines Algorithmus oder Verfahren nacheinander ausgeführt.
 Eine \ac{nlp}-Pipeline führt verschiedene Teilprogramme aus, da das Feld an sich zu komplex ist, als dass die Arbeit eines Programms es vollkommen lösen könnte.
 Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
