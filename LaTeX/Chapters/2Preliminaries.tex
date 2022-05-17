@@ -168,16 +168,17 @@ Die Beziehungen müssen gerichtet sein und die Form darf keinen Kreis bilden.
 Ohne einen \ac{dag} würde man entweder aufgrund fehlender Richtung unklare Beziehungen zwischen voneinander abhängigen Klassen haben, da nicht klar ist, welche eine Subklasse von welcher ist.
 Wäre eine Kreisbildung möglich, wären alle Klassen, die Teil des Kreises sind, gleich.
 
-\begin{align*}
-\text{Seien } M_1, M_2, \ldots, M_n \text{ Mengen, sowie } M_1 \subseteq M_2 \subseteq \ldots \subseteq M_n \subseteq M_1
-n \in \mathbb{N}, 1 < n \\
+\begin{gather*}
+\text{Seien } M_1, M_2, \ldots, M_n \text{ Mengen,} \\
+\text{sowie } M_1 \subseteq M_2 \subseteq \ldots \subseteq M_n \subseteq M_1; n \in \mathbb{N}, n > 1 \\
 \text{Daraus folgt aufgrund der Transitivität von } \subseteq: M_1 \subseteq M_n \\
-\text{Da nun } M_1 \subseteq M_n \land M_n \subseteq M_1 \text{, gilt: } M_1 = M_n \\
-\text{Sei } i \in \mathbb{N}, 1 < i < n \text{ und beliebig wählbar} \\
-\text{Daraus folgt aufgrund der Transitivität von } \subseteq: M_i \subseteq M_n \text{ sowie } M_i \supseteq M_1 \\
+\text{Da nun } M_1 \subseteq M_n \land M_n \subseteq M_1 \text{ gilt } M_1 = M_n \\
+\text{Sei } i \in \mathbb{N}, 1 < i < n \text{ und beliebig wählbar;} \\
+\text{Daraus folgt aufgrund der Transitivität von } \subseteq: \\
+M_i \subseteq M_n \land M_i \supseteq M_1 \\
 \text{Da } M_1 = M_n \text{ gilt nun } M_i \subseteq M_1 \land M_1 \subseteq M_i \\
-\text{Sodass } M_i = M_1 = M_n \forall i \text{ q.e.d.} \\
-\end{align*}
+\text{Sodass } M_i = M_1 = M_n \forall i \qed \\
+\end{gather*}
 
 \begin{figure}%[htbp!]
 \centering
