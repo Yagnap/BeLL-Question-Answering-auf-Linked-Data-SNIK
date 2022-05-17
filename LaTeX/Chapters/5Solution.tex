@@ -10,7 +10,7 @@ Bei gAnswer2 war es beispielsweise nicht möglich, überhaupt ein Programm, was 
 bei gAnswer war die Vorbereitung der Daten sehr aufwändig und die gegebenen Werkzeuge kaputt.
 DeepPavlov war am Anfang sehr vielversprechend, besonders aufgrund des modularen Aufbaus.
 Jedoch gab es keine Möglichkeit, andere Daten als Wikidata zu verwenden, weshalb es für den Einsatz mit \ac{snik} wenig hilfreich ist.
-Ähnlich sieht es mit AskNow aus, wo aufgrund des Entity Linkings DBpedia verwendet werden muss. 
+Ähnlich sieht es mit AskNow aus, wo aufgrund des Entity Linkings DBpedia verwendet werden muss.
 In der Dokumentation\footnote{\url{http://docs.deeppavlov.ai/en/master/features/models/kbqa.html}, abgerufen am 9. Mai 2022} wird allerdings geschrieben,
 dass in der Zukunft auch die Verwendung anderer Quellen möglich sein sollen.
 All diese und andere Probleme beschrieb bereits \citet{diefenbachkbqa}.
@@ -71,7 +71,7 @@ besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
 \texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{define}, \texttt{describe}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
-Aus den \enquote{hidden properties}, welche Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.
+Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.
 Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500, also einen internen Fehler des Servers.
 
 \subsubsection{Training}
