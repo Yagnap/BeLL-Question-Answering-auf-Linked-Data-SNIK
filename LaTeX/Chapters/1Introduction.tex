@@ -9,15 +9,15 @@ Sie ist von dem Streben geleitet, damit zur Gestaltung der bestmöglichen Gesund
 }}
 \end{flushright}
 \ac{snik} ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
-Es fasst Wissen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
-In der Ontologie (siehe \cref{sub:ontology}) sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.
+Es fasst\todo{fasst klingt hier komisch} Wissen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
+In der Ontologie (siehe \cref{sub:ontology}) sind Zusammenhänge und Verbindungen zwischen verschiedenen Informationen vorhanden, welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen, der diese aufzeigt, dargestellt sind.\todo{satz zu lang und überschneidet sich mit verschiedenen lösungen untesatz zu lang und überschneidet sich mit verschiedenen lösungen unten}
 
 Diese Daten liegen strukturiert, aber für Menschen nicht leicht lesbar vor. Daher braucht es andere Methoden, durch sie zu navigieren.
-Dazu gibt es verschiedene Lösungen,
+Dazu gibt es verschiedene Lösungen:
 \begin{enumerate}
-	\item das Verwenden eines \acs{rdf}-Browsers, der \acs{rdf}-Informationen einzeln darstellt,
-	\item den \ac{snik}-Graphen oder
-	\item \acs{sparql}, eine Sprache Abfragesprache für \acs{rdf}.
+	\item das Verwenden eines \acs{rdf}-Browsers,\todo{po et al. (mit seite) zitieren} der \acs{rdf}-Informationen einzeln darstellt,
+	\item den \ac{snik}-Graphen oder\todo{leser wissen hier nicht was das ist, ich würde sagen eine graphvisualisierung und po et al. zitieren}
+	\item \acs{sparql}, eine Abfragesprache für \acs{rdf}.
 \end{enumerate}
 
 \section{Problemstellung}\label{sec:problemstellung}
@@ -25,7 +25,7 @@ Dazu gibt es verschiedene Lösungen,
 Momentan müssen Studierende der Medizininformatik, die nach Wissen suchen wollen, eine der drei oben genannten Optionen verwenden.
 Alle dieser Möglichkeiten haben jedoch große Nachteile.
 Der RDF-Browser gibt nur ein sehr beschränktes Ergebnis aus, und serialisiertes RDF selbst zu lesen ist schwer und unpraktisch.
-Im Fall von SPARQL nimmt es den Medizininformatik-Studierenden wertvolle Zeit, da sie sich dort erst in die Syntax des Programms und das Vokabular des Fachbereichs einarbeiten müssen.
+Im Fall von SPARQL nimmt es den Medizininformatik-Studierenden wertvolle Zeit, da sie sich dort erst in die Syntax des Programms\todo{sparql ist eine abfragesprache und kein programm} und das Vokabular des Fachbereichs einarbeiten müssen.
 
 Ein Ansatz für die Lösung dieses Problems ist Question Answering.
 Dabei wird eine Frage als ganzer Satz eingegeben, dessen Bedeutung das System versteht und auf Grundlage dessen eine Antwort ausgibt \citep{qadefinition}.
