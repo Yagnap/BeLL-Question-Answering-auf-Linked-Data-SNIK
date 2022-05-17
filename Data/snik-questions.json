@@ -2,67 +2,79 @@
 {
   "question": "What is the Chief Information Officer responsible for?",
   "language": "en",
-  "id": 2,
+  "id": 1,
   "sparql": "SELECT DISTINCT ?o1 WHERE { ?s1 ?p1 ?o1 FILTER ((?p1 = meta:isResponsibleForFunction || ?p1 = meta:isResponsibleForEntityType  || ?p1 = meta:isResponsibleForRole) && (?s1 = bb:ChiefInformationOfficer || ?s1 = ciox:ChiefInformationOfficer || ?s1 = ob:ChiefInformationOfficer)) }"
 },
 {
   "question": "Who is responsible for the Annual IT Budget?",
   "language": "en",
-  "id": 3,
+  "id": 2,
   "sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 ?p1 bb:AnnualITBudget FILTER (?p1 = meta:isResponsibleForFunction || ?p1 = meta:isResponsibleForEntityType  || ?p1 = meta:isResponsibleForRole)}"
 },
 {
   "question": "What is the definition of a Chief Information Officer?",
   "language": "en",
-  "id": 4,
+  "id": 3,
   "sparql": "SELECT DISTINCT ?o1 WHERE { ?s1 skos:definition ?o1 FILTER (?s1 = bb:ChiefInformationOfficer || ?s1 = ciox:ChiefInformationOfficer || ?s1 = ob:ChiefInformationOfficer)}"
-},
-{
-  "question": "What is 3LGM²?",
-  "language": "en",
-  "id": 5,
-  "sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 skos:definition bb:3LGM2 }"
 },
 {
   "question": "What are models for health information systems?",
   "language": "en",
-  "id": 5,
+  "id": 4,
   "sparql": "SELECT DISTINCT ?s2 WHERE { ?s1 rdfs:subClassOf bb:Model . ?s2 rdfs:subClassOf ?s1 }"
 },
 {
   "question": "What is information management?",
   "language": "en",
-  "id": 6,
+  "id": 5,
   "sparql": "SELECT DISTINCT ?o1 WHERE { bb:InformationManagement skos:definition ?o1 }"
 },
 {
   "question": "What are hospital information systems?",
   "language": "en",
-  "id": 7,
+  "id": 6,
   "sparql": "SELECT DISTINCT ?s1 WHERE { bb:HospitalInformationSystem skos:definition ?o1 }"
 },
 {
   "question": "What are transinstitutional health information systems?",
   "language": "en",
-  "id": 8,
+  "id": 7,
   "sparql": "SELECT DISTINCT ?o1 WHERE { bb:TransinstitutionalHealthInformationSystem skos:definition ?o1 }"
 },
 {
-"question": "What are challenges for health information systems?",
-"language": "en",
-"id": 9,
-"sparql": "SELECT DISTINCT ?s1 WHERE { VALUES ?s1 { bb:chapter4-5 } }"
+  "question": "What are challenges for health information systems?",
+  "language": "en",
+  "id": 8,
+  "sparql": "SELECT DISTINCT ?s1 WHERE { VALUES ?s1 { bb:chapter4-5 } }"
 },
 {
-  "question": "What are electronic health records?",
+  "question": "Define electronic health records.",
   "language": "en",
-  "id": 10,
+  "id": 9,
   "sparql": "SELECT DISTINCT ?o1 WHERE { bb:ElectronicHealthRecord skos:definition ?o1 }"
 },
 {
   "question": "What are metamodels for modeling various aspects of HIS?",
   "language": "en",
-  "id": 11,
+  "id": 10,
   "sparql": "SELECT DISTINCT ?s2 WHERE { ?s1 rdfs:subClassOf bb:Metamodel . ?s2 rdfs:subClassOf ?s1 }"
+},
+{
+  "question": "What is 3LGM²?",
+  "language": "en",
+  "id": 10,
+  "sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 skos:definition bb:3LGM2 }"
+},
+{
+  "question": "Give me reference models for health information systems.",
+  "language": "en",
+  "id": 11,
+  "sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:ReferenceModel }"
+},
+{
+  "question": "What are the main hospital functions?",
+  "language": "en",
+  "id": 12,
+  "sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HospitalFunction }"
 }
 ]
