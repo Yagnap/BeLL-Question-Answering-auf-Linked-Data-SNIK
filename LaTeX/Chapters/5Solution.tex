@@ -9,7 +9,8 @@ und der Spezialisierung von vielen Systemen auf DBpedia oder ähnlichen Wissensb
 Bei gAnswer2 war es beispielsweise nicht möglich, überhaupt ein Programm, was man hätte ausprobieren können, zu finden,
 bei gAnswer war die Vorbereitung der Daten sehr aufwändig und die gegebenen Werkzeuge kaputt.
 DeepPavlov war am Anfang sehr vielversprechend, besonders aufgrund des modularen Aufbaus.
-Jedoch gab es keine Möglichkeit, andere Daten als Wikidata zu verwenden, weshalb es für die Verwendung mit \ac{snik} nicht verwendbar ist.
+Jedoch gab es keine Möglichkeit, andere Daten als Wikidata zu verwenden, weshalb es für den Einsatz mit \ac{snik} wenig hilfreich ist.
+Ähnlich sieht es mit AskNow aus, wo aufgrund des Entity Linkings DBpedia verwendet werden muss. 
 In der Dokumentation\footnote{\url{http://docs.deeppavlov.ai/en/master/features/models/kbqa.html}, abgerufen am 9. Mai 2022} wird allerdings geschrieben,
 dass in der Zukunft auch die Verwendung anderer Quellen möglich sein sollen.
 All diese und andere Probleme beschrieb bereits \citet{diefenbachkbqa}.
@@ -74,11 +75,3 @@ Aus den \enquote{hidden properties}, welche Properties, welche nie betrachtet we
 Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500, also einen internen Fehler des Servers.
 
 \subsubsection{Training}
-
-\subsection{AskNow QA}
-\begin{itemize}
-  \item setup
-  \begin{itemize}
-    \item via Docker https://github.com/AskNowQA/AskNow-Website
-  \end{itemize}
-\end{itemize}

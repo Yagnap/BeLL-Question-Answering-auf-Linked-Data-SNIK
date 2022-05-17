@@ -186,7 +186,7 @@ Dazu wird wieder auf das Fragewort geblickt, um herauszufinden, in was für eine
 Das erste Substantiv nach dem Fragewort wird überprüft, um den Numerus der Frage zu erkennen.
 Desweiteren werden die Lösungskandidaten auf ihre Ähnlichkeit mit der Frage überprüft, woraus eine Bewertung und letztendlich die zu präsentierende Antwort berechnet wird.
 
-\subsection{Qanswer KG}
+\subsection{QAnswer KG}
 
 QAnswer KG \citep{qanswer} ist ein an der Universität Saint-Étienne entwickeltes Question Answering-System,
 das vor allem das von \citet{diefenbachkbqa} genannte Problem der fehlenden Portabilität in diesem Feld lösen soll:
@@ -262,3 +262,32 @@ Ein Syntaxbaum mit syntaktischen Tags wurde bereits in \cref{fig:syntaxtree} gez
 Mehr dazu in \cref{ch:tagging}.
 
 \subsubsection{Architektur}
+
+Das System versucht zuerst, die eingegebene Frage in eine normale Form zu bringen, von welcher aus dann weitergearbeitet werden kann.
+Zuerst kommt immer ein Wort mit dem \ac{pos}-Tag \emph{WH}, also ein Fragewort.
+Darauf folgt ein Hilfstoken, der die Wörter \enquote{is}, \enquote{is kind of}, \enquote{much}, \enquote{might be} und \enquote{does} enthält.
+Dieser hilft dabei, sprachliche Ambiguitäten aufzulösen, meistens wird das zu verwendende Wort auch durch das Fragewort vorgegeben.
+Auf dieses folgt dann mindestens eine, bei zusammengesetzten Fragen mehrere, Intention, eine Relation als Prädikat und eine Eingabe, welche auf eine Ressource zurückführt.
+Beziehungen und Eingaben kann es bei komplexen Fragen auch mehrere geben, dann aber auch immer in dieser Reihenfolge.
+Bei diesen folgt vor der Beziehung außerdem immer ein Klausalwort, welches die Suche einschränken kann.
+
+\begin{figure}[htbp!]
+\centering
+\includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/AskNowArchitecture.png}
+\caption[AskNow Architektur]{Die Architektur von AskNow. Quelle: \citet{asknow}}
+\label{fig:asknow-architektur}
+\end{figure}
+
+Zuerst wird, wie schon gesagt, die \ac{nqs} gebildet.
+Dazu annotiert der \emph{Query Processor} die Wörter mit \ac{pos}-Tags, der \emph{Auxiliary Relation Handler} extrahiert den Hilfstoken
+und der \emph{Token Merger} fasst die annotierten Wörter auf Grundlage ihrer \ac{pos}-Tags zu sinnvollen Wortgruppen zusammen.
+Diese Wortgruppen werden dann in ihre jeweiligen Funktionen der \ac{nqs} zeigen.
+Sätze werden also so umgeformt, dass sie leicht von \emph{\ac{nqs}-Parser} gelesen werden können.
+Dieser analysiert zuerst, welcher Antworttyp erwartet wird, also zum Beispiel ein boolescher Wert, eine Anzahl oder eine Liste.
+Dies wird mithilfe der Frageintention und des Frageworts vollbracht.
+Dann werden im \emph{Entity Mapping} den Eingaben und Beziehungen Ressourcen der Wissensbasis zugeordnet.
+Dazu wird hier DBpedia Spotlight \citep{dbpediaspotlight} verwendet, ein Programm zur Annotierung von Textdokumenten mit DBpedia-\acp{uri}.
+Um die Intention mit einem Prädikat zu verbinden, wird versucht, sie über einen einfachen Vergleich,
+Synonyme \citep{wordnet} oder Sprachmuster \citep{boapatternlibrary} mit einem Label zu assoziieren.
+Wenn dies fehlschlägt, wird die Frage als unbeantwortbar eingestuft.
+Die Vorlage zur letztendlichen Erstellung einer \ac{sparql}-Abfrage wird durch die \ac{nqs} vorgegeben, sodass nur noch die Ressourcen eingesetzt werden müssen.
