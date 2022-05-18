@@ -35,10 +35,10 @@ Es soll jedoch keine zusammengesetzten Fragen nach \cref{def:zfrage} beantworten
 und andererseits nur schwer beantwortbar sind.
 
 \subsection{Klassifizierung der Fragen}
-
+\todo{Frageart Spalte überarbeiten}
 \begin{longtable}{c p{6.5 cm} c c c c}
   \caption[Fragenklassifikation]{Klassifizierung der Fragen aus \citet{bb} basierend auf \citet{arneba}. Fett: Unterschiedliche Klassifizierung bezüglich der Eignung. Komma bei Frageart: Teilfragen haben unterschiedliche Frageart.}
-  \label{tab:fragenklassifikation}\todo{Frageart Spalte überarbeiten}
+  \label{tab:fragenklassifikation}
   \\
   \toprule
   \rot{\textnormal{Kapitel/ID}}&\rot{\textnormal{Frage}}&\rot{\textnormal{Fragetyp}}&\rot{\textnormal{Frageart}}&\rot{\textnormal{Eignung}}&\rot{\textnormal{Orginal}} \\
@@ -179,9 +179,10 @@ Beim Einrichten der Umgebung wurde die Sprache auf Englisch gestellt, da in dies
 QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete \ac{sparql}-Abfrage dar.
 Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
 \aurl{meta}{isResponsibleForEntityType}, \aurl{meta}{isResponsibleForFunction} und \aurl{meta}{isResponsibleForRole} gemeint sein könnten.
+\todo{Die richtige Abfrage wäre hier die Vereinigung (disjunktion) all dieser drei Properties, also meta:isResponsibleForEntityType|meta:isRes...Function|meta:isRes...EntityType. Man könnte theoretisch auch argumentieren, dass Rollen nicht mitgemeint sind, weil die who und nicht what sind aber da müsste man mal Franziska fragen.}
 Der Ansatz für die Lösung dises Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \texttt{FILTER} zu verwenden,
 mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen kann: \texttt{FILTER (?p1 = :x || ?p1 = :y || ?p1 = :z)}.
-
+\todo{ah ja hier vereinigst du es ja. filter geht auch aber mit dem modernen SPARQL 1.1 kann man die im Kommentar oben gezeigten property pfade benutzen, die sind eleganter und ich könnte mir auch vorstellen, dass die schneller ausgeführt werden, wobei das wohl auf die implementierung ankommt und ich das nicht beweisen kann.}
 Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
 Somit konnte erahnt werden, warum es das macht, was es macht.
 
@@ -195,12 +196,13 @@ Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder 
 Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
 Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
+\todo{das finde ich als satz zu sperrig, aber zur Not kann man es so lassen. für den anhäng wäre es wieder zu kurz.}
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
 \texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{define}, \texttt{describe}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
-Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.
+Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.\todo{begründen warum}
 Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500, also einen internen Fehler des Servers.
-Es konnte allerdings \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} hinzugefügt werden.
+Es konnte allerdings \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} hinzugefügt werden.\todo{das ist ja merkwürdig}
 Die Mappings mussten dahingehend verändert werden, als dass \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Beschreibung hinzugefügt wurde.
 
 \subsubsection{Training}
