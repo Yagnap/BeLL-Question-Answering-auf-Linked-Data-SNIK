@@ -226,6 +226,7 @@ Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
 Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
 Desweiteren sind Wissensbasen auf zweistellige Relationen beschränkt, wohingegen relationale Datenbanken theoretisch unendlich viele Attribute haben können.
+\todo{unbegrenzt}
 
 \subsection{Linked (Open) Data}
 
@@ -242,6 +243,7 @@ Es müssen zuerst die verwendeten Präfixe definiert werden, dann die auszugeben
 Möglich ist auch, in dieser Abfrage eine weitere Variable genannt wird.
 Dies könnte zu mehreren Ergebnissen führen.
 Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
+\todo{lstlisting sprache auf sparql stellen, für syntax highlighting. ich glaube sparql gibt es nicht aber sql müsste halbwegs gehen.}
 \begin{lstlisting}
   # Ich bin ein Kommentar.
   # Definition der Präfixe:
@@ -256,11 +258,12 @@ Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
 \end{lstlisting}
 Es zeigt alle Aufgaben an, welche die Rolle, die das jährliche IT-Budget verändern kann, hat.
 Die einzige Person, die dies verändern kann, ist \aurl{bb}{ChiefInformationOfficer}.
+\todo{nicht snik website sondern snik sparql endpunkt}
 Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf der SNIK-Website\footnote{\url{https://www.snik.eu/sparql}} ausführt, \aurl{bb}{InformationManagement}.
 
 \section{Semantisches Question Answering}
 
-\begin{definition}[Question Answering]
+\begin{definition}[Question Answering]\todo{question answering steht zweimal hintereinander}
 Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
 Ein Question Answering-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
 \end{definition}
