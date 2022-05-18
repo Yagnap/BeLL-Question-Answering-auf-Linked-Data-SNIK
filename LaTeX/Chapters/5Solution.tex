@@ -6,28 +6,39 @@
 
 Zur Erstellung eines Benchmarks braucht es zwei Dinge:
 Natürlichsprachige Fragen und die Antworten als \ac{sparql}-Abfrage.
-\todo{Fragetypen/was ist geeignet?}
-Ausdrückbar durch SPARQL-Query
-Antwort: Mengen (mind. 0) von Ressourcen, Literale
-Existenz der Elemente der Menge (affirmative q. ja/nein: leer/nicht leer)
-NICHT Größe d. Menge: pädagogisch nicht sinnvoll, da Ontologie unvollständig => open world assumption (nicht sämtliches existierendes Wissen in SNIK vorhanden)
-KEINE Aggregate (Summe, Durchschnitt, ...): siehe oben; keine statistischen Daten
-NICHT erklären/...
-==> Darauf basierend: nur faktische Fragen (andere Fragetypen: temporal (Info nicht vorhanden), prozedurales (wie; aus Tripeln schlecht ableitbar), kausal (warum; aus Tripeln schlecht ableitbar), geographische, ...)
-Metamodell: Wer macht was womit, nicht warum/wann/wie/...
+Der Ansatz, um die Fragen zu erhalten, ist, die bereits durch \citet{arneba} klassifizierten Fragen aus \citet{bb} zu verwenden.
+Diese wurden jedoch für ein Quiz auf Basis von \ac{snik} klassifiziert, weshalb wir nun neue Kriterien benötigen.
 
-komplexesimple; keine zusammengesetzten Fragen nach \cref{def:zfrage}
+Die Fragen müssen durch eine SPARQL-Query abfragbar sein, dass heißt die möglichen Antworttypen sind Mengen an Ressourcen mit mindestens null Elementen, Literale und einen Wahrheitswert,
+der sich bei affirmativen Fragen auf die Existenz der Menge oder ihrer Elemente bezieht.
+Nicht abfragbar sind jedoch Größe die Menge, dies ist pädagogisch nicht sinnvoll, da die Ontologie unvollständig sein könnte.
+Nach der \emph{open world assumption} ist nicht sämtliches existierendes Wissen in SNIK vorhanden, es ist also nur ein Teil des Existenten in der Ontologie.
+Wenn beispielsweise nach der Anzahl unterschiedlicher Arten von Architekturen von Informationssystemen im Gesundheitswesen gefragt würde, sollte das System \enquote{zwei} antworten.
+Es könnte jedoch noch mehr geben, weshalb solche Fragen nicht unterstützt werden sollen.
+Des Weiteren sollen keine Aggregate, also Operationen wie Summe, Durchschnitt, o.ä. abfragbar sein, da \ac{snik} keine statistischen Daten enthält.
+So ergeben solche Fragen aber keinen Sinn.
+Zuletzt soll \ac{snik} auch nicht Sachverhalte erklären können, auch, weil nach dem aktuellen Forschungsstand solches nicht möglich ist.
+Dafür bräuchte man eine künstliche Intelligenz, welche Sachverhalte verstehen und in eigenen Worten wiedergeben kann.
+Außerdem ist das nicht das Ziel dieser Arbeit.
+Darauf basierend ist feststellbar, dass nur faktische Fragen beantwortbar sein sollen, also Fragen, die mit Fakten beantwortet werden.
+Andere Fragetypen sind solche wie temporale Fragen, welche sich mit Zeitwerten befassen, solche gibt es in \ac{snik} jedoch nicht.
+Prozedurale Fragen, meist, aber nicht immer, erkennbar am Schlüsselwort \enquote{wie}.
+Sie erhalten Prozesse oder Erklärungen von Schrittabfolgen als Antworten.
+Sie sind, genau wie kausale Fragen, welche mit einem Grund o.ä. beantwortet werden, aus den Tripeln schlecht ableitbar.
+Kausale Fragen haben oft das Fragewort \enquote{Warum}.
+Geographische Fragen sind, wie temporale Fragen, sinnlos, da solche Daten hier nicht gespeichert werden.
+\todo{Vergleich}
+Das Metamodell \ac{snik}s stellt die Aufgabe der Ontologie gut dar: \emph{Wer} macht \emph{was} und \emph{womit}, nicht \emph{warum}, \emph{wann} oder \emph{wie}.
 
-\subsection{Fragetypen}
+Das System soll nach \cref{def:efrage} und \cref{def:kfrage} simple und komplexe Fragen beantworten können, oder zumindest mit ihnen trainiert werden.
+Es soll jedoch keine zusammengesetzten Fragen nach \cref{def:zfrage} beantworten können, da die einerseits oft in mehrere Unterfragen aufgespalten werden können
+und andererseits nur schwer beantwortbar sind.
 
 \subsection{Klassifizierung der Fragen}
 
-Zuerst
-Im Folgenden werden, auf Grundlage von \citet{arneba}, die Fragen aus \citet{bb}
-
 \begin{longtable}{c p{6.5 cm} c c c c}
   \caption[Fragenklassifikation]{Klassifizierung der Fragen aus \citet{bb} basierend auf \citet{arneba}. Fett: Unterschiedliche Klassifizierung bezüglich der Eignung. Komma bei Frageart: Teilfragen haben unterschiedliche Frageart.}
-  \label{tab:fragenklassifikation}
+  \label{tab:fragenklassifikation}\todo{Frageart Spalte überarbeiten}
   \\
   \toprule
   \rot{\textnormal{Kapitel/ID}}&\rot{\textnormal{Frage}}&\rot{\textnormal{Fragetyp}}&\rot{\textnormal{Frageart}}&\rot{\textnormal{Eignung}}&\rot{\textnormal{Orginal}} \\
