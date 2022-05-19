@@ -328,3 +328,12 @@
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
+
+% SPARQL-Syntax highlighting
+\lstdefinelanguage{SPARQl}{
+  language=SQL,
+  morecomment=[l][\color{OliveGreen}]{\#},
+  morestring=[b][\color{YellowOrange}]\",
+  morekeywords={PREFIX, a },
+  sensitive=true
+}

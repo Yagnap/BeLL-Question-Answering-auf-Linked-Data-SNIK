@@ -177,7 +177,7 @@ Wäre eine Kreisbildung möglich, wären alle Klassen, die Teil des Kreises sind
 \text{Daraus folgt aufgrund der Transitivität von } \subseteq: \\
 M_i \subseteq M_n \land M_i \supseteq M_1 \\
 \text{Da } M_1 = M_n \text{ gilt nun } M_i \subseteq M_1 \land M_1 \subseteq M_i \\
-\text{Sodass } M_i = M_1 = M_n \forall i \qed \\
+\text{Sodass }\forall i\; M_i = M_1 = M_n \qed \\
 \end{gather*}
 
 \begin{figure}%[htbp!]
@@ -192,7 +192,6 @@ M_i \subseteq M_n \land M_i \supseteq M_1 \\
 Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
 Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements \citep[S.~261]{semanticwebgrundlagen}.
 
-\subsubsection{Relationen}
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
 Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden,
 also gilt $(a,b) \in R$, wenn $R \subseteq A \times B$ ist.
@@ -208,12 +207,11 @@ Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über
 
 \emph{Literale}, oder auch \emph{Data}-Properties, erfüllen die Funktion der Datentypen.
 Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
-
 Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
-So ist in \cref{tab:rdftripleexample} \aurl{bb}{isResponsibleForEntityType} ein Property mit \aurl{meta}{Role} als Definitions- und \aurl{meta}{EntityType} als Wertebereich,
+So ist in \cref{tab:rdftripleexample} \aurl{bb}{isResponsibleForEntityType} ein Property mit \aurl{meta}{Role} als Definitionsbereich und \aurl{meta}{EntityType} als Wertebereich,
 sie sind also Eigenschaften von Objekten.
 
-\subsubsection{Wissensbasen}
+\subsection{Wissensbasen}
 Es wird teilweise auch zwischen A- und TBoxen unterschieden.
 Eine ABox enthält Wissen über Individuen bzw. Instanzen, wohingegen eine TBox Wissen über Klassen bzw. generelle Schemen enthält \citep[S.~167]{semanticwebgrundlagen}.
 Das heißt, dass ABoxen speziellere Informationen und TBoxen allgemeinere Informationen, also Wissen, enthalten.
@@ -225,8 +223,7 @@ In den Entitäten sind spezielle Informationen über die Individuen enthalten.
 Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen den Individuen.
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
 Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
-Desweiteren sind Wissensbasen auf zweistellige Relationen beschränkt, wohingegen relationale Datenbanken theoretisch unendlich viele Attribute haben können.
-\todo{unbegrenzt}
+Desweiteren sind Wissensbasen auf zweistellige Relationen beschränkt, wohingegen relationale Datenbanken theoretisch unbegrenzt viele Attribute haben können.
 
 \subsection{Linked (Open) Data}
 
@@ -243,8 +240,8 @@ Es müssen zuerst die verwendeten Präfixe definiert werden, dann die auszugeben
 Möglich ist auch, in dieser Abfrage eine weitere Variable genannt wird.
 Dies könnte zu mehreren Ergebnissen führen.
 Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
-\todo{lstlisting sprache auf sparql stellen, für syntax highlighting. ich glaube sparql gibt es nicht aber sql müsste halbwegs gehen.}
-\begin{lstlisting}
+
+\begin{lstlisting}[language=SPARQL]
   # Ich bin ein Kommentar.
   # Definition der Präfixe:
   PREFIX bb: <http://snik.eu/ontology/bb/>
@@ -258,12 +255,11 @@ Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
 \end{lstlisting}
 Es zeigt alle Aufgaben an, welche die Rolle, die das jährliche IT-Budget verändern kann, hat.
 Die einzige Person, die dies verändern kann, ist \aurl{bb}{ChiefInformationOfficer}.
-\todo{nicht snik website sondern snik sparql endpunkt}
 Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf der SNIK-Website\footnote{\url{https://www.snik.eu/sparql}} ausführt, \aurl{bb}{InformationManagement}.
 
 \section{Semantisches Question Answering}
 
-\begin{definition}[Question Answering]\todo{question answering steht zweimal hintereinander}
+\begin{definition}[Question Answering]
 Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
 Ein Question Answering-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
 \end{definition}
