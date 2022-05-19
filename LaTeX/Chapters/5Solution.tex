@@ -56,7 +56,7 @@ und andererseits nur schwer beantwortbar sind.
 Letztlich ist auch anzumerken, dass nur Fragen aus \ac{afb} 1 \citep{afb}, und auch bei diesen nur ein Teil, beantwortet werden können.
 Unter diesen fallen Operatoren wie \enquote{angeben} oder \enquote{aufzählen}.
 
-\subsection{Klassifizierung der Fragen}
+\subsection{Klassifizierung der Fragen}\label{sub:fragenklassifikation}
 
 Nun sollen die Fragen aus \citet{bb} einzeln nach Fragetyp und -art, welche oben erklärt wurden, klassifiziert werden.
 Sie wurden von \citet{arneba} bereits für das Quiz eingeordnet, in der Tabelle als \enquote{Original} erkennbar.
@@ -104,9 +104,9 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   6.4/1 & What application components are used in hospitals, and what are their characteristics? & F & Z & \xmark & \xmark \\
   \textbf{6.5/1} & \textbf{How can architectures of HIS be categorized?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
   6.5/2 & What differs integrity from integration? & V & Z & \xmark & \xmark \\
-  6.5/3 & What standards and technologies are available to support integration of HIS? & F & S & \cmark & \cmark \\
+  \textbf{6.5/3} & \textbf{What standards and technologies are available to support integration of HIS?} & \textbf{F} & \textbf{Z} & \xmark & \cmark \\
   6.5/4 & How can integration efforts be reduced by decreasing the variety of application components in a HIS? & P & K & \xmark & \xmark \\
-  \textbf{6.6/1} & \textbf{What computer-based and non-computer-based physical data processing systems can be found in hospitals?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
+  6.6/1 & What computer-based and non-computer-based physical data processing systems can be found in hospitals? & F & Z & \xmark & \xmark \\
   6.6/2 & What is meant by the term \enquote{infrastructure}? & F & S & \cmark & \cmark \\
   6.7/1 & How can physical data processing systems be grouped and arranged in order to support application components in an optimal way? What architectures can this result? & P, F & Z & \xmark & \xmark \\
   6.7/2 & What is meant by physical integration? & F & S & \cmark & \cmark \\
@@ -158,8 +158,122 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
 
   \bottomrule \\
 \end{longtable}
-48/31 vs. 30/49
 
+Hier wurden insgesamt 47 der 79 Fragen als geeignet befunden, verglichen mit 30 vorher.
+Dies beruht größtenteils auf zwei Gründen:
+\begin{enumerate}
+  \item Den Unterschieden zwischen dem Stellen von Fragen in Form eines Quizzes und der Fragenbeantwortung und
+  \item fälschlicher Einordnung einzelner Fragen mit dem Fragewort \enquote{how} als prozedural.
+\end{enumerate}
+Ersteres ist beispielsweise bei den Fragen \texttt{6.6/1}, \texttt{8.6/1} oder \texttt{9/2} der Fall.
+Häufig wurden nach \cref{def:kfrage} komplexe Fragen aussortiert, besonders bei Einschränkungen, wie etwa Frage \texttt{7/3}.
+Die vermutlich fälschliche Einordnung liegt bei \texttt{6.5/1}, \texttt{8/6} oder \texttt{10/2} vor.
+Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da wenige nicht in der Ontologie modelliert sind.
+Diese sind \texttt{4/3} und \texttt{6/1}.
+
+\subsection{Formulierung der \ac{sparql}-Abfragen}
+
+Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{sparql}-Abfragen gebildet.
+
+\begin{lstlisting}[language=SPARQL]
+# 1/2 What are appropriate models for health information systems?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf+ ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:Model . }
+
+# 3/3 What is information Management?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:InformationManagement . }
+
+# 4/1 What are hospital information systems?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HospitalInformationSystem . }
+
+# 4/2 What are transinstitutional health information systems?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:TransinstitutionalHealthInformationSystem . }
+
+# 4/4 What are electronic health records?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:ElectronicHealthRecord . }
+
+# 5/2 What are typical metamodels for modeling various aspects of HIS?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf+ ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:Metamodel . }
+
+# 5/3 What is 3LGM²?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:3LMG2 . }
+
+# 5/4 What are typical reference models for HIS?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf+ ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:ReferenceModel . }
+
+# 6/2 What are the main hospital functions?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HospitalFunction . }
+
+# 6/3 What are typical information processing tools in hospitals?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf+ ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:InformationProcessingTool . }
+
+# 6/4 What are different architectures of HIS?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf+ ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisArchitecture . }
+
+# 6.5/1 How can architectures of HIS be categorized?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf+ ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisArchitecture . }
+
+# 6.6/2 What is meant by the term \enquote{infrastructure}?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisInfrastructure . }
+
+# 6.7/2 What is meant by physical integration?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x skos:definition ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:PhysicalIntegration . }
+
+# 7/3 Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?
+SELECT DISTINCT ?o1
+WHERE
+  { ?x meta:isAssociatedWith ?o1 .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:TransinstitutionalHealthInformationSystem . }
+
+# 8/1 Which facets of quality have to be considered in HIS?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:entityTypeComponent ?x .
+    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisQuality . }
+
+
+\end{lstlisting}
 
 \section{Auswahl eines Kandidaten}
 
