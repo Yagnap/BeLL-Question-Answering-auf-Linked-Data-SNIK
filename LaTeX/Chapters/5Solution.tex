@@ -94,7 +94,7 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   4/4 & What are electronic health records? & F & S & \cmark & \cmark \\
   5/1 & What are models, metamodels and reference models? & F & Z & \xmark & \xmark \\
   5/2 & What are typical metamodels for modeling various aspects of HIS? & F & S & \cmark & \cmark \\
-  5/3 & What is 3LGM²? & F & S & \cmark & \cmark \\
+  5/3 & What is 3LGM$^2$? & F & S & \cmark & \cmark \\
   5/4 & What are typical reference models for HIS? & F & S & \cmark & \cmark \\
   6/1 & What kind of data has to be processed in hospitals? & F & S & \cmark & \cmark \\
   6/2 & What are the main hospital functions? & F & S & \cmark & \cmark \\
@@ -171,7 +171,7 @@ Die vermutlich fälschliche Einordnung liegt bei \texttt{6.5/1}, \texttt{8/6} od
 Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da wenige nicht in der Ontologie modelliert sind.
 Diese sind \texttt{4/3} und \texttt{6/1}.
 
-\subsection{Formulierung der \ac{sparql}-Abfragen}
+\subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
 Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{sparql}-Abfragen gebildet.
 
@@ -212,7 +212,7 @@ WHERE
   { ?s1 rdfs:subClassOf+ ?x .
     ?x (skos:closeMatch | ^skos:closeMatch)* bb:Metamodel . }
 
-# 5/3 What is 3LGM²?
+# 5/3 What is 3LGM2?
 SELECT DISTINCT ?o1
 WHERE
   { ?x skos:definition ?o1 .
