@@ -15,6 +15,24 @@ Dies soll jedoch aufgrund der Zeitbeschränkung und etwas besserem Training von 
 Etwa die Hälfte der Fragen soll zum Training, die andere Hälfte zur Kontrolle, jeweils vor und nach dem Training, genutzt werden,
 um Daten hinsichtlich der Effektivität des Trainings und letztendlich des Systems in der Fragenbeantwortung zu erhalten.
 
+\subsection{Evaluierungsmaße}
+
+Zur Evaluierung der Systeme werden bei den Fragen je die Indikatoren der Genauigkeit (\emph{precision}) $p$, Trefferquote (\emph{recall}) $r$ und F-Maß $f$ verwendet.
+Die Genauigkeit lässt sich berechnen indem man die Anzahl richtigen Systemantworten durch die Anzahl aller Systemantworten teilt.
+Wenn ein System beispielsweise insgesamt neun Antworten zurück gibt, davon jedoch nur drei richtig sind, hat es eine Genauigkeit von $\frac{1}{3}$.
+Wenn das System gar keine Antworten zurück gibt, wird eine Genauigkeit von $0$ angenommen.
+Die Trefferquote lässt sich berechnen, indem man die Anzahl der richtigen Systemantworten durch die Anzahl aller richtigen Antworten teilt.
+Wenn es beispielsweise bei der vorherigen Frage insgesamt sechs richtige Antworten gibt, hat das System eine Trefferquote von $\frac{1}{2}$.
+Das F-Maß wird durch das harmonische Mittel der Genauigkeit und Präzision berechnet, wäre in diesem Beispiel also $\frac{2}{5}$.
+Die Werte lassen sich pro Frage also wie folgt berechnen, wenn $C$ die Menge aller möglichen korrekten Antworten ist und $O$ die Menge aller Systemantworten:
+\begin{align*}
+  p&=\frac{|O \cap C|}{|O|} \\
+  r&=\frac{|O \cap C|}{|C|} \\
+  f&=\frac{2pr}{p+r} \\
+\end{align*}
+Am Ende sollen die Werte für alle Fragen mithilfe des arithmetischen Mittels zusammengefasst werden, sodass am Ende die drei Werte jeweils gemittelt vorliegen.
+Dies ist eine Standardmethode bei der Evaluation von Question Answering-Systemen und wird auch als \emph{macro-average} bezeichnet \citep{qald9}.
+
 \section{Lösungsansatz zum Problem P2}
 
 Das zweite Problem betrifft die mangelhafte Nützlichkeit der anderen Möglichkeiten und somit den Zwang, für solch ein System Question Answering zu verwenden.
@@ -27,3 +45,4 @@ Besonders bei Benchmarks wie \ac{qald}-9 ist es außerdem oft so, dass Systeme n
 Gerade das Leaderboard ist jedoch eine nützliche Ressource, da hier viele Question Answering-Systeme mit dem entsprechenden Paper, was sonst auch nicht überall vorliegt, und, falls diese existiert,
 eine Demo des Systems, was der anfänglichen Evaluation hilft.
 Ziel ist es, mindestens ein System zu finden, und, falls mehr, aus den gefundenen das beste System auszuwählen.
+Es wird allerdings nur die Teilontologie aus \citet{bb} betrachtet, da es kein System schafft, diese zu verbinden.

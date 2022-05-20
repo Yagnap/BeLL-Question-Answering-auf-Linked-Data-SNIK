@@ -64,7 +64,6 @@ Hier werden sie erneut eingeordnet, Unterschiede sind \textbf{fett} gedruckt.
 Hier wird eine Frage als geeignet eingestuft, wenn sie faktisch und simpel oder komplex, nicht aber zusammengesetzt sind.
 Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fortlaufenden Zahl gebildet wird.
 
-\todo{Frageart Spalte überarbeiten}
 \begin{longtable}{c p{6.5 cm} c c c c}
   \caption[Fragenklassifikation]{Klassifizierung der Fragen aus \citet{bb} basierend auf \citet{arneba}.
   Fett: Unterschiedliche Klassifizierung bezüglich der Eignung.
@@ -169,8 +168,8 @@ Ersteres ist beispielsweise bei den Fragen \texttt{6.6/1}, \texttt{8.6/1} oder \
 Häufig wurden nach \cref{def:kfrage} komplexe Fragen aussortiert, besonders bei Einschränkungen, wie etwa Frage \texttt{7/3}.
 Die vermutlich fälschliche Einordnung liegt bei \texttt{6.5/1}, \texttt{8/6} oder \texttt{10/2} vor.
 Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da einige nicht in der Ontologie modelliert sind.
-Diese sind \texttt{4/3}, \texttt{6/1}, \texttt{8/4}, \texttt{8.4/1} und \texttt{9/2} sowie \texttt{9.3.4.2/3} bis \texttt{9.3.4.2/5} und \texttt{10/3}.
-Somit verbleiben letztendlich 38 Fragen, welche im Folgenden in \ac{sparql}-Abfragen umgewandelt werden.
+Diese sind \texttt{4/3}, \texttt{6/1}, \texttt{8/4}, \texttt{8.4/1} und \texttt{9/2} sowie \texttt{9.3.4.2/3} bis \texttt{9.3.4.2/5}, \texttt{9.4/1} und \texttt{10/3}.
+Somit verbleiben letztendlich 37 Fragen, welche im Folgenden in \ac{sparql}-Abfragen umgewandelt werden.
 
 \subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
@@ -182,7 +181,7 @@ SELECT DISTINCT ?s1
 WHERE
   { ?s1 rdfs:subClassOf+ bb:Model . }
 
-# 3/3 What is information Management?
+# 3/3 What is information management?
 SELECT DISTINCT ?o1
 WHERE
   { bb:InformationManagement skos:definition ?o1 . }
@@ -444,3 +443,23 @@ Es konnte allerdings \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} hinz
 Die Mappings mussten dahingehend verändert werden, als dass \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Beschreibung hinzugefügt wurde.
 
 \subsubsection{Training}
+
+Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Testen.
+Vor dem Training wurde der Testdatensatz verwendet, um die Leistung des Systems vor und nach dem Training vergleichen zu können.
+Siehe hierzu \cref{tab:qanswervortraining}.
+Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainingsdatensatz und 18 im Testdatensatz sind.
+
+\begin{longtable}{c c c c c c c c}
+  \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
+  Conf.: QAnswer \emph{Confidence}-Wert}
+  \label{tab:qanswervortraining}
+  \\
+  \toprule
+  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P   & R   & F-Maß   \\
+  \midrule \\
+  \endhead
+
+  \midrule \\
+  Durchschnitt  &       &       &       &               & [P] & [R] & [F-Maß] \\
+  \bottomrule \\
+\end{longtable}
