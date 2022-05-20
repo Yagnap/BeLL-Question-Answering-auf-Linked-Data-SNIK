@@ -243,6 +243,7 @@ Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
 
 \begin{lstlisting}[language=SPARQL]
   # Ich bin ein Kommentar.
+  # Kommentare werden ignoriert und nicht ausgeführt. Dieser Kommentar hier ist so lang, dass er auf dem Papier über mehrere Zeilen geht, in Wirklichkeit ist er jedoch nur auf einer.
   # Definition der Präfixe:
   PREFIX bb: <http://snik.eu/ontology/bb/>
   PREFIX meta: <http://snik.eu/ontology/meta/>
@@ -256,7 +257,19 @@ Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
 Es zeigt alle Aufgaben an, welche die Rolle, die das jährliche IT-Budget verändern kann, hat.
 Die einzige Person, die dies verändern kann, ist \aurl{bb}{ChiefInformationOfficer}.
 Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf der SNIK-Website\footnote{\url{https://www.snik.eu/sparql}} ausführt, \aurl{bb}{InformationManagement}.
-\todo{property paths}
+
+Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths} verwenden.
+Bei diesen wird zwischen zwei Prädikate ein \texttt{|} geschrieben, \ac{sparql} führt die Abfrage dann mehrere Male, einmal für jedes Prädikat, aus.
+Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
+Bei beiden dieser Methoden kann man auch reguläre Ausdrücke nutzen.
+Dies ist nützlich, um bei \ac{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
+Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise \texttt{?x} nennen, danach fügt man folgende Zeile ein:
+\begin{lstlisting}[language=SPARQL]
+?x (skos:closeMatch | ^skos:closeMatch)* bb:ChiefInformationOfficer .
+\end{lstlisting}
+Da die Teilontologien untereinander mit \aurl{meta}{closeMatch} verbunden sind, wird diese Beziehung hier abgefragt.
+Mittels property path und dem Zeichen \texttt{\^} wird die Suche auch invertiert, sodass auch Ressourcen erhalten werden, wenn die closeMatch-Beziehung von der anderen ausgeht.
+Mit dem Charakter \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
 
 \section{Semantisches Question Answering}
 
