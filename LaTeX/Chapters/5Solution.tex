@@ -124,7 +124,7 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   8.2/2 & What criteria for computer-based application components and physical data processing systems exist? & F & Z & \xmark & \xmark \\
   \textbf{8.2/3} & \textbf{What criteria for the overall HIS architecture exist?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
   \textbf{8.3/1} & \textbf{What are the characteristics of the quality of processes of HIS?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
-  \textbf{8.4/1} & \textbf{What are the characteristics of quality of outcome of HIS especially in hopsitals?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
+  \textbf{8.4/1} & \textbf{What are the characteristics of quality of outcome of HIS especially in hospitals?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
   8.5/1 & What does information management have to balance in order to increase the quality of health information systems? & K & S & \xmark & \xmark \\
   \textbf{8.6/1} & \textbf{What are major phases of an IT evaluation study?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
   \textbf{8.6/2} & \textbf{What are major IT evaluation methods?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
@@ -132,14 +132,14 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   \textbf{9/2} & \textbf{What organizational structures are appropriate for information management in hospitals?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
   \textbf{9/3} & \textbf{What are the tasks and methods for strategic HIS planning?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
   \textbf{9/4} & \textbf{What are the tasks and methods for strategic HIS monitoring?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
-  \textbf{9/5} & \textbf{What are the tasks and methods for strategic HIS directing?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
+  \textbf{9/5} & \textbf{W  hat are the tasks and methods for strategic HIS directing?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
   9/6 & How can experts for information management in hospitals be gained? & P & S & \xmark & \xmark \\
   9.2/1 & What does information management in general and in hospitals encompass? & K & K & \xmark & \xmark \\
   9.2/2 & What are the three main scopes of information management? & F & K & \cmark & \cmark \\
   9.2/3 & What are the tasks of strategic, tactical and operational information management in hospitals? & F & Z & \xmark & \xmark \\
   9.2/4 & What is meant by IT service management and how is it related to information management? & F & Z & \xmark & \xmark \\
   9.3.4.2/1 & Which organizational units are involved in information management? & F & K & \cmark & \cmark \\
-  9.3.4.2/2 & Which boards and persons are involved in information management? & F & K & \cmark & \cmark \\
+  9.3.4.2/2 & Which boards and persons are involved in information management? & F & section & \cmark & \cmark \\
   9.3.4.2/3 & Who is responsible for strategic information management? & F & S & \cmark & \cmark \\
   9.3.4.2/4 & Who is responsible for tactical information management? & F & S & \cmark & \cmark \\
   9.3.4.2/5 & Who is responsible for operational information management? & F & S & \cmark & \cmark \\
@@ -147,9 +147,9 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   9.4/1 & What are the typical tasks for strategic HIS planning? & F & K & \cmark & \cmark \\
   9.4/2 & What are the typical methods for strategic HIS planning? & F & K & \cmark & \cmark \\
   9.4/3 & What is the goal and typical structure of a strategic information management plan? & F & Z & \xmark & \xmark \\
-  9.5/1 & What are the typical tasks of strategic HIS monitoring? & F & K & \cmark & \cmark \\
-  9.5/2 & What are the typical methods of strategic HIS monitoring? & F & K & \cmark & \cmark \\
-  9.6/1 & What are the typical tasks of strategic HIS directing? & F & K & \cmark & \cmark \\
+  9.5/1 & What are the typical tasks of strategic HIS monitoring? & F & S & \cmark & \cmark \\
+  9.5/2 & What are the typical methods of strategic HIS monitoring? & F & S & \cmark & \cmark \\
+  9.6/1 & What are the typical tasks of strategic HIS directing? & F & S & \cmark & \cmark \\
   9.6/2 & What are the typical methods of strategic HIS directing? & K & S & \cmark & \cmark \\
   10/1 & What are health care networks? & F & S & \cmark & \cmark \\
   \textbf{10/2} & \textbf{How can health care networks be described?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
@@ -168,8 +168,9 @@ Dies beruht größtenteils auf zwei Gründen:
 Ersteres ist beispielsweise bei den Fragen \texttt{6.6/1}, \texttt{8.6/1} oder \texttt{9/2} der Fall.
 Häufig wurden nach \cref{def:kfrage} komplexe Fragen aussortiert, besonders bei Einschränkungen, wie etwa Frage \texttt{7/3}.
 Die vermutlich fälschliche Einordnung liegt bei \texttt{6.5/1}, \texttt{8/6} oder \texttt{10/2} vor.
-Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da wenige nicht in der Ontologie modelliert sind.
-Diese sind \texttt{4/3} und \texttt{6/1}.
+Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da einige nicht in der Ontologie modelliert sind.
+Diese sind \texttt{4/3}, \texttt{6/1}, \texttt{8/4}, \texttt{8.4/1} und \texttt{9/2} sowie \texttt{9.3.4.2/3} bis \texttt{9.3.4.2/5} und \texttt{10/3}.
+Somit verbleiben letztendlich 38 Fragen, welche im Folgenden in \ac{sparql}-Abfragen umgewandelt werden.
 
 \subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
@@ -179,99 +180,190 @@ Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{s
 # 1/2 What are appropriate models for health information systems?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf+ ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:Model . }
+  { ?s1 rdfs:subClassOf+ bb:Model . }
 
 # 3/3 What is information Management?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:InformationManagement . }
+  { bb:InformationManagement skos:definition ?o1 . }
 
 # 4/1 What are hospital information systems?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HospitalInformationSystem . }
+  { bb:HospitalInformationSystem skos:definition ?o1 . }
 
 # 4/2 What are transinstitutional health information systems?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:TransinstitutionalHealthInformationSystem . }
+  { bb:TransinstitutionalHealthInformationSystem skos:definition ?o1 . }
 
 # 4/4 What are electronic health records?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:ElectronicHealthRecord . }
+  { bb:ElectronicHealthRecord skos:definition ?o1 . }
 
 # 5/2 What are typical metamodels for modeling various aspects of HIS?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf+ ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:Metamodel . }
+  { ?s1 rdfs:subClassOf+ bb:Metamodel . }
 
 # 5/3 What is 3LGM2?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:3LMG2 . }
+  { bb:3LMG2 skos:definition ?o1 . }
 
 # 5/4 What are typical reference models for HIS?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf+ ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:ReferenceModel . }
+  { ?s1 rdfs:subClassOf+ bb:ReferenceModel . }
 
 # 6/2 What are the main hospital functions?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HospitalFunction . }
+  { ?s1 rdfs:subClassOf bb:HospitalFunction . }
 
 # 6/3 What are typical information processing tools in hospitals?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf+ ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:InformationProcessingTool . }
+  { ?s1 rdfs:subClassOf+ bb:InformationProcessingTool . }
 
 # 6/4 What are different architectures of HIS?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf+ ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisArchitecture . }
+  { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }
 
 # 6.5/1 How can architectures of HIS be categorized?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf+ ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisArchitecture . }
+  { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }
 
-# 6.6/2 What is meant by the term \enquote{infrastructure}?
+# 6.6/2 What is meant by the term "infrastructure"?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisInfrastructure . }
+  { bb:HisInfrastructure skos:definition ?o1 . }
 
 # 6.7/2 What is meant by physical integration?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x skos:definition ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:PhysicalIntegration . }
+  { bb:PhysicalIntegration skos:definition ?o1 . }
 
 # 7/3 Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?
 SELECT DISTINCT ?o1
 WHERE
-  { ?x meta:isAssociatedWith ?o1 .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:TransinstitutionalHealthInformationSystem . }
+  { bb:TransinstitutionalHealthInformationSystem meta:isAssociatedWith ?o1 . }
 
 # 8/1 Which facets of quality have to be considered in HIS?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:entityTypeComponent ?x .
-    ?x (skos:closeMatch | ^skos:closeMatch)* bb:HisQuality . }
+  { ?s1 rdfs:entityTypeComponent bb:HisQuality . }
 
+# 8/2 What are the characteristics of the quality of structures in HIS?
+SELECT DISTINCT ?s2
+WHERE
+  { bb:QualityOfHISStructures meta:entityTypeComponent ?o1 .
+    ?s2 rdfs:subClassOf ?o1 . }
+
+# 8/3 What are the characteristics of  the quality of processes of HIS?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }
+
+# 8/6 How can quality of HIS be evaluated?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:EvaluationMethod .
+    ?s1 meta:isAssociatedWith bb:HisQuality . }
+
+# 8.2/1 What criteria for quality of data exist?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:QualityOfData . }
+
+# 8.2/3 What criteria for the overall HIS architecture exist?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:QualityOfHISArchitecture . }
+
+# 8.3/1 What are the characteristics of the quality of processes of HIS?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses }
+
+# 8.6/1 What are major phases of an IT evaluation study?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 meta:updates bb:ItEvaluationStudy }
+
+# 8.6/2 What are major IT evaluation methods?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:EvaluationMethod }
+
+# 9/3 What are the tasks and methods for strategic HIS planning?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:StrategicHISPlanning meta:updates | meta:functionComponent ?o1}
+
+# 9/4 What are the tasks and methods for strategic HIS monitoring?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:StrategicHISMonitoring meta:updates | meta:functionComponent ?o1}
+
+# 9/5 What are the tasks and methods for strategic HIS directing?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:StrategicHISDirecting meta:updates | meta:functionComponent ?o1}
+
+# 9.2/2 What are the three main scopes of information management?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:InformationManagement }
+LIMIT 3
+
+# 9.3.4.2/1 Which organizational units are involved in information management?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 meta:functionComponent bb:InformationManagement }
+
+# 9.3.4.2/2 Which boards and persons are involved in information management?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 meta:isResponsibleForFunction bb:InformationManagement }
+
+# 9.4/2 What are the typical tasks for strategic HIS planning?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:StrategicHISPlanning }
+
+# 9.5/1 What are the typical tasks of strategic HIS monitoring?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:StrategicHISMonitoring }
+
+# 9.5/2 What are the typical methods of strategic HIS monitoring?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:StrategicHISMonitoring meta:functionComponent ?o1 }
+
+# 9.6/1 What are the typical tasks of strategic HIS directing?
+SELECT DISTINCT ?s1
+WHERE
+  { ?s1 rdfs:subClassOf bb:StrategicHISDirecting }
+
+# 9.6/2 What are the typical methods of strategic HIS directing?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:StrategicHISDirecting meta:functionComponent ?o1 }
+
+# 10/1 What are health care networks?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:HealthCareNetwork skos:definition ?o1 }
+
+# 10/2 How can health care networks be described?
+SELECT DISTINCT ?o1
+WHERE
+  { bb:HealthCareNetwork skos:definition ?o1 }
 
 \end{lstlisting}
 
