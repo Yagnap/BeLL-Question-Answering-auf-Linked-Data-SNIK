@@ -1,0 +1,77 @@
+\chapter{Syntaktisches und POS-Tagging}\label{ch:tagging}
+
+Sowohl \ac{pos}- als auch syntaktisches Tagging, also das Tagging von entweder einzelnen Wörtern oder Satzbauteilen, geschieht nach verschiedenen Standards.
+In dieser Arbeit wird, wenn es denn geschieht, die Penn Treebank-Notation verwendet.
+Diese wird im Folgenden so aufgeschlüsselt, wie es hier benötigt wird.
+Es wurden jedoch einzelne Zeichen o.ä. ausgelassen, wie etwa einzelne Tags für verschiedene Anführungszeichen beim \ac{pos}-Tagging.
+
+\begin{table}[h]\centering
+  \begin{tabular}{ r l}
+    \toprule
+    Abkürzung & Bedeutung \\
+    \midrule
+    ADJP & Adjective phrase \\
+    ADVP & Adverb phrase \\
+    NP & Noun phrase \\
+    PP & Prepositional phrase \\
+    S & Simple declarative clause \\
+    SBAR & Subordinate clause \\
+    SBARQ & Direct question introduced by wh-element \\
+    SINV & Declarative sentence with subject-aux inversion \\
+    SQ & Yes/no questions and subconstituent of SBARQ excluding wh-element \\
+    VP & Verb phrase \\
+    WHADVP & Wh-adverb phrase \\
+    WHNP & Wh-noun phrase \\
+    WHPP & Wh-prepositional phrase \\
+    X & Constituent of unknown or uncertain category \\
+    \bottomrule
+  \end{tabular}
+  \caption[Penn Treebank-Notation syntaktischer Tags]{Penn Treebank-Notation syntaktischer Tags nach \citet{penntreebankpos}}
+  \label{tab:penntreebanksynt}
+\end{table}
+
+\begin{table}[h]\centering
+  \begin{tabular}{ r c l }
+    \toprule
+    Abkürzung & Bedeutung & Beispiel \\
+    \midrule
+    CC & Coordinating conjunction & and, or \\
+    CD & Cardinal Number & one, 5 \\
+    DT & Determiner & both, some \\
+    FW & Foreign word & oui, si \\
+    IN & Preposition/subordinating conjunction & upon, if \\
+    JJ & adjective & complex, fourty-second \\
+    JJR & Adjective, Compartive & simpler, healthier \\
+    JJS & Adjective, Superlative &  simplest, healthiest \\
+    LS & List item marker & -, 1. \\
+    MD & Modal & could, can't \\
+    NN & Noun, singular or mass & hospital, knowledge \\
+    NNS & Noun, plural & hospitals, systems \\
+    NNP & Proper noun, singular & Leipzig, Mustermann \\
+    NNPS & Proper noun, plural & Americas, Joneses \\
+    PDT & Predeterminer & all, both \\
+    POS & Possessive ending & 's \\
+    PRP & Personal pronoun & us, it \\
+    PP & Possessive pronoun & our, theirs \\
+    RB & Adverb & definitely, very \\
+    RBR & Adverb, comparative & greater, more \\
+    RBS & Adverb, superlative & greatest, most \\
+    RP & Particle & up, away \\
+    SYM & Symbol & $\subseteq$, § \\
+    TO & Infinitival to & to \\
+    UH & Interjection & uh, wow \\
+    VB & Verb, base form & learn, stay \\
+    VBD & Verb, past tense & learned, stayed \\
+    VBG & Verb, gerund/present participle & learning, staying \\
+    VBN & Verb, past participle & learned, stayed \\
+    VBP & Verb, non-3rd person singular present & learn, stay \\
+    VBZ & Verb, 3rd person singular present & learns, stays \\
+    WDT & Wh-determiner & whichever, what \\
+    WP\$ & Wh-pronoun & which, whom \\
+    WP\$ & Possessive wh-pronoun & whose \\
+    WRB & Wh-adverb & how, why \\
+    \bottomrule
+  \end{tabular}
+  \caption[Penn Treebank-Notation von POS-Tags]{Penn Treebank-Notation von \acs{pos}-Tags nach \citet{penntreebankpos}}
+  \label{tab:penntreebankpos}
+\end{table}
