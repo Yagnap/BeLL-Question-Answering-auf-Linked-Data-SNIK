@@ -287,83 +287,83 @@ WHERE
 # 8.3/1 What are the characteristics of the quality of processes of HIS?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses }
+  { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }
 
 # 8.6/1 What are major phases of an IT evaluation study?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 meta:updates bb:ItEvaluationStudy }
+  { ?s1 meta:updates bb:ItEvaluationStudy . }
 
 # 8.6/2 What are major IT evaluation methods?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:EvaluationMethod }
+  { ?s1 rdfs:subClassOf bb:EvaluationMethod . }
 
 # 9/3 What are the tasks and methods for strategic HIS planning?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISPlanning meta:updates | meta:functionComponent ?o1}
+  { bb:StrategicHISPlanning meta:updates | meta:functionComponent ?o1 . }
 
 # 9/4 What are the tasks and methods for strategic HIS monitoring?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISMonitoring meta:updates | meta:functionComponent ?o1}
+  { bb:StrategicHISMonitoring meta:updates | meta:functionComponent ?o1 . }
 
 # 9/5 What are the tasks and methods for strategic HIS directing?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISDirecting meta:updates | meta:functionComponent ?o1}
+  { bb:StrategicHISDirecting meta:updates | meta:functionComponent ?o1 . }
 
 # 9.2/2 What are the three main scopes of information management?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:InformationManagement }
+  { ?s1 rdfs:subClassOf bb:InformationManagement . }
 LIMIT 3
 
 # 9.3.4.2/1 Which organizational units are involved in information management?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 meta:functionComponent bb:InformationManagement }
+  { ?s1 meta:functionComponent bb:InformationManagement . }
 
 # 9.3.4.2/2 Which boards and persons are involved in information management?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 meta:isResponsibleForFunction bb:InformationManagement }
+  { ?s1 meta:isResponsibleForFunction bb:InformationManagement . }
 
 # 9.4/2 What are the typical tasks for strategic HIS planning?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:StrategicHISPlanning }
+  { ?s1 rdfs:subClassOf bb:StrategicHISPlanning . }
 
 # 9.5/1 What are the typical tasks of strategic HIS monitoring?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:StrategicHISMonitoring }
+  { ?s1 rdfs:subClassOf bb:StrategicHISMonitoring . }
 
 # 9.5/2 What are the typical methods of strategic HIS monitoring?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISMonitoring meta:functionComponent ?o1 }
+  { bb:StrategicHISMonitoring meta:functionComponent ?o1 . }
 
 # 9.6/1 What are the typical tasks of strategic HIS directing?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:StrategicHISDirecting }
+  { ?s1 rdfs:subClassOf bb:StrategicHISDirecting . }
 
 # 9.6/2 What are the typical methods of strategic HIS directing?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISDirecting meta:functionComponent ?o1 }
+  { bb:StrategicHISDirecting meta:functionComponent ?o1 . }
 
 # 10/1 What are health care networks?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:HealthCareNetwork skos:definition ?o1 }
+  { bb:HealthCareNetwork skos:definition ?o1 . }
 
 # 10/2 How can health care networks be described?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:HealthCareNetwork skos:definition ?o1 }
+  { bb:HealthCareNetwork skos:definition ?o1 . }
 
 \end{lstlisting}
 

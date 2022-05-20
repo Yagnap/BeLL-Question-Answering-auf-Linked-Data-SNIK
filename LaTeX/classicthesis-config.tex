@@ -337,3 +337,10 @@
   morekeywords={PREFIX, a },
   sensitive=true
 }
+
+% line breaking symbols in lstlisting
+%\lstset{prebreak=\raisebox{0ex}[0ex][0ex]
+%        {\ensuremath{\hookleftarrow}}}
+\lstset{postbreak=\raisebox{0ex}[0ex][0ex]
+        {\ensuremath{\hookrightarrow\space}}}
+\lstset{breaklines=true, breakatwhitespace=true}
