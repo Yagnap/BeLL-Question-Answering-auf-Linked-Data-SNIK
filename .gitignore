@@ -30,3 +30,5 @@ thesis.pdf
 *.fdb_latexmk
 thesis.run.xml
 thesis-blx.bib
+
+pw.js

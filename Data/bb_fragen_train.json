@@ -1,116 +1,115 @@
 [
-  {
-    "question": "What are transinstitutional health information systems?",
-    "language": "en",
-    "id": 5,
-    "sparql": "SELECT DISTINCT ?o1"
-  },
-  {
-    "question": "What are typical metamodels for modeling various aspects of HIS?",
-    "language": "en",
-    "id": 7,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What is 3LGM2?",
-    "language": "en",
-    "id": 8,
-    "sparql": "SELECT DISTINCT ?o1"
-  },
-  {
-    "question": "What are typical information processing tools in hospitals?",
-    "language": "en",
-    "id": 11,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "How can architectures of HIS be categorized?",
-    "language": "en",
-    "id": 13,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What is meant by the term 'infrastructure'?",
-    "language": "en",
-    "id": 14,
-    "sparql": "SELECT DISTINCT ?o1"
-  },
-  {
-    "question": "Which facets of quality have to be considered in HIS?",
-    "language": "en",
-    "id": 17,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are the characteristics of the quality of structures in HIS?",
-    "language": "en",
-    "id": 18,
-    "sparql": "SELECT DISTINCT ?s2"
-  },
-  {
-    "question": "What are the characteristics of  the quality of processes of HIS?",
-    "language": "en",
-    "id": 19,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "How can quality of HIS be evaluated?",
-    "language": "en",
-    "id": 20,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What criteria for quality of data exist?",
-    "language": "en",
-    "id": 21,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are the characteristics of the quality of processes of HIS?",
-    "language": "en",
-    "id": 23,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are major phases of an IT evaluation study?",
-    "language": "en",
-    "id": 24,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are major IT evaluation methods?",
-    "language": "en",
-    "id": 25,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are the tasks and methods for strategic HIS planning?",
-    "language": "en",
-    "id": 26,
-    "sparql": "SELECT DISTINCT ?o1"
-  },
-  {
-    "question": "What are the three main scopes of information management?",
-    "language": "en",
-    "id": 29,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are the typical tasks of strategic HIS monitoring?",
-    "language": "en",
-    "id": 33,
-    "sparql": "SELECT DISTINCT ?s1"
-  },
-  {
-    "question": "What are the typical methods of strategic HIS monitoring?",
-    "language": "en",
-    "id": 34,
-    "sparql": "SELECT DISTINCT ?o1"
-  },
-  {
-    "question": "What are the typical methods of strategic HIS directing?",
-    "language": "en",
-    "id": 36,
-    "sparql": "SELECT DISTINCT ?o1"
-  }
-]
+{
+	"question": "What are transinstitutional health information systems?",
+	"language": "en",
+	"id": 5,
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:TransinstitutionalHealthInformationSystem skos:definition ?o1 . }  "
+},
+{
+	"question": "What are typical metamodels for modeling various aspects of HIS?",
+	"language": "en",
+	"id": 7,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf+ bb:Metamodel . }  "
+},
+{
+	"question": "What is 3LGM2?",
+	"language": "en",
+	"id": 8,
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:3LMG2 skos:definition ?o1 . }  "
+},
+{
+	"question": "What are typical information processing tools in hospitals?",
+	"language": "en",
+	"id": 11,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf+ bb:InformationProcessingTool . }  "
+},
+{
+	"question": "How can architectures of HIS be categorized?",
+	"language": "en",
+	"id": 13,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf+ bb:HisArchitecture . }  "
+},
+{
+	"question": "What is meant by the term "infrastructure"?",
+	"language": "en",
+	"id": 14,
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:HisInfrastructure skos:definition ?o1 . }  "
+},
+{
+	"question": "Which facets of quality have to be considered in HIS?",
+	"language": "en",
+	"id": 17,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:entityTypeComponent bb:HisQuality . }  "
+},
+{
+	"question": "What are the characteristics of the quality of structures in HIS?",
+	"language": "en",
+	"id": 18,
+	"sparql": "SELECT DISTINCT ?s2 WHERE{ bb:QualityOfHISStructures meta:entityTypeComponent ?o1 .  ?s2 rdfs:subClassOf ?o1 . }  "
+},
+{
+	"question": "What are the characteristics of  the quality of processes of HIS?",
+	"language": "en",
+	"id": 19,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }  "
+},
+{
+	"question": "How can quality of HIS be evaluated?",
+	"language": "en",
+	"id": 20,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:EvaluationMethod .  ?s1 meta:isAssociatedWith bb:HisQuality . }  "
+},
+{
+	"question": "What criteria for quality of data exist?",
+	"language": "en",
+	"id": 21,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:QualityOfData . }  "
+},
+{
+	"question": "What are the characteristics of the quality of processes of HIS?",
+	"language": "en",
+	"id": 23,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }  "
+},
+{
+	"question": "What are major phases of an IT evaluation study?",
+	"language": "en",
+	"id": 24,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 meta:updates bb:ItEvaluationStudy . }  "
+},
+{
+	"question": "What are major IT evaluation methods?",
+	"language": "en",
+	"id": 25,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:EvaluationMethod . }  "
+},
+{
+	"question": "What are the tasks and methods for strategic HIS planning?",
+	"language": "en",
+	"id": 26,
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISPlanning meta:updates | meta:functionComponent ?o1 . }  "
+},
+{
+	"question": "What are the three main scopes of information management?",
+	"language": "en",
+	"id": 29,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:InformationManagement . } LIMIT 3  "
+},
+{
+	"question": "What are the typical tasks of strategic HIS monitoring?",
+	"language": "en",
+	"id": 33,
+	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:StrategicHISMonitoring . }  "
+},
+{
+	"question": "What are the typical methods of strategic HIS monitoring?",
+	"language": "en",
+	"id": 34,
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISMonitoring meta:functionComponent ?o1 . }  "
+},
+{
+	"question": "What are the typical methods of strategic HIS directing?",
+	"language": "en",
+	"id": 36,
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISDirecting meta:functionComponent ?o1 . }  "
+}]

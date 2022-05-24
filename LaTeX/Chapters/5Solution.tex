@@ -437,10 +437,11 @@ besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
 \texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{define}, \texttt{describe}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
-Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werden sollten, enthielten, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt.\todo{begründen warum}
-Bei dem Versuch, \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Alias für Labels einzufügen, gab es einen Fehler 500, also einen internen Fehler des Servers.
-Es konnte allerdings \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} hinzugefügt werden.\todo{das ist ja merkwürdig}
-Die Mappings mussten dahingehend verändert werden, als dass \texttt{http://www.w3.org/2004/02/skos/core\#definition} als Beschreibung hinzugefügt wurde.
+Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werden sollen, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt,
+um Fragen, die diesen abfragen, zu ermöglichen.
+Es wurde \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
+Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{http://www.w3.org/2004/02/skos/core\#definition}
+und \texttt{http://www.w3.org/2000/01/rdf-schema#comment} und als Beschreibung hinzugefügt wurden.
 
 \subsubsection{Training}
 
@@ -455,7 +456,7 @@ Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainings
   \label{tab:qanswervortraining}
   \\
   \toprule
-  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P   & R   & F-Maß   \\
+  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
   \midrule \\
   \endhead
   1/2           & 0.36  & 1     & 30    & 0             & 0     & 0     & 0       \\
