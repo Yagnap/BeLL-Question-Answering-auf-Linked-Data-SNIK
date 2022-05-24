@@ -93,7 +93,7 @@
 	"question": "What are the typical tasks of strategic HIS directing?",
 	"language": "en",
 	"id": 35,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:StrategicHISDirecting . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISDirecting meta:uses ?o1 . }  "
 },
 {
 	"question": "What are health care networks?",
