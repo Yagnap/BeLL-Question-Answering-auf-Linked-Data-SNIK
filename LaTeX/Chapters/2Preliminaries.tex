@@ -259,17 +259,24 @@ Die einzige Person, die dies verändern kann, ist \aurl{bb}{ChiefInformationOffi
 Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf der SNIK-Website\footnote{\url{https://www.snik.eu/sparql}} ausführt, \aurl{bb}{InformationManagement}.
 
 Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths} verwenden.
+\todo{es geht auch zwischen mehr als zwei, also a|b|c|... }
+\todo{das stimmt so nicht, die abfrage wird nicht mehrmals ausgeführt.}
+\todo{zitiere mal und lies mal durch:  SPARQL 1.1 Query Language, Section 9: Property Paths. unter https://www.w3.org/TR/sparql11-query/#propertypaths . es gibt leider nur webquellen für die w3c standards.}
+\todo{das pipe symbol | ist nur eines von vielen möglichkeiten, property paths zu bilden, siehe 9.1 Property Path Syntax. | steht für alternativer pfad. es gibt auch z.B. / für Sequenz, ^ für inverse, * für 0 oder mehrfache wiederholung usw.}
 Bei diesen wird zwischen zwei Prädikate ein \texttt{|} geschrieben, \ac{sparql} führt die Abfrage dann mehrere Male, einmal für jedes Prädikat, aus.
 Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
+\todo{hattet ihr reguläre ausdrücke in der Schule? Wenn nicht müsstest du das auch irgendwo erklären, was reguläre ausdrücke sind. also jetzt nicht so super ausführlich, da kann man ja bücher drüber schreiben, sondern nur die wesentlichsten sachen.}
 Bei beiden dieser Methoden kann man auch reguläre Ausdrücke nutzen.
+\todo{nee, filter benutzt reguläre ausdrücke aber nur wenn man FILTER regex(...) benutzt. aber sparql property paths benutzen die property path syntax, die sich aber teilweise an reguläre ausdrücke anlehnt, z.B. mit dem * operator}
 Dies ist nützlich, um bei \ac{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
+\todo{wieso braucht man reguläre ausdrücke um mehrere teilontologien gleichzeitig abzufragen?}
 Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise \texttt{?x} nennen, danach fügt man folgende Zeile ein:
 \begin{lstlisting}[language=SPARQL]
 ?x (skos:closeMatch | ^skos:closeMatch)* bb:ChiefInformationOfficer .
 \end{lstlisting}
 Da die Teilontologien untereinander mit \aurl{meta}{closeMatch} verbunden sind, wird diese Beziehung hier abgefragt.
 Mittels property path und dem Zeichen \texttt{\^} wird die Suche auch invertiert, sodass auch Ressourcen erhalten werden, wenn die closeMatch-Beziehung von der anderen ausgeht.
-Mit dem Charakter \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
+Mit dem Charakter\todo{engl character deutsch zeichen} \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
 
 \section{Semantisches Question Answering}
 

@@ -32,12 +32,13 @@ Die Werte lassen sich pro Frage also wie folgt berechnen, wenn $C$ die Menge all
 \end{align*}
 Am Ende sollen die Werte für alle Fragen mithilfe des arithmetischen Mittels zusammengefasst werden, sodass am Ende die drei Werte jeweils gemittelt vorliegen.
 Dies ist eine Standardmethode bei der Evaluation von Question Answering-Systemen und wird auch als \emph{macro-average} bezeichnet \citep{qald9}.
-
+\todo{diese subsection ist sehr schön geschrieben}
 \section{Lösungsansatz zum Problem P2}
 
 Das zweite Problem betrifft die mangelhafte Nützlichkeit der anderen Möglichkeiten und somit den Zwang, für solch ein System Question Answering zu verwenden.
 Deshalb muss nach funktionierenden und somit portablen Systemen, die nach Möglichkeit trainiert werden können und vor allem nicht nur Ontologien wie DBpedia als Quelle verwenden,
 sondern es auch ermöglichen, eigene Daten zu nutzen.
+\todo{DBpedia ist eine Wissensbasis und keine Ontologie. Es gibt eine DBpedia-Ontologie aber die besteht nur aus ca. 130 Klassen, der weitaus größte Teil der aus Millionen von Ressourcen besteht aus Individuen und ist damit keine Ontologie.}
 Zur Recherche sollen, wie bereits in \cref{ch:relatedWork} dargelegt, Surveys und das Question Answering Leaderboard verwendet werden.
 Diese geben über die Güte der Antworten und die grundlegende Funktionsweise Aufschluss, können aber, besonders bei Forschungsprojekten,
 die nur über eine bestimmte Zeit finanzielle Mittel erhalten und somit die Pflege nicht gewährleistet werden kann, schnell veralten.
@@ -46,3 +47,6 @@ Gerade das Leaderboard ist jedoch eine nützliche Ressource, da hier viele Quest
 eine Demo des Systems, was der anfänglichen Evaluation hilft.
 Ziel ist es, mindestens ein System zu finden, und, falls mehr, aus den gefundenen das beste System auszuwählen.
 Es wird allerdings nur die Teilontologie aus \citet{bb} betrachtet, da es kein System schafft, diese zu verbinden.
+\todo{diese Aussage finde ich schwierig, da du ja nicht alle systeme untersuchst. daher würde ich das eher so begründen,
+dass in der aufgabenstellung durch den betreuer um die komplexität im rahmen zu halten erstmal nur bb als ziel gesetzt wurde (auf dein ziel in der einleitung verweisen)
+und dass es teil von future work (ausblick auf deutsch) ist, dass auf alle teilontologien kombiniert anzuwenden.}
