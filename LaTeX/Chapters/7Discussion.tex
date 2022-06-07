@@ -1,16 +1,25 @@
 %*****************************************
-\chapter{Diskussion}\label{ch:discussion}
+\chapter{Diskussion und Ausblick}\label{ch:discussion}
 %*****************************************
-- Erwartung: mittlerweile reif genug; es war aber sehr schwer, irgendetwas zu finden
 
-- DeepPavlov hat nicht funktioniert, da es nur Models für ODQA/DBPedia gibt, nicht aber CDQA/KBQA mit eigenen Daten
+\subsection{Benchmark}
 
-- gAnswer hat nicht funktioniert, da parsen der Tripel in Fragmente nicht (mehr) möglich war
+In LB: Studenten sollen üben, sich reindenken, damit sich Gelerntes festigt; Eignung für
 
-- gAnswer 2 nicht auffindbar
+Future work: mehr Fragen
 
-- TeBaQA funktioniert nicht: "Connection Refused"/"Internal Server Error"-Exceptions
+\subsection{Systeme}
 
-- Online-Demo, Docker-File und selbst kompilierter Java-Code zeigen alle weder SPARQL-Query noch Ergebnis
+Die Erwartung war, dass das Feld mittlerweile reif genug für Systeme ist, die das einfache und präzise Nutzen von semantischem Question Answering ermöglichen.
+Es war aber sehr schwer, Systeme mit ausreichender Dokumentation und bereitgestelltem Programm zu finden, die noch dazu mit eigenen Daten und vielleicht sogar über mehrere Ontologien verwendbar waren.
+Funktionieren taten die meisten davon nicht.
 
-\graffito{Dies ist eine Notiz}
+Es muss allerdings auch gesagt werden, dass \ac{snik} nicht besonders für semantisches Question Answering geeignet ist.
+Dieses geht meist, wie in \cref{sub:qasysteme} gesehen, nach der Methode vor, dass die Prädikate der \ac{sparql}-Abfrage den Prädikaten des Satzes entsprechen sollen.
+Da \ac{snik} auf verhältnismäßig wenigen Prädikaten beruht, deren Label noch dazu oft wenig in einem natürlichen Satz verwendet würden, ist es meist unpraktikabel, solche zu verwenden.
+An Außnahmen wie \aurl{meta}{isResponsibleForFunction} sieht man, dass diese deutlich besser funktionieren, da sie etwa in der Frage \enquote{What is the CIO responsible for?} vorhanden sind.
+Prädikate wie \aurl{meta}{entityTypeComponent} mit dem Label \enquote{entity type component} haben es dort schwerer, da sie auf das Metamodell \ac{snik}s zurückgreifen
+und nicht den normalen Sprachgebrauch wiederspiegeln.
+
+Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches Question Answering-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
+jedoch ist es gelungen, ein Question Answering-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist allerdings \todo{ernüchternd/nur mangelhaft/akzeptabel (ohne "allerdings")}

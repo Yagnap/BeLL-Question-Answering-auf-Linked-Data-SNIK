@@ -1,4 +1,4 @@
-const q = [
+var q = [
   {
     question: "What are appropriate models for health information systems?",
     language: "en",
@@ -131,6 +131,30 @@ const q = [
 
 var token;
 
+// da keine zusammengesetzten Fragen nur Fragen mit einer selektierten Variablen -> nur ein Wert pro Abfrage
+function intersect(bindings1, bindings2) {
+
+  // leere Arrays, aus denen später die Schnittmenge gebildet werden soll
+  var b1 = [];
+  var b2 = [];
+
+  for(let binding of bindings1) {
+    for(let key of Object.keys(binding)) {
+      b1.push(binding[key]["value"]);
+    }
+  }
+
+  for(let binding of bindings2) {
+    for(let key of Object.keys(binding)) {
+      b2.push(binding[key]["value"]);
+    }
+  }
+
+  var intersection = b1.filter((value) => b2.includes(value));
+  return intersection;
+
+}
+
 $().ready(function () {
   let settings = {
     async: true,
@@ -164,8 +188,7 @@ async function ask() {
   var answers = [];
 
   // loop through questions
-  for(let x of q)
-  {
+  for(let x of q) {
     // settings for QAnswer API
     let settings = {
       async: true,
@@ -190,14 +213,28 @@ async function ask() {
     // query chosen by QAnswer is query with highest confidence
     const qAnswerQuery = response.queries[0];
 
-    // precision, recall, f-score etc. berechnen
+    /*
+      precision, recall, f-score etc. berechnen
+    */
+    // Frage nach Definition? So umformulieren, dass Ressource gesucht wird.
+    if(x.sparql.includes("skos:definition")) {
+      // Subjekt herausfinden (AKA Leerzeichen vor skos:definition)
+      var sparqlArray = x.sparql.split(" ");
+      var defPos = sparqlArray.indexOf("skos:definition");
+      var subj = sparqlArray[defPos-1];
+
+      x.sparql = "SELECT ?x WHERE { VALUES ?x { " + subj + " } }";
+    }
+
+    // Fragen an SNIK-SPARQL-Endpunkt
     var hand = await select(x.sparql, null, "https://www.snik.eu/sparql");
     var qakg = await select(
       qAnswerQuery.query,
       null,
       "https://www.snik.eu/sparql"
     );
-    var intersection = hand.filter((value) => qakg.includes(value));
+
+    var intersection = intersect(hand, qakg);
 
     var p = intersection.length / qakg.length;
     var r = intersection.length / hand.length;
@@ -211,9 +248,10 @@ async function ask() {
       correctanswers: intersection.length,
       precision: p,
       recall: r,
-      fscore: (2 * p * r) / (p + r),
+      fscore: (p + r) != 0 ? (2 * p * r) / (p + r) : 0,
       qanswerquery: escapeHtml(qAnswerQuery.query),
       correctquery: escapeHtml(x.sparql),
+      intersection: intersection
     });
   }
 
@@ -226,6 +264,12 @@ async function main() {
   const qas = document.getElementById("qas");
   console.log(answers);
   console.log(answers.length);
+
+  var totalConfidence = 0;
+  var totalPrecision = 0;
+  var totalRecall = 0;
+  var totalFscore = 0;
+
   for(let a of answers) {
 
     const tr = document.createElement("tr");
@@ -243,16 +287,45 @@ async function main() {
       "</td><td>" +
       a.correctanswers +
       "</td><td>" +
-      a.precision +
+      a.precision.toFixed(2) +
       "</td><td>" +
-      a.recall +
+      a.recall.toFixed(2) +
       "</td><td>" +
-      a.fscore +
+      a.fscore.toFixed(2) +
       "</td><td>" +
       a.qanswerquery +
       "</td><td>" +
       a.correctquery +
       "</td>";
     qas.append(tr);
+
+    totalConfidence += a.confidence;
+    totalPrecision += a.precision;
+    totalRecall += a.recall;
+    totalFscore += a.fscore;
   }
+  // Durchschnitt
+  var avC = totalConfidence / answers.length;
+  var avP = totalPrecision / answers.length;
+  var avR = totalRecall / answers.length;
+  var avF = totalFscore / answers.length;
+
+  // Runden
+  avC = avC.toFixed(2);
+  avP = avP.toFixed(2);
+  avR = avR.toFixed(2);
+  avF = avF.toFixed(2);
+
+  // Ausgeben
+  const tr = document.createElement("tr");
+  tr.innerHTML = "<td></td><td>Durchschnitt</td><td>" +
+  avC +
+  "</td><td></td><td></td><td></td><td>" +
+  avP +
+  "</td><td>" +
+  avR +
+  "</td><td>" +
+  avF +
+  "</td><td></td><td></td>";
+  qas.append(tr);
 }
