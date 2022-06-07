@@ -90,9 +90,9 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
     \toprule
     Funktion & Beispiel 1 & Beispiel 2 \\
     \midrule
-    Subjekt & \aurl{bb}{ChiefInformationOfficer} & \aurl{ex}{ErikaMustermann} \\
-    Prädikat & \aurl{meta}{isResponsibleForEntityType} & \aurl{rdf}{type} \\
-    Objekt & \aurl{bb}{AnnualITBudget} & \aurl{ciox}{ChiefInformationOfficer} \\
+    Subjekt   & \aurl{bb}{ChiefInformationOfficer}      & \aurl{ex}{ErikaMustermann}            \\
+    Prädikat  & \aurl{meta}{isResponsibleForEntityType} & \aurl{rdf}{type}                      \\
+    Objekt    & \aurl{bb}{AnnualITBudget}               & \aurl{ciox}{ChiefInformationOfficer}  \\
     \bottomrule
   \end{tabulary}
   \caption{Beispiele für RDF-Tripel}
@@ -118,14 +118,14 @@ Alle in dieser Arbeit verwendeten Präfixe sind in \cref{tab:prefixes} mit ihren
     \toprule
     Präfix & \ac{uri} \\
     \midrule
-    bb & \url{http://snik.eu/ontology/bb/} \\
-    ciox & \url{http://snik.eu/ontology/ciox/} \\
-    he & \url{http://snik.eu/ontology/he/} \\
-    ob & \url{http://snik.eu/ontology/ob/} \\
-    meta & \url{http://snik.eu/ontology/meta/} \\
-    rdf & \url{http://www.w3.org/1999/02/22-rdf-syntax-ns\#} \\
-    rdfs & \url{http://www.w3.org/2000/01/rdf-schema\#} \\
-    ex & \url{http://example.org/} \\
+    bb    & \url{http://snik.eu/ontology/bb/}                   \\
+    ciox  & \url{http://snik.eu/ontology/ciox/}                 \\
+    he    & \url{http://snik.eu/ontology/he/}                   \\
+    ob    & \url{http://snik.eu/ontology/ob/}                   \\
+    meta  & \url{http://snik.eu/ontology/meta/}                 \\
+    rdf   & \url{http://www.w3.org/1999/02/22-rdf-syntax-ns\#}  \\
+    rdfs  & \url{http://www.w3.org/2000/01/rdf-schema\#}        \\
+    ex    & \url{http://example.org/}                           \\
     \bottomrule
   \end{tabulary}
   \caption{In dieser Arbeit verwendete Präfixe}
@@ -177,7 +177,7 @@ Wäre eine Kreisbildung möglich, wären alle Klassen, die Teil des Kreises sind
 \text{Daraus folgt aufgrund der Transitivität von } \subseteq: \\
 M_i \subseteq M_n \land M_i \supseteq M_1 \\
 \text{Da } M_1 = M_n \text{ gilt nun } M_i \subseteq M_1 \land M_1 \subseteq M_i \\
-\text{Sodass }\forall i\; M_i = M_1 = M_n \qed \\
+\text{Sodass }\forall i\; M_i = M_1 = M_n \qed
 \end{gather*}
 
 \begin{figure}%[htbp!]
@@ -258,25 +258,22 @@ Es zeigt alle Aufgaben an, welche die Rolle, die das jährliche IT-Budget verän
 Die einzige Person, die dies verändern kann, ist \aurl{bb}{ChiefInformationOfficer}.
 Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf der SNIK-Website\footnote{\url{https://www.snik.eu/sparql}} ausführt, \aurl{bb}{InformationManagement}.
 
-Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths} verwenden.
-\todo{es geht auch zwischen mehr als zwei, also a|b|c|... }
-\todo{das stimmt so nicht, die abfrage wird nicht mehrmals ausgeführt.}
-\todo{zitiere mal und lies mal durch:  SPARQL 1.1 Query Language, Section 9: Property Paths. unter https://www.w3.org/TR/sparql11-query/#propertypaths . es gibt leider nur webquellen für die w3c standards.}
-\todo{das pipe symbol | ist nur eines von vielen möglichkeiten, property paths zu bilden, siehe 9.1 Property Path Syntax. | steht für alternativer pfad. es gibt auch z.B. / für Sequenz, ^ für inverse, * für 0 oder mehrfache wiederholung usw.}
-Bei diesen wird zwischen zwei Prädikate ein \texttt{|} geschrieben, \ac{sparql} führt die Abfrage dann mehrere Male, einmal für jedes Prädikat, aus.
+Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths}\footnote{\url{https://www.w3.org/TR/sparql11-query/\#propertypaths}, abgerufen am 07. Juni 2022} verwenden.
+Bei diesen wird zwischen die einzelnen Prädikate ein Zeichen, in diesem Fall ein \texttt{|} geschrieben.
+Diese geben den Pfad an, den die Abfrage verwenden soll.
+So gibt \texttt{/} beispielsweise eine Sequenz an, was im Kontext von Question Answering besonders für komplexe Fragen hilfreich ist.
+Hier werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
+Der Charakter \texttt{|} steht für einen alternativen Pfad, ähnlich dem logischen \emph{oder}.
 Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
-\todo{hattet ihr reguläre ausdrücke in der Schule? Wenn nicht müsstest du das auch irgendwo erklären, was reguläre ausdrücke sind. also jetzt nicht so super ausführlich, da kann man ja bücher drüber schreiben, sondern nur die wesentlichsten sachen.}
-Bei beiden dieser Methoden kann man auch reguläre Ausdrücke nutzen.
-\todo{nee, filter benutzt reguläre ausdrücke aber nur wenn man FILTER regex(...) benutzt. aber sparql property paths benutzen die property path syntax, die sich aber teilweise an reguläre ausdrücke anlehnt, z.B. mit dem * operator}
-Dies ist nützlich, um bei \ac{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
-\todo{wieso braucht man reguläre ausdrücke um mehrere teilontologien gleichzeitig abzufragen?}
+Bei beiden dieser Methoden kann man auch eine regulären Ausdrücken ähnliche Syntax nutzen.
+Die Auswahl mehrerer Objekte gleichzeitig ist nützlich, um bei \ac{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
 Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise \texttt{?x} nennen, danach fügt man folgende Zeile ein:
 \begin{lstlisting}[language=SPARQL]
 ?x (skos:closeMatch | ^skos:closeMatch)* bb:ChiefInformationOfficer .
 \end{lstlisting}
 Da die Teilontologien untereinander mit \aurl{meta}{closeMatch} verbunden sind, wird diese Beziehung hier abgefragt.
 Mittels property path und dem Zeichen \texttt{\^} wird die Suche auch invertiert, sodass auch Ressourcen erhalten werden, wenn die closeMatch-Beziehung von der anderen ausgeht.
-Mit dem Charakter\todo{engl character deutsch zeichen} \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
+Mit dem Zeichen \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
 
 \section{Semantisches Question Answering}
 
@@ -353,11 +350,6 @@ Bei der Analyse der \emph{Pragmatik} wird versucht, die wahre Bedeutung des Satz
 Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Budget of the Universitätsklinikum Leipzig.}}
 \label{fig:syntaxtree}
 \end{figure}
-%Ein Satz wie \enquote{Das Kind rief seine Eltern mit seinem Rucksack.} kann entweder bedeuten, dass das Kind seine Eltern mithilfe seines Rucksacks ruft, oder dass die Eltern den Rucksack des Kindes haben.\todo{Beispiel aus Fachgebiet!}
-%Es ist natürlich deutlich wahrscheinlicher, dass die Eltern des Kindes den Rucksack haben, was ein \ac{nlp}-Programm erkennen muss.
-%Mit mehr Informationen könnte allerdings auch die andere Deutung möglich sein, ein \ac{nlp}-Programm steht stets in der Gefahr, voreilige Schlüsse zu ziehen.
-%Desweiteren muss es analysieren, wer mit \enquote{sein} überhaupt gemeint ist.
-%Dafür kann auch mehr Kontext nötig sein, welcher je nach Eingabe nicht immer vorhanden ist.
 
 \subsection{NLP-Pipeline}
 

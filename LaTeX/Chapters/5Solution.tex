@@ -45,9 +45,9 @@ Folgende Mengenoperationen müssten ausgeführt werden, um die Gemeinsamkeiten u
 \begin{align*}
 E(x) &\cap E(y) \\
 E(x) &\setminus E(y) \\
-E(y) &\setminus E(x) \\
+E(y) &\setminus E(x)
 \end{align*}
-Dies ist, einerseits, weil es eine zusammengesetzte Frage ist, andererseits aufgrund der Komplexität einer solchen Operation, noch nicht möglich.
+Dies ist, weil es eine zusammengesetzte Frage ist und der Komplexität einer solchen Operation im Allgemeinen, noch nicht möglich.
 Das Metamodell \ac{snik}s stellt die Aufgabe der Ontologie gut dar: \emph{Wer} macht \emph{was} und \emph{womit}, nicht \emph{warum}, \emph{wann} oder \emph{wie}.
 
 Das System soll nach \cref{def:efrage} und \cref{def:kfrage} simple und komplexe Fragen beantworten können, oder zumindest mit ihnen trainiert werden.
@@ -403,6 +403,7 @@ Leider warf das System immer wieder Fehler bezüglich der ElasticSearch-Konfigur
 also quasi eine auf Anwendungsebene virtuelle Umgebung, mit ElasticSearch 6.6.1, TeBaQA und der \ac{snik}-Ontologie erstellt habe.
 Diese war zusätzlich noch ein weiteres Mal darin, da es Probleme mit der Reihenfolge des Ladens der Daten gab.
 Letztendlich konnten wir aber nicht alle Probleme und Fehler beheben, da es immer wieder zu Laufzeitfehlern kam.
+Es wurden werde \ac{sparql}-Abfragen noch Ergebnisse angezeigt.
 
 \subsection{QAnswer KG}
 
@@ -433,7 +434,6 @@ Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder 
 Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
 Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
-\todo{das finde ich als satz zu sperrig, aber zur Not kann man es so lassen. für den anhäng wäre es wieder zu kurz.}
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
 \texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{define}, \texttt{describe}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
@@ -441,7 +441,8 @@ Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werd
 um Fragen, die diesen abfragen, zu ermöglichen.
 Es wurde \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
 Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{http://www.w3.org/2004/02/skos/core\#definition}
-und \texttt{http://www.w3.org/2000/01/rdf-schema#comment} und als Beschreibung hinzugefügt wurden.
+und \texttt{http://www.w3.org/2000/01/rdf-schema\#comment} als Beschreibung hinzugefügt wurden.
+Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wurde, wenn die zu definierende Ressource richtig erkannt wurde.
 
 \subsubsection{Training}
 
