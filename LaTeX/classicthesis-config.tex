@@ -30,7 +30,7 @@
 % (see ClassicThesis.pdf for more information):
 % ****************************************************************************************************
 \PassOptionsToPackage{
-  drafting=true,    % print version information on the bottom of the pages
+  drafting=false,    % print version information on the bottom of the pages
   tocaligned=false, % the left column of the toc will be aligned (no indentation)
   dottedtoc=false,  % page numbers in ToC flushed right
   eulerchapternumbers=true, % use AMS Euler for chapter font (otherwise Palatino)
@@ -75,7 +75,7 @@
 %\newcommand{\mySubject}{Medizininformatik M. Sc.\xspace}% neuer Master
 
 \newcommand{\myLocation}{Leipzig\xspace}
-\newcommand{\myTime}{Abgabedatum\xspace}
+\newcommand{\myTime}{01. Juli 2022\xspace}
 \newcommand{\myVersion}{\classicthesis}
 
 
@@ -320,7 +320,11 @@
            {ü}{{\"u}}1
 }
 
-% rot
+% Vorgaben von Schule
+\linespread{1.5} % 1.5-Zeilenabstand
+
+
+% rotation-Befehl
 \newcommand{\rot}{\rotatebox{90}}
 
 % checkmarks
@@ -344,3 +348,11 @@
 \lstset{postbreak=\raisebox{0ex}[0ex][0ex]
         {\ensuremath{\hookrightarrow\space}}}
 \lstset{breaklines=true, breakatwhitespace=true}
+
+% TODO: Überschriften Fett
+
+% Seitenränder nach Schulvorgabe
+% für doppelseitigen Druck entfernen
+\usepackage{geometry}
+
+% Konfiguration in thesis.tex nach Titlepage

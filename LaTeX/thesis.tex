@@ -6,9 +6,11 @@
     \WarningFilter{scrreprt}{Usage of package `titlesec'}
     %\WarningFilter{scrreprt}{Activating an ugly workaround}
     \WarningFilter{titlesec}{Non standard sectioning command detected}
-\documentclass[ ngerman, twoside,openright,titlepage,numbers=noenddot,%1headlines,
+\documentclass[ ngerman, %twoside,
+                openright,titlepage,numbers=noenddot,%1headlines,
                 headinclude,footinclude,cleardoublepage=empty,abstract=on,
-                BCOR=5mm,paper=a4,fontsize=11pt
+                BCOR=5mm,paper=a4,
+                fontsize=12pt % 12pt ist Schulvorgabe
                 ]{scrreprt}
 
 %********************************************************************
@@ -43,6 +45,13 @@
 %*******************************************************
 \include{FrontBackmatter/Titlepage}
 \include{FrontBackmatter/Titleback}
+% Seitenränder nach Schulvorgabe
+% für doppelseitigen Druck entfernen
+\newgeometry{
+  paper=a4paper,
+  left=40mm,
+  right=30mm
+}
 %\cleardoublepage\include{FrontBackmatter/Dedication}
 %\cleardoublepage\include{FrontBackmatter/Foreword}
 \cleardoublepage\include{FrontBackmatter/Abstract}
