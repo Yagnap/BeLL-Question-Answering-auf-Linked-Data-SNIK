@@ -33,6 +33,12 @@ Die Werte lassen sich pro Frage also wie folgt berechnen, wenn $C$ die Menge all
 Am Ende sollen die Werte für alle Fragen mithilfe des arithmetischen Mittels zusammengefasst werden, sodass am Ende die drei Werte jeweils gemittelt vorliegen.
 Dies ist eine Standardmethode bei der Evaluation von Question Answering-Systemen und wird auch als \emph{macro-average} bezeichnet \citep{qald9}.
 
+\begin{align*}
+  \emptyset p&=\frac{1}{n}*\sum_{i=1}^{n}p_i \\
+  \emptyset r&=\frac{1}{n}*\sum_{i=1}^{n}r_i \\
+  \emptyset f&=\frac{1}{n}*\sum_{i=1}^{n}f_i
+\end{align*}
+
 \section{Lösungsansatz zum Problem P2}
 
 Das zweite Problem betrifft die mangelhafte Nützlichkeit der anderen Möglichkeiten und somit den Zwang, für solch ein System Question Answering zu verwenden.

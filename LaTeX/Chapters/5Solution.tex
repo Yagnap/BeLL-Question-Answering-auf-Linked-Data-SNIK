@@ -435,15 +435,20 @@ Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder 
 Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
 Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
+Entfernt wurden auch \texttt{define} und \texttt{describe}.\todo{Auch in QAnswer machen?}
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
-\texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{define}, \texttt{describe}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
+\texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
-Aus den \enquote{hidden properties}, also Properties, welche nie betrachtet werden sollen, wurde \texttt{http://www.w3.org/1999/02/22-rdf-syntax-ns\#type} entfernt,
-um Fragen, die diesen abfragen, zu ermöglichen.
-Es wurde \texttt{http://www.w3.org/2004/02/skos/core\#altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
-Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{http://www.w3.org/2004/02/skos/core\#definition}
-und \texttt{http://www.w3.org/2000/01/rdf-schema\#comment} als Beschreibung hinzugefügt wurden.
+Aus den \emph{Hidden Properties} wurde \aurl{rdfs}{subClassOf} hinzugefügt.
+Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem gemeint werden können.
+Es wurde \aurl{skos}{altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
+Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{skos}{definition}
+und \texttt{rdfs}{comment} als Beschreibung hinzugefügt wurden.
 Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wurde, wenn die zu definierende Ressource richtig erkannt wurde.
+
+Es gibt auch die Möglichkeit, direkt Wörter als Aliase für \acp{uri} zu nutzen.
+Bei den \emph{Property Mapping} können \acp{uri} und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
+Dies wurde hier für \emph{phases} und \emph{tasks} bei \aurl{meta}{updates} gemacht.
 
 \subsubsection{Training}
 
