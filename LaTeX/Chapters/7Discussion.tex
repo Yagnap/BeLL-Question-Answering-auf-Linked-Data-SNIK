@@ -20,6 +20,13 @@ Da \ac{snik} auf verhältnismäßig wenigen Prädikaten beruht, deren Label noch
 An Außnahmen wie \aurl{meta}{isResponsibleForFunction} sieht man, dass diese deutlich besser funktionieren, da sie etwa in der Frage \enquote{What is the CIO responsible for?} vorhanden sind.
 Prädikate wie \aurl{meta}{entityTypeComponent} mit dem Label \enquote{entity type component} haben es dort schwerer, da sie auf das Metamodell \ac{snik}s zurückgreifen
 und nicht den normalen Sprachgebrauch wiederspiegeln.
+Hilfreich dafür sind definitiv die Property Mappings von QAnswer, aber diese haben auch nur eine auf die eingegebenen Lexikalisierungen begrenzte Wirkungsweite.
 
 Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches Question Answering-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
 jedoch ist es gelungen, ein Question Answering-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist allerdings \todo{ernüchternd/nur mangelhaft/akzeptabel (ohne "allerdings")}
+Für die Verwendung der Teilontologien zusammen fehlt nicht nur ein System, dass diese Aufgabe bewältigt, sondern vor allem auch schlicht die Trainingsfragen.
+Bereits die aus dem blauen Buch waren nur teilweise geeignet, für das Training für aller Teilontologien müsste man vermutlich Nutzerfragen von Studierenden sammeln.
+Noch dazu kommt das Problem der Ambiguität verschiedener Begriffe, welches mit verschiedenen Teilontologien eingeführt wird.
+Natürlich können die Ressourcen, die mit \aurl{skos}{closeMatch} oder \aurl{skos}{exactMatch} verbunden sind, als ähnlich, vielleicht sogar gleich definiert werden.
+Aber es gibt ja auch Ressourcen, die nur über \aurl{skos}{broadMatch} oder gar nicht verbunden sind und trotzdem fast gleich heißen.
+Solche Ambiguitäten gilt es aufzulösen, das ist ein weiterer Grund, warum hier nur eine Teilontologie abgefragt wurde.
