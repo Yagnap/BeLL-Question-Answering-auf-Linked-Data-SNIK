@@ -367,6 +367,8 @@ WHERE
 
 \end{lstlisting}
 
+\todo{Wirkliche Antworten copy-pasten: Label (URI), vllt Tabelle? URI | Tabelle}
+
 \section{Auswahl eines Kandidaten}
 
 Die Auswahl eines oder mehrerer Kandidaten gestaltete sich aufgrund von nicht instand gehaltener Programme
@@ -435,7 +437,7 @@ Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder 
 Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
 Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
-Entfernt wurden auch \texttt{define} und \texttt{describe}.\todo{Auch in QAnswer machen?}
+Entfernt wurden auch \texttt{define} und \texttt{describe}.
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
 \texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
 
@@ -456,6 +458,9 @@ Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Tes
 Vor dem Training wurde der Testdatensatz verwendet, um die Leistung des Systems vor und nach dem Training vergleichen zu können.
 Siehe hierzu \cref{tab:qanswervortraining}.
 Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainingsdatensatz und 18 im Testdatensatz sind.
+\todo{Franziska Fragen korrigieren lassen}
+Vor dem Training wurde die \aurl{rdfs}{subClassOf}+-Beziehung materialisiert,
+das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
 
 \begin{longtable}{r c c c c c c c}
   \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
