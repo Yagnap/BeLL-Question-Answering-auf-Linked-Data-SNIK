@@ -69,6 +69,10 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   Fett: Unterschiedliche Klassifizierung bezüglich der Eignung.
   Komma bei Frageart: Teilfragen haben unterschiedliche Frageart.
   Fragetyp und -art nach Anfangsbuchstaben abgekürzt.}
+  \\
+  \toprule
+  \rot{\textnormal{Kapitel/ID}}&\rot{\textnormal{Frage}}&\rot{\textnormal{Fragetyp}}&\rot{\textnormal{Frageart}}&\rot{\textnormal{Eignung}}&\rot{\textnormal{Orginal}} \\
+  \midrule \\
   \endfirsthead
   \label{tab:fragenklassifikation}
   \\
@@ -185,22 +189,22 @@ WHERE
 # 3/3 What is information management?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:InformationManagement skos:definition ?o1 . }
+  {  VALUES ?o1 {bb:InformationManagement } . }
 
 # 4/1 What are hospital information systems?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:HospitalInformationSystem skos:definition ?o1 . }
+  { VALUES ?o1 { bb:HospitalInformationSystem } . }
 
 # 4/2 What are transinstitutional health information systems?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:TransinstitutionalHealthInformationSystem skos:definition ?o1 . }
+  { VALUES ?o1 { bb:TransinstitutionalHealthInformationSystem } . }
 
 # 4/4 What are electronic health records?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:ElectronicHealthRecord skos:definition ?o1 . }
+  { VALUES ?o1 { bb:ElectronicHealthRecord } . }
 
 # 5/2 What are typical metamodels for modeling various aspects of HIS?
 SELECT DISTINCT ?s1
@@ -210,7 +214,7 @@ WHERE
 # 5/3 What is 3LGM2?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:3LMG2 skos:definition ?o1 . }
+  { VALUES ?o1 { bb:3LMG2 } . }
 
 # 5/4 What are typical reference models for HIS?
 SELECT DISTINCT ?s1
@@ -240,12 +244,12 @@ WHERE
 # 6.6/2 What is meant by the term "infrastructure"?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:HisInfrastructure skos:definition ?o1 . }
+  { VALUES ?o1 { bb:HisInfrastructure } . }
 
 # 6.7/2 What is meant by physical integration?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:PhysicalIntegration skos:definition ?o1 . }
+  { VALUES ?o1 { bb:PhysicalIntegration } . }
 
 # 7/3 Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?
 SELECT DISTINCT ?o1
@@ -367,7 +371,150 @@ WHERE
 
 \end{lstlisting}
 
-\todo{Wirkliche Antworten copy-pasten: Label (URI), vllt Tabelle? URI | Tabelle}
+Durch diese Abfragen werden folgende Antworten erhalten:
+
+Frage: What are appropriate models for health information systems?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{TechnicalModel} & Technical Model \\
+  \aurl{bb}{StrategicAlignmentModel} & Strategic Alignment Model \\
+  \aurl{bb}{ReferenceModel} & Reference Model \\
+  \aurl{bb}{OrganizationalModel} & Organizational Model \\
+  \aurl{bb}{OpenEHRModelOfProcesses} & OpenEHR Model of Processes \\
+  \aurl{bb}{OpenEHRModelOfContent} & OpenEHR Model of Content \\
+  \aurl{bb}{ModelOfThePlannedHIS} & Model of the Planned HIS \\
+  \aurl{bb}{ModelOfTheCurrentHIS} & Model of the Current HIS \\
+  \aurl{bb}{InformationSystemModel} & Information System Model \\
+  \aurl{bb}{InformationProcessingModel} & Information Processing Model \\
+  \aurl{bb}{FunctionalModel} & Functional Model \\
+  \aurl{bb}{DataReferenceModel} & Data Reference Model \\
+  \aurl{bb}{DataModel} & Data Model \\
+  \aurl{bb}{BusinessReferenceModel} & Business Reference Model \\
+  \aurl{bb}{BusinessProcessModel} & Business Process Model \\
+  \aurl{bb}{UmlActivityDiagram} & UML Activity Diagram \\
+  \aurl{bb}{ProcessChain} & Process Chain \\
+  \aurl{bb}{PetriNet} & Petri Net \\
+  \aurl{bb}{EventDrivenProcessChain} & Event-Driven Process Chain \\
+  \aurl{bb}{UmlClassDiagram} & UML Class Diagram \\
+  \aurl{bb}{ClassDiagram} & Class Diagram \\
+  \aurl{bb}{ReferenceModelForTheDomainLayerOfHospitalInformationSystems} & Reference Model for the Domain Layer of Hospital Information Systems \\
+  \aurl{bb}{OAIS3} & OAIS3 \\
+  \aurl{bb}{IsoosiReferenceModel} & ISO/OSI Reference Model \\
+  \aurl{bb}{IheIntegrationProfile} & IHE Integration Profile \\
+  \aurl{bb}{HL7ReferenceInformationModel} & HL7 Reference Information Model \\
+  \aurl{bb}{TansCriticalSuccessFactorApproach} & Tan’s Critical Success Factor Approach \\
+  \aurl{bb}{ComponentAlignmentModelOfMartin} & Component Alignment Model \\
+  \aurl{bb}{IhePatientDemographicsQuery} & IHE Patient Demographics Query \\
+  \aurl{bb}{CrossEnterpriseDocumentSharing} & Cross-Enterprise Document Sharing \\
+  \bottomrule
+  \caption[Ergebnisse 1/2]{Ergebnisse Frage 1/2}
+\end{longtable}
+
+Frage: What is information management?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{InformationManagement} & Information Management \\
+  \bottomrule
+  \caption[Ergebnisse 3/3]{Ergebnisse Frage 3/3}
+\end{longtable}
+
+Frage: What are hospital information systems?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{HospitalInformationSystem} & Hospital Information System \\
+  \bottomrule
+  \caption[Ergebnisse 4/1]{Ergebnisse Frage 4/1}
+\end{longtable}
+
+Frage: What are transinstitutional health information systems?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{TransinstitutionalHealthInformationSystem} & Transinstitutional Health Information System \\
+  \bottomrule
+  \caption[Ergebnisse 4/2]{Ergebnisse Frage 4/2}
+\end{longtable}
+
+Frage: What are electronic health records?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{ElectronicHealthRecord} & Electronic Health Record \\
+  \bottomrule
+  \caption[Ergebnisse 4/4]{Ergebnisse Frage 4/4}
+\end{longtable}
+
+Frage: What are typical metamodels for modeling various aspects of HIS?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{TechnicalMetamodel} & Technical Metamodel \\
+  \aurl{bb}{OrganizationalMetamodel} & Organizational Metamodel \\
+  \aurl{bb}{InformationSystemMetamodel}  & Information System Metamodel \\
+  \aurl{bb}{FunctionalMetamodel} & Functional Metamodel \\
+  \aurl{bb}{DataMetamodel} & Data Metamodel \\
+  \aurl{bb}{BusinessProcessMetamodel} & Business Process Metamodel \\
+  \aurl{bb}{HL7ReferenceInformationModel} & HL7 Reference Information Model \\
+  \aurl{bb}{3LGM2} & 3LGM$^{2}$ \\
+  \aurl{bb}{3LGM2S} & 3LGM$^{2}$-S \\
+  \aurl{bb}{3LGM2M} & 3LGM$^{2}$-M \\
+  \aurl{bb}{3LGM2B} & 3LGM$^{2}$-B \\
+  \bottomrule
+  \caption[Ergebnisse 5/2]{Ergebnisse Frage 5/2}
+\end{longtable}
+
+Frage: What is 3LGM2?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{3LGM2} & 3LGM$^{2}$ \\
+  \bottomrule
+  \caption[Ergebnisse 5/3]{Ergebnisse Frage 5/3}
+\end{longtable}
+
+Frage: What are typical reference models for HIS?
+
+\begin{longtable}{p{8.0 cm} p{5.0 cm}}
+  \toprule
+  Label & URI \\
+  \midrule
+  \endhead
+  \aurl{bb}{ReferenceModelForTheDomainLayerOfHospitalInformationSystems} & Reference Model for the Domain Layer of Hospital Information Systems \\
+  \aurl{bb}{OAIS3} & OAIS3 \\
+  \aurl{bb}{IsoosiReferenceModel} & ISO/OSI Reference Model \\
+  \aurl{bb}{IheIntegrationProfile} & IHE Integration Profile \\
+  \aurl{bb}{HL7ReferenceInformationModel} & HL7 Reference Information Model \\
+  \aurl{bb}{IhePatientDemographicsQuery} & IHE Patient Demographics Query \\
+  \aurl{bb}{CrossEnterpriseDocumentSharing} & Cross-Enterprise Document Sharing \\
+  \bottomrule
+  \caption[Ergebnisse 5/4]{Ergebnisse Frage 5/4}
+\end{longtable}
+
+\todo{ab 6/2 weitermachen}
 
 \section{Auswahl eines Kandidaten}
 
@@ -466,6 +613,10 @@ das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken 
   \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
   Conf.: QAnswer \emph{Confidence}-Wert}
   \label{tab:qanswervortraining}
+  \\
+  \toprule
+  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
+  \midrule \\
   \endfirsthead
   \\
   \toprule
