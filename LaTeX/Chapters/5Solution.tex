@@ -259,7 +259,7 @@ WHERE
 # 8/1 Which facets of quality have to be considered in HIS?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:entityTypeComponent bb:HisQuality . }
+  { bb:HisQuality meta:entityTypeComponent ?o1 . }
 
 # 8/2 What are the characteristics of the quality of structures in HIS?
 SELECT DISTINCT ?s2
@@ -319,10 +319,9 @@ WHERE
   { bb:StrategicHISDirecting meta:updates | meta:functionComponent ?o1 . }
 
 # 9.2/2 What are the three main scopes of information management?
-SELECT DISTINCT ?s1
+SELECT DISTINCT ?o1
 WHERE
-  { ?s1 rdfs:subClassOf bb:InformationManagement . }
-LIMIT 3
+  { bb:InformationManagement rdfs:subClassOf ?o1 . }
 
 # 9.3.4.2/1 Which organizational units are involved in information management?
 SELECT DISTINCT ?s1
@@ -362,159 +361,433 @@ WHERE
 # 10/1 What are health care networks?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:HealthCareNetwork skos:definition ?o1 . }
+  { VALUES ?o1 {bb:HealthCareNetwork } . }
 
 # 10/2 How can health care networks be described?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:HealthCareNetwork skos:definition ?o1 . }
+  { VALUES ?o1 {bb:HealthCareNetwork } . }
 
 \end{lstlisting}
 
 Durch diese Abfragen werden folgende Antworten erhalten:
 
-Frage: What are appropriate models for health information systems?
+\textbf{Frage \texttt{1/2}:} What are appropriate models for health information systems?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{TechnicalModel} & Technical Model \\
-  \aurl{bb}{StrategicAlignmentModel} & Strategic Alignment Model \\
-  \aurl{bb}{ReferenceModel} & Reference Model \\
-  \aurl{bb}{OrganizationalModel} & Organizational Model \\
-  \aurl{bb}{OpenEHRModelOfProcesses} & OpenEHR Model of Processes \\
-  \aurl{bb}{OpenEHRModelOfContent} & OpenEHR Model of Content \\
-  \aurl{bb}{ModelOfThePlannedHIS} & Model of the Planned HIS \\
-  \aurl{bb}{ModelOfTheCurrentHIS} & Model of the Current HIS \\
-  \aurl{bb}{InformationSystemModel} & Information System Model \\
-  \aurl{bb}{InformationProcessingModel} & Information Processing Model \\
-  \aurl{bb}{FunctionalModel} & Functional Model \\
-  \aurl{bb}{DataReferenceModel} & Data Reference Model \\
-  \aurl{bb}{DataModel} & Data Model \\
-  \aurl{bb}{BusinessReferenceModel} & Business Reference Model \\
-  \aurl{bb}{BusinessProcessModel} & Business Process Model \\
-  \aurl{bb}{UmlActivityDiagram} & UML Activity Diagram \\
-  \aurl{bb}{ProcessChain} & Process Chain \\
-  \aurl{bb}{PetriNet} & Petri Net \\
-  \aurl{bb}{EventDrivenProcessChain} & Event-Driven Process Chain \\
-  \aurl{bb}{UmlClassDiagram} & UML Class Diagram \\
-  \aurl{bb}{ClassDiagram} & Class Diagram \\
-  \aurl{bb}{ReferenceModelForTheDomainLayerOfHospitalInformationSystems} & Reference Model for the Domain Layer of Hospital Information Systems \\
-  \aurl{bb}{OAIS3} & OAIS3 \\
-  \aurl{bb}{IsoosiReferenceModel} & ISO/OSI Reference Model \\
-  \aurl{bb}{IheIntegrationProfile} & IHE Integration Profile \\
-  \aurl{bb}{HL7ReferenceInformationModel} & HL7 Reference Information Model \\
-  \aurl{bb}{TansCriticalSuccessFactorApproach} & Tan’s Critical Success Factor Approach \\
-  \aurl{bb}{ComponentAlignmentModelOfMartin} & Component Alignment Model \\
-  \aurl{bb}{IhePatientDemographicsQuery} & IHE Patient Demographics Query \\
-  \aurl{bb}{CrossEnterpriseDocumentSharing} & Cross-Enterprise Document Sharing \\
-  \bottomrule
-  \caption[Ergebnisse 1/2]{Ergebnisse Frage 1/2}
-\end{longtable}
+\begin{itemize}
+  \item Technical Model (\aurl{bb}{TechnicalModel})
+  \item Strategic Alignment Model (\aurl{bb}{StrategicAlignmentModel})
+  \item Reference Model (\aurl{bb}{ReferenceModel})
+  \item Organizational Model (\aurl{bb}{OrganizationalModel})
+  \item OpenEHR Model of Processes (\aurl{bb}{OpenEHRModelOfProcesses})
+  \item OpenEHR Model of Content (\aurl{bb}{OpenEHRModelOfContent})
+  \item Model of the Planned HIS (\aurl{bb}{ModelOfThePlannedHIS})
+  \item Model of the Current HIS (\aurl{bb}{ModelOfTheCurrentHIS})
+  \item Information System Model (\aurl{bb}{InformationSystemModel})
+  \item Information Processing Model (\aurl{bb}{InformationProcessingModel})
+  \item Functional Model (\aurl{bb}{FunctionalModel})
+  \item Data Reference Model (\aurl{bb}{DataReferenceModel})
+  \item Data Model (\aurl{bb}{DataModel})
+  \item Business Reference Model (\aurl{bb}{BusinessReferenceModel})
+  \item Business Process Model (\aurl{bb}{BusinessProcessModel})
+  \item UML Activity Diagram (\aurl{bb}{UmlActivityDiagram})
+  \item Process Chain (\aurl{bb}{ProcessChain})
+  \item Petri Net (\aurl{bb}{PetriNet})
+  \item Event-Driven Process Chain (\aurl{bb}{EventDrivenProcessChain})
+  \item UML Class Diagram (\aurl{bb}{UmlClassDiagram})
+  \item Class Diagram (\aurl{bb}{ClassDiagram})
+  \item Reference Model for the Domain Layer of Hospital Information Systems (\aurl{bb}{ReferenceModelForTheDomainLayerOfHospitalInformationSystems})
+  \item OAIS3 (\aurl{bb}{OAIS3})
+  \item ISO/OSI Reference Model (\aurl{bb}{IsoosiReferenceModel})
+  \item IHE Integration Profile (\aurl{bb}{IheIntegrationProfile})
+  \item HL7 Reference Information Model (\aurl{bb}{HL7ReferenceInformationModel})
+  \item Tan’s Critical Success Factor Approach (\aurl{bb}{TansCriticalSuccessFactorApproach})
+  \item Component Alignment Model (\aurl{bb}{ComponentAlignmentModelOfMartin})
+  \item IHE Patient Demographics Query (\aurl{bb}{IhePatientDemographicsQuery})
+  \item Cross-Enterprise Document Sharing (\aurl{bb}{CrossEnterpriseDocumentSharing})
+\end{itemize}
 
-Frage: What is information management?
+\textbf{Frage \texttt{3/3}:} What is information management?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{InformationManagement} & Information Management \\
-  \bottomrule
-  \caption[Ergebnisse 3/3]{Ergebnisse Frage 3/3}
-\end{longtable}
+\begin{itemize}
+  \item Information Management (\aurl{bb}{InformationManagement})
+\end{itemize}
 
-Frage: What are hospital information systems?
+\textbf{Frage \texttt{4/1}:} What are hospital information systems?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{HospitalInformationSystem} & Hospital Information System \\
-  \bottomrule
-  \caption[Ergebnisse 4/1]{Ergebnisse Frage 4/1}
-\end{longtable}
+\begin{itemize}
+  \item Hospital Information System (\aurl{bb}{HospitalInformationSystem})
+\end{itemize}
 
-Frage: What are transinstitutional health information systems?
+\textbf{Frage \texttt{4/2}:} What are transinstitutional health information systems?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{TransinstitutionalHealthInformationSystem} & Transinstitutional Health Information System \\
-  \bottomrule
-  \caption[Ergebnisse 4/2]{Ergebnisse Frage 4/2}
-\end{longtable}
+\begin{itemize}
+  \item Transinstitutional Health Information System \\
+  (\aurl{bb}{TransinstitutionalHealthInformationSystem}) % Sonst kein ordentlihcher Zeilenumbruch
+\end{itemize}
 
-Frage: What are electronic health records?
+\textbf{Frage \texttt{4/4}:} What are electronic health records?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{ElectronicHealthRecord} & Electronic Health Record \\
-  \bottomrule
-  \caption[Ergebnisse 4/4]{Ergebnisse Frage 4/4}
-\end{longtable}
+\begin{itemize}
+  \item Electronic Health Record (\aurl{bb}{ElectronicHealthRecord})
+\end{itemize}
 
-Frage: What are typical metamodels for modeling various aspects of HIS?
+\textbf{Frage \texttt{5/2}:} What are typical metamodels for modeling various aspects of HIS?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{TechnicalMetamodel} & Technical Metamodel \\
-  \aurl{bb}{OrganizationalMetamodel} & Organizational Metamodel \\
-  \aurl{bb}{InformationSystemMetamodel}  & Information System Metamodel \\
-  \aurl{bb}{FunctionalMetamodel} & Functional Metamodel \\
-  \aurl{bb}{DataMetamodel} & Data Metamodel \\
-  \aurl{bb}{BusinessProcessMetamodel} & Business Process Metamodel \\
-  \aurl{bb}{HL7ReferenceInformationModel} & HL7 Reference Information Model \\
-  \aurl{bb}{3LGM2} & 3LGM$^{2}$ \\
-  \aurl{bb}{3LGM2S} & 3LGM$^{2}$-S \\
-  \aurl{bb}{3LGM2M} & 3LGM$^{2}$-M \\
-  \aurl{bb}{3LGM2B} & 3LGM$^{2}$-B \\
-  \bottomrule
-  \caption[Ergebnisse 5/2]{Ergebnisse Frage 5/2}
-\end{longtable}
+\begin{itemize}
+  \item Technical Metamodel (\aurl{bb}{TechnicalMetamodel})
+  \item Organizational Metamodel (\aurl{bb}{OrganizationalMetamodel})
+  \item Information System Metamodel (\aurl{bb}{InformationSystemMetamodel})
+  \item Functional Metamodel (\aurl{bb}{FunctionalMetamodel})
+  \item Data Metamodel (\aurl{bb}{DataMetamodel})
+  \item Business Process Metamodel (\aurl{bb}{BusinessProcessMetamodel})
+  \item HL7 Reference Information Model (\aurl{bb}{HL7ReferenceInformationModel})
+  \item 3LGM$^{2}$ (\aurl{bb}{3LGM2})
+  \item 3LGM$^{2}$-S (\aurl{bb}{3LGM2S})
+  \item 3LGM$^{2}$-M (\aurl{bb}{3LGM2M})
+  \item 3LGM$^{2}$-B (\aurl{bb}{3LGM2B})
+\end{itemize}
 
-Frage: What is 3LGM2?
+\textbf{Frage \texttt{5/3}:} What is 3LGM2?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{3LGM2} & 3LGM$^{2}$ \\
-  \bottomrule
-  \caption[Ergebnisse 5/3]{Ergebnisse Frage 5/3}
-\end{longtable}
+\begin{itemize}
+  \item 3LGM$^{2}$ (\aurl{bb}{3LGM2})
+\end{itemize}
 
-Frage: What are typical reference models for HIS?
+\textbf{Frage \texttt{5/4}:} What are typical reference models for HIS?
 
-\begin{longtable}{p{8.0 cm} p{5.0 cm}}
-  \toprule
-  Label & URI \\
-  \midrule
-  \endhead
-  \aurl{bb}{ReferenceModelForTheDomainLayerOfHospitalInformationSystems} & Reference Model for the Domain Layer of Hospital Information Systems \\
-  \aurl{bb}{OAIS3} & OAIS3 \\
-  \aurl{bb}{IsoosiReferenceModel} & ISO/OSI Reference Model \\
-  \aurl{bb}{IheIntegrationProfile} & IHE Integration Profile \\
-  \aurl{bb}{HL7ReferenceInformationModel} & HL7 Reference Information Model \\
-  \aurl{bb}{IhePatientDemographicsQuery} & IHE Patient Demographics Query \\
-  \aurl{bb}{CrossEnterpriseDocumentSharing} & Cross-Enterprise Document Sharing \\
-  \bottomrule
-  \caption[Ergebnisse 5/4]{Ergebnisse Frage 5/4}
-\end{longtable}
+\begin{itemize}
+  \item Reference Model for the Domain Layer of Hospital Information Systems (\aurl{bb}{ReferenceModelForTheDomainLayerOfHospitalInformationSystems})
+  \item OAIS3 (\aurl{bb}{OAIS3})
+  \item ISO/OSI Reference Model (\aurl{bb}{IsoosiReferenceModel})
+  \item IHE Integration Profile (\aurl{bb}{IheIntegrationProfile})
+  \item HL7 Reference Information Model (\aurl{bb}{HL7ReferenceInformationModel})
+  \item IHE Patient Demographics Query (\aurl{bb}{IhePatientDemographicsQuery})
+  \item Cross-Enterprise Document Sharing (\aurl{bb}{CrossEnterpriseDocumentSharing})
+\end{itemize}
 
-\todo{ab 6/2 weitermachen}
+\textbf{Frage \texttt{6/2}:} What are the main hospital functions?
+
+\begin{itemize}
+  \item Administrative Function (\aurl{bb}{Administration})
+  \item Research and Education Function (\aurl{bb}{EducationResearch})
+  \item Management (\aurl{bb}{Management})
+  \item Patient Care(\aurl{bb}{PatientCare})
+\end{itemize}
+
+\textbf{Frage \texttt{6/3}:} What are typical information processing tools in hospitals?
+
+\begin{itemize}
+  \item \emph{keine Antworten}\todo{Frage mglw. entfernen}
+\end{itemize}
+
+\textbf{Frage \texttt{6/4}:} What are different Architectures of HIS?
+
+\begin{itemize}
+  \item Homogeneous Architecture (\aurl{bb}{HomogeneousArchitecture})
+  \item Heterogeneous Architecture (\aurl{bb}{HeterogeneousArchitecture})
+\end{itemize}
+
+\textbf{Frage \texttt{6.5/1}:} How can architectures of HIS be categorized?
+
+\begin{itemize}
+  \item Homogeneous Architecture (\aurl{bb}{HomogeneousArchitecture})
+  \item Heterogeneous Architecture (\aurl{bb}{HeterogeneousArchitecture})
+\end{itemize}
+
+\textbf{Frage \texttt{6.6/2}:} What is meant by the term \enquote{infrastructure}?
+
+\begin{itemize}
+  \item HIS Infrastructure (\aurl{bb}{HisInfrastructure})
+\end{itemize}
+
+\textbf{Frage \texttt{6.7/2}:} What is meant by the term physical integration?
+
+\begin{itemize}
+  \item Physical Integration (\aurl{bb}{PhysicalIntegration})
+\end{itemize}
+
+\textbf{Frage \texttt{7/3}:} Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?
+
+\begin{itemize}
+  \item Functional Redundancy Rate (\aurl{bb}{FunctionalRedundancyRate})
+  \item Health Care Network (\aurl{bb}{HealthCareNetwork})
+  \item Telemicroscopy (\aurl{bb}{Telemicroscopy})
+  \item Teleradiology (\aurl{bb}{Teleradiology})
+  \item Transinstitutional Health Care Function \\
+  (\aurl{bb}{TransinstitutionalHealthCareFunction})
+\end{itemize}
+
+\textbf{Frage \texttt{8/1}:} Which facets of quality have to be considered in HIS?
+
+\begin{itemize}
+  \item Quality of HIS Outcome (\aurl{bb}{QualityOfHISOutcome})
+  \item Quality of HIS Processes (\aurl{bb}{QualityOfHISProcesses})
+  \item Quality of HIS Structures (\aurl{bb}{QualityOfHISStructures})
+\end{itemize}
+
+\textbf{Frage \texttt{8/2}:} What are the characteristics of the quality of structures in HIS?
+
+\begin{itemize}
+  \item Access Integration (\aurl{bb}{AccessIntegration})
+  \item Data Integration (\aurl{bb}{DataIntegration})
+  \item Functional Coverage of the Application Component \\
+  (\aurl{bb}{FunctionalCoverageOfTheApplicationComponent})
+  \item Functional Integration (\aurl{bb}{FunctionalIntegration})
+  \item ISO 9241-110 User Interface Design Quality \\
+  (\aurl{bb}{ISO9241110UserInterfaceDesignQuality})
+  \item Performance of Application Components \\
+  (\aurl{bb}{PerformanceOfApplicationComponents})
+  \item Semantic Integration (\aurl{bb}{SemanticIntegration})
+  \item Software Ergonomics (\aurl{bb}{SoftwareErgonomics})
+  \item Software Quality (\aurl{bb}{SoftwareQuality})
+  \item Stability of Application Components (\aurl{bb}{StabilityOfApplicationComponents})
+  \item Accuracy (\aurl{bb}{Accuracy})
+  \item Authenticity of Data (\aurl{bb}{AuthenticityOfData})
+  \item Availability of Data (\aurl{bb}{AvailabilityOfData})
+  \item Completeness (\aurl{bb}{Completeness})
+  \item Confidentiality (\aurl{bb}{Confidentiality})
+  \item Durability (\aurl{bb}{Durability})
+  \item Integrity of Data (\aurl{bb}{IntegrityOfData})
+  \item Relevancy (\aurl{bb}{Relevancy})
+  \item Reliability of Data (\aurl{bb}{ReliabilityOfData})
+  \item Security of Data (\aurl{bb}{SecurityOfData})
+  \item Standardization of Data (\aurl{bb}{StandardizationOfData})
+  \item Adaptability of the HIS (\aurl{bb}{AdaptabilityOfTheHIS})
+  \item Balance of Computer-Based and Non-Computer-Based Tools \\
+  (\aurl{bb}{BalanceOfComputerBasedAndNonComputerBasedTools})
+  \item Balance of Data Security and Working Processes \\
+  (\aurl{bb}{BalanceOfDataSecurityAndWorkingProcesses})
+  \item Balance of Documentation Quality and Documentation Efforts \\
+  (\aurl{bb}{BalanceOfDocumentationQualityAndDocumentationEfforts})
+  \item Balance of Functional Leanness and Functional Redundancy \\
+  (\aurl{bb}{BalanceOfFunctionalLeannessAndFunctionalRedundancy})
+  \item Balance of Homegeneity and Heterogeneity \\
+  (\aurl{bb}{BalanceOfHomegeneityAndHeterogeneity})
+  \item Controlled Redundancy of Data (\aurl{bb}{ControlledRedundancyOfData})
+  \item Functional Leanness (\aurl{bb}{FunctionalLeanness})
+  \item Functional Redundancy (\aurl{bb}{FunctionalRedundancy})
+  \item Heterogeneity of the HIS Architecture (\aurl{bb}{HeterogeneityOfTheHISArchitecture})
+  \item Homogeneity of the HIS Architecture (\aurl{bb}{HomogeneityOfTheHISArchitecture})
+  \item Saturation (\aurl{bb}{Saturation})
+  \item Transparency (\aurl{bb}{Transparency})
+\end{itemize}
+
+\textbf{Frage \texttt{8/3}:} What are the characteristics of the quality of processes of HIS?
+
+\begin{itemize}
+  \item Controlled Transcription of Data (\aurl{bb}{ControlledTranscriptionOfData})
+  \item Efficiency of Information Logistics (\aurl{bb}{EfficiencyOfInformationLogistics})
+  \item Leanness of Information Processing Tools \\
+  (\aurl{bb}{LeannessOfInformationProcessingTools})
+  \item Multiple Usability of Data (\aurl{bb}{MultipleUsabilityOfData})
+  \item Patient-Centered Information Processing \\
+  (\aurl{bb}{PatientCenteredInformationProcessing})
+\end{itemize}
+
+\textbf{Frage \texttt{8/6}:} How can quality of HIS be evaluated?
+
+\begin{itemize}
+  \item SWOT Analysis (\aurl{bb}{SwotAnalysis})
+\end{itemize}
+
+\textbf{Frage \texttt{8.2/1}:} What criteria for quality of data exist?
+
+\begin{itemize}
+  \item Accuracy (\aurl{bb}{Accuracy})
+  \item Authenticity of Data (\aurl{bb}{AuthenticityOfData})
+  \item Availability of Data (\aurl{bb}{AvailabilityOfData})
+  \item Completeness (\aurl{bb}{Completeness})
+  \item Confidentiality (\aurl{bb}{Confidentiality})
+  \item Durability (\aurl{bb}{Durability})
+  \item Integrity of Data (\aurl{bb}{IntegrityOfData})
+  \item Relevancy (\aurl{bb}{Relevancy})
+  \item Reliability of Data (\aurl{bb}{ReliabilityOfData})
+  \item Security of Data (\aurl{bb}{SecurityOfData})
+  \item Standardization of Data (\aurl{bb}{StandardizationOfData})
+\end{itemize}
+
+\textbf{Frage \texttt{8.2/3}:} What criteria for the overall HIS architecture exist?
+
+\begin{itemize}
+  \item Adaptability of the HIS (\aurl{bb}{AdaptabilityOfTheHIS})
+  \item Balance of Computer-Based and Non-Computer-Based Tools \\
+  (\aurl{bb}{BalanceOfComputerBasedAndNonComputerBasedTools})
+  \item Balance of Data Security and Working Processes \\
+  (\aurl{bb}{BalanceOfDataSecurityAndWorkingProcesses})
+  \item Balance of Documentation Quality and Documentation Efforts \\(\aurl{bb}{BalanceOfDocumentationQualityAndDocumentationEfforts})
+  \item Balance of Functional Leanness and Functional Redundancy \\
+  (\aurl{bb}{BalanceOfFunctionalLeannessAndFunctionalRedundancy})
+  \item Balance of Homegeneity and Heterogeneity \\
+  (\aurl{bb}{BalanceOfHomegeneityAndHeterogeneity})
+  \item Controlled Redundancy of Data (\aurl{bb}{ControlledRedundancyOfData})
+  \item Functional Leanness (\aurl{bb}{FunctionalLeanness})
+  \item Functional Redundancy (\aurl{bb}{FunctionalRedundancy})
+  \item Heterogeneity of the HIS Architecture (\aurl{bb}{HeterogeneityOfTheHISArchitecture})
+  \item Homogeneity of the HIS Architecture (\aurl{bb}{HomogeneityOfTheHISArchitecture})
+  \item Saturation (\aurl{bb}{Saturation})
+  \item Transparency (\aurl{bb}{Transparency})
+\end{itemize}
+
+\textbf{Frage \texttt{8.3/1}:} What are the characteristics of the quality of processes of HIS?
+
+\begin{itemize}
+  \item Controlled Transcription of Data (\aurl{bb}{ControlledTranscriptionOfData})
+  \item Efficiency of Information Logistics (\aurl{bb}{EfficiencyOfInformationLogistics})
+  \item Leanness of Information Processing Tools \\
+  (\aurl{bb}{LeannessOfInformationProcessingTools})
+  \item Multiple Usability of Data (\aurl{bb}{MultipleUsabilityOfData})
+  \item Patient-Centered Information Processing \\
+  (\aurl{bb}{PatientCenteredInformationProcessing})
+\end{itemize}
+
+\textbf{Frage \texttt{8.6/1}:} What are major phases of an IT evaluation study?
+
+\begin{itemize}
+  \item Ad Hoc Monitoring (\aurl{bb}{AdHocMonitoring})
+  \item IT Evaluation Study Management and Execution \\
+  (\aurl{bb}{ItEvaluationStudyManagementAndExecution})
+  \item Permanent Monitoring (\aurl{bb}{PermanentMonitoring})
+  \item Tactical Information Management (\aurl{bb}{TacticalInformationManagement})
+\end{itemize}
+
+\textbf{Frage \texttt{8.6/2}:} What are major IT evaluation methods?
+
+\begin{itemize}
+  \item Delphi Survey (\aurl{bb}{DelphiSurvey})
+  \item Qualitative Evaluation Method (\aurl{bb}{QualitativeEvaluationMethod})
+  \item Quantitative Evaluation Method (\aurl{bb}{QuantitativeEvaluationMethod})
+  \item SWOT Analysis (\aurl{bb}{SwotAnalysis})
+  \item Usability Study (\aurl{bb}{UsabilityStudy})
+\end{itemize}
+
+\textbf{Frage \texttt{9/3}:} What are the tasks and methods for strategic HIS planning?
+
+\begin{itemize}
+  \item Long-Term HIS Planning(\aurl{bb}{LongTermHISPlanning})
+  \item Portfolio Management(\aurl{bb}{PortfolioManagement})
+  \item Short-Term HIS Planning (\aurl{bb}{ShortTermHISPlanning})
+  \item HIS Architecture (\aurl{bb}{HisArchitecture})
+  \item Hospital Information System (\aurl{bb}{HospitalInformationSystem})
+  \item Project Portfolio (\aurl{bb}{ProjectPortfolio})
+  \item Strategic Information Management Plan \\
+  (\aurl{bb}{StrategicInformationManagementPlan})
+\end{itemize}
+
+\textbf{Frage \texttt{9/4}:} What are the tasks and methods for strategic HIS monitoring?
+
+\begin{itemize}
+  \item Ad Hoc Monitoring (\aurl{bb}{AdHocMonitoring})
+  \item HIS Certification (\aurl{bb}{HisCertification})
+  \item Permanent Monitoring (\aurl{bb}{PermanentMonitoring})
+  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+  \item Key Performance Indicator (\aurl{bb}{KeyPerformanceIndicator})
+  \item Strategic Decision (\aurl{bb}{StrategicDecision})
+  \item Strategic HIS Monitoring Result (\aurl{bb}{StrategicHISMonitoringResult})
+\end{itemize}
+
+\textbf{Frage \texttt{9/5}:} What are the tasks and methods for strategic HIS directing?
+
+\begin{itemize}
+  \item Adoption of Project Result (\aurl{bb}{AdoptionOfProjectResult})
+  \item Monitoring the Project Progress (\aurl{bb}{MonitoringTheProjectProgress})
+  \item Project Initiation (\aurl{bb}{ProjectInitiation})
+  \item Project Resource Allocation (\aurl{bb}{ProjectResourceAllocation})
+  \item Project Time Allocation (\aurl{bb}{ProjectTimeAllocation})
+  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+  \item Project (\aurl{bb}{Project})
+\end{itemize}
+
+\textbf{Frage \texttt{9.2/2}:} What are the three main scopes of information management?
+
+\begin{itemize}
+  \item IT Service Management (\aurl{bb}{ItServiceManagement})
+  \item Modeling Information Systems (\aurl{bb}{ModelingInformationSystems})
+  \item Operational Information Management (\aurl{bb}{OperationalInformationManagement})
+  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+  \item Tactical Information Management (\aurl{bb}{TacticalInformationManagement})
+\end{itemize}
+
+\textbf{Frage \texttt{9.3.4.2/1}:} Which organizational units are involved in information management?
+
+\begin{itemize}
+  \item Hospital Administration (\aurl{bb}{HospitalAdministration})
+\end{itemize}
+
+\textbf{Frage \texttt{9.3.4.2/2}:} Which boards and persons are involved in information management?
+
+\begin{itemize}
+  \item Chief Information Officer (\aurl{bb}{ChiefInformationOfficer})
+\end{itemize}
+
+\textbf{Frage \texttt{9.4/2}:} What are the typical tasks for strategic HIS planning?
+
+\begin{itemize}
+  \item HIS Budget Planning (\aurl{bb}{HisBudgetPlanning})
+  \item IT Investment Planning (\aurl{bb}{ItInvestmentPlanning})
+  \item Long-Term HIS Planning (\aurl{bb}{LongTermHISPlanning})
+  \item Short-Term HIS Planning (\aurl{bb}{ShortTermHISPlanning})
+  \item Strategic Alignment (\aurl{bb}{StrategicAlignment})
+\end{itemize}
+
+\textbf{Frage \texttt{9.5/1}:} What are the typical tasks of strategic HIS monitoring?
+
+\begin{itemize}
+  \item Ad Hoc Monitoring (\aurl{bb}{AdHocMonitoring})
+  \item Continuous HIS Auditing (\aurl{bb}{ContinuousHISAuditing})
+  \item Continuous Quality Improvement Process \\
+  (\aurl{bb}{ContinuousQualityImprovementProcess})
+  \item IT Investment Justification (\aurl{bb}{ItInvestmentJustification})
+  \item Report to the Hospital’s Board of Directors \\
+  (\aurl{bb}{ReportToTheHospitalsBoardOfDirectors})
+  \item Reporting to the CEO (\aurl{bb}{ReportingToTheCEO})
+  \item Structural Quality Assessment (\aurl{bb}{StructuralQualityAssessment})
+\end{itemize}
+
+\textbf{Frage \texttt{9.5/2}:} What are the typical methods of strategic HIS monitoring?
+
+\begin{itemize}
+  \item Ad Hoc Monitoring (\aurl{bb}{AdHocMonitoring})
+  \item HIS Certification (\aurl{bb}{HisCertification})
+  \item Permanent Monitoring (\aurl{bb}{PermanentMonitoring})
+  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+\end{itemize}
+
+\textbf{Frage \texttt{9.6/1}:} What are the typical tasks of strategic HIS directing?
+
+\begin{itemize}
+  \item HIS Architecture (\aurl{bb}{HisArchitecture})
+  \item Information Management Organizational Structure \\
+  (\aurl{bb}{InformationManagementOrganizationalStructure})
+  \item Migration Path (\aurl{bb}{MigrationPath})
+  \item Project Portfolio (\aurl{bb}{ProjectPortfolio})
+  \item Strategic HIS Monitoring Result (\aurl{bb}{StrategicHISMonitoringResult})
+  \item Strategic Information Management Plan \\
+  (\aurl{bb}{StrategicInformationManagementPlan})
+\end{itemize}
+
+\textbf{Frage \texttt{9.6/2}:} What are the typical methods of strategic HIS directing?
+
+\begin{itemize}
+  \item Adoption of Project Result (\aurl{bb}{AdoptionOfProjectResult})
+  \item Monitoring the Project Progress (\aurl{bb}{MonitoringTheProjectProgress})
+  \item Project Initiation (\aurl{bb}{ProjectInitiation})
+  \item Project Resource Allocation (\aurl{bb}{ProjectResourceAllocation})
+  \item Project Time Allocation (\aurl{bb}{ProjectTimeAllocation})
+  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+\end{itemize}
+
+\textbf{Frage \texttt{10/1}:} What are health care networks?
+
+\begin{itemize}
+  \item Health Care Network (\aurl{bb}{HealthCareNetwork})
+\end{itemize}
+
+\textbf{Frage \texttt{10/2}:} How can health care networks be described?
+
+\begin{itemize}
+  \item Health Care Network (\aurl{bb}{HealthCareNetwork})
+\end{itemize}
 
 \section{Auswahl eines Kandidaten}
 
