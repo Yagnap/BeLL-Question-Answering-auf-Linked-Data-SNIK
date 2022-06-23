@@ -39,7 +39,7 @@
 	"question": "Which facets of quality have to be considered in HIS?",
 	"language": "en",
 	"id": 17,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:entityTypeComponent bb:HisQuality . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:HisQuality meta:entityTypeComponent ?o1 . }  "
 },
 {
 	"question": "What are the characteristics of the quality of structures in HIS?",
