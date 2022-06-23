@@ -93,7 +93,7 @@
 	"question": "What are the three main scopes of information management?",
 	"language": "en",
 	"id": 29,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:InformationManagement . } LIMIT 3  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:InformationManagement meta:functionComponent ?o1 . }  "
 },
 {
 	"question": "What are the typical tasks of strategic HIS monitoring?",
