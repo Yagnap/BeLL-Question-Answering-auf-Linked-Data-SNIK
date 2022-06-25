@@ -8,12 +8,25 @@ Das erste Problem befasst sich mit der Situation, dass ein Question Answering-Sy
 Stattdessen muss ein bereits existierendes System ausgewählt werden.
 Hierzu müssen andere Systeme anhand eines Benchmarks evaluiert werden.
 Für diesen müssen typische Nutzerfragen und Antworten auf diese gesammelt werden.
+
 Dazu bieten sich die Fragen aus den Büchern an, welche schon von \citet{arneba} gesammelt und hinsichtlich der Beantwortbarkeit mit der \ac{snik}-Ontologie klassifiziert worden sind.
 Für diese müssen Antworten herausgesucht und in \ac{sparql}-Abfragen umgeformt werden, um das Training zu ermöglichen.
 Da dies jedoch nicht unbedingt genug Fragen sind, müssen weitere durch \ac{snik} beantwortbare Fragen formuliert werden.
 Dies soll jedoch aufgrund der Zeitbeschränkung und etwas besserem Training von Modellen nur in der englischen Sprache geschehen.
 Etwa die Hälfte der Fragen soll zum Training, die andere Hälfte zur Kontrolle, jeweils vor und nach dem Training, genutzt werden,
 um Daten hinsichtlich der Effektivität des Trainings und letztendlich des Systems in der Fragenbeantwortung zu erhalten.
+
+Da dies aber vermutlich nicht genügend Fragen sein werden, gibt es noch die Möglichkeit der automatischen Generierung von Fragen, in dem für jedes Tripel automatisch zwei Fragen generiert werden,
+eine nach dem Objekt und eine nach dem Subjekt.
+Die Fragen könnten etwa die Struktur \emph{Fragewort -- Prädikat -- Subjekt} haben, wobei das Fragewort durch das Prädikat bestimmt werden kann.
+Dies ist, aufgrund der vergleichsweise geringen Zahl an Prädikaten, leicht realisierbar.
+Die Antwort ist das Subjekt oder Objekt, das andere von beiden würde jeweils die Rolle des Subjekts in der Frage einnehmen.
+Je nachdem, ob das Objekt oder Subjekt gegeben ist, ändert sich natürlich auch das Fragewort.
+Denkbar sind auch Fragen der Art \enquote{How are A and B related?}, um nach dem Prädikat zu fragen.
+Hierbei wird eine riesige Menge an Fragen generiert werden, die aber alle die gleiche, oder zumindest sehr ähnliche, Struktur haben.
+Es müssten auch manche Fragen gefiltert oder gar nicht erst generiert werden, etwa die Fragen nach dem Label oder alternativen Labels.
+Es sollen also keine Beziehungen zwischen Literalen abgefragt werden, nur zwischen Ressourcen.
+Dadurch kann die große Datenmenge \ac{snik}s genutzt werden.
 
 \subsection{Evaluierungsmaße}
 
