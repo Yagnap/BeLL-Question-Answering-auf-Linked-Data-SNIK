@@ -69,16 +69,15 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   Fett: Unterschiedliche Klassifizierung bezüglich der Eignung.
   Komma bei Frageart: Teilfragen haben unterschiedliche Frageart.
   Fragetyp und -art nach Anfangsbuchstaben abgekürzt.}
-  \\
-  \toprule
-  \rot{\textnormal{Kapitel/ID}}&\rot{\textnormal{Frage}}&\rot{\textnormal{Fragetyp}}&\rot{\textnormal{Frageart}}&\rot{\textnormal{Eignung}}&\rot{\textnormal{Orginal}} \\
-  \midrule \\
-  \endfirsthead
   \label{tab:fragenklassifikation}
   \\
   \toprule
   \rot{\textnormal{Kapitel/ID}}&\rot{\textnormal{Frage}}&\rot{\textnormal{Fragetyp}}&\rot{\textnormal{Frageart}}&\rot{\textnormal{Eignung}}&\rot{\textnormal{Orginal}} \\
-  \midrule \\
+  \midrule
+  \endfirsthead
+  \toprule
+  \rot{\textnormal{Kapitel/ID}}&\rot{\textnormal{Frage}}&\rot{\textnormal{Fragetyp}}&\rot{\textnormal{Frageart}}&\rot{\textnormal{Eignung}}&\rot{\textnormal{Orginal}} \\
+  \midrule
   \endhead
   1/1 & Why is systematic information processing in health care institutions important? & K & S & \xmark & \xmark \\
   1/2 & What are appropriate models for health information systems? & F & S & \cmark & \cmark \\
@@ -843,9 +842,13 @@ Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What i
 Der Ansatz für die Lösung dises Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \emph{property paths} zu verwenden,
 mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen kann.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
-Statt etwa \texttt{meta:isResponsibleForEntityType} stünde nun \texttt{meta:isResponsibleForRole|meta:isResponsibleForFunction|meta:isResponsibleForRole} dort.
+Statt etwa \texttt{\aurl{meta}{isResponsibleForEntityType}} stünde nun \texttt{\aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForRole}} dort.
 Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
 Somit konnte erahnt werden, warum es das macht, was es macht.
+
+Jedoch kann QAnswer keine solchen property paths bilden.
+Deshalb mussten vor dem Training die \aurl{rdfs}{subClassOf}+-Beziehung materialisiert werden,
+das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
 
 Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \aurl{bb}{ChiefInformationOfficer}.
 Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
@@ -859,7 +862,7 @@ Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
 Entfernt wurden auch \texttt{define} und \texttt{describe}.
 Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
-\texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}
+\texttt{a}, \texttt{about}, \texttt{all}, \texttt{an}, \texttt{and}, \texttt{are}, \texttt{as}, \texttt{at}, \texttt{be}, \texttt{by}, \texttt{can}, \texttt{did}, \texttt{do}, \texttt{does}, \texttt{from}, \texttt{give}, \texttt{goes}, \texttt{had}, \texttt{has}, \texttt{have}, \texttt{here}, \texttt{how}, \texttt{in}, \texttt{into}, \texttt{is}, \texttt{its}, \texttt{list}, \texttt{many}, \texttt{most}, \texttt{my}, \texttt{no}, \texttt{of}, \texttt{on}, \texttt{or}, \texttt{s}, \texttt{show}, \texttt{some}, \texttt{something}, \texttt{such}, \texttt{tell}, \texttt{the}, \texttt{their}, \texttt{these}, \texttt{they}, \texttt{this}, \texttt{to}, \texttt{using}, \texttt{was}, \texttt{were}, \texttt{what}, \texttt{which}, \texttt{will}, \texttt{with}, \texttt{yes}.
 
 Aus den \emph{Hidden Properties} wurde \aurl{rdfs}{subClassOf} hinzugefügt.
 Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem gemeint werden können.
@@ -878,9 +881,6 @@ Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Tes
 Vor dem Training wurde der Testdatensatz verwendet, um die Leistung des Systems vor und nach dem Training vergleichen zu können.
 Siehe hierzu \cref{tab:qanswervortraining}.
 Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainingsdatensatz und 18 im Testdatensatz sind.
-\todo{Franziska Fragen korrigieren lassen}
-Vor dem Training wurde die \aurl{rdfs}{subClassOf}+-Beziehung materialisiert,
-das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
 
 \begin{longtable}{r c c c c c c c}
   \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
@@ -889,12 +889,11 @@ das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken 
   \\
   \toprule
   Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
-  \midrule \\
+  \midrule
   \endfirsthead
-  \\
   \toprule
   Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
-  \midrule \\
+  \midrule
   \endhead
   1/2           & 0.49  & 1     & 30    & 0             & 0     & 0     & 0       \\
   3/3           & 0.90  & 1     & 1     & 1             & 1     & 1     & 1       \\
@@ -916,7 +915,7 @@ das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken 
   10/2          & 0.41  & 13    & 1     & 0             & 0     & 0     & 0       \\
   \midrule
   Durchschnitt  & 0.45  &       &       &               & 0.30  & 0.30  & 0.29    \\
-  \bottomrule \\
+  \bottomrule
 \end{longtable}
 
 Auffällig ist, dass nur Fragen nach der Definition richtig beantwortet wurden, diese aber konsistent.
