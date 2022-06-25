@@ -178,6 +178,7 @@ Somit verbleiben letztendlich 37 Fragen, welche im Folgenden in \ac{sparql}-Abfr
 \subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
 Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{sparql}-Abfragen gebildet.
+\todo{Mit Franziskas Feedback korrigieren}
 
 \begin{lstlisting}[language=SPARQL]
 # 1/2 What are appropriate models for health information systems?
@@ -372,7 +373,7 @@ WHERE
 \subsection[Antworten auf die SPARQL-Abfragen]{Antworten auf die \ac{sparql}-Abfragen}
 
 Durch diese Abfragen werden folgende Antworten erhalten;
-Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:
+Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\todo{Mit Franziskas Feedback korrigieren}
 
 \textbf{Frage \texttt{1/2}:} What are appropriate models for health information systems?
 
@@ -791,6 +792,60 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:
   \item Health Care Network (\aurl{bb}{HealthCareNetwork})
 \end{itemize}
 
+\subsubsection{Automatische Erstellung einfacherer Fragen}
+
+Für die Erstellung der einfacheren Fragen müss mithilfe der großen Datenmenge aus Tripeln, die über \ac{snik} vorhanden ist, viele Fragen erstellt werden.
+Fragen können sowohl nach dem Subjekt als auch nach dem Objekt oder Prädikat des Tripels gestellt werden.
+Für die ersteren beiden Intentionen ist das Fragewort über das Prädikat herausfindbar und ist immer \enquote{Who} oder \enquote{What}.
+Für die Frage nach dem Prädikat ist die Zeichenkette immer \enqutoe{How are ?sl and ?ol related?}, wobei \texttt{?sl} für das Label des Subjekts und \texttt{?ol} für das Label des Objekts steht.
+Danach folgt das Label des Prädikats des Tripels und das Label der anderen gegebenen Ressource.
+
+Die Erstellung der Abfragen ist aufgrund der vielen Funktionen, die \ac{sparql} insbesondere auch für die Verarbeitung von Zeichenketten bereitstellt, pro Typ über eine einzige \ac{sparql}-Abfrage möglich.
+\begin{lstlisting}[language=SPARQL]
+
+# SPARQL-Abfrage für Fragen nach dem Subjekt
+
+SELECT REPLACE(
+  REPLACE(
+    REPLACE(
+      REPLACE(
+        CONCAT("What ",?pl, " ", ?ol),
+        "What is responsible", "Who is responsible"),
+      "What approves", "Who approves"),
+    "What is involved", "Who is involved"),
+  "What .* component", "What has the component") as ?question,
+GROUP_CONCAT(STR(?sl),"; ") AS ?answers,
+?p,
+?o
+FROM snik:meta
+FROM snik:bb
+{
+ ?s ?p ?o.
+?p rdfs:domain [rdfs:subClassOf meta:Top].
+?p rdfs:range [rdfs:subClassOf meta:Top].
+ ?s a [rdfs:subClassOf meta:Top].
+ ?o a [rdfs:subClassOf meta:Top].
+ ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
+ ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
+ ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
+}
+GROUP BY ?p ?o ?pl ?ol
+ORDER BY RAND()
+\end{lstlisting}
+
+Zuerst wird die Frage mithilfe der Zeichenketten-Funktionen generiert.
+Anfangs wird eine Zeichenkette aus dem Fragewort \enquote{What}, welches das von Prädikaten am häufigsten verwendete ist, dem Label des Prädikats und dem Label des Objekts gebildet,
+um eine bearbeitbare Grundlage zu haben, welche oft schon so verwendet werden kann.
+Es werden die einzelnen Prädikate, welche das Fragewort \enquote{Who} haben oder für die Nutzung als Frage leicht verändert werden müssen,
+durchgegangen und gegebenenfalls mithilfe der Funktion \texttt{REPLACE} ersetzt.
+
+In der eigentlichen Abfrage wird festgelegt, dass das Prädikat den Definitions- und Wertebereich \aurl{rdfs}{subClassOf} \aurl{meta}{top} haben muss, also keine Literale beinhalten soll.
+Dann werden das Objekt sowie die Subjekte und deren Labels ausgewählt.
+Da eine Ressource mit dem gleichen Prädikat als Objekt zu mehreren anderen Ressourcen in Verbindung stehen kann, wird eine Zeichenkette erstellt, die die Labels der Subjekte mit Semikolons getrennt ausgibt.
+Die \acp{uri} werden auch ausgegeben und es wird alles zufällig sortiert.
+
+\todo{Query für Frage nach Objekt & Frage nach Prädikat umformen; Erst machen wenn wacher}
+
 \section{Auswahl eines Kandidaten}
 
 Die Auswahl eines oder mehrerer Kandidaten gestaltete sich aufgrund von nicht instand gehaltener Programme
@@ -884,6 +939,7 @@ Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Tes
 Vor dem Training wurde der Testdatensatz verwendet, um die Leistung des Systems vor und nach dem Training vergleichen zu können.
 Siehe hierzu \cref{tab:qanswervortraining}.
 Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainingsdatensatz und 18 im Testdatensatz sind.
+\todo{neu machen mit neuen Queries}
 
 \begin{longtable}{r c c c c c c c}
   \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
