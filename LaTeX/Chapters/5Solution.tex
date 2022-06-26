@@ -847,8 +847,12 @@ um eine bearbeitbare Grundlage zu haben, welche oft schon so verwendet werden ka
 Es werden die einzelnen Prädikate, welche das Fragewort \enquote{Who} haben oder für die Nutzung als Frage leicht verändert werden müssen,
 durchgegangen und gegebenenfalls mithilfe der Funktion \texttt{REPLACE} ersetzt.
 
-In der eigentlichen Abfrage wird festgelegt, dass das Prädikat den Definitions- und Wertebereich \aurl{rdfs}{subClassOf} \aurl{meta}{top} haben muss, also keine Literale beinhalten soll.
-Dann werden das Objekt sowie die Subjekte und deren Labels ausgewählt.
+Über die Auswahl von den Teilontologien \texttt{meta} und {bb} über das Schlüsselwort \texttt{FROM} wird gewährleistet, dass nur für diese Fragen generiert werden.
+Es wird außerdem garantiert, dass nur Prädikate, die Beziehungen zwischen Ressourcen darstellen, genutzt werden, wie in \cref{fig:snik-metamodel} zu sehen ist.
+
+In der eigentlichen Abfrage wird festgelegt, dass das Prädikat den Definitions- und Wertebereich \aurl{rdfs}{subClassOf} \aurl{meta}{top} haben muss, also nur Beziehungen zwischen Ressourcen der \ac{snik}-Ontologie darstellen soll.
+Außerdem wird als erstes das Tripel \texttt{?s ?p ?o.} hingeschrieben, um die Beziehung dieser drei Variablen zu sichern.
+Dann werden das Objekt sowie die Subjekte und deren englischsprachige Labels ausgewählt.
 Da eine Ressource mit dem gleichen Prädikat als Objekt zu mehreren anderen Ressourcen in Verbindung stehen kann, wird eine Zeichenkette erstellt, die die Labels der Subjekte mit Semikolons getrennt ausgibt.
 Die \acp{uri} werden auch ausgegeben und es wird alles zufällig sortiert.
 
