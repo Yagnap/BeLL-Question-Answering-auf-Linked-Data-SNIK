@@ -12,16 +12,17 @@ Dies lässt auf eine eventuelle Untauglichkeit der Fragen für die Ontologie sch
 
 Es ist aber trotzdem gelungen, die gegebenen Fragen, welche auch teilweise beantwortet werden können, einen Benchmark zu erstellen.
 Dieser besteht aus Fragen, welche auf in \citet{bb} vorhandenes Wissen zurückgreifen und dieses festigen soll.
-Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht perfekt.
+Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht optimal.
+Im Großen und Ganzen lässt sich allerdings auch sagen, dass die Fragen für Question Answering von einfachen Fragen definitiv höchst komplex waren, was auch nicht unterschlagen werden darf.
 
-In Zukunft sollten definitiv noch mehr Fragen erstellt werden.
-Denkbar wären vor allem zwei Methoden, die relativ gut realisierbar wären:
-\begin{enumerate}
-  \item Studierende der Medizininformatik nach Fragen, die sie fragen würden, fragen, oder
-  \item automatisch für jedes existierende Tripel eine Frage mit festem Schema generieren.
-\end{enumerate}
+Die simpleren Fragen waren recht schnell generierbar und haben die große Datenmenge \ac{snik}s gut genutzt.
+Es könnte darüber nachgedacht werden, die automatisch generierten Fragen komplexer zu machen, dies ist aber nicht unbedingt erforderlich.
+Es konnten viele Fragen automatisch generiert werden, was viel mehr Trainingsfragen bedeutet hat, was auch dem fine-tuning hilft.
+Gerade die Fragen mit verschiedenen Intentionen sind hilfreich.
 
-Für die Realisierung des ersten Punktes wäre vermutlich die Nutzung ein digitaler Fragebogen möglich, über den die Studierenden benachrichtigt würden und in den sie Fragen eintragen könnten,
+In Zukunft sollten definitiv noch mehr komplexere Fragen erstellt werden.
+Denkbar wäre vor allem, Studierende der Medizininformatik nach Fragen, die sie fragen würden, zu fragen.
+Für die Realisierung wäre vermutlich die Nutzung ein digitaler Fragebogen möglich, über den die Studierenden benachrichtigt würden und in den sie Fragen eintragen könnten,
 eine analoge Lösung wäre auch denkbar.
 Problematisch hieran wäre, wenn genügend Fragen gefunden würden, der große Arbeitsaufwand für die manuelle Erstellung der \ac{sparql}-Abfragen, als auch die Möglichkeit der Ontologie, diese zu beantworten.
 Die Fragen würden von Menschen erstellt, die wirklich eine Antwort auf die Frage erhalten wollen, und würden sehr individuell und vielfältig gestaltet sein.

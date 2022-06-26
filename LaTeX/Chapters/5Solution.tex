@@ -816,27 +816,21 @@ Danach folgt das Label des Prädikats des Tripels und das Label der anderen gege
 
 Die Erstellung der Abfragen ist aufgrund der vielen Funktionen, die \ac{sparql} insbesondere auch für die Verarbeitung von Zeichenketten bereitstellt, pro Typ über eine einzige \ac{sparql}-Abfrage möglich.
 \begin{lstlisting}[language=SPARQL]
-
 # SPARQL-Abfrage für Fragen nach dem Subjekt
-
-SELECT REPLACE(
-  REPLACE(
-    REPLACE(
-      REPLACE(
+SELECT REPLACE(REPLACE(REPLACE(REPLACE(
         CONCAT("What ",?pl, " ", ?ol),
         "What is responsible", "Who is responsible"),
       "What approves", "Who approves"),
     "What is involved", "Who is involved"),
   "What .* component", "What has the component") as ?question,
-GROUP_CONCAT(STR(?sl),"; ") AS ?answers,
-?p,
-?o
-FROM snik:meta
-FROM snik:bb
+GROUP_CONCAT(STR(?sl),"; ") as ?answers,
+?p, ?o
+FROM sniko:meta
+FROM sniko:bb
 {
  ?s ?p ?o.
-?p rdfs:domain [rdfs:subClassOf meta:Top].
-?p rdfs:range [rdfs:subClassOf meta:Top].
+ ?p rdfs:domain [rdfs:subClassOf meta:Top].
+ ?p rdfs:range [rdfs:subClassOf meta:Top].
  ?s a [rdfs:subClassOf meta:Top].
  ?o a [rdfs:subClassOf meta:Top].
  ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
@@ -858,7 +852,63 @@ Dann werden das Objekt sowie die Subjekte und deren Labels ausgewählt.
 Da eine Ressource mit dem gleichen Prädikat als Objekt zu mehreren anderen Ressourcen in Verbindung stehen kann, wird eine Zeichenkette erstellt, die die Labels der Subjekte mit Semikolons getrennt ausgibt.
 Die \acp{uri} werden auch ausgegeben und es wird alles zufällig sortiert.
 
-\todo{Query für Frage nach Objekt und Frage nach Prädikat umformen; Erst machen wenn wacher}
+Die Frage zur Generierung der Fragen nach dem Objekt sieht der nach dem Subjekt ziemlich ähnlich, hier wird immer das Fragewort \enquote{What} verwendet, etwa bei \enquote{What is the Chief Information Officer responsible for?}.
+Allerdings sieht man an dieser Abfrage auch die Schwierigkeit dieser Art von Fragen:
+Es gibt Prädikate, welche aus zwei oder mehr Wörtern bestehen, bei denen das Subjekt zwischen diesen stehen muss, wie hier zum Beispiel der Chief Information Officer zwischen \enquote{is} und \enquote{responsible for}.
+Dies muss jedoch nicht pro Prädikat einzeln gemacht werden, hierzu kann ein regulärer Ausdruck genutzt werden.
+Außerdem müssen manche Prädikate, wie zum Beispiel \enquote{approves}, konjugiert werden.
+Dies lässt sich auch mithilfe eines regulären Ausdrucks für alle Prädikatlabel mit nur einem \texttt{REPLACE}-Statement erreichen.
+Die Abfrage lautet wie folgt:
+\begin{lstlisting}[language=SPARQL]
+# SPARQL-Abfrage für Fragen nach dem Objekt
+SELECT CONCAT(
+    "What ", REPLACE(REPLACE(REPLACE(
+          ?pl, "^is ([a-z]* [a-z]*)", CONCAT("is ", ?sl, " $1")
+        ), "^([a-z]*e)s", CONCAT("is $1d by ", ?sl)
+      ), ".* component", CONCAT("are components of ", ?sl)
+    ), "?") as ?question,
+GROUP_CONCAT(STR(?ol),"; ") as ?answers,
+?s, ?p
+FROM sniko:meta
+FROM sniko:bb
+{
+ ?s ?p ?o.
+ ?p rdfs:domain [rdfs:subClassOf meta:Top].
+ ?p rdfs:range [rdfs:subClassOf meta:Top].
+ ?s a [rdfs:subClassOf meta:Top].
+ ?o a [rdfs:subClassOf meta:Top].
+ ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
+ ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
+ ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
+}
+GROUP BY ?p ?s ?pl ?sl
+ORDER BY RAND()
+\end{lstlisting}
+
+Letztlich, die \ac{sparql}-Abfrage für die Fragen nach den Prädikaten.
+Hierfür gibt es ein striktes Muster, was eine vergleichsweise einfache Abfrage ermöglicht:
+\begin{lstlisting}[language=SPARQL]
+# SPARQL-Abfrage für Fragen nach dem Prädikat
+SELECT CONCAT("How are ", ?sl, " and ", ?ol, " related?") as ?question,
+?pl as ?answers,
+?s, ?o
+FROM sniko:meta
+FROM sniko:bb
+{
+ ?s ?p ?o.
+ ?p rdfs:domain [rdfs:subClassOf meta:Top].
+ ?p rdfs:range [rdfs:subClassOf meta:Top].
+ ?s a [rdfs:subClassOf meta:Top].
+ ?o a [rdfs:subClassOf meta:Top].
+ ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
+ ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
+ ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
+}
+GROUP BY ?s ?o ?sl ?ol
+ORDER BY RAND()
+\end{lstlisting}\todo{Virtuoso 22023 Error SR066: Unsupported case in CONVERT (incomplete RDF box -> VARCHAR)}
+
+\todo{Anzahl der Fragen, die dadurch generiert werden? Und was damit gemacht wird (wie im Benchmark genutzt - alle oder nur die Hälfte oder so Training?)}
 
 \section{Auswahl eines Kandidaten}
 
