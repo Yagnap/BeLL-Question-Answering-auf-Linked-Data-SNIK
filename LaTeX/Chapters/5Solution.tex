@@ -252,9 +252,9 @@ WHERE
   { VALUES ?o1 { bb:PhysicalIntegration } . }
 
 # 7/3 Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?
-SELECT DISTINCT ?o1
+SELECT DISTINCT ?s1
 WHERE
-  { bb:TransinstitutionalHealthInformationSystem meta:isAssociatedWith ?o1 . }
+  { ?s1 rdfs:subClassOf bb:EhrStrategy . }
 
 # 8/1 Which facets of quality have to be considered in HIS?
 SELECT DISTINCT ?s1
@@ -275,8 +275,7 @@ WHERE
 # 8/6 How can quality of HIS be evaluated?
 SELECT DISTINCT ?s1
 WHERE
-  { ?s1 rdfs:subClassOf bb:EvaluationMethod .
-    ?s1 meta:isAssociatedWith bb:HisQuality . }
+  { ?s1 rdfs:subClassOf+ bb:EvaluationMethod . }
 
 # 8.2/1 What criteria for quality of data exist?
 SELECT DISTINCT ?s1
@@ -294,9 +293,9 @@ WHERE
   { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }
 
 # 8.6/1 What are major phases of an IT evaluation study?
-SELECT DISTINCT ?s1
+SELECT DISTINCT ?o1
 WHERE
-  { ?s1 meta:updates bb:ItEvaluationStudy . }
+  { bb:ItEvaluationStudyManagementAndExecution meta:functionComponent ?o1 . }
 
 # 8.6/2 What are major IT evaluation methods?
 SELECT DISTINCT ?s1
@@ -306,22 +305,22 @@ WHERE
 # 9/3 What are the tasks and methods for strategic HIS planning?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISPlanning meta:updates | meta:functionComponent ?o1 . }
+  { bb:StrategicHISPlanning meta:functionComponent ?o1 . }
 
 # 9/4 What are the tasks and methods for strategic HIS monitoring?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISMonitoring meta:updates | meta:functionComponent ?o1 . }
+  { bb:StrategicHISMonitoring meta:functionComponent ?o1 . }
 
 # 9/5 What are the tasks and methods for strategic HIS directing?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISDirecting meta:updates | meta:functionComponent ?o1 . }
+  { bb:StrategicHISDirecting meta:functionComponent ?o1 . }
 
 # 9.2/2 What are the three main scopes of information management?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:InformationManagement rdfs:subClassOf ?o1 . }
+  { bb:InformationManagement meta:functionComponent ?o1 . }
 
 # 9.3.4.2/1 Which organizational units are involved in information management?
 SELECT DISTINCT ?s1
@@ -513,12 +512,12 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 \textbf{Frage \texttt{7/3}:} Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?
 
 \begin{itemize}
-  \item Functional Redundancy Rate (\aurl{bb}{FunctionalRedundancyRate})
-  \item Health Care Network (\aurl{bb}{HealthCareNetwork})
-  \item Telemicroscopy (\aurl{bb}{Telemicroscopy})
-  \item Teleradiology (\aurl{bb}{Teleradiology})
-  \item Transinstitutional Health Care Function \\
-  (\aurl{bb}{TransinstitutionalHealthCareFunction})
+  \item The Strategy of Independent Health Banks \\
+  (\aurl{bb}{TheStrategyOfIndependentHealthBanks})
+  \item The Regional- or National-Centric Strategy \\
+  (\aurl{bb}{TheRegionalOrNationalCentricStrategy})
+  \item The Provider-Centric Strategy (\aurl{bb}{TheProviderCentricStrategy})
+  \item Patient-Centric Strategy (\aurl{bb}{PatientCentricStrategy})
 \end{itemize}
 
 \textbf{Frage \texttt{8/1}:} Which facets of quality have to be considered in HIS?
@@ -591,7 +590,30 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 \textbf{Frage \texttt{8/6}:} How can quality of HIS be evaluated?
 
 \begin{itemize}
+  \item Usability Study (\aurl{bb}{UsabilityStudy})
   \item SWOT Analysis (\aurl{bb}{SwotAnalysis})
+  \item Quantitative Evaluation Method (\aurl{bb}{QuantitativeEvaluationMethod})
+  \item Qualitative Evaluation Method (\aurl{bb}{QualitativeEvaluationMethod})
+  \item Delphi Survey (\aurl{bb}{DelphiSurvey})
+  \item Qualitative Observation (\aurl{bb}{QualitativeObservation})
+  \item Qualitative Interview (\aurl{bb}{QualitativeInterview})
+  \item Qualitative Content Analysis (\aurl{bb}{QualitativeContentAnalysis})
+  \item Case Study (\aurl{bb}{CaseStudy})
+  \item Utility Analysis (\aurl{bb}{UtilityAnalysis})
+  \item User Survey (\aurl{bb}{UserSurvey})
+  \item Time Measurement (\aurl{bb}{TimeMeasurement})
+  \item Return-on-Investment Study (\aurl{bb}{ReturnOnInvestmentStudy})
+  \item Quantitative Questionnaire (\aurl{bb}{QuantitativeQuestionnaire})
+  \item Patient Satisfaction Survey (\aurl{bb}{PatientSatisfactionSurvey})
+  \item Event Counting Study (\aurl{bb}{EventCountingStudy})
+  \item Effectiveness Study (\aurl{bb}{EffectivenessStudy})
+  \item Cost-Effectiveness Analysis (\aurl{bb}{CostEffectivenessAnalysis})
+  \item Cost–Benefit Analysis (\aurl{bb}{CostBenefitAnalysis})
+  \item Consensus Method (\aurl{bb}{ConsensusMethod})
+  \item Work Sampling (\aurl{bb}{WorkSampling})
+  \item Time-Motion Analysis (\aurl{bb}{TimeMotionAnalysis})
+  \item Unstructured Interview (\aurl{bb}{UnstructuredInterview})
+  \item Semistructured Interview (\aurl{bb}{SemistructuredInterview})
 \end{itemize}
 
 \textbf{Frage \texttt{8.2/1}:} What criteria for quality of data exist?
@@ -647,14 +669,15 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 \textbf{Frage \texttt{8.6/1}:} What are major phases of an IT evaluation study?
 
 \begin{itemize}
-  \item Ad Hoc Monitoring (\aurl{bb}{AdHocMonitoring})
-  \item IT Evaluation Study Management and Execution \\
-  (\aurl{bb}{ItEvaluationStudyManagementAndExecution})
-  \item Permanent Monitoring (\aurl{bb}{PermanentMonitoring})
-  \item Tactical Information Management (\aurl{bb}{TacticalInformationManagement})
+  \item Execution of an IT Evaluation Study (\aurl{bb}{ExecutionOfAnITEvaluationStudy})
+  \item First Study Design (\aurl{bb}{FirstStudyDesign})
+  \item Operationalization of Methods and Detailed Study Plan \\
+  (\aurl{bb}{OperationalizationOfMethodsAndDetailedStudyPlan})
+  \item Report and Publication of Study (\aurl{bb}{ReportAndPublicationOfStudy})
+  \item Study Exploration (\aurl{bb}{StudyExploration})
 \end{itemize}
 
-\textbf{Frage \texttt{8.6/2}:} What are major IT evaluation methods?
+\textbf{Frage \texttt{8.6/2}:} What are major IT evaluation methods?\todo{Frage Antworten & SPARQL ändern, sodass nur noch bb:QualitativeEvaluationMethod und bb:QuantitativeEvaluationMethod als Antworten da sind - vllt über Chapter?}
 
 \begin{itemize}
   \item Delphi Survey (\aurl{bb}{DelphiSurvey})
@@ -670,11 +693,6 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item Long-Term HIS Planning(\aurl{bb}{LongTermHISPlanning})
   \item Portfolio Management(\aurl{bb}{PortfolioManagement})
   \item Short-Term HIS Planning (\aurl{bb}{ShortTermHISPlanning})
-  \item HIS Architecture (\aurl{bb}{HisArchitecture})
-  \item Hospital Information System (\aurl{bb}{HospitalInformationSystem})
-  \item Project Portfolio (\aurl{bb}{ProjectPortfolio})
-  \item Strategic Information Management Plan \\
-  (\aurl{bb}{StrategicInformationManagementPlan})
 \end{itemize}
 
 \textbf{Frage \texttt{9/4}:} What are the tasks and methods for strategic HIS monitoring?
@@ -684,9 +702,6 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item HIS Certification (\aurl{bb}{HisCertification})
   \item Permanent Monitoring (\aurl{bb}{PermanentMonitoring})
   \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
-  \item Key Performance Indicator (\aurl{bb}{KeyPerformanceIndicator})
-  \item Strategic Decision (\aurl{bb}{StrategicDecision})
-  \item Strategic HIS Monitoring Result (\aurl{bb}{StrategicHISMonitoringResult})
 \end{itemize}
 
 \textbf{Frage \texttt{9/5}:} What are the tasks and methods for strategic HIS directing?
@@ -698,10 +713,9 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item Project Resource Allocation (\aurl{bb}{ProjectResourceAllocation})
   \item Project Time Allocation (\aurl{bb}{ProjectTimeAllocation})
   \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
-  \item Project (\aurl{bb}{Project})
 \end{itemize}
 
-\textbf{Frage \texttt{9.2/2}:} What are the three main scopes of information management?
+\textbf{Frage \texttt{9.2/2}:} What are the three main scopes of information management?\todo{SPARQL ändern, sodass nur noch Antworten #3-5 rauskommen}
 
 \begin{itemize}
   \item IT Service Management (\aurl{bb}{ItServiceManagement})
@@ -797,7 +811,7 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 Für die Erstellung der einfacheren Fragen müss mithilfe der großen Datenmenge aus Tripeln, die über \ac{snik} vorhanden ist, viele Fragen erstellt werden.
 Fragen können sowohl nach dem Subjekt als auch nach dem Objekt oder Prädikat des Tripels gestellt werden.
 Für die ersteren beiden Intentionen ist das Fragewort über das Prädikat herausfindbar und ist immer \enquote{Who} oder \enquote{What}.
-Für die Frage nach dem Prädikat ist die Zeichenkette immer \enqutoe{How are ?sl and ?ol related?}, wobei \texttt{?sl} für das Label des Subjekts und \texttt{?ol} für das Label des Objekts steht.
+Für die Frage nach dem Prädikat ist die Zeichenkette immer \enquote{How are ?sl and ?ol related?}, wobei \texttt{?sl} für das Label des Subjekts und \texttt{?ol} für das Label des Objekts steht.
 Danach folgt das Label des Prädikats des Tripels und das Label der anderen gegebenen Ressource.
 
 Die Erstellung der Abfragen ist aufgrund der vielen Funktionen, die \ac{sparql} insbesondere auch für die Verarbeitung von Zeichenketten bereitstellt, pro Typ über eine einzige \ac{sparql}-Abfrage möglich.
@@ -844,7 +858,7 @@ Dann werden das Objekt sowie die Subjekte und deren Labels ausgewählt.
 Da eine Ressource mit dem gleichen Prädikat als Objekt zu mehreren anderen Ressourcen in Verbindung stehen kann, wird eine Zeichenkette erstellt, die die Labels der Subjekte mit Semikolons getrennt ausgibt.
 Die \acp{uri} werden auch ausgegeben und es wird alles zufällig sortiert.
 
-\todo{Query für Frage nach Objekt & Frage nach Prädikat umformen; Erst machen wenn wacher}
+\todo{Query für Frage nach Objekt und Frage nach Prädikat umformen; Erst machen wenn wacher}
 
 \section{Auswahl eines Kandidaten}
 
