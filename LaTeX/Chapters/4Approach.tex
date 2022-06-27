@@ -22,11 +22,14 @@ Die Fragen könnten etwa die Struktur \emph{Fragewort -- Prädikat -- Subjekt} h
 Dies ist, aufgrund der vergleichsweise geringen Zahl an Prädikaten, leicht realisierbar.
 Die Antwort ist das Subjekt oder Objekt, das andere von beiden würde jeweils die Rolle des Subjekts in der Frage einnehmen.
 Je nachdem, ob das Objekt oder Subjekt gegeben ist, ändert sich natürlich auch das Fragewort.
-Denkbar sind auch Fragen der Art \enquote{How are A and B related?}, um nach dem Prädikat zu fragen.
 Hierbei wird eine riesige Menge an Fragen generiert werden, die aber alle die gleiche, oder zumindest sehr ähnliche, Struktur haben.
 Es müssten auch manche Fragen gefiltert oder gar nicht erst generiert werden, etwa die Fragen nach dem Label oder alternativen Labels.
 Es sollen also keine Beziehungen zwischen Literalen abgefragt werden, nur zwischen Ressourcen.
 Dadurch kann die große Datenmenge \ac{snik}s genutzt werden.
+Es sollen 1000 in die Test- und der Rest in die Trainingsgruppe eingeteilt werden.
+
+Um den Effekt des Typs der Fragen in der Trainingsgruppe auszuwerten, sollen die beiden Fragensätze sowohl je getrennt und einmal zusammen auf den gleichen, untrainierten Datensatz angewandt werden.
+Zur Untersuchung des Effekts der Anzahl der Fragen sollen in Schritten von einhundert Fragen automatisch neue, untranierte Datensätze erstellt und mit der entsprechenden Anzahl von Fragen trainiert werden.
 
 \subsection{Evaluierungsmaße}
 

@@ -889,30 +889,7 @@ GROUP BY ?p ?s ?pl ?sl
 ORDER BY RAND()
 \end{lstlisting}
 
-Letztlich, die \ac{sparql}-Abfrage für die Fragen nach den Prädikaten.
-Hierfür gibt es ein striktes Muster, was eine vergleichsweise einfache Abfrage ermöglicht:
-\begin{lstlisting}[language=SPARQL]
-# SPARQL-Abfrage für Fragen nach dem Prädikat
-SELECT CONCAT("How are ", ?sl, " and ", ?ol, " related?") as ?question,
-?pl as ?answers,
-?s, ?o
-FROM sniko:meta
-FROM sniko:bb
-{
- ?s ?p ?o.
- ?p rdfs:domain [rdfs:subClassOf meta:Top].
- ?p rdfs:range [rdfs:subClassOf meta:Top].
- ?s a [rdfs:subClassOf meta:Top].
- ?o a [rdfs:subClassOf meta:Top].
- ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
- ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
- ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
-}
-GROUP BY ?s ?o ?sl ?ol
-ORDER BY RAND()
-\end{lstlisting}\todo{Virtuoso 22023 Error SR066: Unsupported case in CONVERT (incomplete RDF box -> VARCHAR)}
-
-\todo{Anzahl der Fragen, die dadurch generiert werden? Und was damit gemacht wird (wie im Benchmark genutzt - alle oder nur die Hälfte oder so Training?)}
+Dadurch konnten, pro Abfrage, 2056 Fragen generiert werden, was auch der Anzahl an Tripeln in der Teilontologie \texttt{bb} entspricht.
 
 \section{Auswahl eines Kandidaten}
 
