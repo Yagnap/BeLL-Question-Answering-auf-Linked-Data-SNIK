@@ -15,7 +15,10 @@ Dieser besteht aus Fragen, welche auf in \citet{bb} vorhandenes Wissen zurückgr
 Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht optimal.
 Im Großen und Ganzen lässt sich allerdings auch sagen, dass die Fragen für Question Answering von einfachen Fragen definitiv höchst komplex waren, was auch nicht unterschlagen werden darf.
 
-Die simpleren Fragen waren recht schnell generierbar und haben die große Datenmenge \ac{snik}s gut genutzt.
+Die simpleren Fragen waren recht schnell generierbar und haben die große Datenmenge \ac{snik}s gut genutzt,
+auch wenn durch die Anzahl der Tripel in der Teilontologie \texttt{bb}, 2056, erst mehr Fragen erhofft waren.
+Dies war allerdings aufgrund von fehlenden Labels oder Subjekten mit vielen Objekten über das gleiche Prädikat verbunden waren und somit die gleiche Frage erzeugten,
+was über das Schlüsselwort \texttt{DISTINCT} gekürzt wurde.
 Es könnte darüber nachgedacht werden, die automatisch generierten Fragen komplexer zu machen, dies ist aber nicht unbedingt erforderlich.
 Es konnten viele Fragen automatisch generiert werden, was viel mehr Trainingsfragen bedeutet hat, was auch dem fine-tuning hilft.
 Gerade die Fragen mit verschiedenen Intentionen sind hilfreich.
@@ -51,3 +54,6 @@ Noch dazu kommt das Problem der Ambiguität verschiedener Begriffe, welches mit 
 Natürlich können die Ressourcen, die mit \aurl{skos}{closeMatch} oder \aurl{skos}{exactMatch} verbunden sind, als ähnlich, vielleicht sogar gleich definiert werden.
 Aber es gibt ja auch Ressourcen, die nur über \aurl{skos}{broadMatch} oder gar nicht verbunden sind und trotzdem fast gleich heißen.
 Solche Ambiguitäten gilt es aufzulösen, das ist ein weiterer Grund, warum hier nur eine Teilontologie abgefragt wurde.
+
+In Zukunft sollte das System definitiv, wie schon geplant, auch am automatisch definierten Benchmark evaluiert werden und der Effekt der Anzahl und des Typs der Fragen ausgewertet werden.
+Auch denkbar wäre das Erstellen eines eigenen, auf \ac{snik} spezialisierten, Question Answering-Systems, was aber aufgrund der hohen Komplexität unpraktisch erscheint.

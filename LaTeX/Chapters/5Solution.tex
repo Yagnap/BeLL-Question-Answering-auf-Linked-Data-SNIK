@@ -817,14 +817,13 @@ Danach folgt das Label des Prädikats des Tripels und das Label der anderen gege
 Die Erstellung der Abfragen ist aufgrund der vielen Funktionen, die \ac{sparql} insbesondere auch für die Verarbeitung von Zeichenketten bereitstellt, pro Typ über eine einzige \ac{sparql}-Abfrage möglich.
 \begin{lstlisting}[language=SPARQL]
 # SPARQL-Abfrage für Fragen nach dem Subjekt
-SELECT REPLACE(REPLACE(REPLACE(REPLACE(
-        CONCAT("What ",?pl, " ", ?ol),
+SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
+        CONCAT("What ",?pl, " ", ?ol, "?"),
         "What is responsible", "Who is responsible"),
       "What approves", "Who approves"),
     "What is involved", "Who is involved"),
   "What .* component", "What has the component") as ?question,
-GROUP_CONCAT(STR(?sl),"; ") as ?answers,
-?p, ?o
+CONCAT("SELECT DISTINCT ?s WHERE { ?s <", STR(?p), "> <", STR(?o), ">. }") as ?sparql
 FROM sniko:meta
 FROM sniko:bb
 {
@@ -833,11 +832,9 @@ FROM sniko:bb
  ?p rdfs:range [rdfs:subClassOf meta:Top].
  ?s a [rdfs:subClassOf meta:Top].
  ?o a [rdfs:subClassOf meta:Top].
- ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
  ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
  ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
 }
-GROUP BY ?p ?o ?pl ?ol
 ORDER BY RAND()
 \end{lstlisting}
 
@@ -865,14 +862,13 @@ Dies lässt sich auch mithilfe eines regulären Ausdrucks für alle Prädikatlab
 Die Abfrage lautet wie folgt:
 \begin{lstlisting}[language=SPARQL]
 # SPARQL-Abfrage für Fragen nach dem Objekt
-SELECT CONCAT(
+SELECT DISTINCT CONCAT(
     "What ", REPLACE(REPLACE(REPLACE(
-          ?pl, "^is ([a-z]* [a-z]*)", CONCAT("is ", ?sl, " $1")
-        ), "^([a-z]*e)s", CONCAT("is $1d by ", ?sl)
-      ), ".* component", CONCAT("are components of ", ?sl)
+          STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))
+        ), "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")
+      ), "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))
     ), "?") as ?question,
-GROUP_CONCAT(STR(?ol),"; ") as ?answers,
-?s, ?p
+CONCAT ("SELECT DISTINCT ?o WHERE { <", STR(?s), "> <", STR(?p), "> ?o. }") as ?sparql
 FROM sniko:meta
 FROM sniko:bb
 {
@@ -883,9 +879,7 @@ FROM sniko:bb
  ?o a [rdfs:subClassOf meta:Top].
  ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
  ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
- ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
 }
-GROUP BY ?p ?s ?pl ?sl
 ORDER BY RAND()
 \end{lstlisting}
 
