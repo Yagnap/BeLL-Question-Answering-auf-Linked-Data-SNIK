@@ -13,6 +13,9 @@ i = 1
 traino = "["
 testo = "["
 
+trainID = 2;
+testID = 2;
+
 # Loop through individual questions + respective queries
 for b in a:
     if b == "":
@@ -26,7 +29,25 @@ for b in a:
     sparql = c[1].replace("\n", " ")
     sparql = sparql.replace("   ", "")
     # Output in JSON format for QAnswer
-    out = (
+    if i in train:
+        traino += (
+        '\n{'
+        + '\n\t"sparqlKB": "SNIK_BB_DRAFT"'
+        + '\n\t"knowledgebase": "SNIK_BB_DRAFT"'
+        + '\n\t"question": "'
+        + q
+        + ',\n\t"correct": true,'
+        + '\n\t"language": "en",'
+        + '\n\t"id": '
+        + str(trainID)
+        + ',\n\t"sparql": "'
+        + sparql
+        + '",\n\t"userName": "kirdie"'
+        + '\n},'
+        )
+        trainID += 1
+    else:
+        testo += (
         '\n{\n\t"question": "'
         + q
         + '",\n\t"language": "en",\n\t"id": '
@@ -34,11 +55,8 @@ for b in a:
         + ',\n\t"sparql": "'
         + sparql
         + '"\n},'
-    )
-    if i in train:
-        traino += out
-    else:
-        testo += out
+        )
+        testID += 1
 # remove last "," and close bracket
 traino = traino[:-1] + "]"
 testo = testo[:-1] + "]"
