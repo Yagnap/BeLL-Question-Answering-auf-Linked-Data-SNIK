@@ -7,7 +7,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 2,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:Model . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/Model> . }",
 	"userName": "kirdie"
 },
 {
@@ -18,7 +18,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 3,
-	"sparql": "SELECT DISTINCT ?o1 WHERE {VALUES ?o1 {bb:InformationManagement } . }",
+	"sparql": "SELECT DISTINCT ?o1 WHERE {VALUES ?o1 {<http://snik.eu/ontology/bb/InformationManagement> } . }",
 	"userName": "kirdie"
 },
 {
@@ -29,7 +29,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 7,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:Metamodel . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/Metamodel> . }",
 	"userName": "kirdie"
 },
 {
@@ -40,7 +40,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 11,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/HisArchitecture> . }",
 	"userName": "kirdie"
 },
 {
@@ -51,7 +51,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 12,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/HisArchitecture> . }",
 	"userName": "kirdie"
 },
 {
@@ -62,7 +62,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 15,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EhrStrategy . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/EhrStrategy> . }",
 	"userName": "kirdie"
 },
 {
@@ -73,7 +73,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 16,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { bb:HisQuality meta:entityTypeComponent ?o1 . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { <http://snik.eu/ontology/bb/HisQuality> <http://snik.eu/ontology/meta/entityTypeComponent> ?o1 . }",
 	"userName": "kirdie"
 },
 {
@@ -84,7 +84,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 17,
-	"sparql": "SELECT DISTINCT ?s2 WHERE { bb:QualityOfHISStructures meta:entityTypeComponent ?o1 . ?s2 rdfs:subClassOf ?o1 . }",
+	"sparql": "SELECT DISTINCT ?s2 WHERE { <http://snik.eu/ontology/bb/QualityOfHISStructures> <http://snik.eu/ontology/meta/entityTypeComponent> ?o1 . ?s2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?o1 . }",
 	"userName": "kirdie"
 },
 {
@@ -95,7 +95,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 20,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfData . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfData> . }",
 	"userName": "kirdie"
 },
 {
@@ -106,7 +106,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 21,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISArchitecture . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfHISArchitecture> . }",
 	"userName": "kirdie"
 },
 {
@@ -117,7 +117,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 22,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfHISProcesses> . }",
 	"userName": "kirdie"
 },
 {
@@ -128,7 +128,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 23,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:ItEvaluationStudyManagementAndExecution meta:functionComponent ?o1 . }",
+	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/ItEvaluationStudyManagementAndExecution> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }",
 	"userName": "kirdie"
 },
 {
@@ -139,7 +139,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 25,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISPlanning meta:functionComponent ?o1 . }",
+	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISPlanning> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }",
 	"userName": "kirdie"
 },
 {
@@ -150,7 +150,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 27,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:functionComponent ?o1 . }",
+	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISDirecting> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }",
 	"userName": "kirdie"
 },
 {
@@ -161,7 +161,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 30,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 meta:isResponsibleForFunction bb:InformationManagement . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://snik.eu/ontology/meta/isResponsibleForFunction> <http://snik.eu/ontology/bb/InformationManagement> . }",
 	"userName": "kirdie"
 },
 {
@@ -172,7 +172,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 32,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:StrategicHISMonitoring . }",
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/StrategicHISMonitoring> . }",
 	"userName": "kirdie"
 },
 {
@@ -183,7 +183,7 @@
 	"context":"[]",
 	"language": "en",
 	"id": 35,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:uses ?o1 . }",
+	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISDirecting> <http://snik.eu/ontology/meta/uses> ?o1 . }",
 	"userName": "kirdie"
 },
 {
@@ -194,6 +194,6 @@
 	"context":"[]",
 	"language": "en",
 	"id": 36,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {bb:HealthCareNetwork } . }",
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {<http://snik.eu/ontology/bb/HealthCareNetwork> } . }",
 	"userName": "kirdie"
 }]

@@ -1,5 +1,9 @@
 %*****************************************
 \chapter{Ergebnisse}\label{ch:results}
 %*****************************************
-Auch die Ergebnisse können in mehrere Kapitel aufgeteilt oder sogar mit der Präsentation der Ausführung verschmolzen werden.
-Wichtig ist, dass man zwischen Ausführung und Ergebnis unterscheiden kann.
+Es wurde ein Benchmark aus 36 Lehrbuchfragen, von denen jeweils 18 zufällig der Test- und Trainingsgruppe zugeordnet wurden, erstellt und auf QAnswer verwendet.
+Bei diesem gibt es allerdings noch teilweise Probleme bei der Richtigkeit weniger Antworten, welche aber die \ac{spaql}-Abfragen nicht wesentlich beeinflussen sollten.
+Ein weiterer Benchmark aus 997 automatisch generierten, sehr einfachen Fragen wurde automatisch erstellt, 100 von den Fragen wurden dem Testset, 897 dem Trainingsset zugeordnet.
+
+Die Teilontologie aus \texttt{bb} wurde in ein Question Answering-System, QAnswer KB, getan und mithilfe des Benchmarks aus Lehrbuchfragen trainiert und evaluiert,
+wobei die trainierte Version deutlich schlechter und fast schon unverwendbar war, die untrainierte Version hingegen relativ gute Ergebnisse geliefert hat.

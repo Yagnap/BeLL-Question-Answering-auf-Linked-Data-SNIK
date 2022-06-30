@@ -10,6 +10,10 @@ Oft gibt es Fragen wie \texttt{9.3.4.2/1}, \enquote{Which organizational units a
 Hier wird das Prädikat \aurl{meta}{functionComponent} verwendet, obwohl \aurl{meta}{isInvolvedIn} deutlich naheliegender ist.
 Dies lässt auf eine eventuelle Untauglichkeit der Fragen für die Ontologie schließen, oder auf eine manchmal nicht optimal modellierte Datenbasis.
 
+Die Antworten von paar Fragen enthalten noch falsche Ressourcen oder es fehlen wichtige Antworten, dies sollte noch behoben werden.
+Es sollte allerdings kein großes Hindernis sein, da die \ac{sparql}-Abfragen größtenteils richtig sind und ein paar Fehler auch durch die Ontologie selbst stammen könnten,
+also nicht die \ac{sparql}-Abfragen und somit das Training beeinflussen.
+
 Es ist aber trotzdem gelungen, die gegebenen Fragen, welche auch teilweise beantwortet werden können, einen Benchmark zu erstellen.
 Dieser besteht aus Fragen, welche auf in \citet{bb} vorhandenes Wissen zurückgreifen und dieses festigen soll.
 Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht optimal.
@@ -47,7 +51,10 @@ und nicht den normalen Sprachgebrauch wiederspiegeln.
 Hilfreich dafür sind definitiv die Property Mappings von QAnswer, aber diese haben auch nur eine auf die eingegebenen Lexikalisierungen begrenzte Wirkungsweite.
 
 Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches Question Answering-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
-jedoch ist es gelungen, ein Question Answering-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist allerdings \todo{ernüchternd/nur mangelhaft/akzeptabel (ohne "allerdings")}
+jedoch ist es gelungen, ein Question Answering-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist beim untrainierten System bei den gegebenen Umständen mit einem F-Maß von 0.24 erstaunlich, jedoch war das Training enttäuschend.
+Es bleibt abzuwarten, was das Training mit dem großen, automatisch generierten Benchmark verursacht
+Vermutlich waren die 18 Fragen, die zum Training eingesetzt wurden, deutlich zu wenige, um irgendeine Verallgemeinerung möglich zu machen und das System auf die Ontologie einzustellen.
+
 Für die Verwendung der Teilontologien zusammen fehlt nicht nur ein System, dass diese Aufgabe bewältigt, sondern vor allem auch schlicht die Trainingsfragen.
 Bereits die aus dem blauen Buch waren nur teilweise geeignet, für das Training für aller Teilontologien müsste man vermutlich Nutzerfragen von Studierenden sammeln.
 Noch dazu kommt das Problem der Ambiguität verschiedener Begriffe, welches mit verschiedenen Teilontologien eingeführt wird.
@@ -57,3 +64,6 @@ Solche Ambiguitäten gilt es aufzulösen, das ist ein weiterer Grund, warum hier
 
 In Zukunft sollte das System definitiv, wie schon geplant, auch am automatisch definierten Benchmark evaluiert werden und der Effekt der Anzahl und des Typs der Fragen ausgewertet werden.
 Auch denkbar wäre das Erstellen eines eigenen, auf \ac{snik} spezialisierten, Question Answering-Systems, was aber aufgrund der hohen Komplexität unpraktisch erscheint.
+
+Für eine Nutzung des Systems durch Studenten sind die Ergebnisse momentan aber nicht ausreichend.
+Infrage kommend wäre höchstens das untrainierte System, welches eine halbwegs akkurate Beantwortung von Fragen, besonders leichteren, ermöglicht.

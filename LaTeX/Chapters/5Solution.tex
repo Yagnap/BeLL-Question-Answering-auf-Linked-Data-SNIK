@@ -665,7 +665,7 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:
   \item Study Exploration (\aurl{bb}{StudyExploration})
 \end{itemize}
 
-\textbf{Frage \texttt{8.6/2}:} What are major IT evaluation methods?\todo{Frage Antworten und SPARQL ändern, sodass nur noch bb:QualitativeEvaluationMethod und bb:QuantitativeEvaluationMethod als Antworten da sind - vllt über Chapter?}
+\textbf{Frage \texttt{8.6/2}:} What are major IT evaluation methods?
 
 \begin{itemize}
   \item Delphi Survey (\aurl{bb}{DelphiSurvey})
@@ -703,7 +703,7 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:
   \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
 \end{itemize}
 
-\textbf{Frage \texttt{9.2/2}:} What are the three main scopes of information management?\todo{SPARQL ändern, sodass nur noch Antworten \#3-5 rauskommen}
+\textbf{Frage \texttt{9.2/2}:} What are the three main scopes of information management?
 
 \begin{itemize}
   \item IT Service Management (\aurl{bb}{ItServiceManagement})
@@ -958,7 +958,7 @@ Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebniss
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für \acp{uri} zu nutzen.
 Bei den \emph{Property Mapping} können \acp{uri} und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
-Dies wurde hier für \eneuote{phases} und \emph{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
+Dies wurde hier für \enquote{phases} und \emph{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
 
 \subsubsection{Training}
 
@@ -966,7 +966,6 @@ Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Tes
 Vor dem Training wurde der Testdatensatz verwendet, um die Leistung des Systems vor und nach dem Training vergleichen zu können.
 Siehe hierzu \cref{tab:qanswervortraining}.
 Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainingsdatensatz und 18 im Testdatensatz sind.
-\todo{neu machen mit neuen Queries}
 
 \begin{longtable}{r c c c c c c c}
   \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
@@ -1008,3 +1007,45 @@ Auffällig ist, dass nur Fragen nach der Definition richtig beantwortet wurden, 
 Das liegt daran, dass QAnswer so konfiguriert ist, dass es immer die Definition der gefundenen Ressource mit anzeigt.
 Bei Definitionsfragen wird die Ressource meist genannt und kann so gut vom System gefunden werden.
 Die einzige Frage, wo dies nicht der Fall ist, ist \texttt{10/2}, wo das Kapitel, dass das Kapitel \enquote{Health Care Networks} fand.
+
+\begin{longtable}{r c c c c c c c}
+  \caption[Testdatensatz QAnswer nach Training]{Testdatensatz auf QAnswer KG nach dem Training.
+  Conf.: QAnswer \emph{Confidence}-Wert}
+  \label{tab:qanswervortraining}
+  \\
+  \toprule
+  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
+  \midrule
+  \endfirsthead
+  \toprule
+  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
+  \midrule
+  \endhead
+	4/1			& 0.39 & 1 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	4/2			& 0.31 & 0 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	4/4			& 0.31 & 1 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	5/3			& 0.34 & 4 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	5/4			& 0.73 & 0 & 7 & 0 & 0.00 & 0.00 & 0.00 \\
+	6/2			& 0.64 & 0 & 4 & 0 & 0.00 & 0.00 & 0.00 \\
+	6.6/2		& 0.05 & 528 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	6.7/2		& 0.29 & 2 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	8/3			& 0.52 & 0 & 5 & 0 & 0.00 & 0.00 & 0.00 \\
+	8/6			& 0.46 & 1 & 24 & 0 & 0.00 & 0.00 & 0.00 \\
+	8.6/2		& 0.41 & 0 & 5 & 0 & 0.00 & 0.00 & 0.00 \\
+	9/4			& 0.40 & 3 & 4 & 0 & 0.00 & 0.00 & 0.00 \\
+	9.2/2		& 0.31 & 1 & 5 & 0 & 0.00 & 0.00 & 0.00 \\
+	9.3.4.2/1	& 0.30 & 1 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+	9.4/1		& 0.38 & 0 & 5 & 0 & 0.00 & 0.00 & 0.00 \\
+	9.5/2		& 0.42 & 1 & 4 & 0 & 0.00 & 0.00 & 0.00 \\
+	9.6/1		& 0.67 & 0 & 6 & 0 & 0.00 & 0.00 & 0.00 \\
+	10/2		& 0.29 & 1 & 1 & 0 & 0.00 & 0.00 & 0.00 \\
+  \midrule
+  Durchschnitt  & 0.40 &  &  &   & 0.00 & 0.00 & 0.00 \\
+  \bottomrule
+\end{longtable}
+
+Nach dem Training haben sich die Ergebnisse sehr stark verschlechtert.
+Keine einzige Frage wurde auch nur teilweise richtig beantwortet.
+Sogar der Confidence-Wert ist gesunken.
+Dies deutet auf eine Überspezialisierung durch die Trainingsfragen hin, vorher funktionierte es deutlich besser.
+Zur Bestätigung dieser These müsste aber erst Training und Evaluierung durch die automatisch generierten Fragen stattfinden.

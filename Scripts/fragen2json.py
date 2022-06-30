@@ -1,3 +1,11 @@
+import re
+
+def prefixToURI(sparql):
+    ret = re.sub(r"meta:([a-zA-Z]+)", r"<http://snik.eu/ontology/meta/\1>", sparql) # replace meta prefix
+    ret = re.sub(r"bb:([a-zA-Z]+)", r"<http://snik.eu/ontology/bb/\1>", ret) # replace bb prefix
+    ret = re.sub(r"rdfs:([a-zA-Z]+)", r"<http://www.w3.org/2000/01/rdf-schema#\1>", ret) # replace rdfs prefix#
+    return ret
+
 f = open("fragen.txt", "r")
 trainf = open("bb_fragen_train.json", "w")
 testf = open("bb_fragen_test.json", "w")
@@ -39,7 +47,7 @@ for b in a:
         + '\n\t"id": '
         + str(i)
         + ',\n\t"sparql": "'
-        + sparql
+        + prefixToURI(sparql)
         + '",\n\t"userName": "kirdie"'
         + '\n},'
         )
