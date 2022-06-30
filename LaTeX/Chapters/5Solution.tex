@@ -173,7 +173,7 @@ Häufig wurden nach \cref{def:kfrage} komplexe Fragen aussortiert, besonders bei
 Die vermutlich fälschliche Einordnung liegt bei \texttt{6.5/1}, \texttt{8/6} oder \texttt{10/2} vor.
 Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da einige nicht in der Ontologie modelliert sind.
 Diese sind \texttt{4/3}, \texttt{6/1}, \texttt{6/3}, \texttt{8/4}, \texttt{8.4/1} und \texttt{9/2} sowie \texttt{9.3.4.2/3} bis \texttt{9.3.4.2/5}, \texttt{9.4/1} und \texttt{10/3}.
-Somit verbleiben letztendlich 37 Fragen, welche im Folgenden in \ac{sparql}-Abfragen umgewandelt werden.
+Somit verbleiben letztendlich 36 Fragen, welche im Folgenden in \ac{sparql}-Abfragen umgewandelt werden.
 
 \subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
@@ -958,7 +958,7 @@ Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebniss
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für \acp{uri} zu nutzen.
 Bei den \emph{Property Mapping} können \acp{uri} und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
-Dies wurde hier für \emph{phases} und \emph{methods} bei \aurl{meta}{updates} gemacht.
+Dies wurde hier für \eneuote{phases} und \emph{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
 
 \subsubsection{Training}
 
@@ -981,26 +981,26 @@ Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainings
   Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
   \midrule
   \endhead
-  1/2           & 0.49  & 1     & 30    & 0             & 0     & 0     & 0       \\
-  3/3           & 0.90  & 1     & 1     & 1             & 1     & 1     & 1       \\
-  4/1           & 0.95  & 1     & 1     & 0             & 0     & 0     & 0       \\
-  4/4           & 0.88  & 1     & 1     & 1             & 1     & 1     & 1       \\
-  5/4           & 0.25  & 1     & 7     & 0             & 0     & 0     & 0       \\
-  6/2           & 0.32  & 1     & 4     & 0             & 0     & 0     & 0       \\
-  6/4           & 0.22  & 1     & 2     & 0             & 0     & 0     & 0       \\
-  6.7/2         & 0.33  & 1     & 1     & 1             & 1     & 1     & 1       \\
-  7/3           & 0.51  & 1     & 5     & 0             & 0     & 0     & 0       \\
-  8.2/3         & 0.29  & 1     & 13    & 0             & 0     & 0     & 0       \\
-  9/4           & 0.30  & 11    & 7     & 2             & 0.18  & 0.29  & 0.22    \\
-  9/5           & 0.30  & 2     & 7     & 1             & 0.50  & 0.14  & 0.22    \\
-  9.3.4.2/1     & 0.24  & 5     & 1     & 0             & 0     & 0     & 0       \\
-  9.3.4.2/2     & 0.23  & 1     & 1     & 0             & 0     & 0     & 0       \\
-  9.4/1         & 0.35  & 7     & 5     & 5             & 0.71  & 1     & 0.83    \\
-  9.6/1         & 0.35  & 1     & 6     & 0             & 0     & 0     & 0       \\
-  10/1          & 0.87  & 1     & 1     & 1             & 1     & 1     & 1       \\
-  10/2          & 0.41  & 13    & 1     & 0             & 0     & 0     & 0       \\
+	4/1			& 0.95 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
+	4/2			& 0.93 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
+	4/4			& 0.89 & 1 & 1  & 1 & 1.00 & 1.00 & 1.00 \\
+	5/3			& 0.79 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
+	5/4			& 0.35 & 0 & 7  & 0 & 0.00 & 0.00 & 0.00 \\
+	6/2			& 0.33 & 4 & 4  & 4 & 1.00 & 1.00 & 1.00 \\
+	6.6/2		& 0.22 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
+	6.7/2		& 0.49 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
+	8/3			& 0.27 & 1 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
+	8/6			& 0.22 & 1 & 24 & 0 & 0.00 & 0.00 & 0.00 \\
+	8.6/2		& 0.27 & 1 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
+	9/4			& 0.42 & 1 & 4  & 1 & 1.00 & 0.25 & 0.40 \\
+	9.2/2		& 0.24 & 1 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
+	9.3.4.2/1	& 0.24 & 5 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
+	9.4/1		& 0.54 & 0 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
+	9.5/2		& 0.66 & 4 & 4  & 4 & 1.00 & 1.00 & 1.00 \\
+	9.6/1		& 0.67 & 6 & 6  & 6 & 1.00 & 1.00 & 1.00 \\
+	10/2		& 0.47 & 3 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
   \midrule
-  Durchschnitt  & 0.45  &       &       &               & 0.30  & 0.30  & 0.29    \\
+  Durchschnitt  & 0.50 &  &    &   & 0.28 & 0.24 & 0.24 \\
   \bottomrule
 \end{longtable}
 

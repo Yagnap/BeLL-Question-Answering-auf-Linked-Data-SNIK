@@ -1,27 +1,26 @@
-[
-{
-	"question": "What are appropriate models for health information systems?",
-	"language": "en",
-	"id": 2,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:Model . }"
-},
-{
-	"question": "What is information management?",
-	"language": "en",
-	"id": 3,
-	"sparql": "SELECT DISTINCT ?o1 WHERE {VALUES ?o1 {bb:InformationManagement } . }"
-},
-{
+[{
 	"question": "What are hospital information systems?",
 	"language": "en",
 	"id": 4,
 	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HospitalInformationSystem } . }"
 },
 {
+	"question": "What are transinstitutional health information systems?",
+	"language": "en",
+	"id": 5,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:TransinstitutionalHealthInformationSystem } . }"
+},
+{
 	"question": "What are electronic health records?",
 	"language": "en",
 	"id": 6,
 	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:ElectronicHealthRecord } . }"
+},
+{
+	"question": "What is 3LGM2?",
+	"language": "en",
+	"id": 8,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:3LMG2 } . }"
 },
 {
 	"question": "What are typical reference models for HIS?",
@@ -36,34 +35,40 @@
 	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HospitalFunction . }"
 },
 {
-	"question": "How can architectures of HIS be categorized?",
+	"question": "What is meant by the term 'infrastructure'?",
 	"language": "en",
-	"id": 12,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }"
+	"id": 13,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . }"
 },
 {
-	"question": "Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?",
+	"question": "What is meant by physical integration?",
 	"language": "en",
-	"id": 15,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EhrStrategy . }"
+	"id": 14,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:PhysicalIntegration } . }"
 },
 {
-	"question": "Which facets of quality have to be considered in HIS?",
+	"question": "What are the characteristics of  the quality of processes of HIS?",
 	"language": "en",
-	"id": 16,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { bb:HisQuality meta:entityTypeComponent ?o1 . }"
-},
-{
-	"question": "What are the characteristics of the quality of processes of HIS?",
-	"language": "en",
-	"id": 22,
+	"id": 18,
 	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }"
 },
 {
-	"question": "What are the tasks and methods for strategic HIS directing?",
+	"question": "How can quality of HIS be evaluated?",
 	"language": "en",
-	"id": 27,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:functionComponent ?o1 . }"
+	"id": 19,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:EvaluationMethod . }"
+},
+{
+	"question": "What are major IT evaluation methods?",
+	"language": "en",
+	"id": 24,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EvaluationMethod . }"
+},
+{
+	"question": "What are the tasks and methods for strategic HIS monitoring?",
+	"language": "en",
+	"id": 26,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:functionComponent ?o1 . }"
 },
 {
 	"question": "What are the three main scopes of information management?",
@@ -72,10 +77,10 @@
 	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:InformationManagement meta:functionComponent ?o1 . }"
 },
 {
-	"question": "Which boards and persons are involved in information management?",
+	"question": "Which organizational units are involved in information management?",
 	"language": "en",
-	"id": 30,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 meta:isResponsibleForFunction bb:InformationManagement . }"
+	"id": 29,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 meta:functionComponent bb:InformationManagement . }"
 },
 {
 	"question": "What are the typical tasks for strategic HIS planning?",
@@ -84,20 +89,20 @@
 	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:StrategicHISPlanning . }"
 },
 {
-	"question": "What are the typical tasks of strategic HIS monitoring?",
+	"question": "What are the typical methods of strategic HIS monitoring?",
 	"language": "en",
-	"id": 32,
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:StrategicHISMonitoring . }"
+	"id": 33,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . }"
 },
 {
-	"question": "What are the typical methods of strategic HIS directing?",
+	"question": "What are the typical tasks of strategic HIS directing?",
 	"language": "en",
-	"id": 35,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:uses ?o1 . }"
+	"id": 34,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:functionComponent ?o1 . }"
 },
 {
 	"question": "How can health care networks be described?",
 	"language": "en",
 	"id": 37,
-	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {bb:HealthCareNetwork } . }"
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {bb:HealthCareNetwork } . } "
 }]

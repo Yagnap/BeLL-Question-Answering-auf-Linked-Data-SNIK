@@ -2,8 +2,8 @@ f = open("fragen.txt", "r")
 trainf = open("bb_fragen_train.json", "w")
 testf = open("bb_fragen_test.json", "w")
 
-train = [5, 7, 8, 11, 13, 14, 17, 18, 19, 20, 21, 23, 24, 25, 26, 29, 33, 34, 36]
-test = [2, 3, 4, 6, 9, 10, 12, 15, 16, 22, 27, 28, 30, 31, 32, 35, 37, 38]
+train = [2, 3, 7, 11, 12, 15, 16, 17, 20, 21, 22, 23, 25, 27, 30, 32, 35, 36]
+test = [4, 5, 6, 8, 9, 10, 13, 14, 18, 19, 24, 26, 28, 29, 31, 33, 34, 37]
 
 txt = f.read()
 a = txt.split("#")
@@ -12,9 +12,6 @@ i = 1
 
 traino = "["
 testo = "["
-
-trainID = 2;
-testID = 2;
 
 # Loop through individual questions + respective queries
 for b in a:
@@ -40,13 +37,12 @@ for b in a:
         + '\n\t"context":"[]",'
         + '\n\t"language": "en",'
         + '\n\t"id": '
-        + str(trainID)
+        + str(i)
         + ',\n\t"sparql": "'
         + sparql
         + '",\n\t"userName": "kirdie"'
         + '\n},'
         )
-        trainID += 1
     else:
         testo += (
         '\n{\n\t"question": "'
@@ -57,7 +53,6 @@ for b in a:
         + sparql
         + '"\n},'
         )
-        testID += 1
 # remove last "," and close bracket
 traino = traino[:-1] + "]"
 testo = testo[:-1] + "]"
