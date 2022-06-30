@@ -135,7 +135,7 @@ Außerdem wird den Fragen eine ID gegeben, welche aus Kapitelnummer und einer fo
   \textbf{9/2} & \textbf{What organizational structures are appropriate for information management in hospitals?} & \textbf{F} & \textbf{S} & \cmark & \xmark \\
   \textbf{9/3} & \textbf{What are the tasks and methods for strategic HIS planning?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
   \textbf{9/4} & \textbf{What are the tasks and methods for strategic HIS monitoring?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
-  \textbf{9/5} & \textbf{W  hat are the tasks and methods for strategic HIS directing?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
+  \textbf{9/5} & \textbf{What are the tasks and methods for strategic HIS directing?} & \textbf{F} & \textbf{K} & \cmark & \xmark \\
   9/6 & How can experts for information management in hospitals be gained? & P & S & \xmark & \xmark \\
   9.2/1 & What does information management in general and in hospitals encompass? & K & K & \xmark & \xmark \\
   9.2/2 & What are the three main scopes of information management? & F & K & \cmark & \cmark \\
@@ -172,13 +172,12 @@ Ersteres ist beispielsweise bei den Fragen \texttt{6.6/1}, \texttt{8.6/1} oder \
 Häufig wurden nach \cref{def:kfrage} komplexe Fragen aussortiert, besonders bei Einschränkungen, wie etwa Frage \texttt{7/3}.
 Die vermutlich fälschliche Einordnung liegt bei \texttt{6.5/1}, \texttt{8/6} oder \texttt{10/2} vor.
 Jedoch können von den initial als geeignet befundenen Fragen nicht alle verwendet werden, da einige nicht in der Ontologie modelliert sind.
-Diese sind \texttt{4/3}, \texttt{6/1}, \texttt{8/4}, \texttt{8.4/1} und \texttt{9/2} sowie \texttt{9.3.4.2/3} bis \texttt{9.3.4.2/5}, \texttt{9.4/1} und \texttt{10/3}.
+Diese sind \texttt{4/3}, \texttt{6/1}, \texttt{6/3}, \texttt{8/4}, \texttt{8.4/1} und \texttt{9/2} sowie \texttt{9.3.4.2/3} bis \texttt{9.3.4.2/5}, \texttt{9.4/1} und \texttt{10/3}.
 Somit verbleiben letztendlich 37 Fragen, welche im Folgenden in \ac{sparql}-Abfragen umgewandelt werden.
 
 \subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
 Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{sparql}-Abfragen gebildet.
-\todo{Mit Franziskas Feedback korrigieren}
 
 \begin{lstlisting}[language=SPARQL]
 # 1/2 What are appropriate models for health information systems?
@@ -225,11 +224,6 @@ WHERE
 SELECT DISTINCT ?s1
 WHERE
   { ?s1 rdfs:subClassOf bb:HospitalFunction . }
-
-# 6/3 What are typical information processing tools in hospitals?
-SELECT DISTINCT ?s1
-WHERE
-  { ?s1 rdfs:subClassOf+ bb:InformationProcessingTool . }
 
 # 6/4 What are different architectures of HIS?
 SELECT DISTINCT ?s1
@@ -345,17 +339,17 @@ WHERE
 # 9.5/2 What are the typical methods of strategic HIS monitoring?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISMonitoring meta:functionComponent ?o1 . }
+  { bb:StrategicHISMonitoring meta:uses ?o1 . }
 
 # 9.6/1 What are the typical tasks of strategic HIS directing?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISDirecting meta:uses ?o1 . }
+  { bb:StrategicHISDirecting meta:functionComponent ?o1 . }
 
 # 9.6/2 What are the typical methods of strategic HIS directing?
 SELECT DISTINCT ?o1
 WHERE
-  { bb:StrategicHISDirecting meta:functionComponent ?o1 . }
+  { bb:StrategicHISDirecting meta:uses ?o1 . }
 
 # 10/1 What are health care networks?
 SELECT DISTINCT ?o1
@@ -372,7 +366,7 @@ WHERE
 \subsection[Antworten auf die SPARQL-Abfragen]{Antworten auf die \ac{sparql}-Abfragen}
 
 Durch diese Abfragen werden folgende Antworten erhalten;
-Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\todo{Mit Franziskas Feedback korrigieren}
+Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:
 
 \textbf{Frage \texttt{1/2}:} What are appropriate models for health information systems?
 
@@ -475,12 +469,6 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item Research and Education Function (\aurl{bb}{EducationResearch})
   \item Management (\aurl{bb}{Management})
   \item Patient Care(\aurl{bb}{PatientCare})
-\end{itemize}
-
-\textbf{Frage \texttt{6/3}:} What are typical information processing tools in hospitals?
-
-\begin{itemize}
-  \item \emph{keine Antworten}\todo{Frage mglw. entfernen}
 \end{itemize}
 
 \textbf{Frage \texttt{6/4}:} What are different Architectures of HIS?
@@ -764,13 +752,24 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 \textbf{Frage \texttt{9.5/2}:} What are the typical methods of strategic HIS monitoring?
 
 \begin{itemize}
-  \item Ad Hoc Monitoring (\aurl{bb}{AdHocMonitoring})
-  \item HIS Certification (\aurl{bb}{HisCertification})
-  \item Permanent Monitoring (\aurl{bb}{PermanentMonitoring})
-  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+  \item Functional Redundancy Rate (\aurl{bb}{FunctionalRedundancyRate})
+  \item HIS Quality (\aurl{bb}{HisQuality})
+  \item Key Performance Indicator (\aurl{bb}{KeyPerformanceIndicator})
+  \item Strategic Information Management Plan (\aurl{bb}{StrategicInformationManagementPlan})
 \end{itemize}
 
 \textbf{Frage \texttt{9.6/1}:} What are the typical tasks of strategic HIS directing?
+
+\begin{itemize}
+  \item Adoption of Project Result (\aurl{bb}{AdoptionOfProjectResult})
+  \item Monitoring the Project Progress (\aurl{bb}{MonitoringTheProjectProgress})
+  \item Project Initiation (\aurl{bb}{ProjectInitiation})
+  \item Project Resource Allocation (\aurl{bb}{ProjectResourceAllocation})
+  \item Project Time Allocation (\aurl{bb}{ProjectTimeAllocation})
+  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
+\end{itemize}
+
+\textbf{Frage \texttt{9.6/2}:} What are the typical methods of strategic HIS directing?
 
 \begin{itemize}
   \item HIS Architecture (\aurl{bb}{HisArchitecture})
@@ -781,17 +780,6 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item Strategic HIS Monitoring Result (\aurl{bb}{StrategicHISMonitoringResult})
   \item Strategic Information Management Plan \\
   (\aurl{bb}{StrategicInformationManagementPlan})
-\end{itemize}
-
-\textbf{Frage \texttt{9.6/2}:} What are the typical methods of strategic HIS directing?
-
-\begin{itemize}
-  \item Adoption of Project Result (\aurl{bb}{AdoptionOfProjectResult})
-  \item Monitoring the Project Progress (\aurl{bb}{MonitoringTheProjectProgress})
-  \item Project Initiation (\aurl{bb}{ProjectInitiation})
-  \item Project Resource Allocation (\aurl{bb}{ProjectResourceAllocation})
-  \item Project Time Allocation (\aurl{bb}{ProjectTimeAllocation})
-  \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
 \end{itemize}
 
 \textbf{Frage \texttt{10/1}:} What are health care networks?
