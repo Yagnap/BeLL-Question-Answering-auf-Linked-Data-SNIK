@@ -171,7 +171,7 @@ async function ask() {
         encodeURIComponent(x.question) +
         "&lang=" +
         x.language +
-        "&kb=SNIK%2FBB&user=" +
+        "&kb=SNIK_BB_DRAFT&user=" +
         QANSWER_CREDENTIALS.user,
       method: "GET",
       headers: {
