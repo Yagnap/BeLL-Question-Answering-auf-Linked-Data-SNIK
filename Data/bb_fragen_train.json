@@ -1,115 +1,210 @@
 [
 {
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
 	"question": "What are transinstitutional health information systems?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 2,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:TransinstitutionalHealthInformationSystem } . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are typical metamodels for modeling various aspects of HIS?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 3,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:Metamodel . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What is 3LGM2?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 4,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:3LMG2 } . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are different architectures of HIS?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 5,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:TransinstitutionalHealthInformationSystem skos:definition ?o1 . }  "
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HisArchitecture . }",
+	"userName": "kirdie"
 },
 {
-	"question": "What are typical metamodels for modeling various aspects of HIS?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What is meant by the term "infrastructure"?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 6,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What is meant by physical integration?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 7,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf+ bb:Metamodel . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:PhysicalIntegration } . }",
+	"userName": "kirdie"
 },
 {
-	"question": "What is 3LGM2?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are the characteristics of the quality of structures in HIS?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 8,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:3LMG2 skos:definition ?o1 . }  "
+	"sparql": "SELECT DISTINCT ?s2 WHERE { bb:QualityOfHISStructures meta:entityTypeComponent ?o1 . ?s2 rdfs:subClassOf ?o1 . }",
+	"userName": "kirdie"
 },
 {
-	"question": "What are typical information processing tools in hospitals?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are the characteristics of  the quality of processes of HIS?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 9,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "How can quality of HIS be evaluated?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 10,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EvaluationMethod . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What criteria for quality of data exist?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 11,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf+ bb:InformationProcessingTool . }  "
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfData . }",
+	"userName": "kirdie"
 },
 {
-	"question": "How can architectures of HIS be categorized?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What criteria for the overall HIS architecture exist?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 12,
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISArchitecture . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are major phases of an IT evaluation study?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 13,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf+ bb:HisArchitecture . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:ItEvaluationStudyManagementAndExecution meta:functionComponent ?o1 . }",
+	"userName": "kirdie"
 },
 {
-	"question": "What is meant by the term 'infrastructure'?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are major IT evaluation methods?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 14,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:HisInfrastructure skos:definition ?o1 . }  "
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EvaluationMethod . }",
+	"userName": "kirdie"
 },
 {
-	"question": "Which facets of quality have to be considered in HIS?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are the tasks and methods for strategic HIS planning?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 15,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISPlanning meta:functionComponent ?o1 . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are the tasks and methods for strategic HIS monitoring?",
+	"correct": true,
+	"context":"[]",
+	"language": "en",
+	"id": 16,
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:functionComponent ?o1 . }",
+	"userName": "kirdie"
+},
+{
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "Which organizational units are involved in information management?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 17,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:HisQuality meta:entityTypeComponent ?o1 . }  "
+	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 meta:functionComponent bb:InformationManagement . }",
+	"userName": "kirdie"
 },
 {
-	"question": "What are the characteristics of the quality of structures in HIS?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are the typical methods of strategic HIS monitoring?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 18,
-	"sparql": "SELECT DISTINCT ?s2 WHERE{ bb:QualityOfHISStructures meta:entityTypeComponent ?o1 .  ?s2 rdfs:subClassOf ?o1 . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . }",
+	"userName": "kirdie"
 },
 {
-	"question": "What are the characteristics of  the quality of processes of HIS?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are the typical tasks of strategic HIS directing?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 19,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:functionComponent ?o1 . }",
+	"userName": "kirdie"
 },
 {
-	"question": "How can quality of HIS be evaluated?",
+	"sparqlKB": "SNIK_BB_DRAFT"
+	"knowledgebase": "SNIK_BB_DRAFT"
+	"question": "What are health care networks?",
+	"correct": true,
+	"context":"[]",
 	"language": "en",
 	"id": 20,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:EvaluationMethod .  ?s1 meta:isAssociatedWith bb:HisQuality . }  "
-},
-{
-	"question": "What criteria for quality of data exist?",
-	"language": "en",
-	"id": 21,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:QualityOfData . }  "
-},
-{
-	"question": "What are the characteristics of the quality of processes of HIS?",
-	"language": "en",
-	"id": 23,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }  "
-},
-{
-	"question": "What are major phases of an IT evaluation study?",
-	"language": "en",
-	"id": 24,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 meta:updates bb:ItEvaluationStudy . }  "
-},
-{
-	"question": "What are major IT evaluation methods?",
-	"language": "en",
-	"id": 25,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:EvaluationMethod . }  "
-},
-{
-	"question": "What are the tasks and methods for strategic HIS planning?",
-	"language": "en",
-	"id": 26,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISPlanning meta:updates | meta:functionComponent ?o1 . }  "
-},
-{
-	"question": "What are the three main scopes of information management?",
-	"language": "en",
-	"id": 29,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:InformationManagement meta:functionComponent ?o1 . }  "
-},
-{
-	"question": "What are the typical tasks of strategic HIS monitoring?",
-	"language": "en",
-	"id": 33,
-	"sparql": "SELECT DISTINCT ?s1 WHERE{ ?s1 rdfs:subClassOf bb:StrategicHISMonitoring . }  "
-},
-{
-	"question": "What are the typical methods of strategic HIS monitoring?",
-	"language": "en",
-	"id": 34,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISMonitoring meta:functionComponent ?o1 . }  "
-},
-{
-	"question": "What are the typical methods of strategic HIS directing?",
-	"language": "en",
-	"id": 36,
-	"sparql": "SELECT DISTINCT ?o1 WHERE{ bb:StrategicHISDirecting meta:functionComponent ?o1 . }  "
+	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {bb:HealthCareNetwork } . }",
+	"userName": "kirdie"
 }]

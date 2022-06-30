@@ -27,7 +27,7 @@ for b in a:
     q = c[0][(c[0].find(" ", c[0].find(" ") + 1) + 1) :]
     # remove line breaks
     sparql = c[1].replace("\n", " ")
-    sparql = sparql.replace("   ", "")
+    sparql = sparql.replace("  ", "")
     # Output in JSON format for QAnswer
     if i in train:
         traino += (
@@ -36,7 +36,8 @@ for b in a:
         + '\n\t"knowledgebase": "SNIK_BB_DRAFT"'
         + '\n\t"question": "'
         + q
-        + ',\n\t"correct": true,'
+        + '",\n\t"correct": true,'
+        + '\n\t"context":"[]",'
         + '\n\t"language": "en",'
         + '\n\t"id": '
         + str(trainID)
