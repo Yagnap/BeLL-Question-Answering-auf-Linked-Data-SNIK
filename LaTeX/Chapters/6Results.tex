@@ -3,7 +3,9 @@
 %*****************************************
 Es wurde ein Benchmark aus 36 Lehrbuchfragen, von denen jeweils 18 zufällig der Test- und Trainingsgruppe zugeordnet wurden, erstellt und auf QAnswer verwendet.
 Bei diesem gibt es allerdings noch teilweise Probleme bei der Richtigkeit weniger Antworten, welche aber die \ac{spaql}-Abfragen nicht wesentlich beeinflussen sollten.
+\todo{ein benchmark muss schon 100 prozent richtig sein, sonst ist er nicht aussagekräftig}
+\todo{oben sind es 2056 pro fragetyp, hier zusammen nur 997, ist das vielleicht ein implizites SPARQL LIMIT Problem oder hast du an einer Stelle nicht auf die Subontologie eingeschränkt?}
 Ein weiterer Benchmark aus 997 automatisch generierten, sehr einfachen Fragen wurde automatisch erstellt, 100 von den Fragen wurden dem Testset, 897 dem Trainingsset zugeordnet.
-
+\todo{getan umgangssprachlich}
 Die Teilontologie aus \texttt{bb} wurde in ein Question Answering-System, QAnswer KB, getan und mithilfe des Benchmarks aus Lehrbuchfragen trainiert und evaluiert,
 wobei die trainierte Version deutlich schlechter und fast schon unverwendbar war, die untrainierte Version hingegen relativ gute Ergebnisse geliefert hat.

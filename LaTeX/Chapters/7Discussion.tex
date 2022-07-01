@@ -17,12 +17,15 @@ also nicht die \ac{sparql}-Abfragen und somit das Training beeinflussen.
 Es ist aber trotzdem gelungen, die gegebenen Fragen, welche auch teilweise beantwortet werden können, einen Benchmark zu erstellen.
 Dieser besteht aus Fragen, welche auf in \citet{bb} vorhandenes Wissen zurückgreifen und dieses festigen soll.
 Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht optimal.
+\todo{Füllwörter und Phrasen: Im Großen und Ganzen lässt sich allerdings auch sagen... was auch nicht unterschlagen werden darf... alles nicht nötig}
+\todo{Fragen von einfachen Fragen definitiv höchst komplex?}
 Im Großen und Ganzen lässt sich allerdings auch sagen, dass die Fragen für Question Answering von einfachen Fragen definitiv höchst komplex waren, was auch nicht unterschlagen werden darf.
-
+\todo{konsistent: nicht einfachere oder simplere, sondern durchgehend einfache Fragen, damit man eine eindeutige Benennung hat und weiß was gemeint ist}
 Die simpleren Fragen waren recht schnell generierbar und haben die große Datenmenge \ac{snik}s gut genutzt,
-auch wenn durch die Anzahl der Tripel in der Teilontologie \texttt{bb}, 2056, erst mehr Fragen erhofft waren.
+auch wenn durch die Anzahl der Tripel in der Teilontologie \texttt{bb}, 2056, erst mehr Fragen erhofft waren.\todo{achso, deswegen die diskrepanz? dann steht das aber bei der SPARQL Abfrage falsch da, oder? die erzeugt ja schon fragen dort steht aber 2056. wieviele labels fehlen denn? eigentlich muss in snik alles ein label haben.}
 Dies war allerdings aufgrund von fehlenden Labels oder Subjekten mit vielen Objekten über das gleiche Prädikat verbunden waren und somit die gleiche Frage erzeugten,
 was über das Schlüsselwort \texttt{DISTINCT} gekürzt wurde.
+\todo{nee, das ist ja gerade das ziel, einfache fragen als baseline für die komplexen zu haben. wenn man die einfachen komplexer macht sind sie ja nicht mehr einfach.}
 Es könnte darüber nachgedacht werden, die automatisch generierten Fragen komplexer zu machen, dies ist aber nicht unbedingt erforderlich.
 Es konnten viele Fragen automatisch generiert werden, was viel mehr Trainingsfragen bedeutet hat, was auch dem fine-tuning hilft.
 Gerade die Fragen mit verschiedenen Intentionen sind hilfreich.
@@ -40,11 +43,13 @@ Es ist aber trotzdem ein Ansatz, der betrachtet werden sollte.
 
 Die Erwartung war, dass das Feld mittlerweile reif genug für Systeme ist, die das einfache und präzise Nutzen von semantischem Question Answering ermöglichen.
 Es war aber sehr schwer, Systeme mit ausreichender Dokumentation und bereitgestelltem Programm zu finden, die noch dazu mit eigenen Daten und vielleicht sogar über mehrere Ontologien verwendbar waren.
+\todo{tun/taten vermeiden}
 Funktionieren taten die meisten davon nicht.
 
 Es muss allerdings auch gesagt werden, dass \ac{snik} nicht besonders für semantisches Question Answering geeignet ist.
 Dieses geht meist, wie in \cref{sub:qasysteme} gesehen, nach der Methode vor, dass die Prädikate der \ac{sparql}-Abfrage den Prädikaten des Satzes entsprechen sollen.
 Da \ac{snik} auf verhältnismäßig wenigen Prädikaten beruht, deren Label noch dazu oft wenig in einem natürlichen Satz verwendet würden, ist es meist unpraktikabel, solche zu verwenden.
+\todo{zu dem problem der prädikatslabels kann im open domain fall eine pattern library ähnlich wie BOA helfen, siehe \url{https://aksw.org/Projects/BOA.html} zitier mal eines der boa papers oder kapitel, vielleicht \url{https://link.springer.com/chapter/10.1007/978-3-662-43585-4\_12} ..  in unserem fall mit snik mit den wenigen prädikaten wäre es aber wohl wesentlich praktikabler, diese labels manuell hinzuzufügen. kannst ja ein paar vorschläge hinschreiben und ich baue das dann ein.}
 An Außnahmen wie \aurl{meta}{isResponsibleForFunction} sieht man, dass diese deutlich besser funktionieren, da sie etwa in der Frage \enquote{What is the CIO responsible for?} vorhanden sind.
 Prädikate wie \aurl{meta}{entityTypeComponent} mit dem Label \enquote{entity type component} haben es dort schwerer, da sie auf das Metamodell \ac{snik}s zurückgreifen
 und nicht den normalen Sprachgebrauch wiederspiegeln.
@@ -53,6 +58,7 @@ Hilfreich dafür sind definitiv die Property Mappings von QAnswer, aber diese ha
 Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches Question Answering-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
 jedoch ist es gelungen, ein Question Answering-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist beim untrainierten System bei den gegebenen Umständen mit einem F-Maß von 0.24 erstaunlich, jedoch war das Training enttäuschend.
 Es bleibt abzuwarten, was das Training mit dem großen, automatisch generierten Benchmark verursacht
+\todo{punkt fehlt}
 Vermutlich waren die 18 Fragen, die zum Training eingesetzt wurden, deutlich zu wenige, um irgendeine Verallgemeinerung möglich zu machen und das System auf die Ontologie einzustellen.
 
 Für die Verwendung der Teilontologien zusammen fehlt nicht nur ein System, dass diese Aufgabe bewältigt, sondern vor allem auch schlicht die Trainingsfragen.
