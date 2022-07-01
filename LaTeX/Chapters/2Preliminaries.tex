@@ -123,6 +123,7 @@ Alle in dieser Arbeit verwendeten Präfixe sind in \cref{tab:prefixes} mit ihren
     he    & \url{http://snik.eu/ontology/he/}                   \\
     ob    & \url{http://snik.eu/ontology/ob/}                   \\
     meta  & \url{http://snik.eu/ontology/meta/}                 \\
+    sniko & \url{http://www.snik.eu/ontology/}                  \\
     rdf   & \url{http://www.w3.org/1999/02/22-rdf-syntax-ns\#}  \\
     rdfs  & \url{http://www.w3.org/2000/01/rdf-schema\#}        \\
     ex    & \url{http://example.org/}                           \\
@@ -467,7 +468,7 @@ Sie wurden zuerst für maschinelle Übersetzung eingesetzt, sind jetzt aber als 
 
 Der sogenannte Attention-Mechanismus (Aufmerksamkeitsmechanismus) basiert auf dem Encoder-Decoder-Modell.
 Es löst das Problem des Modells, dass dort alle Informationen der Eingabe in einen Vektor bestimmter Länge getan werden müssen
-und somit Probleme bei langen Sätzen wie diesem hier entstehen könnten.
+und somit Probleme bei langen Sätzen wie diesem hier entstehen können.
 Der Attention-Mechanismus löst dieses Problem, indem bei jeder Iteration ein variabler Kontextvektor erzeugt wird \citep{attentionintro}.
 Dieser ähnelt sehr der menschlichen Aufmerksamkeit, was den Namen des Mechanismus erklärt.
 Für die \ac{rnn} werden statt \acsp{lstm} \acsp{gru} verwendet.

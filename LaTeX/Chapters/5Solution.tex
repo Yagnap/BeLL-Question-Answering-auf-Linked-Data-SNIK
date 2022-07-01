@@ -177,8 +177,7 @@ Somit verbleiben letztendlich 36 Fragen, welche im Folgenden in \ac{sparql}-Abfr
 
 \subsection[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}
 
-Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{sparql}-Abfragen gebildet.
-\todo{noch mit einbauen, dass Dr. Franziska Jahn bei der korrektur geholfen hat aber kein extra Satz, vielleicht: gebildet und durch Dr. Franziska Jahn korrigiert}
+Aus den in \cref{sub:fragenklassifikation} ausgewählten Fragen werden nun \ac{sparql}-Abfragen gebildet und durch Dr. Franziska Jahn korrigiert.
 
 \begin{lstlisting}[language=SPARQL]
 # 1/2 What are appropriate models for health information systems?
@@ -366,15 +365,15 @@ WHERE
 
 \subsection[Antworten auf die SPARQL-Abfragen]{Antworten auf die \ac{sparql}-Abfragen}
 
-Durch diese Abfragen werden folgende Antworten erhalten;
-Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\todo{die beiden Sätze zu einem Zusammenfassen}
-\todo{die von Franziska als falsch bewerteten Antworten könnte man z.B. durch fett gedruckt hervorheben. oder waren das sachen die wir auf unserer Seite korrigieren müssen? die antworten müssen ja alle richtig sein beim goldstandard}
-\todo{nach frage 6/2 kommt 6/4. in der tabelle steht 6/3 aber noch drin. soll das so sein?}
+Nutzer, die die jeweiligen Fragen fragen, sollen, basierend auf den obigen Abfragen, folgende Antworten erhalten:
+\footnote{Momentan stehen hier noch einige falsche Antworten, diese sind \textbf{fett} gedruckt.
+In der finalen Version dieser Arbeit werden diese allerdings so gut wie möglich korrigiert sein.}
+%\todo{nach frage 6/2 kommt 6/4. in der tabelle steht 6/3 aber noch drin. soll das so sein?} Ja, wurde aussortiert weil keine Antworten in SNIK vorhanden. Steht in einer Auflistung nach der Tabelle, die hab ich aber alle in der Tabelle selbst nicht als nicht-beantwortbar gewertet.
 \textbf{Frage \texttt{1/2}:} What are appropriate models for health information systems?
 
 \begin{itemize}
   \item Technical Model (\aurl{bb}{TechnicalModel})
-  \item Strategic Alignment Model (\aurl{bb}{StrategicAlignmentModel})
+  \item \textbf{ Strategic Alignment Model (\aurl{bb}{StrategicAlignmentModel})}
   \item Reference Model (\aurl{bb}{ReferenceModel})
   \item Organizational Model (\aurl{bb}{OrganizationalModel})
   \item OpenEHR Model of Processes (\aurl{bb}{OpenEHRModelOfProcesses})
@@ -439,7 +438,7 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item Functional Metamodel (\aurl{bb}{FunctionalMetamodel})
   \item Data Metamodel (\aurl{bb}{DataMetamodel})
   \item Business Process Metamodel (\aurl{bb}{BusinessProcessMetamodel})
-  \item HL7 Reference Information Model (\aurl{bb}{HL7ReferenceInformationModel})
+  \item \textbf{ HL7 Reference Information Model (\aurl{bb}{HL7ReferenceInformationModel})}
   \item 3LGM$^{2}$ (\aurl{bb}{3LGM2})
   \item 3LGM$^{2}$-S (\aurl{bb}{3LGM2S})
   \item 3LGM$^{2}$-M (\aurl{bb}{3LGM2M})
@@ -670,11 +669,11 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 \textbf{Frage \texttt{8.6/2}:} What are major IT evaluation methods?
 
 \begin{itemize}
-  \item Delphi Survey (\aurl{bb}{DelphiSurvey})
+  \item \textbf{ Delphi Survey (\aurl{bb}{DelphiSurvey})}
   \item Qualitative Evaluation Method (\aurl{bb}{QualitativeEvaluationMethod})
   \item Quantitative Evaluation Method (\aurl{bb}{QuantitativeEvaluationMethod})
-  \item SWOT Analysis (\aurl{bb}{SwotAnalysis})
-  \item Usability Study (\aurl{bb}{UsabilityStudy})
+  \item \textbf{ SWOT Analysis (\aurl{bb}{SwotAnalysis})}
+  \item \textbf{ Usability Study (\aurl{bb}{UsabilityStudy})}
 \end{itemize}
 
 \textbf{Frage \texttt{9/3}:} What are the tasks and methods for strategic HIS planning?
@@ -708,8 +707,8 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 \textbf{Frage \texttt{9.2/2}:} What are the three main scopes of information management?
 
 \begin{itemize}
-  \item IT Service Management (\aurl{bb}{ItServiceManagement})
-  \item Modeling Information Systems (\aurl{bb}{ModelingInformationSystems})
+  \item \textbf{ IT Service Management (\aurl{bb}{ItServiceManagement})}
+  \item \textbf{ Modeling Information Systems (\aurl{bb}{ModelingInformationSystems})}
   \item Operational Information Management (\aurl{bb}{OperationalInformationManagement})
   \item Strategic Information Management (\aurl{bb}{StrategicInformationManagement})
   \item Tactical Information Management (\aurl{bb}{TacticalInformationManagement})
@@ -719,12 +718,14 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
 
 \begin{itemize}
   \item Hospital Administration (\aurl{bb}{HospitalAdministration})
+  \item \emph{Fehlen weiterer Antworten}
 \end{itemize}
 
 \textbf{Frage \texttt{9.3.4.2/2}:} Which boards and persons are involved in information management?
 
 \begin{itemize}
   \item Chief Information Officer (\aurl{bb}{ChiefInformationOfficer})
+  \item \emph{Fehlen weiterer Antworten}
 \end{itemize}
 
 \textbf{Frage \texttt{9.4/2}:} What are the typical tasks for strategic HIS planning?
@@ -796,20 +797,17 @@ Diese Antworten sollen also Nutzer, die die jeweiligen Fragen fragen, erhalten:\
   \item Health Care Network (\aurl{bb}{HealthCareNetwork})
 \end{itemize}
 
-\subsubsection{Automatische Erstellung einfacherer Fragen}
-\todo{müss}
-Für die Erstellung der einfacheren Fragen müss mithilfe der großen Datenmenge aus Tripeln, die über \ac{snik} vorhanden ist, viele Fragen erstellt werden.
-\todo{einfachere -> einfache (überall)}
-\todo{für die erstellung der fragen müssen viele fragen erstellt werden? was ist das für eine aussage?}
+\subsubsection{Automatische Erstellung einfacher Fragen}
+
+Für die Erstellung der einfachen Fragen muss die großen Datenmenge aus Tripeln \ac{snik}s genutzt werden.
 Fragen können sowohl nach dem Subjekt als auch nach dem Objekt oder Prädikat des Tripels gestellt werden.
 Für die ersteren beiden Intentionen ist das Fragewort über das Prädikat herausfindbar und ist immer \enquote{Who} oder \enquote{What}.
 Für die Frage nach dem Prädikat ist die Zeichenkette immer \enquote{How are ?sl and ?ol related?}, wobei \texttt{?sl} für das Label des Subjekts und \texttt{?ol} für das Label des Objekts steht.
 Danach folgt das Label des Prädikats des Tripels und das Label der anderen gegebenen Ressource.
 
-Die Erstellung der Abfragen ist aufgrund der vielen Funktionen, die \ac{sparql} insbesondere auch für die Verarbeitung von Zeichenketten bereitstellt, pro Typ über eine einzige \ac{sparql}-Abfrage möglich.
-\todo{das präfix sniko hast du in dieser arbeit noch nicht definiert. es steht für http://www.snik.eu/ontology/. entweder du schreibst es in deine präfixtabelle oder als PREFIX oben in die sparql abfrage. gilt auch für andere stellen wo das vorkommt.}
-\todo{die replaces würde ich gleich einrücken, habe ich gleich mal unten gemacht}
-\todo{bei der SPARQL Abfrage habe ich dir doch geholfen, das muss man eventuell noch mit erwähnen, oder steht das woanders? also kein extra satz aber vielleicht kann man vom betreuer bereitgestellt oder unter mithilfe des betreuers irgendwo reinschieben}
+Die Erstellung der Abfragen ist aufgrund der vielen Funktionen, die \ac{sparql} insbesondere auch für die Verarbeitung von Zeichenketten bereitstellt, pro Typ über eine einzige \ac{sparql}-Abfrage möglich,
+welche, vom Betreuer Dr. Konrad Höffner bereitgestellt, auf der des \ac{snik}-Quizzes basiert.
+
 \begin{lstlisting}[language=SPARQL]
 # SPARQL-Abfrage für Fragen nach dem Subjekt
 SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
@@ -833,7 +831,7 @@ FROM sniko:bb
 ORDER BY RAND()
 \end{lstlisting}
 
-Zuerst wird die Frage mithilfe der Zeichenketten-Funktionen generiert.\todo{was ist denn eine zeichenketten-funktion? meinst du concat? das steht für Konkatenation, die Verkettung von Zeichen oder Zeichenketten.}
+Zuerst wird die Frage mithilfe der String-Funktionen generiert.
 Anfangs wird eine Zeichenkette aus dem Fragewort \enquote{What}, welches das von Prädikaten am häufigsten verwendete ist, dem Label des Prädikats und dem Label des Objekts gebildet,
 um eine bearbeitbare Grundlage zu haben, welche oft schon so verwendet werden kann.
 Es werden die einzelnen Prädikate, welche das Fragewort \enquote{Who} haben oder für die Nutzung als Frage leicht verändert werden müssen,
@@ -855,15 +853,14 @@ Dies muss jedoch nicht pro Prädikat einzeln gemacht werden, hierzu kann ein reg
 Außerdem müssen manche Prädikate, wie zum Beispiel \enquote{approves}, konjugiert werden.
 Dies lässt sich auch mithilfe eines regulären Ausdrucks für alle Prädikatlabel mit nur einem \texttt{REPLACE}-Statement erreichen.
 Die Abfrage lautet wie folgt:
-\todo{auch hier bitte einrückung nicht syntaktisch sondern auf selbe höhe von den replace aufrufen, finde ich übersichtlicher}
 \begin{lstlisting}[language=SPARQL]
 # SPARQL-Abfrage für Fragen nach dem Objekt
 SELECT DISTINCT CONCAT(
     "What ", REPLACE(REPLACE(REPLACE(
-          STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))
-        ), "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")
-      ), "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))
-    ), "?") as ?question,
+    STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
+    "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")),
+    "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))),
+    "?") as ?question,
 CONCAT ("SELECT DISTINCT ?o WHERE { <", STR(?s), "> <", STR(?p), "> ?o. }") as ?sparql
 FROM sniko:meta
 FROM sniko:bb
@@ -878,20 +875,23 @@ FROM sniko:bb
 }
 ORDER BY RAND()
 \end{lstlisting}
-\todo{ich würde die kommas weglassen}
-Dadurch konnten, pro Abfrage, 2056 Fragen generiert werden, was auch der Anzahl an Tripeln in der Teilontologie \texttt{bb} entspricht.
+
+Dadurch konnten 621 Fragen nach dem Subjekt und 376 Fragen nach dem Objekt generiert werden.
+Dies entspricht nicht ganz der Anzahl von Tripeln der Teilontologie \texttt{bb}, was zuerst erwartet war.
+Die Anzahl wird allerdings einerseits dadurch verringert, dass manche Ressourcen kein Label haben und dies in der Abfrage gefordert wird.
+und dass bei der Frage nach den Subjekten viele Fragen durch das Schlüsselwort \texttt{DISTINCT} gekürzt wurden.
+Die Fragen nach einem Objekt mit dem gleichen Prädikat von verschiedenen Subjekten waren natürlich immer gleich,
+äquivalent zu den Fragen nach dem Subjekt mit verschiedenen Objekten und gleichen Prädikaten.
 
 \section{Auswahl eines Kandidaten}
 
-Die Auswahl eines oder mehrerer Kandidaten gestaltete sich aufgrund von nicht instand gehaltener Programme\todo{grammatik: aufgrund von Programmen...ähnliche}
-und der Spezialisierung von vielen Systemen auf DBpedia oder ähnlichen Wissensbasen sehr schwierig.
+Die Auswahl eines oder mehrerer Kandidaten gestaltete sich aufgrund von nicht instand gehaltener Programme
+und der Spezialisierung von vielen Systemen auf DBpedia oder ähnliche Wissensbasen sehr schwierig.
 Bei gAnswer2 war es beispielsweise nicht möglich, überhaupt ein Programm, was man hätte ausprobieren können, zu finden,
-bei gAnswer war die Vorbereitung der Daten sehr aufwändig und die gegebenen Werkzeuge kaputt.\todo{kaputt ist informell, kann man das präzisieren?}
+bei gAnswer war die Vorbereitung der Daten sehr aufwändig und die gegebenen Werkzeuge nicht mehr funktional.
 DeepPavlov war am Anfang sehr vielversprechend, besonders aufgrund des modularen Aufbaus.
-Jedoch gab es keine Möglichkeit, andere Daten als Wikidata zu verwenden, weshalb es für den Einsatz mit \ac{snik} wenig hilfreich ist.\todo{Präsenz: gab -> gibt}
-\todo{füllwörter wie wenig vermeiden. wenig hilfreich -> z.B. nicht nutzbar}
-\todo{asknow ist doch kein ort, daher passt wo meiner Meinung nach nicht}
-Ähnlich sieht es mit AskNow aus, wo aufgrund des Entity Linkings DBpedia verwendet werden muss.
+Jedoch gibt es keine Möglichkeit, andere Daten als Wikidata zu verwenden, weshalb es für den Einsatz mit \ac{snik} nicht nutzbar ist.
+Ähnlich sieht es mit AskNow aus, wofür aufgrund des Entity Linkings DBpedia verwendet werden muss.
 In der Dokumentation\footnote{\url{http://docs.deeppavlov.ai/en/master/features/models/kbqa.html}, abgerufen am 9. Mai 2022} wird allerdings geschrieben,
 dass in der Zukunft auch die Verwendung anderer Quellen möglich sein sollen.
 All diese und andere Probleme beschrieb bereits \citet{diefenbachkbqa}.
@@ -904,28 +904,24 @@ Er nannte speziell die Probleme der
   \item Fähigkeit, über mehrere Dateien zu suchen und
   \item Präsentation der Antwort.
 \end{itemize}
-\todo{waren -> sind. bitte überall präsenz}
-Hier waren vor allem die Portabilität und Robustheit, aber auch teilweise die Präsentation der Antwort problematisch.
+Hier sind vor allem die Portabilität und Robustheit, aber auch teilweise die Präsentation der Antwort problematisch.
 
 \subsection{TeBaQA}
-\todo{dieser absatz liest sich, als hättest du ihn nachts um 1 geschrieben :-)}
+
 TeBaQA war anfangs sehr vielversprechend, mehr noch als DeepPavlov.
-\todo{wer ist man? das klingt umgangssprachlich.}
-Es sollte die Verwendung von eigenen \ac{rdf}-Tripeln ermöglichen, indem man die \texttt{indexing.properties}-Datei so verändert, dass die eigene Ontologie verwendet wird.
-\todo{sollte -> soll -> eigentlich ganz weglassen}
-\todo{gab -> gibt}
-Es gab zwei Ordner, einen namens \texttt{ontology} und einen namens \texttt{data}.
-Da \ac{snik}, wie in \cref{sec:snik} schon erwähnt, eine Ontologien aus Ontologien ist, kam in den \texttt{ontology}-Ordner nur die \texttt{meta.ttl}, wo die Properties gespeichert sind.
-Die restlichen Tripel kamen alle in den \texttt{data}-Ordner, da es TeBaQA auch möglich sein sollte, mehrere Dateien als Quelle zu verwenden.
+Es ermöglicht die Verwendung von eigenen \ac{rdf}-Tripeln ermöglichen, indem die \texttt{indexing.properties}-Datei verändert wird.
+Es gibt zwei Ordner, einen namens \texttt{ontology} und einen namens \texttt{data}.
+Da \ac{snik}, wie in \cref{sec:snik} schon erwähnt, eine Ontologien aus Ontologien ist, wird in den \texttt{ontology}-Ordner nur die \texttt{meta.ttl}-Datei gelegt,
+welche die Teilontologie enthält, in welcher die Properties gespeichert sind.
+Die restlichen Tripel kommen alle in den \texttt{data}-Ordner, da es bei TeBaQA auch möglich ist, mehrere Dateien als Quelle zu verwenden.
 Die auf \texttt{.flag} endenden Variablen wurden auf \texttt{true} gesetzt.
 Andere Dateien wurden nicht verändert.
-\todo{quasi ist hier ein füllwort. wir...habe -> wir ... haben}
+
 Leider warf das System immer wieder Fehler bezüglich der ElasticSearch-Konfiguration, weshalb wir ein Docker-Image,
-also quasi eine auf Anwendungsebene virtuelle Umgebung, mit ElasticSearch 6.6.1, TeBaQA und der \ac{snik}-Ontologie erstellt habe.
-\todo{diese war darin? es wurden werde? was soll das heißen? wir konnten nicht alle Fehler beheben, da es zu Fehlern kam?}
-Diese war zusätzlich noch ein weiteres Mal darin, da es Probleme mit der Reihenfolge des Ladens der Daten gab.
-Letztendlich konnten wir aber nicht alle Probleme und Fehler beheben, da es immer wieder zu Laufzeitfehlern kam.
-Es wurden werde \ac{sparql}-Abfragen noch Ergebnisse angezeigt.
+also eine auf Anwendungsebene virtuelle Umgebung, mit ElasticSearch 6.6.1, TeBaQA und der \ac{snik}-Ontologie erstellt haben.
+Die Ontologie ist zusätzlich noch ein weiteres Mal in dem Docker-Image, um Probleme mit der Reihenfolge des Ladens der Daten zu beheben.
+Letztendlich können wir das System aber nicht nutzen, da immer wieder zu Laufzeitfehlern auftreten,
+sodass weder \ac{sparql}-Abfragen noch Ergebnisse angezeigt werden.
 
 \subsection{QAnswer KG}
 
@@ -973,8 +969,7 @@ Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebniss
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für \acp{uri} zu nutzen.
 Bei den \emph{Property Mapping} können \acp{uri} und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
-\todo{warum phases und methods unterschiedlich formatieren?}
-Dies wurde hier für \enquote{phases} und \emph{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
+Dies wurde hier für \enquote{phases} und \enquote{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
 
 \subsubsection{Training}
 
@@ -1022,8 +1017,7 @@ Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainings
 Auffällig ist, dass nur Fragen nach der Definition richtig beantwortet wurden, diese aber konsistent.
 Das liegt daran, dass QAnswer so konfiguriert ist, dass es immer die Definition der gefundenen Ressource mit anzeigt.
 Bei Definitionsfragen wird die Ressource meist genannt und kann so gut vom System gefunden werden.
-\todo{wo das kapitel, dass das kapitel?}
-Die einzige Frage, wo dies nicht der Fall ist, ist \texttt{10/2}, wo das Kapitel, dass das Kapitel \enquote{Health Care Networks} fand.
+Die einzige Frage, wo dies nicht der Fall ist, ist \texttt{10/2}, wo das Kapitel \enquote{Health Care Networks} gefunden wird.
 
 \begin{longtable}{r c c c c c c c}
   \caption[Testdatensatz QAnswer nach Training]{Testdatensatz auf QAnswer KG nach dem Training.
@@ -1061,8 +1055,10 @@ Die einzige Frage, wo dies nicht der Fall ist, ist \texttt{10/2}, wo das Kapitel
   \bottomrule
 \end{longtable}
 
-Nach dem Training haben sich die Ergebnisse sehr stark verschlechtert.\todo{hm, also das keine einzige frage richtig ist, klingt für mich nach einem schwerwiegenderen Fehler als nur Überspezialisierung. Vielleicht ist irgendeine Option falsch eingestellt gewesen? das ist natürlich blöd so kurz vor der abgabe, das klingt wie etwas, das man langwierig überprüfen muss.}
+Nach dem Training haben sich die Ergebnisse sehr stark verschlechtert.
 Keine einzige Frage wurde auch nur teilweise richtig beantwortet.
 Sogar der Confidence-Wert ist gesunken.
 Dies deutet auf eine Überspezialisierung durch die Trainingsfragen hin, vorher funktionierte es deutlich besser.
 Zur Bestätigung dieser These müsste aber erst Training und Evaluierung durch die automatisch generierten Fragen stattfinden.
+Eine weitaus wahrscheinlichere Möglichkeit ist aber ein großer Fehler bei der Konfiguration der Trainingsfragen oder des Systems in QAnswer.
+Dieser muss noch behoben werden.
