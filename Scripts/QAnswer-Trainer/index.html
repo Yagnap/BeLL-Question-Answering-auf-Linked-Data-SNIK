@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Automatisches Training</title>
+
+        <link rel="stylesheet" href="stylesheet.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+        <script src="pw.js"></script>
+        <script src="qanswer-interaktion.js"></script>
+        <script lang="JavaScript">
+            $("submit").onclick = async ()=>{
+                textbookQuestionToggle = $("useTextbookQuestionsCheckbox").checked;
+                await main();
+            };
+        </script>
+        
+    </head>
+    <body>
+        <div class="top">
+            <h1 class="heading">Automatisiertes Training und Evaluation von QAnswer KB</h1>
+            <h2 class="heading">mit automatisch generierten und manuell gesammelten SNIK-Fragen</h2>
+            <div name="links">
+                <p><b>QAnswer:</b> <a href="https://app.qanswer.ai/qa-systems">Website</a> und <a href="https://app.qanswer.ai/swagger-ui.html">API</a>.</p>
+                <p><b>SNIK:</b> <a href="https://www.snik.eu/">Homepage</a>, <a href="https://www.snik.eu/graph/">Graphvisualisierung</a> und <a href="https://www.snik.eu/sparql/">SPARQL-Endpunkt</a>.</p>
+                <p><b>Rahmen:</b> BeLL <i>Question Answering auf SNIK</i></p>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="body">
+            <p>
+                
+            </p>
+            <input type="checkbox" id="useTextbookQuestionsCheckbox" name="useTextbookQuestionsCheckbox" value="useTextbookQuestionsCheckbox" />
+            <label for="useTextbookQuestionsCheckbox">Textbuchfragen verwenden</label> <br />
+            <input type="button" id="submit" name="submit" value="Eingeben und Test starten" />
+            <br />
+        </div>
+        <div class="body" id="content">
+            <div id="output-wrapper"></div>
+            <br />
+        </div>
+        <div class="bottom" id="large-bottom">
+            <br />
+        </div>
+        <div class="bottom" id="small-bottom">
+            <br />
+        </div>
+    </body>
+</html>
