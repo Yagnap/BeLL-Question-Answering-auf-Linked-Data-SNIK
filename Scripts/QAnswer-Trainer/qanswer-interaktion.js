@@ -32,7 +32,6 @@ var token;
  * ]
  * 
  */
-
 var generatedQAPairsTraining = {};
 var textbookQAPairsTraining = {};
 
@@ -66,7 +65,8 @@ const kb_name = "snik_bb_autotest";
  * Main function called by button clicked in index.php
  * Contains whole pipeline for:
  * 
- * 1. Log intp the API to gather the verification token
+ * 0. Retreive correct answers from SNIK
+ * 1. Log into the API to gather the verification token
  * 2. Repeat the following, incrementing the number of automatically generated questions each run
  *      a. Upload feedback (question-answer-pairs) one by one
  *      b. Training
@@ -76,6 +76,10 @@ const kb_name = "snik_bb_autotest";
  * 4. Output
  */
 async function main() {
+
+
+
+    // login
     await login();
     console.info("Logged in");
     console.info("Starting loop");
@@ -106,23 +110,26 @@ async function main() {
         // Questions already provided feedback for will stay
         console.groupCollapsed("Questions-Answer-Pairs");
         for(j = 0; j < count; j++) {
-            provide_feedback(generatedQAPairsTraining[i + j]);
+            await provide_feedback(generatedQAPairsTraining[i + j]);
         }
         console.groupEnd();
 
 
         // Reset model
-        reset_model();
+        await reset_model();
         console.info("Model reset");
 
         // End of console group for amount of questions.
         console.groupEnd();
+
+        // Evaluation of step
 
     }
 
     console.timeEnd("Time required to finish loop");
     console.info("Loop finished");
 
+    // Evaluation of whole iteration
 
 }
 
@@ -157,7 +164,9 @@ async function login() {
  * 
  * API called: /api/feedback/create
  * 
- * @param {array} question_answer_pair Question-Answer-pair in format [(string) question, (string) ]
+ * @param {array} question_answer_pair One-dimensional array containing question-answer-pair to evaluate,
+ * the first index (0) containing the natural language question as a string,
+ * the second one (1) containing the answer (as a SPARQL query) as a string.
  */
 async function provide_feedback(question_answer_pair) {
 
@@ -246,4 +255,16 @@ async function reset_model() {
   };
 
   await $.ajax(settings);
+}
+
+/**
+ * Evaluates the performance of a single question-answer-pair on both QAnswer and SNIK.
+ * Returns array of key indicators.
+ *  
+ * @param {array} question_answer_pair One-dimensional array containing question-answer-pair to evaluate,
+ * the first index (0) containing the natural language question as a string,
+ * the second one (1) containing the answer (as a SPARQL query) as a string.
+ */
+async function eval_pair(question_answer_pair) {
+
 }
