@@ -79,57 +79,57 @@ async function main() {
 
 
 
-    // login
-    await login();
-    console.info("Logged in");
-    console.info("Starting loop");
-    console.time("Time required to finish loop");
-    
-    // 10 new questions per iteration
-    for(let i = 0; i < generatedQAPairsTraining.length; i += 10) {
+  // login
+  await login();
+  console.info("Logged in");
+  console.info("Starting loop");
+  console.time("Time required to finish loop");
 
-        // Start of a (collapsed) console group.
-        console.groupCollapsed("Fragenanzahl: " + i + "; Lehrbuchfragen: " + textbookQuestionToggle);
+  // 10 new questions per iteration
+  for (let i = 0; i < generatedQAPairsTraining.length; i += 10) {
 
-        // number of questions to add
-        let count = 10;
+    // Start of a (collapsed) console group.
+    console.groupCollapsed("Fragenanzahl: " + i + "; Lehrbuchfragen: " + textbookQuestionToggle);
 
-        // Define how many questions should be added, when
-        // (a) The array is almost at its end
-        // (b) The test just started, meaning no questions should be used for training.
-        // Default: count stays 10
-        if((i + 10) >= generatedQAPairsTraining.length) {
-            count = generatedQAPairsTraining.length - i; // i.e. 1003 - 990 = 13 to add
-        } else if(i == 0) {
-            count = 0; // no questions added at all
-        }
-        console.info("Count of " + count + " QA-pairs to upload, making a total of " + (count +  i) + " pairs");
+    // number of questions to add
+    let count = 10;
 
-        // add questions (feedback) individually
-        // when count = 0, no questions are provided feedback for at all.
-        // Questions already provided feedback for will stay
-        console.groupCollapsed("Questions-Answer-Pairs");
-        for(j = 0; j < count; j++) {
-            await provide_feedback(generatedQAPairsTraining[i + j]);
-        }
-        console.groupEnd();
-
-
-        // Reset model
-        await reset_model();
-        console.info("Model reset");
-
-        // End of console group for amount of questions.
-        console.groupEnd();
-
-        // Evaluation of step
-
+    // Define how many questions should be added, when
+    // (a) The array is almost at its end
+    // (b) The test just started, meaning no questions should be used for training.
+    // Default: count stays 10
+    if ((i + 10) >= generatedQAPairsTraining.length) {
+      count = generatedQAPairsTraining.length - i; // i.e. 1003 - 990 = 13 to add
+    } else if (i == 0) {
+      count = 0; // no questions added at all
     }
+    console.info("Count of " + count + " QA-pairs to upload, making a total of " + (count + i) + " pairs");
 
-    console.timeEnd("Time required to finish loop");
-    console.info("Loop finished");
+    // add questions (feedback) individually
+    // when count = 0, no questions are provided feedback for at all.
+    // Questions already provided feedback for will stay
+    console.groupCollapsed("Questions-Answer-Pairs");
+    for (j = 0; j < count; j++) {
+      await provide_feedback(generatedQAPairsTraining[i + j]);
+    }
+    console.groupEnd();
 
-    // Evaluation of whole iteration
+
+    // Reset model
+    await reset_model();
+    console.info("Model reset");
+
+    // End of console group for amount of questions.
+    console.groupEnd();
+
+    // Evaluation of step
+
+  }
+
+  console.timeEnd("Time required to finish loop");
+  console.info("Loop finished");
+
+  // Evaluation of whole iteration
 
 }
 
@@ -142,21 +142,26 @@ async function main() {
  * 
  */
 async function login() {
-    let settings = {
-        async: true,
-        crossDomain: true,
-        url: "http://app.qanswer.ai/api/user/signin",
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        processData: false,
-        data: '{"usernameOrEmail": "' + QANSWER_CREDENTIALS.user + '", "password":"' + QANSWER_CREDENTIALS.password + '"}',
-      };
-    
-      $.ajax(settings).done(function (response) {
-        token = response.accessToken;
-      });
+
+  let args = {
+    "usernameOrEmail": QANSWER_CREDENTIALS.user,
+    "password": QANSWER_CREDENTIALS.password
+  }
+  let settings = {
+    async: true,
+    crossDomain: true,
+    url: "http://app.qanswer.ai/api/user/signin",
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      processData: false,
+      data: args
+    }
+  };
+
+  $.ajax(settings).done(function (response) {
+    token = response.accessToken;
+  });
 }
 
 /**
@@ -170,45 +175,41 @@ async function login() {
  */
 async function provide_feedback(question_answer_pair) {
 
-    let question = question_answer_pair[0];
-    let answer = question_answer_pair[1];
-    
-    // log to pair console
-    console.log(`Question: ${question}\nAnswer: ${answer}`);
+  let nl_question = question_answer_pair[0];
+  let answer = question_answer_pair[1];
 
-    // arguments for api call settings
-    let args = `"context": [
-      "correct": true,
-      "knowledgebase": [
-        ${kb_name}
-      ],
-      "language": [
-        "en"
-      ],
-      "question": ${question},
-      "questionId": -1,
-      "sparql": ${answer},
-      "sparqlKB": ${kb_name}",
-      "user": ${QANSWER_CREDENTIALS.user},
-      "validated": true
-    ]`;
+  // log to pair console
+  console.log(`Question: ${nl_question}\nAnswer: ${answer}`);
 
-    // settings for api call
-    let settings = {
-        async: true,
-        crossDomain: true,
-        url: "http://app.qanswer.ai/api/feedback/create",
-        method: "POST",
-        headers: {
-          "Authorization": "Bearer " + token,
-          "Content-Type": "application/json",
-          processData: false,
-          data: args
-        }
-    };
+  // arguments for api call settings
+  let args = {
+    correct: true,
+    knowledgebase: [kb_name],
+    language: ["en"],
+    question: nl_question,
+    questionId: -1,
+    sparql: answer,
+    sparqlKB: kb_name,
+    user: QANSWER_CREDENTIALS.user,
+    validated: true
+  };
 
-    // api call
-    await $.ajax(settings);
+  // settings for api call
+  let settings = {
+    async: true,
+    crossDomain: true,
+    url: "http://app.qanswer.ai/api/feedback/create",
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + token,
+      "Content-Type": "application/json",
+      processData: false,
+      data: args
+    }
+  };
+
+  // api call
+  await $.ajax(settings);
 }
 
 /**
@@ -217,14 +218,14 @@ async function provide_feedback(question_answer_pair) {
  * API called: /api/feedback/train
  */
 async function train_model() {
-  let args = [ kb_name ];
+  let args = [kb_name];
   let settings = {
     async: true,
     crossDomain: true,
-    url: "http://app.qanswer.ai/api/feedback/create",
+    url: "http://app.qanswer.ai/api/feedback/train",
     method: "GET",
     headers: {
-      "Authorization": "Bearer " + token,
+      Authorization: "Bearer " + token,
       "Content-Type": "application/json",
       processData: false,
       data: args
@@ -240,14 +241,14 @@ async function train_model() {
  * API called: /api/dataset/set_default_model
  */
 async function reset_model() {
-  let args = [ kb_name ];
+  let args = [kb_name];
   let settings = {
     async: true,
     crossDomain: true,
     url: "http://app.qanswer.ai/api/dataset/set_default_model",
     method: "POST",
     headers: {
-      "Authorization": "Bearer " + token,
+      Authorization: "Bearer " + token,
       "Content-Type": "application/json",
       processData: false,
       data: args
@@ -258,13 +259,78 @@ async function reset_model() {
 }
 
 /**
+ * Asks a question to QAnswer.
+ * 
+ * API called: /api/qa/sparql
+ * 
+ * @param {string} nl_question Natural language question to ask.
+ */
+async function ask_qanswer(nl_question) {
+
+  let args = {
+    question: nl_question,
+    lang: "en",
+    kb: kb_name
+  };
+
+  let settings = {
+    async: true,
+    crossDomain: true,
+    url: "http://app.qanswer.ai/api/qa/sparql",
+    method: "GET",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+      processData: false,
+      data: args
+    }
+  };
+
+  // ask QAnswer API
+  const response = await $.ajax(settings);
+  // sort by desc confidence
+  response.queries.sort((a, b) => b.confidence - a.confidence);
+  // query chosen by QAnswer is query with highest confidence
+  const qAnswerQuery = response.queries[0];
+}
+
+/**
  * Evaluates the performance of a single question-answer-pair on both QAnswer and SNIK.
  * Returns array of key indicators.
+ * 
+ * @see evaluate_iteration
  *  
  * @param {array} question_answer_pair One-dimensional array containing question-answer-pair to evaluate,
  * the first index (0) containing the natural language question as a string,
  * the second one (1) containing the answer (as a SPARQL query) as a string.
  */
-async function eval_pair(question_answer_pair) {
+async function evaluate_pair(question_answer_pair) {
 
+
+  evaluation = {
+    question: "",
+    confidence: 0,
+    precision: 0,
+    recall: 0,
+    fscore: 0,
+    qanswerquery: "",
+    correctquery: "",
+    intersection: ""
+  };
+}
+
+/**
+ * Evaluates the performacne of all testing questions on the more or less trained system
+ */
+async function evaluate_iteration() {
+
+  // later filled with evaluations of QA-Pairs
+  let collected_evaluations = array();
+
+  for (let pair of generatedQAPairsEvaluation) {
+
+    pair_evaluation = evaluate_pair(pair);
+
+
+  }
 }
