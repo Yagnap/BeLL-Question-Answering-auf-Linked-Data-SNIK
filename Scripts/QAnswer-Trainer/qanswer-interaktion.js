@@ -16,41 +16,109 @@
  * 
  */
 
+// type definitions for documentation
+/**
+ * A response from QAnswer after it being asked a question.
+ * @typedef {Object} QAnswerAnswer
+ * @property {string} sparql - The SPARQL query QAnswer generated
+ * @property {number} confidence - QAnswer's confidence in the answer
+ */
+/**
+ * The evaluation for a single generated question.
+ * Contains less data than {@link EvaluationSingle}.
+ * @see {@link EvaluationSingleTB}
+ * 
+ * @typedef {Object} EvaluationSingle
+ * @property {number} confidence - QAnswer confidence score
+ * @property {number} precision - Percentage of given answers that were correct
+ * @property {number} recall - Percentage of all gold standard answers that were given
+ * @property {number} fscore - Geometric middle of precision and recall
+ */
+/**
+ * The evaluation for a single textbook question.
+ * Contains more data than {@link EvaluationSingle}.
+ * @see {@link EvaluationSingle}
+ * 
+ * @typedef {Object} EvaluationSingleTB
+ * @property {string} question - The natural langauge question asked
+ * @property {string} correctQuery - Correct SPARQL query
+ * @property {string} qAnswerQuery - QAnswer answer SPARQL query
+ * @property {number} confidence - QAnswer confidence score
+ * @property {number} precision - Percentage of given answers that were correct
+ * @property {number} recall - Percentage of all gold standard answers that were given
+ * @property {number} fscore - Geometric middle of precision and recall
+ * @property {number} intersection - Number of answers correct query and QAnswer query share
+ */
+/**
+ * A Question-Answer-Pair.
+ * 
+ * @typedef {Object} QAPair
+ * @property {string} question - Natural language Question
+ * @property {string} answer - SPARQL query answer
+ */
+/**
+ * All answers for a singular question.
+ * Only to be used with {@link AnswerList}.
+ * @see {@link correct_answers}
+ * 
+ * @typedef {Object} Answers
+ * @property {string} sparql - Correct SPARQL-Query
+ * @property {string[]} answers - Answers (URIs) for the question
+ */
+/**
+ * List of {@link Answers}.
+ * Natural language key refers to {@link Answers} object.
+ * @see {@link Answers}
+ * 
+ * @typedef {Object.<string, Answers>} AnswerList
+ */
 
 /**
  * QAnswer verification token required for identification to the API.
  * Effectively a constant, should NOT be changed by anything other than the login method.
- * @see login Set when signing into the application.
+ * @see {@link login()} - Set when signing into the application.
  */
 var token;
 
 /**
- * Question-Answer-Pairs in the form:
- * 	
- * let single_qa_pair = [
- *  "Natural language question", "Answer as a SPARQL query"
- * ]
+ * Automatically generated Question-Answer-Pairs used for training
  * 
+ * @type {QAPair[]}
  */
-var generatedQAPairsTraining = {};
-var textbookQAPairsTraining = {};
+var generatedQAPairsTraining = [];
+/**
+ * Question-Answer-Pairs gathered from the textbook used for training
+ * 
+ * @type {QAPair[]}
+ */
+var textbookQAPairsTraining = [];
 
 /**
- * Question-answer-pairs used for evaluation, form:
- *  {
- *      "question": "string",
- *      "answerSparql": "string"
- *  }
+ * Automatically generated Question-Answer-Pairs used for evaluation
  * 
+ * @type {QAPair[]}
  */
-var textbookQAPairsEvaluation = {};
-var generatedQAPairsEvaluation = {};
+var generatedQAPairsEvaluation = [];
+/**
+ * Question-Answer-Pairs gathered from the textbook used for evaluation
+ * 
+ * @type {QAPair[]}
+ */
+var textbookQAPairsEvaluation = [];
 
+/**
+ * All correct Answers for each and every question.
+ * Natural language question as keys, {@link Answers} object as data.
+ * 
+ * @see {@link evaluate_pair()} - Used here to check Answers.
+ * @type {AnswerList}
+ */
+var correct_answers = {};
 
 /**
  * Toggle for the usage of textbook question.
  * Set by some input in HTML file.
- * @see main Used only in loop of this method.
+ * @see {@link main} - Used only in loop of this method.
  */
 var textbookQuestionToggle = false;
 
@@ -58,6 +126,9 @@ var textbookQuestionToggle = false;
  * Name of the knowledge base to test.
  * Configured in QAnswer settings.
  * Set only in here.
+ * 
+ * @type {string}
+ * @const
  */
 const kb_name = "snik_bb_autotest";
 
@@ -74,10 +145,19 @@ const kb_name = "snik_bb_autotest";
  *      d. Reset model
  * 3. Evaluation of evaluations
  * 4. Output
+ * 
+ * @see {@link snik_retreive_correct_answers()} for step 0
+ * @see {@link login()} for step 1
+ * @see {@link provide_feedback()} for step 2a
+ * @see {@link train_model()} for step 2b
+ * @see {@link evaluatie_iteration()} for step 2c
+ * @see {@link reset_model()} for step 2d
+ * @see {@link final_evaluation()} for step 3
  */
 async function main() {
 
-
+  // retreive correct answers
+  snik_retreive_correct_answers();
 
   // login
   await login();
@@ -133,9 +213,13 @@ async function main() {
 
 }
 
+async function snik_retreive_correct_answers() {
+
+}
+
 /**
  * Logs into QAnswer to obtain the verification token.
- * @see token Set by this method.
+ * @see {@link token} Set by this method.
  * @see QANSWER_CREDENTIALS Array containing username and password has to be provided.
  * 
  * API called: /api/user/signin
@@ -169,17 +253,15 @@ async function login() {
  * 
  * API called: /api/feedback/create
  * 
- * @param {array} question_answer_pair One-dimensional array containing question-answer-pair to evaluate,
- * the first index (0) containing the natural language question as a string,
- * the second one (1) containing the answer (as a SPARQL query) as a string.
+ * @param {array} question_answer_pair Object containing question-answer-pair to evaluate, question and answer 
  */
 async function provide_feedback(question_answer_pair) {
 
-  let nl_question = question_answer_pair[0];
-  let answer = question_answer_pair[1];
+  let nl_question = question_answer_pair.question;
+  let correct_answer = question_answer_pair.answer;
 
   // log to pair console
-  console.log(`Question: ${nl_question}\nAnswer: ${answer}`);
+  console.log(`Question: ${nl_question}\nAnswer: ${correct_answer}`);
 
   // arguments for api call settings
   let args = {
@@ -188,7 +270,7 @@ async function provide_feedback(question_answer_pair) {
     language: ["en"],
     question: nl_question,
     questionId: -1,
-    sparql: answer,
+    sparql: correct_answer,
     sparqlKB: kb_name,
     user: QANSWER_CREDENTIALS.user,
     validated: true
@@ -261,22 +343,25 @@ async function reset_model() {
 /**
  * Asks a question to QAnswer.
  * 
- * API called: /api/qa/sparql
+ * API called: /api/qa/full
  * 
  * @param {string} nl_question Natural language question to ask.
+ * @returns {QAnswerAnswer} Answer with most confidence as an object
+ * 
  */
 async function ask_qanswer(nl_question) {
 
   let args = {
     question: nl_question,
     lang: "en",
-    kb: kb_name
+    kb: [kb_name],
+    user: [QANSWER_CREDENTIALS.user]
   };
 
   let settings = {
     async: true,
     crossDomain: true,
-    url: "http://app.qanswer.ai/api/qa/sparql",
+    url: "http://app.qanswer.ai/api/qa/full",
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
@@ -287,35 +372,53 @@ async function ask_qanswer(nl_question) {
   };
 
   // ask QAnswer API
-  const response = await $.ajax(settings);
-  // sort by desc confidence
+  let response = await $.ajax(settings);
+  // sort by desc confidence --> highest confidence at index 0
+  // response.queries contains all queries QAnswer finds
   response.queries.sort((a, b) => b.confidence - a.confidence);
   // query chosen by QAnswer is query with highest confidence
-  const qAnswerQuery = response.queries[0];
+  let qAnswerQuery = response.queries[0];
+
+  let ret = {
+    answer: qAnswerQuery.query,
+    confidence: qAnswerQuery.confidence
+  };
+
+  return ret;
+
 }
 
 /**
  * Evaluates the performance of a single question-answer-pair on both QAnswer and SNIK.
  * Returns array of key indicators.
- * 
- * @see evaluate_iteration
  *  
- * @param {array} question_answer_pair One-dimensional array containing question-answer-pair to evaluate,
+ * @param {QAPair} question_answer_pair - One-dimensional array containing question-answer-pair to evaluate,
  * the first index (0) containing the natural language question as a string,
  * the second one (1) containing the answer (as a SPARQL query) as a string.
+ * @returns {EvaluationSingleTB} Evaluation of the pair, containing all details (in case it is a textbook question)
+ * 
+ * @see evaluate_iteration()
  */
 async function evaluate_pair(question_answer_pair) {
 
+  let nl_question = question_answer_pair.question;
+  let correct_answer = question_answer_pair.answer;
 
-  evaluation = {
-    question: "",
-    confidence: 0,
+  // Asking QAnswer question
+  let qAnswer_answer = ask_qanswer(nl_question);
+
+  let all_correct_answers = correct_answers[nl_question];
+  let 
+
+  let evaluation = {
+    question: nl_question,
+    correctquery: correct_answer,
+    qanswerquery: qAnswerAnswer.sparql,
+    confidence: qAnswerAnswer.confidence,
     precision: 0,
     recall: 0,
     fscore: 0,
-    qanswerquery: "",
-    correctquery: "",
-    intersection: ""
+    intersection: 0
   };
 }
 
@@ -333,4 +436,11 @@ async function evaluate_iteration() {
 
 
   }
+}
+
+/**
+ * Averages key indicators.
+ */
+async function final_evaluation() {
+
 }
