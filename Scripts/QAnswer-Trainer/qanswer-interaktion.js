@@ -157,7 +157,7 @@ const kb_name = "snik_bb_autotest";
 async function main() {
 
   // retreive correct answers
-  snik_retreive_correct_answers();
+  await snik_retreive_correct_answers();
 
   // login
   await login();
@@ -407,19 +407,34 @@ async function evaluate_pair(question_answer_pair) {
   // Asking QAnswer question
   let qAnswer_answer = ask_qanswer(nl_question);
 
+  // all answers both queries produce
   let all_correct_answers = correct_answers[nl_question];
-  let 
+  let all_qanswer_answers = await select(qAnswer_answer.sparql, null, "https://www.snik.eu/sparql/");
+
+  // All answers contained in both queries. Do not need to check for duplicates because of keyword DISTINCT.
+  let intersection_of_answers = all_correct_answers.filter(x => all_qanswer_answers.includes(x));
+
+  let intersection_length = intersection_of_answers.length;
+  let correct_length = all_correct_answers.length;
+  let qanswer_length = all_qanswer_answers.length;
+
+  // calculating precision, recall, fscore - if answer set of one is empty, then the indicator using it is also set to 0
+  let _precision = qanswer_length == 0 ? 0 : intersection_length / qanswer_length;
+  let _recall = correct_length == 0 ? 0 : intersection_length / correct_length;
+  let _fscore = (_precision + _recall) == 0 ? 0 : (2 * _precision * _recall) / (_precision + _recall);
 
   let evaluation = {
     question: nl_question,
     correctquery: correct_answer,
     qanswerquery: qAnswerAnswer.sparql,
     confidence: qAnswerAnswer.confidence,
-    precision: 0,
-    recall: 0,
-    fscore: 0,
-    intersection: 0
+    precision: _precision,
+    recall: _recall,
+    fscore: _fscore,
+    intersection: intersection_length
   };
+
+  return evaluation;
 }
 
 /**
@@ -443,4 +458,51 @@ async function evaluate_iteration() {
  */
 async function final_evaluation() {
 
+}
+
+/**
+ * Finds all common elements of two binding objects.
+ * No need to check for duplicates, since the keyword DISTINCT is used.
+ * Only one value for each query, since these are simple questions.
+ * 
+ * @param {Object} bindings1 
+ * @param {Object} bindings2 
+ * @returns URIs that bindings1 and bindings2 have in common.
+ */
+function intersect(bindings1, bindings2) {
+
+  // leere Arrays, aus denen später die Schnittmenge gebildet werden soll
+  var b1 = [];
+  var b2 = [];
+
+  for(let binding of bindings1) {
+    for(let key of Object.keys(binding)) {
+      b1.push(binding[key]["value"]);
+    }
+  }
+
+  for(let binding of bindings2) {
+    for(let key of Object.keys(binding)) {
+      b2.push(binding[key]["value"]);
+    }
+  }
+
+  var intersection = b1.filter((value) => b2.includes(value));
+  return intersection;
+
+}
+
+/**
+ * Escapes characters which could damage the layout of an HTML page
+ * 
+ * @param {string} unsafe - String containing possibly unsafe characters
+ * @returns {string} with some characters escaped
+ */
+function escapeHtml(unsafe) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
