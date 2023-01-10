@@ -26,20 +26,19 @@
 /**
  * The evaluation for a single generated question.
  * Contains less data than {@link EvaluationSingle}.
- * @see {@link EvaluationSingleTB}
+ * @see {@link EvaluationSingle}
  * 
- * @typedef {Object} EvaluationSingle
+ * @typedef {Object} EvaluationIteration
  * @property {number} confidence - QAnswer confidence score
  * @property {number} precision - Percentage of given answers that were correct
  * @property {number} recall - Percentage of all gold standard answers that were given
  * @property {number} fscore - Geometric middle of precision and recall
+ * @property {number} count - Number of questions the system was trained with at that point
  */
 /**
  * The evaluation for a single textbook question.
- * Contains more data than {@link EvaluationSingle}.
- * @see {@link EvaluationSingle}
  * 
- * @typedef {Object} EvaluationSingleTB
+ * @typedef {Object} EvaluationSingle
  * @property {string} question - The natural langauge question asked
  * @property {string} correctQuery - Correct SPARQL query
  * @property {string} qAnswerQuery - QAnswer answer SPARQL query
@@ -105,6 +104,19 @@ var generatedQAPairsEvaluation = [];
  * @type {QAPair[]}
  */
 var textbookQAPairsEvaluation = [];
+
+/**
+ * Collected evaluations of automatically generated questions.
+ * @see {@link evaluate_iteration}
+ * @type {Array.<EvaluationIteration>}
+ */
+var evaluations_generated = [];
+/**
+ * Collected evaluations of textbook questions.
+ * @see {@link evaluate_iteration}
+ * @type {Array.<Array.<EvaluationSingle>>}
+ */
+var evaluations_textbook = [];
 
 /**
  * All correct Answers for each and every question.
@@ -180,6 +192,7 @@ async function main() {
     // Default: count stays 10
     if ((i + 10) >= generatedQAPairsTraining.length) {
       count = generatedQAPairsTraining.length - i; // i.e. 1003 - 990 = 13 to add
+      i = generatedQAPairsTraining.length; // for evaluation purposes
     } else if (i == 0) {
       count = 0; // no questions added at all
     }
@@ -203,18 +216,25 @@ async function main() {
     console.groupEnd();
 
     // Evaluation of step
-
+    await evaluate_iteration(i);
   }
 
   console.timeEnd("Time required to finish loop");
   console.info("Loop finished");
 
-  // Evaluation of whole iteration
+  // Evaluation of whole iteration for the textbook questions
+  await textbook_evaluation();
 
+  // TODO output
 }
 
 async function snik_retreive_correct_answers() {
-
+  for(let pair in generatedQAPairsEvaluation) {
+    correct_answers[pair.question] = {
+      sparql: pair.anwswer,
+      answers: select(pair.answer, null, "https://www.snik.eu/sparql/")
+    }
+  }
 }
 
 /**
@@ -395,9 +415,9 @@ async function ask_qanswer(nl_question) {
  * @param {QAPair} question_answer_pair - One-dimensional array containing question-answer-pair to evaluate,
  * the first index (0) containing the natural language question as a string,
  * the second one (1) containing the answer (as a SPARQL query) as a string.
- * @returns {EvaluationSingleTB} Evaluation of the pair, containing all details (in case it is a textbook question)
+ * @returns {EvaluationSingle} Evaluation of the pair, containing all details (in case it is a textbook question)
  * 
- * @see evaluate_iteration()
+ * @see {@link evaluate_iteration()}
  */
 async function evaluate_pair(question_answer_pair) {
 
@@ -439,25 +459,57 @@ async function evaluate_pair(question_answer_pair) {
 
 /**
  * Evaluates the performacne of all testing questions on the more or less trained system
+ * 
+ * @param {number} number_of_questions - Total number of questions present in this round
  */
-async function evaluate_iteration() {
+async function evaluate_iteration(number_of_questions) {
 
-  // later filled with evaluations of QA-Pairs
-  let collected_evaluations = array();
-
-  for (let pair of generatedQAPairsEvaluation) {
-
-    pair_evaluation = evaluate_pair(pair);
-
-
+  // later filled with evaluations of textbook QA-Pairs
+  let collected_evaluations_textbook = array();
+  // for averaging key indicators for auto-generated pairs
+  let evaluation_generated = {
+    confidence: 0,
+    precision: 0,
+    recall: 0,
+    fscore: 0,
+    count: number_of_questions
   }
+  let i = 0;
+
+  // automatically generated less detailed, mainly used to generate data to evaluate performance of key indicators
+  for (let pair of generatedQAPairsEvaluation) {
+    let pair_evaluation = evaluate_pair(pair);
+    evaluation_generated.confidence += pair_evaluation.confidence;
+    evaluation_generated.precision += pair_evaluation.precision;
+    evaluation_generated.recall += pair_evaluation.precision;
+    evaluation_generated.fscore += pair_evaluation.precision;
+    i++;
+  }
+
+  // textbook questions more detailed, looking at the individual quetsions more thorughly
+  for (let pair of textbookQAPairsEvaluation) {
+    let pair_evaluation = evaluate_pair(pair);
+    collected_evaluations_textbook.push(pair_evaluation);
+  }
+
+  // averaging and outputs
+  evaluation_generated.confidence /= i;
+  evaluation_generated.precision /= i;
+  evaluation_generated.recall /= i;
+  evaluation_generated.fscore /= i;
+  evaluation_generated.push(evaluations_generated);
+  evaluations_textbook.push(collected_evaluations_textbook);
+
 }
 
 /**
- * Averages key indicators.
+ * Evaluation for the textbook questions.
  */
-async function final_evaluation() {
-
+async function textbook_evaluation() {
+  let precision_total = 0;
+  let recall_total = 0;
+  let fscore_total = 0;
+  let 
 }
 
 /**
@@ -475,14 +527,14 @@ function intersect(bindings1, bindings2) {
   var b1 = [];
   var b2 = [];
 
-  for(let binding of bindings1) {
-    for(let key of Object.keys(binding)) {
+  for (let binding of bindings1) {
+    for (let key of Object.keys(binding)) {
       b1.push(binding[key]["value"]);
     }
   }
 
-  for(let binding of bindings2) {
-    for(let key of Object.keys(binding)) {
+  for (let binding of bindings2) {
+    for (let key of Object.keys(binding)) {
       b2.push(binding[key]["value"]);
     }
   }
