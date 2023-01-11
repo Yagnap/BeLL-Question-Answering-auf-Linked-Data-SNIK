@@ -180,6 +180,12 @@ async function main() {
   console.info("Starting loop");
   console.time("Time required to finish loop");
 
+  if (textbookQuestionToggle) {
+    // upload textbook question if required
+    console.groupCollapsed("Textbuchfragen");
+    console.groupEnd();
+  }
+
   // 10 new questions per iteration
   for (let i = 0; i < generatedQAPairsTraining.length; i += 10) {
 
@@ -228,12 +234,24 @@ async function main() {
   // Evaluation of whole iteration for the textbook questions
   let csv_textbook = textbook_csv_generation();
   let csv_generated = generated_csv_generation();
-  
+
+  // whether or not textbook questions were used for training
+  let file_name_append = textbookQuestionToggle ? "-withtb" : "";
   // output
-  output("Textbuchfragen", "textbook", csv_textbook);
-  output("Automatisch generierte Textbuchfragen", "generated", csv_generated);
+  output("Textbuchfragen", "textbook" + file_name_append, csv_textbook);
+  output("Automatisch generierte Textbuchfragen", "generated" + file_name_append, csv_generated);
+
+  // reset model AND questions, in case method is called multiple times
+  await reset_model();
+  await reset_qapairs();
+
+  console.info("Model reset and all feedback removed");
 }
 
+/**
+ * Retreives bindings from the given answers to the questions.
+ * @see {@link correct_answers}
+ */
 async function snik_retreive_correct_answers() {
   for (let pair of generatedQAPairsEvaluation) {
     correct_answers[pair.question] = {
@@ -354,6 +372,29 @@ async function reset_model() {
     async: true,
     crossDomain: true,
     url: "http://app.qanswer.ai/api/dataset/set_default_model",
+    method: "POST",
+    headers: {
+      Authorization: "Bearer " + token,
+      "Content-Type": "application/json",
+      processData: false,
+      data: args
+    }
+  };
+
+  await $.ajax(settings);
+}
+
+/**
+ * Removes all feedback given.
+ * 
+ * API called: ​/api​/feedback​/remove-all-questions
+ */
+async function reset_qapairs() {
+  let args = [kb_name];
+  let settings = {
+    async: true,
+    crossDomain: true,
+    url: "http://app.qanswer.ai/api​/feedback​/remove-all-questions",
     method: "POST",
     headers: {
       Authorization: "Bearer " + token,
@@ -514,7 +555,7 @@ async function evaluate_iteration(number_of_questions) {
  * Generating the CSV table for the textbook questions.
  * @returns {string} of CSV data
  */
-async function textbook_csv_generation() {
+function textbook_csv_generation() {
   let csv = "";
   // each textbook question represented in key of array
   for (let key in evaluations_textbook.keys()) {
@@ -546,7 +587,7 @@ async function textbook_csv_generation() {
  * Generating the CSV table for the averaged out key indicators of the generated questions.
  * @returns {string} of CSV data
  */
-async function generated_csv_generation() {
+function generated_csv_generation() {
   let csv = "";
 
   // new header for each question
@@ -582,7 +623,7 @@ function output(button_label, file_name, csv) {
   // creating URL for file to download
   const blob = new Blob([csv], { type: "text/csv" });
   let url = window.URL.createObjectURL(blob);
-  
+
   // create <a></a>
   const anchor = document.createElement("a");
   anchor.setAttribute("name", file_name);
@@ -596,7 +637,7 @@ function output(button_label, file_name, csv) {
   // creates button
   const button = document.createElement("button");
   button.innerHTML = "Download";
-  button.onclick = function() {
+  button.onclick = function () {
     // downloads file
     anchor.click();
   };
