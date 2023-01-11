@@ -36,10 +36,10 @@ wenn sie ähnliche Prinzipien wie ein anderer Punkt einer anderen Subontologie d
 Für das Tripel mit dem Subjekt \aurl{bb}{ChiefInformationOfficer} gibt es das Prädikat \aurl{skos}{closeMatch} mit dem Objekt \aurl{ciox}{ChiefInformationOfficer}.
 Es gibt dieses Tripel auch mit diesem als Subjekt und dem anderen als Objekt.
 Dies erklärt auch, weshalb auf dem Pfeil zwischen ihnen keine Richtung zu sehen ist..
-
+\todo{Punkt doppelt. Den Pfeil gibt es nur in SNIK Graph, das kennt der Leser an dieser Stelle aber noch nicht.}
 
 \subsection{Der SNIK-Graph}
-
+\todo{ist das für die Arbeit relevant? wenn ja, würde sich ein Screenshot anbieten zur Visualisierung eines oder mehrerer Beispiele.}
 Der \ac{snik}-Graph\footnote{\url{https://www.snik.eu/graph}} ist die Visualisierung von \ac{snik}.
 Hier werden die einzelnen Entitäten nach ihrer entsprechenden Subontologie gefärbt visuell dargestellt.
 Die beschrifteten Verbindungen bzw. Kanten zwischen den Formen stellen Relationen dar,
@@ -60,6 +60,7 @@ Manche Question Answering-Systeme verwenden es z.B. auch für bestimmte Module.
 Elasticsearch\footnote{\url{https://www.elastic.co}} ist ein Open-Source Programm, das einfaches Indizieren, Suchen und Analysieren von Daten ermöglichen soll \citep[S.~8]{elasticsearch}.
 Es kann verschiedenste Datentypen durchsuchen, auch Text und Zahlen.
 Dazu serialisiert es Dokumente in \ac{json}, einer für die Programmiersprache JavaScript, welche häufig auf Webseiten verwendet wird, lesbare Notation.
+\todo{JSON kann man heutzutage in sehr vielen Programmiersprachen benutzen, zumindest wenn man entsprechende Bibliotheken einbindet.}
 In dieser Serialisierung nutzt es einen \emph{invertierten Index}, d.h. es indiziert das Dokument für alle verschieden vorkommenden Wörter \citep{invertedindex}.
 Das Wort bzw. die Zeichenkette ist also ein Schlüssel mit den Dokumenten als Wert.
 Nehme man z.B. die beiden Sätze \enquote{War is peace.} und \enquote{Freedom is slavery.} \citep[S.~6]{orwell1984} als eigene Dokumente, würde es wie in \cref{tab:invertedindexexample} aussehen.
@@ -92,6 +93,7 @@ Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} und \ac{cdqa} ver
 Außerdem wurden über die Herausforderung \ac{qald} weitere Systeme evaluiert.
 Bei \ac{qald} werden Question Answering-Systeme anhand eines Benchmark objektiv bewertet.
 Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9 \citep{qald9}.
+\todo{inzwischen QALD 10, siehe \url{https://www.nliwod.org/challenge}}
 In jeder dieser Versionen gibt es unterschiedliche Trainingsdatensätze und Teilnehmer.
 Die Teilnehmer müssen zu dem jeweiligen Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen, also das grundlegende Problem des Question Answerings lösen.
 Der jetzige Trainingssatz ist DBpedia.
@@ -107,6 +109,7 @@ DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 Das Question Answering-Leaderboard\footnote{\url{https://github.com/KGQA/leaderboard}} \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
 dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des \ac{kbqa} eine vereinheitliche Liste mit verfügbaren Question Answering-Systemen zu geben.
 Hier sind werden Fragenkataloge wie \ac{qald}-9 als Benchmarks auf die verschiedenen \ac{kbqa}-Systeme angewendet und die Ergebnisse aufgezeichnet.
+\todo{sind werden}
 Desweiteren sind die 98 Systeme in einer Liste mit dem Namen des Systems, einer Beschreibung und Links zu dem originalen Paper und einer Demonstration,
 \ac{rest}-\ac{api} oder dem GitHub-Projekt, falls diese öffentlich verfügbar existieren, ausgestattet.
 Dies vereinfacht eine systematische Suche enorm, da viele Systeme schwer auffindbar sind, sowohl in der Dokumentation als auch in Form des implementierten Systems selbst.
@@ -126,7 +129,7 @@ DeepPavlov\footnote{\url{https://www.deeppavlov.ai}} \citep{deeppavlov} ist eine
 Es ist in \emph{Models} und \emph{Skills} organisiert.
 Das System ist hochflexibel und auf verschiedenste Aufgaben ausgelegt, vor allem aber Dialogsysteme bzw. Chat Bots.
 Für Question Answering gibt es bisher nur Ansätze bezüglich \ac{odqa}.
-
+\todo{bitte noch begründen, warum das nicht verwendet wurde wenn es hier so angepriesen wird. Open Domain Systeme können ja auch closed domain Fragen beantworten, schwieriger wird es umgekehrt.}
 \subsubsection{Architektur}
 Ein \emph{Modell} ist eine in TensorFlow \citep{tensorflow}, einer Schnittstelle für maschinelles Lernen, implementierte Funktion einer \ac{nlp}-Pipeline,
 die sowohl ein neuronales Netz als auch ein nichtneuronales oder regelbasiertes System sein kann.
@@ -191,11 +194,13 @@ Desweiteren werden die Lösungskandidaten auf ihre Ähnlichkeit mit der Frage ü
 QAnswer KG \citep{qanswer} ist ein an der Universität Saint-Étienne entwickeltes Question Answering-System,
 das vor allem das von \citet{diefenbachkbqa} genannte Problem der fehlenden Portabilität in diesem Feld lösen soll:
 Viele Systeme wurden als Forschungsprojekt für Benchmarks wie \ac{qald}-9 geschrieben und sind deshalb nur mit großen Ontologien wie DBpedia oder Wikidata kompatibel.
+\todo{DBpedia ist keine Ontologie sondern eine Wissensbasis, beinhaltet allerdings auch eine kleine DBpedia Ontologie. Wikidata ist soweit ich weiß weder Ontologie noch Wissensbasis.}
 Hier ist es jedoch möglich, auf einer Website einfach eigene Daten hochzuladen und dort Question Answering zu betreiben.
 Die Modelle müssen aber noch auf die Fragen trainiert werden, das vortrainierte Modell soll nur Sprache an sich verstehen können und nicht den speziellen Datensatz.
 Alles in allem kann man dennoch sagen, dass das System vergleichsweise leicht zu verwenden ist.
 Selbst ein fast nicht trainiertes System bietet oft noch akzeptable Antworten.
 Es ist leider nicht open-source, steht online\footnote{\url{https://app.qanswer.ai/}} aber frei zur Verfügung und wird es nach Nachfrage auch für mindestens die nächsten zwei Jahre noch bleiben.
+\todo{die nächsten zwei Jahre ist ungenau. stattdessen Jahr hinschreiben.}
 
 \subsubsection{Architektur}
 

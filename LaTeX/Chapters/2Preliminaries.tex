@@ -235,7 +235,7 @@ Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
 Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
 Desweiteren sind Wissensbasen auf zweistellige Relationen beschränkt, wohingegen relationale Datenbanken theoretisch unbegrenzt viele Attribute haben können.
-
+\todo{Ungenau. Ich würde hier eher sagen, dass die Anzahl der Spalten und damit die Arität (Stelligkeit) der Relationen bei relationalen Datenbanken wesentlich höher ist (je nach Art der Datenbank wohl 1000 und mehr, aber theoretisch könnte man vielleicht schon sagen unbegrenzt).}
 \subsection{Linked (Open) Data}
 
 Linked Data beschreibt öffentlich verfügbare Informationen, die mittels \acp{uri} erreichbar und in für Maschinen lesbarer Form vorhanden sind \citep{linkeddata}.
@@ -285,6 +285,7 @@ Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise 
 Da die Teilontologien untereinander mit \aurl{meta}{closeMatch} verbunden sind, wird diese Beziehung hier abgefragt.
 Mittels property path und dem Zeichen \texttt{\^} wird die Suche auch invertiert, sodass auch Ressourcen erhalten werden, wenn die closeMatch-Beziehung von der anderen ausgeht.
 Mit dem Zeichen \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
+\todo{richtig aber kann noch genauer beschrieben werden: \texttt{*} steht für beliebige Wiederholung des Pfades inklusive 0-mal, daher also auch bb CIO selbst.}
 
 \section{Semantisches Question Answering}
 
@@ -389,12 +390,15 @@ Bei feature-basiertem Training werden der Aufgabe spezifische Architekturen verw
 Erst später werden für weitere Funktionen über Repräsentationen hinzugefügt.eep contextualized word representations
 Fine-tuning-basiertes Training basiert auf solchen Repräsentationen, hier werden nur minimal aufgabenspezifische Parameter verwendet.
 Beispiele für solch ein Vorgehen sind \acs{bert}, siehe hierfür \cref{subsub:bert}, und OpenAI GPT \citep{openaigpt}.
+\todo{Die Quelle ist unvollständig und kann so nicht benutzt werden! Im Literaturverzeichnis stehen nur Autoren, Titel und Jahr aber kein Journal oder Konferenzband! Guck mal, ob das vielleicht gar kein Paper ist.}
+\todo{OpenAI ChaptGPT ist seit November 2022 in aller Munde. Super Chance für dich, die Leser mitzureißen! Ich würde das unbedingt erwähnen, entweder hier und/oder in der Einleitung oder Diskussion oder Ausblick. Und in mehr Detail beschreiben, was genau GPT ist und wie es sich von ChatGPT abhebt und was das mit Question Answering zu tun hat.}
 
 \subsubsection{ELMo}\label{subsub:elmo}
 \ac{elmo}
 % feature-basiert
 \citep{elmo} ist ein \ac{nlp}-Modell, welches Wortsequenzen als Vektoren repräsentiert und dadurch sowohl komplexe Wortstrukturen wie Syntax und Semantik und den Kontext der Wörter behält.
 Im Gegensatz zu anderen Represäntationsmodellen wird bei \ac{elmo} also jedes Wort im Kontext des Auftretens repräsentiert.
+\todo{Mach am besten mal ne Rechtschreibprüfung auf die ganze Arbeit.}
 Es basiert auf \acsp{lstm}, welche später in \cref{sub:lstm} betrachtet werden.
 Diese werden mit einem Wortcorpus vortrainiert und somit gut einsetzbar, und können beisielsweise ohne Veränderung bei Disambiguationsaufgaben verwendet werden.
 \ac{elmo} ermöglichte zu der Zeit eine große Verbesserung der Leistung bei \ac{nlp}-Aufgaben.
@@ -409,11 +413,13 @@ Der Name selbst basiert auf dem Phänomen, dass das menschliche Gehirn unvollkom
 Bei \ac{mlm} wird wie bei der Cloze-Prozedur auch versucht, das zufällig gelöschte Wort anhand des Kontexts wiedereinzufügen.
 Der bi-, also zweidirektionale, Transformer betrachtet den Kontext von beiden anstatt von vorher nur einer Seite, sodass bessere Ergebnisse erzielt werden können.
 Erst durch diese Vorgensweise kann von den sehr aufgabenspezifischen Architekturen weg- und zu fine-tuning-basierten Ansätzen hingegangen werden.
+\todo{meinst du: Dadurch erreicht BERT in Benchmarks... ?}
 Dadurch erreicht in Benchmarks sehr gute \ac{bert} Ergebnisse, verglichen mit anderen Modellen.
 \ac{bert} verwendet sogenannte Transformer, welche auf dem in \cref{sub:rnn} und in \citet{annotatedtransformer} erklärten Aufmerksamkeitsmechanismus basieren.
 Es ist außerdem ein \acs{dnn}, welche im folgenden Abschnitt genauer betrachtet werden.
 
 \section{Maschinelles Lernen und neuronale Netze}
+\todo{Mir fehlt die Verknüpfung dieses Kapitels mit dem Rest der Arbeit. Bitte in den folgenden Kapiteln erklären, wo dort maschinelles Lernen, neuronale Netze, Deep Learning und so benutzt werden. Bei TeBaQa?}
 
 Neuronale Netze sollen, indem sie die Struktur des menschlichen Gehirns nachstellen, komplexe Aufgaben, wie etwa das autonome Fahren oder \acl{nlp}, ausführen.
 Dazu werden \emph{Knoten} oder \emph{Neuronen} in verschieden Schichten miteinander verbunden.
@@ -442,6 +448,7 @@ Für Deep Learning gibt es verschiedene Architekturen.
 
 \subsection{Convolutional Neural Network}
 \acp{cnn} werden vor allem zur Bilderkennung und \ac{nlp} verwendet.
+\todo{Kann man das so schreiben? Für mich klingt besser: Sie basieren auf...}
 Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht,
 welche in \cref{fig:struktur-cnn} dargestellt ist.
 Die Neuronen sind auf jeder Schicht, welche hier auch \emph{Filter} oder \emph{Kern} genannt werden,
