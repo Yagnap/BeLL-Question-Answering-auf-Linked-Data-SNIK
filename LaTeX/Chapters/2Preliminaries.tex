@@ -28,7 +28,7 @@ Wissen ist eine generelle Information über einen Begriff \citep[S.~29]{bb}, als
 Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings diese verwendet.
 
 \section{Geschriebene Sprache}
-
+\todo{Die Arbeit ist ja auf Deutsch, aber die QA Sprache Englisch. Das würde ich daher noch deutlich machen an welcher Stelle die Sachen für alle Sprachen gelten und an welcher Stelle nur für Englisch. Das gilt für die ganze Arbeit.}
 In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
 Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet.
 
@@ -52,12 +52,13 @@ Beispielsweise ist laut \citet{he} ein \enquote{Anwendungssystem} eine Kombinati
 In \citet{ob} schließt der Oberbegriff \enquote{Anwendungssystem} jedoch auch analoge Methoden zur Speicherung von Daten mit ein.
 
 \subsection{Lexik, Syntax und Semantik}
-
 Die \emph{Lexik} beschreibt die Wortarten.
+\todo{bitte noch erklären, was eine Lexikalisierung ist.}
 Es wird zwischen flektierbaren und unflektierbaren Wortarten unterschieden.
 Verben, Substantive, Adjektive, Artikel und Pronomen kann man konjugieren bzw. deklinieren.
 Sie werden auch flektierbar genannt.
 Die Form unflektierbarer Wortarten ist unveränderlich, sie enthalten Partikel wie Adverbien und Interjektionen \citep[S.~505]{deutschbuch}.
+\todo{Achtung! Du darfst kein Buch über Deutsch zitieren wenn die Sprache Englisch ist!}
 Die \emph{Syntax} behandelt den Satzbau und somit die Satzglieder wie Subjekt, Prädikat und Objekt oder Satzarten wie der Aussage-, Aufforderungs- und Fragesatz und deren Unterarten.
 Unterarten von Fragesätzen sind  die Entscheidungsfrage, wo ein Wahrheitswert als Antwort erwartet wird, die Ergänzungsfrage, wo nach Informationen gesucht wird, und die rhetorische Frage, auf welche keine Antwort erwartet wird.
 Besonders Ergänzungsfragen, welche typischerweise mit einem Fragewort beginnnen, sind in dieser Arbeit wichtig.
@@ -79,11 +80,14 @@ Das Format der Dokumente wird durch die \ac{html} beschrieben, welche ebenfalls 
 
 \subsection{Semantic Web}
 Im Gegensatz zu \ac{www}, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
-Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist. Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
+Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist.
+\todo{Ist das Semantic Web wirklich sehr stark vom Deep Learning abhängig? Das ist ja schon eine starke Aussage, das bitte belegen.}
+Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 \daurl{bb}{http://www.snik.eu/ontology/bb/}
 \daurl{ciox}{http://www.snik.eu/ontology/ciox/}
 \daurl{ex}{http://www.example.org/}
+\todo{zu klein. wenn es mit normaler Größe nicht passt probiere es mal eine Größe größer}
 \subsection{RDF}
 \begin{table}[h]\centering\scriptsize
   \begin{tabulary}{\textwidth}{rrl}
@@ -154,6 +158,7 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 
 In der Informatik beschreiben Klassen die Abstraktion und Kategorisierung von Wissen.
 Solche Klassen können auch Subklassen von anderen sein, Subklassen können auch weitere Subklassen haben.
+\todo{da fehlt noch was im folgenden Satz}
 die Beziehung zwischen Sub- bzw. Unterklassen $U$ und Eltern- bzw. Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$),
 das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
 Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält,
@@ -187,11 +192,13 @@ M_i \subseteq M_n \land M_i \supseteq M_1 \\
 \caption[Beispiel für Hierarchie]{Eine beispielhafte Hierarchie aus der \acs{snik}-Ontologie.}
 \label{fig:snikhierarchy}
 \end{figure}
-
+\todo{Quelle für Bild fehlt in Caption für Bild 2.1 Hierarchie}
 \subsection{Individuen und Klassen}
 \label{sec:individuenundklassen}
 Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
+\todo{Musterfrau oder Mustermann? Eines auswählen und konsistent verwenden bitte.}
 Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements \citep[S.~261]{semanticwebgrundlagen}.
+\todo{Ich glaube die Zitierung ist an der falschen Stelle, das Beispiel ist doch von dir.}
 
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
 Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden,
@@ -202,13 +209,16 @@ Es gibt nicht nur \emph{binäre} Relationen, also Relationen zweier Elemente, hi
 In \ac{rdf} sind nämlich alle Relationen zweistellig, also Paare.
 Die Beschreibung dieser Relation wird \enquote{Property}, also Attribut oder Eigenschaft, genannt.
 Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{meta}{isResponsibleForEntityType} ein Property von \aurl{bb}{ChiefInformationOfficer} mit dem Wert \aurl{bb}{AnnualITBudget}.
+\todo{Achtung overfull hboxes (Schrift ragt über den Rand, das darf nicht passieren)}
 Sie können auch eingeschränkt werden, indem man ihnen mit \ac{rdf} ihren \emph{Definitionsbereich} mit und \emph{Wertebereich} verändert.
 Damit lässt sich einstellen, welche Datentypen als Subjekt und Objekt akzeptiert werden \citep[S.~76]{semanticwebgrundlagen}.
 Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über \aurl{rdfs}{range} bearbeitet.
 
 \emph{Literale}, oder auch \emph{Data}-Properties, erfüllen die Funktion der Datentypen.
+\todo{Achtung! Literale und Datatype Properties sind nicht das Selbe. Literale sind Zeichenketten und Datatype properties sind properties deren Wertebereich Literale sind.}
 Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
 Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
+\todo{Der Definitionsbereich einer Property ist immer eine Klasse.}
 So ist in \cref{tab:rdftripleexample} \aurl{bb}{isResponsibleForEntityType} ein Property mit \aurl{meta}{Role} als Definitionsbereich und \aurl{meta}{EntityType} als Wertebereich,
 sie sind also Eigenschaften von Objekten.
 
