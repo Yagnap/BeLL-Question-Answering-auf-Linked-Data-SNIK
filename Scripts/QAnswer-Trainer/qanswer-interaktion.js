@@ -40,13 +40,16 @@
  * 
  * @typedef {Object} EvaluationSingle
  * @property {string} question - The natural langauge question asked
- * @property {string} correctQuery - Correct SPARQL query
- * @property {string} qAnswerQuery - QAnswer answer SPARQL query
+ * @property {string} correct_query - Correct SPARQL query
+ * @property {string} qanswer_query - QAnswer answer SPARQL query
  * @property {number} confidence - QAnswer confidence score
  * @property {number} precision - Percentage of given answers that were correct
  * @property {number} recall - Percentage of all gold standard answers that were given
  * @property {number} fscore - Geometric middle of precision and recall
+ * @property {number} answer_count_correct - Correct number of answers that the correct query produces
+ * @property {number} answer_count_qanswer - Number of answers that this question produces using QAnswer's query
  * @property {number} intersection - Number of answers correct query and QAnswer query share
+ * @property {number} count - Number of training questions used to train the model evaluating this question
  */
 /**
  * A Question-Answer-Pair.
@@ -62,7 +65,7 @@
  * 
  * @typedef {Object} Answers
  * @property {string} sparql - Correct SPARQL-Query
- * @property {string[]} answers - Answers (URIs) for the question
+ * @property {string[]} answers - Answers (bindings) for the question
  */
 /**
  * List of {@link Answers}.
@@ -112,9 +115,9 @@ var textbookQAPairsEvaluation = [];
  */
 var evaluations_generated = [];
 /**
- * Collected evaluations of textbook questions.
+ * Collected evaluations of textbook questions, sorted by natural language question.
  * @see {@link evaluate_iteration}
- * @type {Array.<Array.<EvaluationSingle>>}
+ * @type {Array.<string, Array.<EvaluationSingle>>}
  */
 var evaluations_textbook = [];
 
@@ -125,7 +128,7 @@ var evaluations_textbook = [];
  * @see {@link evaluate_pair()} - Used here to check Answers.
  * @type {AnswerList}
  */
-var correct_answers = {};
+var correct_answers = [];
 
 /**
  * Toggle for the usage of textbook question.
@@ -223,17 +226,20 @@ async function main() {
   console.info("Loop finished");
 
   // Evaluation of whole iteration for the textbook questions
-  await textbook_evaluation();
-
-  // TODO output
+  let csv_textbook = textbook_csv_generation();
+  let csv_generated = generated_csv_generation();
+  
+  // output
+  output("Textbuchfragen", "textbook", csv_textbook);
+  output("Automatisch generierte Textbuchfragen", "generated", csv_generated);
 }
 
 async function snik_retreive_correct_answers() {
-  for(let pair in generatedQAPairsEvaluation) {
+  for (let pair of generatedQAPairsEvaluation) {
     correct_answers[pair.question] = {
-      sparql: pair.anwswer,
-      answers: select(pair.answer, null, "https://www.snik.eu/sparql/")
-    }
+      sparql: pair.answer,
+      answers: select(pair.answer, null, "https://www.snik.eu/sparql")
+    };
   }
 }
 
@@ -397,11 +403,11 @@ async function ask_qanswer(nl_question) {
   // response.queries contains all queries QAnswer finds
   response.queries.sort((a, b) => b.confidence - a.confidence);
   // query chosen by QAnswer is query with highest confidence
-  let qAnswerQuery = response.queries[0];
+  let qanswer_query = response.queries[0];
 
   let ret = {
-    answer: qAnswerQuery.query,
-    confidence: qAnswerQuery.confidence
+    answer: qanswer_query.query,
+    confidence: qanswer_query.confidence
   };
 
   return ret;
@@ -415,11 +421,12 @@ async function ask_qanswer(nl_question) {
  * @param {QAPair} question_answer_pair - One-dimensional array containing question-answer-pair to evaluate,
  * the first index (0) containing the natural language question as a string,
  * the second one (1) containing the answer (as a SPARQL query) as a string.
+ * @param {number} number_of_questions - The total number of generated training questions used to train the model
  * @returns {EvaluationSingle} Evaluation of the pair, containing all details (in case it is a textbook question)
  * 
  * @see {@link evaluate_iteration()}
  */
-async function evaluate_pair(question_answer_pair) {
+async function evaluate_pair(question_answer_pair, number_of_questions) {
 
   let nl_question = question_answer_pair.question;
   let correct_answer = question_answer_pair.answer;
@@ -429,7 +436,7 @@ async function evaluate_pair(question_answer_pair) {
 
   // all answers both queries produce
   let all_correct_answers = correct_answers[nl_question];
-  let all_qanswer_answers = await select(qAnswer_answer.sparql, null, "https://www.snik.eu/sparql/");
+  let all_qanswer_answers = await select(qAnswer_answer.sparql, null, "https://www.snik.eu/sparql");
 
   // All answers contained in both queries. Do not need to check for duplicates because of keyword DISTINCT.
   let intersection_of_answers = all_correct_answers.filter(x => all_qanswer_answers.includes(x));
@@ -445,13 +452,16 @@ async function evaluate_pair(question_answer_pair) {
 
   let evaluation = {
     question: nl_question,
-    correctquery: correct_answer,
-    qanswerquery: qAnswerAnswer.sparql,
-    confidence: qAnswerAnswer.confidence,
+    correct_query: correct_answer,
+    qanswer_query: qAnswer_answer.sparql,
+    confidence: qAnswer_answer.confidence,
     precision: _precision,
     recall: _recall,
     fscore: _fscore,
-    intersection: intersection_length
+    answer_count_correct: all_correct_answers.length,
+    answer_count_qanswer: all_qanswer_answers.length,
+    intersection: intersection_length,
+    count: number_of_questions
   };
 
   return evaluation;
@@ -464,8 +474,6 @@ async function evaluate_pair(question_answer_pair) {
  */
 async function evaluate_iteration(number_of_questions) {
 
-  // later filled with evaluations of textbook QA-Pairs
-  let collected_evaluations_textbook = array();
   // for averaging key indicators for auto-generated pairs
   let evaluation_generated = {
     confidence: 0,
@@ -478,7 +486,7 @@ async function evaluate_iteration(number_of_questions) {
 
   // automatically generated less detailed, mainly used to generate data to evaluate performance of key indicators
   for (let pair of generatedQAPairsEvaluation) {
-    let pair_evaluation = evaluate_pair(pair);
+    let pair_evaluation = evaluate_pair(pair, number_of_questions);
     evaluation_generated.confidence += pair_evaluation.confidence;
     evaluation_generated.precision += pair_evaluation.precision;
     evaluation_generated.recall += pair_evaluation.precision;
@@ -488,8 +496,9 @@ async function evaluate_iteration(number_of_questions) {
 
   // textbook questions more detailed, looking at the individual quetsions more thorughly
   for (let pair of textbookQAPairsEvaluation) {
-    let pair_evaluation = evaluate_pair(pair);
-    collected_evaluations_textbook.push(pair_evaluation);
+    let pair_evaluation = evaluate_pair(pair, number_of_questions);
+
+    evaluations_textbook[pair.question].push(pair_evaluation);
   }
 
   // averaging and outputs
@@ -498,18 +507,103 @@ async function evaluate_iteration(number_of_questions) {
   evaluation_generated.recall /= i;
   evaluation_generated.fscore /= i;
   evaluation_generated.push(evaluations_generated);
-  evaluations_textbook.push(collected_evaluations_textbook);
 
 }
 
 /**
- * Evaluation for the textbook questions.
+ * Generating the CSV table for the textbook questions.
+ * @returns {string} of CSV data
  */
-async function textbook_evaluation() {
-  let precision_total = 0;
-  let recall_total = 0;
-  let fscore_total = 0;
-  let 
+async function textbook_csv_generation() {
+  let csv = "";
+  // each textbook question represented in key of array
+  for (let key in evaluations_textbook.keys()) {
+    /** @type {Array.<EvaluationSingle>} */
+    let question_evaluation = evaluations_textbook[key];
+
+    // new header for each question
+    csv += "Frage,Anzahl Trainingsfragen,Richtige Antwort,QAnswer-Antwort,Confidence,Precision,Recall,F-Score,Richtige Anzahl,QAnswer Anzahl,Schnittmenge\n";
+
+    // each round represented
+    for (/** @type {EvaluationSingle} */ let round of question_evaluation) {
+      csv += round.question + ","
+        + round.count + ","
+        + round.correct_query + ","
+        + round.qanswer_query + ","
+        + round.confidence + ","
+        + round.precision + ","
+        + round.recall + ","
+        + round.fscore + ","
+        + round.answer_count_correct + ","
+        + round.answer_count_qanswer + ", "
+        + round.intersection + "\n";
+    }
+  }
+  return csv;
+}
+
+/**
+ * Generating the CSV table for the averaged out key indicators of the generated questions.
+ * @returns {string} of CSV data
+ */
+async function generated_csv_generation() {
+  let csv = "";
+
+  // new header for each question
+  csv += "Frage,Anzahl Trainingsfragen,Confidence,Precision,Recall,F-Score\n";
+
+  // each round represented
+  for (let round of evaluations_generated) {
+    csv += round.count + ","
+      + round.confidence + ","
+      + round.precision + ","
+      + round.recall + ","
+      + round.fscore + "\n";
+  }
+}
+
+/**
+ * Creates Paragraph and Button downloading the created CSV data when clicked
+ * 
+ * @param {string} button_label - The label for the button that downloads the CSV
+ * @param {string} file_name - Name that the file to download should have
+ * @param {string} csv - The csv data that is downloaded
+ */
+function output(button_label, file_name, csv) {
+
+  console.info(`Creating button with label ${button_label}, which will download the file ${file_name}`);
+
+  // creating div that button and 
+  const output_wrapper = document.getElementById("output-wrapper");
+  const parent_div = document.createElement("div");
+  parent_div.setAttribute("name", file_name)
+  output_wrapper.append(parent_div);
+
+  // creating URL for file to download
+  const blob = new Blob([csv], { type: "text/csv" });
+  let url = window.URL.createObjectURL(blob);
+  
+  // create <a></a>
+  const anchor = document.createElement("a");
+  anchor.setAttribute("name", file_name);
+  anchor.setAttribute("href", url);
+  anchor.setAttribute("download", file_name + ".csv");
+
+  // creates descriptive paragraph/label
+  const description = document.createElement("p");
+  description.innerHTML = button_label;
+
+  // creates button
+  const button = document.createElement("button");
+  button.innerHTML = "Download";
+  button.onclick = function() {
+    // downloads file
+    anchor.click();
+  };
+
+  // add all to parent div as children
+  parent_div.append(description, button);
+
 }
 
 /**
