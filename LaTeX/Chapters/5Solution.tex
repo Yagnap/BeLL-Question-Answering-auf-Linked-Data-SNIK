@@ -3,10 +3,10 @@
 %*****************************************
 
 \section{Erstellung des Benchmarks}
-
 Zur Erstellung eines Benchmarks braucht es zwei Dinge:
 Natürlichsprachige Fragen und die Antworten als \ac{sparql}-Abfrage.
-Der Ansatz, um die Fragen zu erhalten, ist, die bereits durch \citet{arneba} klassifizierten Fragen aus \citet{bb} zu verwenden.
+Der Ansatz, um die Fragen zu erhalten, ist, die bereits durch \citet{arneba} klassifizierten Fragen aus \citet{bb} zu verwenden.\todo{bitte auf die Fragen
+verlinken, die müssten im Git Repository der Bachelorarbeit von Arne sein, \url{https://github.com/snikproject/quiz-ba} ist allerdings privat , oder du stellst sie in dein Git Repositry. }
 Diese wurden jedoch für ein Quiz auf Basis von \ac{snik} klassifiziert, weshalb wir nun neue Kriterien benötigen.
 
 Die Fragen müssen durch eine SPARQL-Query abfragbar sein, dass heißt die möglichen Antworttypen sind Mengen an Ressourcen mit mindestens null Elementen, Literale und einen Wahrheitswert,
@@ -31,6 +31,16 @@ Häufige Fragen sind auch Vergleiche, oder auch evaluierende Fragen.
 Hier sollen Gemeinsamkeiten und Unterschiede festzustellen.
 Man kann sie also als zusammengesetzte Frage aus drei Teilfragen verstehen.
 Angenommen man soll zwei fiktive Ressourcen \texttt{?x} und \texttt{?y} vergleichen.
+\todo{Ich glaube an der SPARQL Abfrage stimmt etwas nicht. Die zwei gegebenen fiktiven Ressourcen dürfen kein Fragezeichen haben, sonst wären sie nämlich
+Variablen.
+URIs haben in SPARQL die Form <x> oder mit Präfix meinpraefix:x.
+Selbst wenn wir ?x und ?y durch Beispielsweise <x> und <y> ersetzen, erhalten wir am Ende alle Paare, die beiden gemeinsam sind aber keine Unterschiede.
+Beispiel:
+<x> rdfs:label "Konrad"; rdf:type :Human.
+<y> rdfs:label "Hannes"; rdf:type :Human.
+
+Das Ergebnis der Abfrage wäre die einzige Zeile ?p=rdf:type ?o=:Human.
+}
 \begin{lstlisting}[language=SPARQL]
 SELECT *
 WHERE
@@ -351,3 +361,6 @@ Dies deutet auf eine Überspezialisierung durch die Trainingsfragen hin, vorher 
 Zur Bestätigung dieser These müsste aber erst Training und Evaluierung durch die automatisch generierten Fragen stattfinden.
 Eine weitaus wahrscheinlichere Möglichkeit ist aber ein großer Fehler bei der Konfiguration der Trainingsfragen oder des Systems in QAnswer.
 Dieser muss noch behoben werden.
+\todo{Was ist denn jetzt dabei herausgekommen? Konntest du den Fehler beheben? Das ist ja der absolut wichtigste Teil. Wenn noch nicht, dann bitte hierauf
+konzentrieren. Und den Trainingsaspekt bei der Vorstellung von QAnswer KG bitte mit einbeziehen, wie das genau funktioniert mit dem Training, das kann ja auch
+die Fehlersuche vereinfachen. Kann ich dir dabei was helfen?}
