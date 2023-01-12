@@ -1,7 +1,7 @@
 /**
  * generates simple question-answer-pairs
  */
-async function retreivePairs() {
+async function retreive_pairs() {
   console.group("Fragengenerierung")
   console.info("Starting to generate pairs");
   const query_subject = `SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
