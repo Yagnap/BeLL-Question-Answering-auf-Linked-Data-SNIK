@@ -87,26 +87,26 @@ var token;
  * 
  * @type {QAPair[]}
  */
-var generatedQAPairsTraining = require("./../../Data/generated-training.json");
+import generatedQAPairsTraining from "./../../Data/generated-training.json" assert {type : JSON};
 /**
  * Question-Answer-Pairs gathered from the textbook used for training
  * 
  * @type {QAPair[]}
  */
-var textbookQAPairsTraining = require("./../../Data/bb_fragen_train.json");;
+import textbookQAPairsTraining from "./../../Data/bb_fragen_train.json" assert {type : JSON};
 
 /**
  * Automatically generated Question-Answer-Pairs used for evaluation
  * 
  * @type {QAPair[]}
  */
-var generatedQAPairsEvaluation = require("./../../Data/generated-testing.json");
+import generatedQAPairsEvaluation from "./../../Data/generated-testing.json" assert {type : JSON};
 /**
  * Question-Answer-Pairs gathered from the textbook used for evaluation
  * 
  * @type {QAPair[]}
  */
-var textbookQAPairsEvaluation = require("./../../Data/bb_fragen_test.json");
+import textbookQAPairsEvaluation from "./../../Data/bb_fragen_test.json" assert {type : JSON};
 
 /**
  * Collected evaluations of automatically generated questions.
@@ -190,7 +190,7 @@ async function main() {
   }
 
   // 10 new questions per iteration
-  for (let i = 0; i < generatedQAPairsTraining.length; i += 10) {
+  for (let i = 0; i < length; i += 10) {
 
     // Start of a (collapsed) console group.
     console.groupCollapsed("Fragenanzahl: " + i + "; Lehrbuchfragen: " + textbookQuestionToggle);
@@ -202,9 +202,9 @@ async function main() {
     // (a) The array is almost at its end
     // (b) The test just started, meaning no questions should be used for training.
     // Default: count stays 10
-    if ((i + 10) >= generatedQAPairsTraining.length) {
-      count = generatedQAPairsTraining.length - i; // i.e. 1003 - 990 = 13 to add
-      i = generatedQAPairsTraining.length; // for evaluation purposes
+    if ((i + 10) >= length) {
+      count = length - i; // i.e. 1003 - 990 = 13 to add
+      i = length; // for evaluation purposes
     } else if (i == 0) {
       count = 0; // no questions added at all
     }
