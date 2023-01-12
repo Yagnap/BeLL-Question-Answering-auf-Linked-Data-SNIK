@@ -87,26 +87,26 @@ var token;
  * 
  * @type {QAPair[]}
  */
-var generatedQAPairsTraining = [];
+var generatedQAPairsTraining = require("./../../Data/generated-training.json");
 /**
  * Question-Answer-Pairs gathered from the textbook used for training
  * 
  * @type {QAPair[]}
  */
-var textbookQAPairsTraining = [];
+var textbookQAPairsTraining = require("./../../Data/bb_fragen_train.json");;
 
 /**
  * Automatically generated Question-Answer-Pairs used for evaluation
  * 
  * @type {QAPair[]}
  */
-var generatedQAPairsEvaluation = [];
+var generatedQAPairsEvaluation = require("./../../Data/generated-testing.json");
 /**
  * Question-Answer-Pairs gathered from the textbook used for evaluation
  * 
  * @type {QAPair[]}
  */
-var textbookQAPairsEvaluation = [];
+var textbookQAPairsEvaluation = require("./../../Data/bb_fragen_test.json");
 
 /**
  * Collected evaluations of automatically generated questions.
