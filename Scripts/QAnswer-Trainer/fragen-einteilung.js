@@ -2,6 +2,8 @@
  * generates simple question-answer-pairs
  */
 async function retreivePairs() {
+  console.group("Fragengenerierung")
+  console.info("Starting to generate pairs");
   const query_subject = `SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
     CONCAT("What ",?pl, " ", ?ol, "?"),
     "What is responsible", "Who is responsible"),
@@ -44,12 +46,17 @@ ORDER BY RAND()`;
   let bindings_subject = await select(query_subject, null, "https://www.snik.eu/sparql");
   let bindings_object = await select(query_object, null, "https://www.snik.eu/sparql");
 
+  console.log("Finished SPARQL queries");
+
   let array_subject = decode_bindings(bindings_subject);
   let array_object = decode_bindings(bindings_object);
   // every generated question in one array
   let qa_pairs_combined = array_subject.concat(array_object);
-
+ 
+  console.info("Sorting and shuffling pairs");
   sort(qa_pairs_combined);
+  console.info("Finished");
+  console.groupEnd();
 }
 
 function decode_bindings(bindings) {
