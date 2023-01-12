@@ -183,6 +183,9 @@ async function main() {
   if (textbookQuestionToggle) {
     // upload textbook question if required
     console.groupCollapsed("Textbuchfragen");
+    for(let textbook_pair of textbookQAPairsTraining) {
+      provide_feedback(textbook_pair);
+    }
     console.groupEnd();
   }
 
@@ -297,7 +300,7 @@ async function login() {
  * 
  * API called: /api/feedback/create
  * 
- * @param {array} question_answer_pair Object containing question-answer-pair to evaluate, question and answer 
+ * @param {QAPair} question_answer_pair Object containing question-answer-pair to evaluate, question and answer 
  */
 async function provide_feedback(question_answer_pair) {
 
