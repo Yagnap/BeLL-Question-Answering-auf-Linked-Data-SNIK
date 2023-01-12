@@ -277,6 +277,7 @@ Hier werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
 Der Charakter \texttt{|} steht für einen alternativen Pfad, ähnlich dem logischen \emph{oder}.
 Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
 Bei beiden dieser Methoden kann man auch eine regulären Ausdrücken ähnliche Syntax nutzen.
+\todo{wissen deine Leser, was reguläre Ausdrücke sind? Ansonsten kurz erklären.}
 Die Auswahl mehrerer Objekte gleichzeitig ist nützlich, um bei \acs{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
 Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise \texttt{?x} nennen, danach fügt man folgende Zeile ein:
 \begin{lstlisting}[language=SPARQL]
@@ -314,14 +315,25 @@ Ein Programm für Semantisches Question Answering erkennt verschiedene semantisc
 also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
-
+\todo{Achtung! Der Unterschied zwischen Question Answering und Semantic Question Answering ist nicht, dass nur bei Semantic Question Answering die Fragen in
+natürlicher Sprache gestellt werden! Natürliche Sprache wird auch bei ganz normalem Question Answering benutzt aber nicht z.B. bei keyword search wie Google.
+Das sieht man ja auch an deiner zitierten Quelle für die Definition von QA: Natural Language Question Answering.
+Außerdem passt die Definition und Quelle nicht zu dem, was ich mit Semantic Question Answering meine.
+Ich meine damit Question Answering auf RDF Daten, also Semantic im Sinne von Semantic Web.
+Wenn dir das zu uneindeutig ist, nimmst du vielleicht besser den heute wohl gebräuchlicheren Ausdruck KBQA (knowledge base QA).
+Oder du lässt es bei Semantic Question Answering, nimmst aber eine passendere Quelle.
+Beispielsweise unsere Survey :-) \url{https://content.iospress.com/articles/semantic-web/sw247}
+}
 Des Weiteren unterscheidet man zwischen komplexen und simplen Fragen.
 Diese unterscheiden sich größtenteils darin, wie viele Zeilen die \ac{sparql}-Abfrage hat, also wie viele Ressourcen zur Verknüpfung der Frage zur Antwort gebraucht werden.
-So ist die Frage \enquote{Woer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
+\todo{Achtung! Zeilen sind hier keine passende Maßeinheit! Man kann ja die gleiche SPARQL Abfrage in eine oder in viele Zeilen packen. Es geht eher darum, wieviele
+Triple Patterns, Filter und so weiter drin sind. Außerdem hat eine Frage keine SPARQL Abfrage sondern die Antwort kann hoffentlich durch verschiedene SPARQL
+Abfragen erreicht werden.}
+So ist die Frage \enquote{Wer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
 da hier nur die Beziehung zwischen \aurl{bb}{AnnualITBudget} und den jeweiligen Antworten benötigt werden.
 Die Frage \enquote{Welche Aufgaben hat die Person, welche auch für das jährliche IT-Budget verantwortlich ist?} könnte schon als komplex gelten, da hier, wie schon in \cref{sub:sparql} gezeigt,
 zwei Zeilen für die eigentliche \ac{sparql}-Abfrage benötigt werden.
-
+\todo{bitte auch hier nicht von Zeilen schreiben}
 \begin{definition}[Einfache Frage]\label{def:efrage}
 Eine einfache Frage ist eine Frage mit einer eindeutigen Intention, aus der eine oder mehrere Antworten erreicht werden können.
 Es werden genau zwei Elemente eines Tripels, also zum Beispiel Subjekt und Prädikat, gegeben.
