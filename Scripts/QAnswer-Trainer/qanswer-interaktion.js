@@ -238,8 +238,8 @@ async function main() {
   // whether or not textbook questions were used for training
   let file_name_append = textbookQuestionToggle ? "-withtb" : "";
   // output
-  output("Textbuchfragen", "textbook" + file_name_append, csv_textbook);
-  output("Automatisch generierte Textbuchfragen", "generated" + file_name_append, csv_generated);
+  output("Textbuchfragen", "textbook" + file_name_append + ".csv", csv_textbook, "text/csv");
+  output("Automatisch generierte Textbuchfragen", "generated" + file_name_append + ".csv", csv_generated, "text/csv");
 
   // reset model AND questions, in case method is called multiple times
   await reset_model();
@@ -604,13 +604,14 @@ function generated_csv_generation() {
 }
 
 /**
- * Creates Paragraph and Button downloading the created CSV data when clicked
+ * Creates Paragraph and Button downloading the created data when clicked
  * 
- * @param {string} button_label - The label for the button that downloads the CSV
- * @param {string} file_name - Name that the file to download should have
- * @param {string} csv - The csv data that is downloaded
+ * @param {string} button_label - The label for the button that downloads the data
+ * @param {string} file_name - Name that the file to download should have INCLUDING file extension
+ * @param {string} data - The data that is downloaded
+ * @param {string} datatype - Type of the data, i.e. "text/csv" or "application/json"
  */
-function output(button_label, file_name, csv) {
+function output(button_label, file_name, data, datatype) {
 
   console.info(`Creating button with label ${button_label}, which will download the file ${file_name}`);
 
@@ -621,14 +622,14 @@ function output(button_label, file_name, csv) {
   output_wrapper.append(parent_div);
 
   // creating URL for file to download
-  const blob = new Blob([csv], { type: "text/csv" });
+  const blob = new Blob([data], { type: datatype });
   let url = window.URL.createObjectURL(blob);
 
   // create <a></a>
   const anchor = document.createElement("a");
   anchor.setAttribute("name", file_name);
   anchor.setAttribute("href", url);
-  anchor.setAttribute("download", file_name + ".csv");
+  anchor.setAttribute("download", file_name);
 
   // creates descriptive paragraph/label
   const description = document.createElement("p");

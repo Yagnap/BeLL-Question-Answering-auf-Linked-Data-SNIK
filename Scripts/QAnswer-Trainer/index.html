@@ -8,11 +8,16 @@
         <script src="pw.js"></script>
         <script src="../sparql.js"></script>
         <script src="qanswer-interaktion.js"></script>
+        <script src="fragen-einteilung.js"></script>
         <script lang="JavaScript">
-            $("submit").onclick = async ()=>{
+            $("#systemEvaluation").onclick = async ()=>{
                 textbookQuestionToggle = $("useTextbookQuestionsCheckbox").checked;
                 await main();
             };
+
+            $("generatePairs").onclick = async ()=>{
+                await retreive_pairs();
+            }
         </script>
         
     </head>
@@ -33,7 +38,9 @@
             </p>
             <input type="checkbox" id="useTextbookQuestionsCheckbox" name="useTextbookQuestionsCheckbox" value="useTextbookQuestionsCheckbox" />
             <label for="useTextbookQuestionsCheckbox">Textbuchfragen verwenden</label> <br />
-            <input type="button" id="submit" name="submit" value="Eingeben und Test starten" />
+            <input type="button" id="systemEvaluation" name="submit" value="Eingeben und Test starten" />
+            <br />
+            <input type="button" id="generatePairs" name="submit" value="Frage-Antwort-Paare generieren" />
             <br />
         </div>
         <div class="body" id="content">
