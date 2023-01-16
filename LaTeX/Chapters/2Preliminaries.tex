@@ -31,6 +31,8 @@ Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings di
 \todo{Die Arbeit ist ja auf Deutsch, aber die QA Sprache Englisch. Das würde ich daher noch deutlich machen an welcher Stelle die Sachen für alle Sprachen gelten und an welcher Stelle nur für Englisch. Das gilt für die ganze Arbeit.}
 In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
 Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet.
+Da die Sprache, die für Question Answering verwendet wird, am ehesten und auch in dieser Arbeit Englisch ist,
+wird hier auch insbesondere auf diese Sprache eingegangen.
 
 \subsection{Wort und Begriff}
 
@@ -55,13 +57,15 @@ In \citet{ob} schließt der Oberbegriff \enquote{Anwendungssystem} jedoch auch a
 Die \emph{Lexik} beschreibt die Wortarten.
 \todo{bitte noch erklären, was eine Lexikalisierung ist.}
 Es wird zwischen flektierbaren und unflektierbaren Wortarten unterschieden.
-Verben, Substantive, Adjektive, Artikel und Pronomen kann man konjugieren bzw. deklinieren.
+Im Deutschen kann man Verben, Substantive, Adjektive, Artikel und Pronomen konjugieren bzw. deklinieren.
 Sie werden auch flektierbar genannt.
-Die Form unflektierbarer Wortarten ist unveränderlich, sie enthalten Partikel wie Adverbien und Interjektionen \citep[S.~505]{deutschbuch}.
+Die Form unflektierbarer Wortarten ist unveränderlich, im Deutschen sind das Partikel wie Adverbien und Interjektionen \citep[S.~505]{deutschbuch}.
 \todo{Achtung! Du darfst kein Buch über Deutsch zitieren wenn die Sprache Englisch ist!}
+
 Die \emph{Syntax} behandelt den Satzbau und somit die Satzglieder wie Subjekt, Prädikat und Objekt oder Satzarten wie der Aussage-, Aufforderungs- und Fragesatz und deren Unterarten.
 Unterarten von Fragesätzen sind  die Entscheidungsfrage, wo ein Wahrheitswert als Antwort erwartet wird, die Ergänzungsfrage, wo nach Informationen gesucht wird, und die rhetorische Frage, auf welche keine Antwort erwartet wird.
 Besonders Ergänzungsfragen, welche typischerweise mit einem Fragewort beginnnen, sind in dieser Arbeit wichtig.
+
 Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders, aber nicht nur, auf Präpositionen, Adjektive und Adverben.
 Sie beschäftigt sich demnach auch mit Synonymen und Homonymen, es wird z.B. versucht, alle möglichen Bedeutungen eines Wortes zu erfahren.
 
@@ -158,8 +162,7 @@ Es gibt nun standardisierte Sprachen und eine Vielzahl an kommerziellen und Open
 
 In der Informatik beschreiben Klassen die Abstraktion und Kategorisierung von Wissen.
 Solche Klassen können auch Subklassen von anderen sein, Subklassen können auch weitere Subklassen haben.
-\todo{da fehlt noch was im folgenden Satz}
-die Beziehung zwischen Sub- bzw. Unterklassen $U$ und Eltern- bzw. Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$),
+Dahingegen ist die Beziehung zwischen Sub- bzw. Unterklassen $U$ und Eltern- bzw. Oberklassen $O$ eine Teilmengenbeziehung ($U \subseteq O$),
 das heißt, dass jedes Element der Unterklasse auch ein Element der Oberklasse ist.
 Echte Teilmengenbeziehungen ($U \subset O$) existieren, wenn jedes Element von $U$ ein Element von $O$ ist, $O$ aber zumindest ein Element enthält,
 das nicht in $U$ ist \citep[S.~261]{semanticwebgrundlagen}.
@@ -234,8 +237,10 @@ In den Entitäten sind spezielle Informationen über die Individuen enthalten.
 Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen den Individuen.
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
 Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
-Desweiteren sind Wissensbasen auf zweistellige Relationen beschränkt, wohingegen relationale Datenbanken theoretisch unbegrenzt viele Attribute haben können.
-\todo{Ungenau. Ich würde hier eher sagen, dass die Anzahl der Spalten und damit die Arität (Stelligkeit) der Relationen bei relationalen Datenbanken wesentlich höher ist (je nach Art der Datenbank wohl 1000 und mehr, aber theoretisch könnte man vielleicht schon sagen unbegrenzt).}
+Des Weiteren sind Wissensbasen auf zweistellige Relationen beschränkt,
+wohingegen relationale Datenbanken eine deutlich höhere Anzahl an Spalten und somit eine deutlich höhere Stelligkeit der Relationen existiert.
+%\todo{Ungenau. Ich würde hier eher sagen, dass die Anzahl der Spalten und damit die Arität (Stelligkeit) der Relationen bei relationalen Datenbanken wesentlich höher ist (je nach Art der Datenbank wohl 1000 und mehr, aber theoretisch könnte man vielleicht schon sagen unbegrenzt).}
+
 \subsection{Linked (Open) Data}
 
 Linked Data beschreibt öffentlich verfügbare Informationen, die mittels \acp{uri} erreichbar und in für Maschinen lesbarer Form vorhanden sind \citep{linkeddata}.

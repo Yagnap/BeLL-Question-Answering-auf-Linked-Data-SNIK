@@ -36,7 +36,7 @@ Die Implementierung eines Question Answering-Systems mit adäquater Qualität de
 \todo{Achtung: Die Ebene der Problemstellung soll aus Sicht des zukünftigen Nutzers geschrieben sein. Lies dir bitte noch mal das Kapitel 1.2 aus der Vorlage durch \url{https://github.com/IMISE/imise-classicthesis/files/6785593/thesis.pdf}}.
 \begin{itemize}
 	\item Problem P1: Für die Implementierung von Question Answering benötigter Aufwand
-	\item Problem P2: Fehlende Intuitivität und Expressivität anderer Lösungsansätze\todo{Ich würde hier eher von existierenden Lösungen schreiben statt von anderen Lösungsansätzen.}
+	\item Problem P2: Fehlende Intuitivität und Expressivität existierender Lösungen
 \end{itemize}
 
 \section{Motivation}
@@ -52,11 +52,17 @@ Besonders in Zeiten der Covid-19-Pandemie, wo die Kontakte oft eingeschränkt we
 \section{Zielsetzung}\label{sec:zielsetzung}
 
 Im Folgenden werden beiden Problemen je ein Ziel zugeordnet.
-\todo{bitte noch kurz begründen, warum die Probleme und Ziele verbunden sind. Es ist sonst nicht auf Anhieb offensichtlich, warum Z1 (Benchmark) aus dem Problem P1 (Aufwand) folgt.}
-	\begin{itemize}
-		\item Ziel Z1: Benchmark für Semantisches Question Answering für \acs{snik}
-		\item Ziel Z2: Semantisches Question Answering System, welches Fragen zu \acs{snik} mit hoher Qualität beantwortet.
-	\end{itemize}
+
+Das Problem P1 des Aufwandes der Implementierung eines eigenen Systems kann durch das Verwenden eines bereits existierenden Systems umgangen werden.
+Dieses muss das Wissen \acs{snik}s nutzen, um Fragen zu beantworten.
+
+Das Ziel unterstützt die Lösung des Problems P2 der mangelhaften anderen Möglichkeiten zur Wissensabfrage oder -aneignung in der Medizininformatik,
+und zwar das Ziel des Erreichens eines semantischen Question Answering-Systems, welches Fragen mit hoher Genauigkeit beantworten kann.
+
+\begin{itemize}
+	\item Ziel Z1: Benchmark für Semantisches Question Answering für \acs{snik}
+	\item Ziel Z2: Semantisches Question Answering-System, welches Fragen zu \acs{snik} mit hoher Qualität beantwortet.
+\end{itemize}
 \section{Aufgabenstellung}
 
 Den Zielen sind hier jeweils Aufgaben zugeordnet.
