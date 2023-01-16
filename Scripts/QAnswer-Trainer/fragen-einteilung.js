@@ -1,7 +1,9 @@
+import { output } from "./qanswer-interaktion.js";
+
 /**
  * generates simple question-answer-pairs
  */
-async function retreive_pairs() {
+export async function retreive_pairs() {
   console.group("Fragengenerierung")
   console.info("Starting to generate pairs");
   const query_subject = `SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
@@ -73,10 +75,9 @@ function decode_bindings(bindings) {
 function sort(qaPairs) {
   qaPairs = shuffle(qaPairs);
 
-  let halfLength = Math.ceil(qaPairs.length / 2);
-  let trainingPairs = qaPairs.slice(0, halfLength);
-  let testPairs = qaPairs.slice(halfLength);
-
+  // 100 test pairs, rest training
+  let testPairs = qaPairs.slice(0,100);
+  let trainingPairs = qaPairs.slice(100);
 
   console.groupCollapsed("Training pairs");
   let trainString = JSON.stringify(trainingPairs);

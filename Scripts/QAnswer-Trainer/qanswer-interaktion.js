@@ -87,26 +87,26 @@ var token;
  * 
  * @type {QAPair[]}
  */
-import generatedQAPairsTraining from "./../../Data/generated-training.json" assert {type : JSON};
+import generatedQAPairsTraining from "./Data/generated-training.json" assert {type : "json"};
 /**
  * Question-Answer-Pairs gathered from the textbook used for training
  * 
  * @type {QAPair[]}
  */
-import textbookQAPairsTraining from "./../../Data/bb_fragen_train.json" assert {type : JSON};
+import textbookQAPairsTraining from "./Data/bb_fragen_train.json" assert {type : "json"};
 
 /**
  * Automatically generated Question-Answer-Pairs used for evaluation
  * 
  * @type {QAPair[]}
  */
-import generatedQAPairsEvaluation from "./../../Data/generated-testing.json" assert {type : JSON};
+import generatedQAPairsEvaluation from "./Data/generated-testing.json" assert {type : "json"};
 /**
  * Question-Answer-Pairs gathered from the textbook used for evaluation
  * 
  * @type {QAPair[]}
  */
-import textbookQAPairsEvaluation from "./../../Data/bb_fragen_test.json" assert {type : JSON};
+import textbookQAPairsEvaluation from "./Data/bb_fragen_test.json" assert {type : "json"};
 
 /**
  * Collected evaluations of automatically generated questions.
@@ -135,7 +135,7 @@ var correct_answers = [];
  * Set by some input in HTML file.
  * @see {@link main} - Used only in loop of this method.
  */
-var textbookQuestionToggle = false;
+//var textbookQuestionToggle = false;
 
 /**
  * Name of the knowledge base to test.
@@ -169,7 +169,7 @@ const kb_name = "snik_bb_autotest";
  * @see {@link reset_model()} for step 2d
  * @see {@link final_evaluation()} for step 3
  */
-async function main() {
+export async function main(use_textbook_question_training) {
 
   // retreive correct answers
   await snik_retreive_correct_answers();
@@ -180,7 +180,7 @@ async function main() {
   console.info("Starting loop");
   console.time("Time required to finish loop");
 
-  if (textbookQuestionToggle) {
+  if (use_textbook_question_training) {
     // upload textbook question if required
     console.groupCollapsed("Textbuchfragen");
     for(let textbook_pair of textbookQAPairsTraining) {
@@ -193,7 +193,7 @@ async function main() {
   for (let i = 0; i < length; i += 10) {
 
     // Start of a (collapsed) console group.
-    console.groupCollapsed("Fragenanzahl: " + i + "; Lehrbuchfragen: " + textbookQuestionToggle);
+    console.groupCollapsed("Fragenanzahl: " + i + "; Lehrbuchfragen: " + use_textbook_question_training);
 
     // number of questions to add
     let count = 10;
@@ -239,7 +239,7 @@ async function main() {
   let csv_generated = generated_csv_generation();
 
   // whether or not textbook questions were used for training
-  let file_name_append = textbookQuestionToggle ? "-withtb" : "";
+  let file_name_append = use_textbook_question_training ? "-withtb" : "";
   // output
   output("Textbuchfragen", "textbook" + file_name_append + ".csv", csv_textbook, "text/csv");
   output("Automatisch generierte Textbuchfragen", "generated" + file_name_append + ".csv", csv_generated, "text/csv");
@@ -287,7 +287,8 @@ async function login() {
       "Content-Type": "application/json",
       processData: false,
       data: args
-    }
+    },
+    dataType: "jsonp"
   };
 
   $.ajax(settings).done(function (response) {
@@ -334,7 +335,8 @@ async function provide_feedback(question_answer_pair) {
       "Content-Type": "application/json",
       processData: false,
       data: args
-    }
+    },
+    dataType: "jsonp"
   };
 
   // api call
@@ -358,7 +360,8 @@ async function train_model() {
       "Content-Type": "application/json",
       processData: false,
       data: args
-    }
+    },
+    dataType: "jsonp"
   };
 
   await $.ajax(settings);
@@ -381,7 +384,8 @@ async function reset_model() {
       "Content-Type": "application/json",
       processData: false,
       data: args
-    }
+    },
+    dataType: "jsonp"
   };
 
   await $.ajax(settings);
@@ -404,7 +408,8 @@ async function reset_qapairs() {
       "Content-Type": "application/json",
       processData: false,
       data: args
-    }
+    },
+    dataType: "jsonp"
   };
 
   await $.ajax(settings);
@@ -438,7 +443,8 @@ async function ask_qanswer(nl_question) {
       "Content-Type": "application/json",
       processData: false,
       data: args
-    }
+    },
+    dataType: "jsonp"
   };
 
   // ask QAnswer API
@@ -483,7 +489,7 @@ async function evaluate_pair(question_answer_pair, number_of_questions) {
   let all_qanswer_answers = await select(qAnswer_answer.sparql, null, "https://www.snik.eu/sparql");
 
   // All answers contained in both queries. Do not need to check for duplicates because of keyword DISTINCT.
-  let intersection_of_answers = all_correct_answers.filter(x => all_qanswer_answers.includes(x));
+  let intersection_of_answers = intersect(all_correct_answers, all_qanswer_answers);
 
   let intersection_length = intersection_of_answers.length;
   let correct_length = all_correct_answers.length;
@@ -614,7 +620,7 @@ function generated_csv_generation() {
  * @param {string} data - The data that is downloaded
  * @param {string} datatype - Type of the data, i.e. "text/csv" or "application/json"
  */
-function output(button_label, file_name, data, datatype) {
+export function output(button_label, file_name, data, datatype) {
 
   console.info(`Creating button with label ${button_label}, which will download the file ${file_name}`);
 
@@ -681,19 +687,4 @@ function intersect(bindings1, bindings2) {
   var intersection = b1.filter((value) => b2.includes(value));
   return intersection;
 
-}
-
-/**
- * Escapes characters which could damage the layout of an HTML page
- * 
- * @param {string} unsafe - String containing possibly unsafe characters
- * @returns {string} with some characters escaped
- */
-function escapeHtml(unsafe) {
-  return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }

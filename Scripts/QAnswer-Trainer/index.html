@@ -7,23 +7,10 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
         <script src="pw.js"></script>
-        <script src="../sparql.js" type="module"></script>
-        <script src="qanswer-interaktion.js" type="module"></script>
-        <script src="fragen-einteilung.js" type="module"></script>
-        <script lang="JavaScript">
-            $().ready(function() {
-                $("#systemEvaluation").click(async ()=>{
-                    console.log("Click on systemEvaluation");
-                    textbookQuestionToggle = $("useTextbookQuestionsCheckbox").checked;
-                    await main();
-                });
-
-                $("#generatePairs").click(async ()=>{
-                    console.log("Click on generatePairs");
-                    await retreive_pairs();
-                });
-            });
-        </script>
+        <script src="../sparql.js"></script>
+        <!--<script src="qanswer-interaktion.js" type="module"></script>-->
+        <!--<script src="fragen-einteilung.js"></script>-->
+        <script src="main.js" type="module"></script>
         
     </head>
     <body>
