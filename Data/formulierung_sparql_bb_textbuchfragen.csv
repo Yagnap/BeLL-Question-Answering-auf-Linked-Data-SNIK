@@ -1,0 +1,37 @@
+ID,Frage,SPARQL
+1/2,What are appropriate models for health information systems?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:Model . }
+3/3,What is information management?,SELECT DISTINCT ?o1 WHERE {VALUES ?o1 {bb:InformationManagement } . }
+4/1,What are hospital information systems?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HospitalInformationSystem } . }
+4/2,What are transinstitutional health information systems?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:TransinstitutionalHealthInformationSystem } . }
+4/4,What are electronic health records?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:ElectronicHealthRecord } . }
+5/2,What are typical metamodels for modeling various aspects of HIS?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:Metamodel . }
+5/3,What is 3LGM2?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:3LMG2 } . }
+5/4,What are typical reference models for HIS?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:ReferenceModel . }
+6/2,What are the main hospital functions?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HospitalFunction . }
+6/4,What are different architectures of HIS?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }
+6.5/1,How can architectures of HIS be categorized?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:HisArchitecture . }
+6.6/2,What is meant by the term "infrastructure"?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . }
+6.7/2,What is meant by physical integration?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:PhysicalIntegration } . }
+7/3,Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EhrStrategy . }
+8/1,Which facets of quality have to be considered in HIS?,SELECT DISTINCT ?s1 WHERE { bb:HisQuality meta:entityTypeComponent ?o1 . }
+8/2,What are the characteristics of the quality of structures in HIS?,SELECT DISTINCT ?s2 WHERE { bb:QualityOfHISStructures meta:entityTypeComponent ?o1 .?s2 rdfs:subClassOf ?o1 . }
+8/3,What are the characteristics of the quality of processes of HIS?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }
+8/6,How can quality of HIS be evaluated?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf+ bb:EvaluationMethod . }
+8.2/1,What criteria for quality of data exist?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfData . }
+8.2/3,What criteria for the overall HIS architecture exist?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISArchitecture . }
+8.3/1,What are the characteristics of the quality of processes of HIS?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:QualityOfHISProcesses . }
+8.6/1,What are major phases of an IT evaluation study?,SELECT DISTINCT ?o1 WHERE { bb:ItEvaluationStudyManagementAndExecution meta:functionComponent ?o1 . }
+8.6/2,What are major IT evaluation methods?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EvaluationMethod . }
+9/3,What are the tasks and methods for strategic HIS planning?,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISPlanning meta:functionComponent ?o1 . }
+9/4,What are the tasks and methods for strategic HIS monitoring?,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:functionComponent ?o1 . }
+9/5,What are the tasks and methods for strategic HIS directing?,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:functionComponent ?o1 . }
+9.2/2,What are the three main scopes of information management?,SELECT DISTINCT ?o1 WHERE { bb:InformationManagement meta:functionComponent ?o1 . }
+9.3.4.2/1,Which organizational units are involved in information management?,SELECT DISTINCT ?s1 WHERE { ?s1 meta:functionComponent bb:InformationManagement . }
+9.3.4.2/2,Which boards and persons are involved in information management?,SELECT DISTINCT ?s1 WHERE { ?s1 meta:isResponsibleForFunction bb:InformationManagement . }
+9.4/2,What are the typical tasks for strategic HIS planning?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:StrategicHISPlanning . }
+9.5/1,What are the typical tasks of strategic HIS monitoring?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:StrategicHISMonitoring . }
+9.5/2,What are the typical methods of strategic HIS monitoring?,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . }
+9.6/1,What are the typical tasks of strategic HIS directing?,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:functionComponent ?o1 . }
+9.6/2,What are the typical methods of strategic HIS directing?,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISDirecting meta:uses ?o1 . }
+10/1,What are health care networks?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {bb:HealthCareNetwork } . }
+10/2,How can health care networks be described?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {bb:HealthCareNetwork } . }
