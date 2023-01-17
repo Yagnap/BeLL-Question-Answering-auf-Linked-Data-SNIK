@@ -73,7 +73,7 @@ Sie beschäftigt sich demnach auch mit Synonymen und Homonymen, es wird z.B. ver
 
 \subsection{URIs, IRIs und URLs}
 \ac{uri} werden zur eindeutigen Zuordnung von Zeichenketten zu beliebigen Ressourcen verwendet \citep{uri}.
-\ac{url} ist eine URL mit konkreten Zugriffsmöglichkeiten auf die Ressource \citep{url}.
+\ac{url} ist eine \ac{uri} mit konkreten Zugriffsmöglichkeiten auf die Ressource \citep{url}.
 Ein \ac{iri} ist ein URI mit einer größeren Anzahl an möglichen Zeichen, da es auch nichtlateinische Schriftzeichen erlaubt.
 
 \subsection{World Wide Web}
@@ -84,16 +84,16 @@ Das Format der Dokumente wird durch die \ac{html} beschrieben, welche ebenfalls 
 
 \subsection{Semantic Web}
 Im Gegensatz zu \ac{www}, einem Web der Dokumente, ist das Semantic Web ein Web der Daten.
-Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview}, das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz, abhängig ist.
-\todo{Ist das Semantic Web wirklich sehr stark vom Deep Learning abhängig? Das ist ja schon eine starke Aussage, das bitte belegen.}
+Es ist außerdem nicht nur ein verwendbares Artefakt wie das \ac{www}, sondern auch ein Forschungsfeld \citep{semanticwebreview},
+das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstlicher Intelligenz,
+abhängig ist und in seinen Möglichkeiten unterstützt wird \citep{semanticwebdeeplearning}.
 Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
 \daurl{bb}{http://www.snik.eu/ontology/bb/}
 \daurl{ciox}{http://www.snik.eu/ontology/ciox/}
 \daurl{ex}{http://www.example.org/}
-\todo{zu klein. wenn es mit normaler Größe nicht passt probiere es mal eine Größe größer}
 \subsection{RDF}
-\begin{table}[h]\centering\scriptsize
+\begin{table}[h]\centering\small
   \begin{tabulary}{\textwidth}{rrl}
     \toprule
     Funktion & Beispiel 1 & Beispiel 2 \\
@@ -192,16 +192,14 @@ M_i \subseteq M_n \land M_i \supseteq M_1 \\
 \begin{figure}[ht]%bp!
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/hierarchy.pdf}
-\caption[Beispiel für Hierarchie]{Eine beispielhafte Hierarchie aus der \acs{snik}-Ontologie.}
+\caption[Beispiel für Hierarchie]{Eine beispielhafte Hierarchie aus der \acs{snik}-Ontologie. Quelle: \citet{snikgraphposter}}
 \label{fig:snikhierarchy}
 \end{figure}
-\todo{Quelle für Bild fehlt in Caption für Bild 2.1 Hierarchie}
+
 \subsection{Individuen und Klassen}
 \label{sec:individuenundklassen}
-Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$.
-\todo{Musterfrau oder Mustermann? Eines auswählen und konsistent verwenden bitte.}
-Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Musterfrau ein Element der Klasse Leiterin des Informationsmanagements \citep[S.~261]{semanticwebgrundlagen}.
-\todo{Ich glaube die Zitierung ist an der falschen Stelle, das Beispiel ist doch von dir.}
+Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$ \citep[S.~261]{semanticwebgrundlagen}.
+Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Mustermann ein Element der Klasse Leiterin des Informationsmanagements.
 
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
 Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden,
@@ -211,19 +209,17 @@ Es gibt nicht nur \emph{binäre} Relationen, also Relationen zweier Elemente, hi
 
 In \ac{rdf} sind nämlich alle Relationen zweistellig, also Paare.
 Die Beschreibung dieser Relation wird \enquote{Property}, also Attribut oder Eigenschaft, genannt.
-Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{meta}{isResponsibleForEntityType} ein Property von \aurl{bb}{ChiefInformationOfficer} mit dem Wert \aurl{bb}{AnnualITBudget}.
-\todo{Achtung overfull hboxes (Schrift ragt über den Rand, das darf nicht passieren)}
+Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{meta}{isResponsibleForEntityType} ein Property von der Ressource \aurl{bb}{ChiefInformationOfficer},
+welche im Tripel die Rolle des Subjekts annimmt, mit dem Wert, der das Objekt darstellt, \aurl{bb}{AnnualITBudget}.
 Sie können auch eingeschränkt werden, indem man ihnen mit \ac{rdf} ihren \emph{Definitionsbereich} mit und \emph{Wertebereich} verändert.
 Damit lässt sich einstellen, welche Datentypen als Subjekt und Objekt akzeptiert werden \citep[S.~76]{semanticwebgrundlagen}.
 Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über \aurl{rdfs}{range} bearbeitet.
 
-\emph{Literale}, oder auch \emph{Data}-Properties, erfüllen die Funktion der Datentypen.
-\todo{Achtung! Literale und Datatype Properties sind nicht das Selbe. Literale sind Zeichenketten und Datatype properties sind properties deren Wertebereich Literale sind.}
-Sie sind reservierte \acp{uri}, welche die Art des vorhandenen Werts anzeigen.
-Properties mit Klassen als Definitions- und Wertebereich werden auch \emph{Object}-Properties genannt.
-\todo{Der Definitionsbereich einer Property ist immer eine Klasse.}
+\emph{Literale}, die der Wertebereich der \emph{Data}-Properties sind, erfüllen die Funktion der Datentypen.
+Literale sind Zeichenketten und können über reservierte \acp{uri} die Art des vorhandenen Werts anzeigen.
+Da Properties Klassen als Definitions- und Wertebereich haben, werden sie auch \emph{Object}-Properties genannt.
 So ist in \cref{tab:rdftripleexample} \aurl{bb}{isResponsibleForEntityType} ein Property mit \aurl{meta}{Role} als Definitionsbereich und \aurl{meta}{EntityType} als Wertebereich,
-sie sind also Eigenschaften von Objekten.
+es beschreibt also eine Eigenschaft von Ressourcen.
 
 \subsection{Wissensbasen}
 Es wird teilweise auch zwischen A- und TBoxen unterschieden.
@@ -239,7 +235,6 @@ Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben h
 Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
 Des Weiteren sind Wissensbasen auf zweistellige Relationen beschränkt,
 wohingegen relationale Datenbanken eine deutlich höhere Anzahl an Spalten und somit eine deutlich höhere Stelligkeit der Relationen existiert.
-%\todo{Ungenau. Ich würde hier eher sagen, dass die Anzahl der Spalten und damit die Arität (Stelligkeit) der Relationen bei relationalen Datenbanken wesentlich höher ist (je nach Art der Datenbank wohl 1000 und mehr, aber theoretisch könnte man vielleicht schon sagen unbegrenzt).}
 
 \subsection{Linked (Open) Data}
 
@@ -290,8 +285,9 @@ Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise 
 \end{lstlisting}
 Da die Teilontologien untereinander mit \aurl{meta}{closeMatch} verbunden sind, wird diese Beziehung hier abgefragt.
 Mittels property path und dem Zeichen \texttt{\^} wird die Suche auch invertiert, sodass auch Ressourcen erhalten werden, wenn die closeMatch-Beziehung von der anderen ausgeht.
-Mit dem Zeichen \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt.
-\todo{richtig aber kann noch genauer beschrieben werden: \texttt{*} steht für beliebige Wiederholung des Pfades inklusive 0-mal, daher also auch bb CIO selbst.}
+Mit dem Zeichen \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt, da dieses Zeichen eine beliebig häufige Anzahl an Wiederholungen des Pfades zulässt.
+Im Gegensatz zu \texttt{+} setzt \texttt{*} jedoch keine Mindestanzahl von einer Wiederholung vorraus, sondern erlaubt auch Zahlen von null,
+weshalb auch die Ressource selbst ausgewählt wird.
 
 \section{Semantisches Question Answering}
 
@@ -478,7 +474,7 @@ Für die eigentliche Klassifikation der Eingabe sind dann allerdings die hintere
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/CNN.png}
-\caption[Struktur von CNNs]{Die Struktur eines \ac{cnn} \citep{deeplearningarchitecturesreview}.}
+\caption[Struktur von CNNs]{Die Struktur eines \ac{cnn}. Quelle: \citet{deeplearningarchitecturesreview}.}
 \label{fig:struktur-cnn}
 \end{figure}
 
@@ -491,7 +487,7 @@ Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/RNN.png}
-\caption[Struktur von RNNs]{Die Struktur eines \ac{rnn} \citep{deeplearningarchitecturesreview}.}
+\caption[Struktur von RNNs]{Die Struktur eines \ac{rnn}. Quelle: \citet{deeplearningarchitecturesreview}.}
 \label{fig:struktur-rnn}
 \end{figure}
 
