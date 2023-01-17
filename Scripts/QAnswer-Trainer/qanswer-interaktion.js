@@ -171,8 +171,18 @@ const kb_name = "snik_bb_autotest";
  */
 export async function main(use_textbook_question_training) {
 
+  console.groupCollapsed("Number of QA Pairs");
+  console.log("Following are the lengths of the arrays containing the QA Pairs");
+  console.log("generated training: " + generatedQAPairsTraining.length);
+  console.log("generated testing: " + generatedQAPairsEvaluation.length);
+  console.log("textbook training: " + textbookQAPairsTraining.length);
+  console.log("textbook testing: " + textbookQAPairsEvaluation.length);
+  console.groupEnd();
+
   // retreive correct answers
+  console.groupCollapsed("Retrieving correct answers from SNIK");
   await snik_retreive_correct_answers();
+  console.groupEnd();
 
   // login
   await login();
@@ -181,14 +191,20 @@ export async function main(use_textbook_question_training) {
   console.time("Time required to finish loop");
 
   if (use_textbook_question_training) {
+
+    console.info("Textbook are being questions used");
+
     // upload textbook question if required
     console.groupCollapsed("Textbuchfragen");
     for(let textbook_pair of textbookQAPairsTraining) {
-      provide_feedback(textbook_pair);
+      await provide_feedback(textbook_pair);
     }
     console.groupEnd();
+  } else {
+    console.info("No textbook questions are being used");
   }
 
+  console.groupCollapsed("Loop");
   // 10 new questions per iteration
   for (let i = 0; i < length; i += 10) {
 
@@ -230,6 +246,7 @@ export async function main(use_textbook_question_training) {
     // Evaluation of step
     await evaluate_iteration(i);
   }
+  console.groupEnd();
 
   console.timeEnd("Time required to finish loop");
   console.info("Loop finished");
@@ -259,7 +276,7 @@ async function snik_retreive_correct_answers() {
   for (let pair of generatedQAPairsEvaluation) {
     correct_answers[pair.question] = {
       sparql: pair.answer,
-      answers: select(pair.answer, null, "https://www.snik.eu/sparql")
+      answers: await select(pair.answer, null, "https://www.snik.eu/sparql")
     };
   }
 }
@@ -279,16 +296,16 @@ async function login() {
     "password": QANSWER_CREDENTIALS.password
   }
   let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://app.qanswer.ai/api/user/signin",
-    method: "POST",
-    headers: {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://app.qanswer.ai/api/user/signin",
+    "method": "POST",
+    "headers": {
       "Content-Type": "application/json",
-      processData: false,
-      data: args
+      "processData": false,
+      "data": args
     },
-    dataType: "jsonp"
+    "dataType": "jsonp"
   };
 
   $.ajax(settings).done(function (response) {
@@ -326,17 +343,17 @@ async function provide_feedback(question_answer_pair) {
 
   // settings for api call
   let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://app.qanswer.ai/api/feedback/create",
-    method: "POST",
-    headers: {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://app.qanswer.ai/api/feedback/create",
+    "method": "POST",
+    "headers": {
       "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
-      processData: false,
-      data: args
+      "processData": false,
+      "data": args
     },
-    dataType: "jsonp"
+    "dataType": "jsonp"
   };
 
   // api call
@@ -351,17 +368,17 @@ async function provide_feedback(question_answer_pair) {
 async function train_model() {
   let args = [kb_name];
   let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://app.qanswer.ai/api/feedback/train",
-    method: "GET",
-    headers: {
-      Authorization: "Bearer " + token,
+    "async": true,
+    "crossDomain": true,
+    "url": "http://app.qanswer.ai/api/feedback/train",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
-      processData: false,
-      data: args
+      "processData": false,
+      "data": args
     },
-    dataType: "jsonp"
+    "dataType": "jsonp"
   };
 
   await $.ajax(settings);
@@ -375,17 +392,17 @@ async function train_model() {
 async function reset_model() {
   let args = [kb_name];
   let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://app.qanswer.ai/api/dataset/set_default_model",
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + token,
+    "async": true,
+    "crossDomain": true,
+    "url": "http://app.qanswer.ai/api/dataset/set_default_model",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
-      processData: false,
-      data: args
+      "processData": false,
+      "data": args
     },
-    dataType: "jsonp"
+    "dataType": "jsonp"
   };
 
   await $.ajax(settings);
@@ -399,17 +416,17 @@ async function reset_model() {
 async function reset_qapairs() {
   let args = [kb_name];
   let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://app.qanswer.ai/api​/feedback​/remove-all-questions",
-    method: "POST",
-    headers: {
-      Authorization: "Bearer " + token,
+    "async": true,
+    "crossDomain": true,
+    "url": "http://app.qanswer.ai/api​/feedback​/remove-all-questions",
+    "method": "POST",
+    "headers": {
+      "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
-      processData: false,
-      data: args
+      "processData": false,
+      "data": args
     },
-    dataType: "jsonp"
+    "dataType": "jsonp"
   };
 
   await $.ajax(settings);
@@ -434,17 +451,17 @@ async function ask_qanswer(nl_question) {
   };
 
   let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://app.qanswer.ai/api/qa/full",
-    method: "GET",
-    headers: {
-      Authorization: "Bearer " + token,
+    "async": true,
+    "crossDomain": true,
+    "url": "http://app.qanswer.ai/api/qa/full",
+    "method": "GET",
+    "headers": {
+      "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
-      processData: false,
-      data: args
+      "processData": false,
+      "data": args
     },
-    dataType: "jsonp"
+    "dataType": "jsonp"
   };
 
   // ask QAnswer API
