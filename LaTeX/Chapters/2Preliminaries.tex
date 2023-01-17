@@ -319,16 +319,19 @@ also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
 
-Des Weiteren unterscheidet man zwischen komplexen und simplen Fragen.
-Diese unterscheiden sich größtenteils darin, wie viele Zeilen die \ac{sparql}-Abfrage hat, also wie viele Ressourcen zur Verknüpfung der Frage zur Antwort gebraucht werden.
-\todo{Achtung! Zeilen sind hier keine passende Maßeinheit! Man kann ja die gleiche SPARQL Abfrage in eine oder in viele Zeilen packen. Es geht eher darum, wieviele
-Triple Patterns, Filter und so weiter drin sind. Außerdem hat eine Frage keine SPARQL Abfrage sondern die Antwort kann hoffentlich durch verschiedene SPARQL
-Abfragen erreicht werden.}
-So ist die Frage \enquote{Wer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
+Fragen werden zudem anhand ihrer Komplexität in simple und komplexe Fragen unterschieden.
+Die Komplexität einer Frage leitet sich daraus ab, wie viele Schritte zum Erreichen der Antwort nötig sind.
+Bei der Formulierung einer \ac{sparql}-Abfrage zum Erhalten der Antwort lässt sich das gut erkennen.
+Es ist zum Beispiel wichtig, wie viele Tripel zur Verknüpfung der Frage mit der Antwort gebraucht, oder ob Filter oder ähnliches verwendet werden.
+
+So ist beispielsweise die Frage \enquote{Wer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
 da hier nur die Beziehung zwischen \aurl{bb}{AnnualITBudget} und den jeweiligen Antworten benötigt werden.
 Die Frage \enquote{Welche Aufgaben hat die Person, welche auch für das jährliche IT-Budget verantwortlich ist?} könnte schon als komplex gelten, da hier, wie schon in \cref{sub:sparql} gezeigt,
-zwei Zeilen für die eigentliche \ac{sparql}-Abfrage benötigt werden.
-\todo{bitte auch hier nicht von Zeilen schreiben}
+zwei oder drei Tripel für die eigentliche \ac{sparql}-Abfrage benötigt werden:
+Eines, um herauszufinden, wer alles für das jährliche IT-Budget verantwortlich ist;
+eines, um ggf. zu fordern, dass es sich bei der Ressource aus dem ersten Tripel um eine Person handelt;
+und eines, um letztendlich die eigentliche Intention der Frage, die Aufgaben dieser Person, auszugeben.
+
 \begin{definition}[Einfache Frage]\label{def:efrage}
 Eine einfache Frage ist eine Frage mit einer eindeutigen Intention, aus der eine oder mehrere Antworten erreicht werden können.
 Es werden genau zwei Elemente eines Tripels, also zum Beispiel Subjekt und Prädikat, gegeben.
