@@ -243,6 +243,11 @@ Somit konnte erahnt werden, warum es das macht, was es macht.
 
 Jedoch kann QAnswer keine solchen property paths bilden.
 Deshalb mussten vor dem Training die \aurl{rdfs}{subClassOf}+-Beziehung materialisiert werden,
+\todo{müsste das nicht subPropertyOf sein? wie genau hatten wir das gemacht?
+sind die materialisierten Tripel überhaupt noch da?
+Bei \url{https://www.snik.eu/ontology/bb/ChiefInformationOfficer} sehe ich z.B. nichts materialisiertes.
+Vielleicht hatten wir das irgendwann mal in den SPARQL Endpunkt gestellt was dann beim neu Aufsetzen verloren gegangen ist?
+}
 das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
 
 Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \aurl{bb}{ChiefInformationOfficer}.
