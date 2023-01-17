@@ -31,7 +31,7 @@ Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings di
 \todo{Die Arbeit ist ja auf Deutsch, aber die QA Sprache Englisch. Das würde ich daher noch deutlich machen an welcher Stelle die Sachen für alle Sprachen gelten und an welcher Stelle nur für Englisch. Das gilt für die ganze Arbeit.}
 In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
 Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet.
-Da die Sprache, die für Question Answering verwendet wird, am ehesten und auch in dieser Arbeit Englisch ist,
+Da die Sprache, die für \ac{qa} verwendet wird, am ehesten und auch in dieser Arbeit Englisch ist,
 wird hier auch insbesondere auf diese Sprache eingegangen.
 
 \subsection{Wort und Begriff}
@@ -89,10 +89,11 @@ das sehr stark von anderen Forschungsfeldern, wie etwa Deep Learning und künstl
 abhängig ist und in seinen Möglichkeiten unterstützt wird \citep{semanticwebdeeplearning}.
 Teile des Forschungsfeldes sind Ontologien, Linked Data und sogenannte Knowledge Graphs, auf die hier aber nicht weiter eingegangen werden wird.
 Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass man, im Gegensatz zum \ac{www}, Informationen direkt abfragen kann und nicht erst die HTML-Dokumente auswerten muss.
+
 \daurl{bb}{http://www.snik.eu/ontology/bb/}
 \daurl{ciox}{http://www.snik.eu/ontology/ciox/}
 \daurl{ex}{http://www.example.org/}
-\subsection{RDF}
+\subsection[RDF]{\acf*{rdf}}
 \begin{table}[h]\centering\small
   \begin{tabulary}{\textwidth}{rrl}
     \toprule
@@ -272,7 +273,7 @@ Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf d
 Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths}\footnote{\url{https://www.w3.org/TR/sparql11-query/\#propertypaths}, abgerufen am 07. Juni 2022} verwenden.
 Bei diesen wird zwischen die einzelnen Prädikate ein Zeichen, in diesem Fall ein \texttt{|} geschrieben.
 Diese geben den Pfad an, den die Abfrage verwenden soll.
-So gibt \texttt{/} beispielsweise eine Sequenz an, was im Kontext von Question Answering besonders für komplexe Fragen hilfreich ist.
+So gibt \texttt{/} beispielsweise eine Sequenz an, was im Kontext von \ac{qa} besonders für komplexe Fragen hilfreich ist.
 Hier werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
 Der Charakter \texttt{|} steht für einen alternativen Pfad, ähnlich dem logischen \emph{oder}.
 Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
@@ -289,11 +290,12 @@ Mit dem Zeichen \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst a
 Im Gegensatz zu \texttt{+} setzt \texttt{*} jedoch keine Mindestanzahl von einer Wiederholung vorraus, sondern erlaubt auch Zahlen von null,
 weshalb auch die Ressource selbst ausgewählt wird.
 
-\section{Semantisches Question Answering}
+\section[Semantisches Question Answering]{\acl*{sqa}}
 
 \begin{definition}[Question Answering]
 Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
 Ein Question Answering-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
+Die Fragen sind in natürlicher Sprache gestellt, es wird \acs{nlp} benötigt, um sie zu verarbeiten.
 \end{definition}
 
 Es existieren sowohl \ac{cdqa} als auch \ac{odqa}.
@@ -311,20 +313,12 @@ Solche Question Answering-Programme beschränken sich auf einen Fachbereich,
 was etwa den Kontext vom vorherigen Beispiel bereitstellen würde.
 
 \begin{definition}[Semantisches Question Answering]
-Semantisches Question Answering ist die Beantwortung von Fragen, die in natürlicher Sprache gestellt wurden.
+Semantisches Question Answering, oder auch \ac{kbqa}, ist die Beantwortung von Fragen, die \ac{rdf}-Daten in natürlicher Sprache gestellt wurden.
 Ein Programm für Semantisches Question Answering erkennt verschiedene semantische Strukturen in der Frage,
 also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
-\todo{Achtung! Der Unterschied zwischen Question Answering und Semantic Question Answering ist nicht, dass nur bei Semantic Question Answering die Fragen in
-natürlicher Sprache gestellt werden! Natürliche Sprache wird auch bei ganz normalem Question Answering benutzt aber nicht z.B. bei keyword search wie Google.
-Das sieht man ja auch an deiner zitierten Quelle für die Definition von QA: Natural Language Question Answering.
-Außerdem passt die Definition und Quelle nicht zu dem, was ich mit Semantic Question Answering meine.
-Ich meine damit Question Answering auf RDF Daten, also Semantic im Sinne von Semantic Web.
-Wenn dir das zu uneindeutig ist, nimmst du vielleicht besser den heute wohl gebräuchlicheren Ausdruck KBQA (knowledge base QA).
-Oder du lässt es bei Semantic Question Answering, nimmst aber eine passendere Quelle.
-Beispielsweise unsere Survey :-) \url{https://content.iospress.com/articles/semantic-web/sw247}
-}
+
 Des Weiteren unterscheidet man zwischen komplexen und simplen Fragen.
 Diese unterscheiden sich größtenteils darin, wie viele Zeilen die \ac{sparql}-Abfrage hat, also wie viele Ressourcen zur Verknüpfung der Frage zur Antwort gebraucht werden.
 \todo{Achtung! Zeilen sind hier keine passende Maßeinheit! Man kann ja die gleiche SPARQL Abfrage in eine oder in viele Zeilen packen. Es geht eher darum, wieviele
