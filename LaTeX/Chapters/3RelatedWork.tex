@@ -47,11 +47,11 @@ Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten
 \section{Stichwortsuche}
 
 Die Stichwortsuche ist wohl mit die am weitesten verbreitete Form, um sich Informationen anzueignen.
-Im Gegensatz zu Question Answering werden hier statt ganzen Sätzen nur einzelne Stichwörter eingegeben, womit letztendlich Ergebnisse angezeigt werden.
+Im Gegensatz zu \acl{qa} werden hier statt ganzen Sätzen nur einzelne Stichwörter eingegeben, womit letztendlich Ergebnisse angezeigt werden.
 Das Problem (bzw. der Ansatz) dabei ist nicht unbedingt, den Nutzer zu verstehen, sondern in abertausenden Möglichkeiten die möglichst relevantesten herauszusuchen.
 Dazu werden oft Listen, wo die Antwortmöglichkeiten indiziert sind, verwendet.
 Stichwortsuche wird nicht nur im \ac{www}, sondern auch in vielen anderen Bereichen eingesetzt.
-Manche Question Answering-Systeme verwenden es z.B. auch für bestimmte Module.
+Manche \ac{qa}-Systeme verwenden es z.B. auch für bestimmte Module.
 
 \subsection{Elasticsearch}
 
@@ -88,25 +88,28 @@ Es können auch verschiedene Synonyme und phonetisch ähnlich klingende Wörter 
 
 Zur Recherche wurden verschiedene Surveys bezüglich \ac{kbqa} und \ac{cdqa} verwendet.
 Außerdem wurden über die Herausforderung \ac{qald} weitere Systeme evaluiert.
-Bei der \ac{qald}-Challenge werden Question Answering-Systeme anhand eines Benchmark objektiv bewertet.
-Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9 \citep{qald9}
-\footnote{\ac{qald}-9-Plus nahm die Fragen aus \ac{qald}-9 und übersetzte diese in acht verschiedene Sprachen (Deutsch, Französisch, Russisch, Ukrainisch, Belarussisch, Armenisch, Baschkirisch, Litauisch),
-um Entwicklung im Bereich der Multilingualität von Systemen voranzutreiben, gilt aber nicht als offizielle Version der \ac{qald}-Challenge \citep{qald9plus}.},
+Bei der \ac{qald}-Challenge werden \ac{qa}-Systeme anhand eines Benchmark objektiv bewertet.
+Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9 \citep{qald9}\footnote{\ac{qald}-9-Plus
+nahm die Fragen aus \ac{qald}-9 und übersetzte diese in acht verschiedene Sprachen (Deutsch, Französisch, Russisch, Ukrainisch, Belarussisch, Armenisch, Baschkirisch, Litauisch),
+um Entwicklung im Bereich der Multilingualismus von Systemen voranzutreiben, gilt aber nicht als offizielle Version der \ac{qald}-Challenge \citep{qald9plus}.},
 für \ac{qald}-10 können jedoch schon Systeme eingereicht werden\footnote{\url{https://www.nliwod.org/challenge}, abgerufen am 17. Januar 2023}.
 In jeder dieser Versionen gibt es unterschiedliche Trainingsdatensätze und Teilnehmer.
-Die Teilnehmer müssen zu dem jeweiligen Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen, also das grundlegende Problem des Question Answerings lösen.
-Der jetzige Trainingssatz ist DBpedia.
+Die Teilnehmer müssen zu dem jeweiligen Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen,
+folglich das grundlegende Problem des \acl{qa}s lösen.
+Der Trainingsdatensatz für \ac{qald}-9 ist DBpedia, \ac{qald}-10 nutzt hingegen WikiData.
+\ac{qald}-10 setzt außerdem einen größeren Fokus auf Multilingualismus, indem es einerseits auch eine besondere Version von \ac{qald}-9-Plus als Trainingsfragen anbietet,
+andererseits jedoch auch in der ersten Aufgabe die Beantwortung von in vier Sprachen (Russisch, Chinesisch, Deutsch und Englisch) vorliegenden Fragen fordert.
 
 DBpedia ist eine Wissensbasis, welche aus den Daten Wikipedias besteht.
-Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von Question Answering-Programmen genutzt.
+Es ist das Paradebeispiel für Linked Data und wird häufig zum Training von \ac{qa}-Programmen genutzt.
 Die Daten sind frei verfügbar und in verschiedenen Serialisierungen, wie z.B. im \ac{turtle}-Format, verfügbar.
 Über \ac{sparql} können auch direkt online Abfragen getätigt werden.
 DBpedia ist außerdem in mehreren Sprachen verfügbar \citep{dbpedia}.
 
 \subsection{Leaderboard}
 
-Das Question Answering-Leaderboard\footnote{\url{https://github.com/KGQA/leaderboard}} \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
-dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des \ac{kbqa} eine vereinheitliche Liste mit verfügbaren Question Answering-Systemen zu geben.
+Das \acl{qa}-Leaderboard\footnote{\url{https://github.com/KGQA/leaderboard}} \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
+dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des \ac{kbqa} eine vereinheitliche Liste mit verfügbaren \ac{qa}-Systemen zu geben.
 Hier werden Fragenkataloge wie \ac{qald}-9 als Benchmarks auf die verschiedenen \ac{kbqa}-Systeme angewendet und die Ergebnisse aufgezeichnet.
 Des Weiteren sind die 98 Systeme in einer Liste mit dem Namen des Systems, einer Beschreibung und Links zu dem originalen Paper und einer Demonstration,
 \ac{rest}-\ac{api} oder dem GitHub-Projekt, falls diese öffentlich verfügbar existieren, ausgestattet.
@@ -114,19 +117,19 @@ Dies vereinfacht eine systematische Suche enorm, da viele Systeme schwer auffind
 
 \subsection{gAnswer}
 
-gAnswer\footnote{\url{https://github.com/pkumod/gAnswer}} \citep{ganswer2} wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um Question Answering-Aufgaben zu lösen.
+gAnswer\footnote{\url{https://github.com/pkumod/gAnswer}} \citep{ganswer2} wurde von dem Wangxuan Institute of Computer Technology entwickelt und arbeitet mit Wissensbasen, um \acl{qa}-Aufgaben zu lösen.
 Hierfür werden die Fragen in Unterfragen aufgespalten und daraus je ein Syntaxbaum erstellt.
 Es erzielte durch eine durchdachte Vorbereitung der Trainingsdaten sehr schnelle Trainingszeiten bei niedrigem Speicherverbrauch und hoher Genauigkeit bei der Beantwortung von Fragen.
-Das System hat außerdem erkannt, dass man, um effizientes Question Answering zu erreichen, Subgraphen vergleichen kann und somit auch einen neuen Ansatz für die Homonymität hat.
+Das System hat außerdem erkannt, dass man, um effizientes \acl{qa} zu erreichen, Subgraphen vergleichen kann und somit auch einen neuen Ansatz für die Homonymität hat.
 Das bedeutet, dass Wörter, die Verschiedenes bedeuten können, erst nach anfänglicher Lokalisierung des Kontexts betrachtet werden.
 Es werden also zuerst Wörter, deren Bedeutung eindeutig ist, betrachtet, und von da aus die kürzeste Verbindung zu einer Bedeutung des fragwürdigen Wortes \citep{ganswerapproach}.
-Darauf bauen viele andere Question Answering-Systeme auf.
+Darauf bauen viele andere \ac{qa}-Systeme auf.
 
 \subsection{DeepPavlov}
 DeepPavlov\footnote{\url{https://www.deeppavlov.ai}} \citep{deeppavlov} ist eine open-source Bibliothek zur Entwicklung von Dialogsystemen.
 Es ist in \emph{Models} und \emph{Skills} organisiert.
 Das System ist hochflexibel und auf verschiedenste Aufgaben ausgelegt, vor allem aber Dialogsysteme bzw. Chat Bots.
-Für Question Answering gibt es bisher nur Ansätze bezüglich \ac{odqa}.
+Für \ac{qa} gibt es bisher nur Ansätze bezüglich \ac{odqa}.
 Es können keine eigenen Daten eingegeben werden, weshalb es hier nicht verwendet wurde.
 
 \subsubsection{Architektur}
@@ -190,10 +193,10 @@ Des Weiteren werden die Lösungskandidaten auf ihre Ähnlichkeit mit der Frage �
 
 \subsection{QAnswer KG}
 
-QAnswer KG \citep{qanswer} ist ein an der Universität Saint-Étienne entwickeltes Question Answering-System,
+QAnswer KG \citep{qanswer} ist ein an der Universität Saint-Étienne entwickeltes \ac{qa}-System,
 das vor allem das von \citet{diefenbachkbqa} genannte Problem der fehlenden Portabilität in diesem Feld lösen soll:
 Viele Systeme wurden als Forschungsprojekt für Benchmarks wie \ac{qald}-9 geschrieben und sind deshalb nur mit großen Datensätzen wie DBpedia oder Wikidata kompatibel.
-Hier ist es jedoch möglich, auf einer Website einfach eigene Daten hochzuladen und dort Question Answering zu betreiben.
+Hier ist es jedoch möglich, auf einer Website einfach eigene Daten hochzuladen und dort \ac{qa} zu betreiben.
 Die Modelle müssen aber noch auf die Fragen trainiert werden, das vortrainierte Modell soll nur Sprache an sich verstehen können und nicht den speziellen Datensatz.
 Alles in allem kann man dennoch sagen, dass das System vergleichsweise leicht zu verwenden ist.
 Selbst ein fast nicht trainiertes System bietet oft noch akzeptable Antworten.

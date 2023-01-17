@@ -31,7 +31,7 @@ Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings di
 \todo{Die Arbeit ist ja auf Deutsch, aber die QA Sprache Englisch. Das würde ich daher noch deutlich machen an welcher Stelle die Sachen für alle Sprachen gelten und an welcher Stelle nur für Englisch. Das gilt für die ganze Arbeit.}
 In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
 Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet.
-Da die Sprache, die für \ac{qa} verwendet wird, am ehesten und auch in dieser Arbeit Englisch ist,
+Da die Sprache, die für \acl*{qa} verwendet wird, am ehesten und auch in dieser Arbeit Englisch ist,
 wird hier auch insbesondere auf diese Sprache eingegangen.
 
 \subsection{Wort und Begriff}
@@ -273,7 +273,7 @@ Dessen Aufgabe ist, wie man sehen kann, wenn man diese Anfrage z.B. online auf d
 Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths}\footnote{\url{https://www.w3.org/TR/sparql11-query/\#propertypaths}, abgerufen am 07. Juni 2022} verwenden.
 Bei diesen wird zwischen die einzelnen Prädikate ein Zeichen, in diesem Fall ein \texttt{|} geschrieben.
 Diese geben den Pfad an, den die Abfrage verwenden soll.
-So gibt \texttt{/} beispielsweise eine Sequenz an, was im Kontext von \ac{qa} besonders für komplexe Fragen hilfreich ist.
+So gibt \texttt{/} beispielsweise eine Sequenz an, was im Kontext von \acl*{qa} besonders für komplexe Fragen hilfreich ist.
 Hier werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
 Der Charakter \texttt{|} steht für einen alternativen Pfad, ähnlich dem logischen \emph{oder}.
 Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
@@ -293,13 +293,13 @@ weshalb auch die Ressource selbst ausgewählt wird.
 \section[Semantisches Question Answering]{\acl*{sqa}}
 
 \begin{definition}[Question Answering]
-Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
-Ein Question Answering-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
+\acl{qa} (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
+Ein \acf{qa}-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
 Die Fragen sind in natürlicher Sprache gestellt, es wird \acs{nlp} benötigt, um sie zu verarbeiten.
 \end{definition}
 
 Es existieren sowohl \ac{cdqa} als auch \ac{odqa}.
-Question Answering-Programme mit offener Domäne sind schwieriger zu entwickeln,
+\ac{qa}-Programme mit offener Domäne sind schwieriger zu entwickeln,
 da sie Fragen von allen möglichen Domänen verstehen müssen.
 Ein Beispiel hierfür wäre die Frage, wo eine Bank zu finden sei.
 Die fragenstellende Person könnte entweder eine Filiale einer Bankgesellschaft oder eine Parkbank meinen.
@@ -308,13 +308,13 @@ welche Deutung impliziert wird, was zum Beispiel mit mehr Daten,
 wie etwa dem vorherigen Suchverlauf (Hat sich die Person vorher nach Parks/Geldfilialen erkundigt?)
 oder persönlichen Daten, wie dem Alter, möglich wäre.
 
-Diese Arbeit beschränkt sich jedoch auf Question Answering mit geschlossener Domäne, \acs{snik} (siehe \cref{ch:relatedWork}).
-Solche Question Answering-Programme beschränken sich auf einen Fachbereich,
+Diese Arbeit beschränkt sich jedoch auf \ac{qa} mit geschlossener Domäne, \acs{snik} (siehe \cref{ch:relatedWork}).
+Solche \ac{qa}-Programme beschränken sich auf einen Fachbereich,
 was etwa den Kontext vom vorherigen Beispiel bereitstellen würde.
 
 \begin{definition}[Semantisches Question Answering]
-Semantisches Question Answering, oder auch \ac{kbqa}, ist die Beantwortung von Fragen, die \ac{rdf}-Daten in natürlicher Sprache gestellt wurden.
-Ein Programm für Semantisches Question Answering erkennt verschiedene semantische Strukturen in der Frage,
+\ac{sqa}, oder auch \ac{kbqa}, ist die Beantwortung von Fragen, die \ac{rdf}-Daten in natürlicher Sprache gestellt wurden.
+Ein Programm für \ac{sqa} erkennt verschiedene semantische Strukturen in der Frage,
 also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
@@ -352,7 +352,7 @@ Teilfragen können sowohl komplexe als auch simple Fragen sein.
 
 \acf{nlp}, auf Deutsch \emph{automatische Sprachverarbeitung}, ist die automatische Verarbeitung von natürlicher Sprache, also Sprache, wie sie Menschen sprechen und schreiben.
 Das große Ziel von \ac{nlp} ist, menschliche Sprache maschinell perfekt verstehen zu können, weshalb das Feld auch \ac{nlu} genannt wird.
-Es behandelt dabei viele Aspekte, von maschineller Übersetzung, womit das Feld überhaupt begann \citep{nlphistory}, über Question Answering,
+Es behandelt dabei viele Aspekte, von maschineller Übersetzung, womit das Feld überhaupt begann \citep{nlphistory}, über \ac{qa},
 wie es in dieser Arbeit behandelt wird, bis zu Verarbeitung gesprochener Sprache.
 Bei \ac{nlp} wird Sprache in vier Stufen betrachtet \citep{nlpreviewtts}.
 \emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern und ist deshalb für diese Arbeit nicht relevant.
@@ -374,7 +374,7 @@ Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Bu
 
 In einer Pipeline werden verschiedene Komponenenten eines Algorithmus oder Verfahren nacheinander ausgeführt.
 Eine \ac{nlp}-Pipeline führt verschiedene Teilprogramme aus, da das Feld an sich zu komplex ist, als dass die Arbeit eines Programms es vollkommen lösen könnte.
-Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein Question Answering-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
+Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein \ac{qa}-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
 \ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
 Zwei Pipelines werden in \cref{ch:relatedWork} näher betrachtet.
 

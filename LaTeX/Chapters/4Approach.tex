@@ -4,7 +4,7 @@
 
 \section{Lösungsansatz zum Problem P1}
 
-Das erste Problem befasst sich mit der Situation, dass ein Question Answering-System im Rahmen dieser Arbeit aufgrund der Aufwendigkeit schwer selbst entwickelt werden kann.
+Das erste Problem befasst sich mit der Situation, dass ein \ac{qa}-System im Rahmen dieser Arbeit aufgrund der Aufwendigkeit schwer selbst entwickelt werden kann.
 Stattdessen muss ein bereits existierendes System ausgewählt werden.
 Hierzu müssen andere Systeme anhand eines Benchmarks evaluiert werden.
 Für diesen müssen typische Nutzerfragen und Antworten auf diese gesammelt werden.
@@ -48,7 +48,7 @@ Die Werte lassen sich pro Frage also wie folgt berechnen, wenn $C$ die Menge all
   f&=\frac{2pr}{p+r}
 \end{align*}
 Am Ende sollen die Werte für alle Fragen mithilfe des arithmetischen Mittels zusammengefasst werden, sodass am Ende die drei Werte jeweils gemittelt vorliegen.
-Dies ist eine Standardmethode bei der Evaluation von Question Answering-Systemen und wird auch als \emph{macro-average} bezeichnet \citep{qald9}.
+Dies ist eine Standardmethode bei der Evaluation von \ac{qa}-Systemen und wird auch als \emph{macro-average} bezeichnet \citep{qald9}.
 
 \begin{align*}
   \emptyset p&=\frac{1}{n}*\sum_{i=1}^{n}p_i \\
@@ -58,14 +58,14 @@ Dies ist eine Standardmethode bei der Evaluation von Question Answering-Systemen
 
 \section{Lösungsansatz zum Problem P2}
 
-Das zweite Problem betrifft die mangelhafte Nützlichkeit der anderen Möglichkeiten und somit den Zwang, für solch ein System Question Answering zu verwenden.
+Das zweite Problem betrifft die mangelhafte Nützlichkeit der anderen Möglichkeiten und somit den Zwang, für solch ein System \acl{qa} zu verwenden.
 Deshalb muss nach funktionierenden und somit portablen Systemen, die nach Möglichkeit trainiert werden können und vor allem nicht nur Wissensbasen wie DBpedia als Quelle verwenden,
 sondern es auch ermöglichen, eigene Daten zu nutzen.
-Zur Recherche sollen, wie bereits in \cref{ch:relatedWork} dargelegt, Surveys und das Question Answering Leaderboard verwendet werden.
+Zur Recherche sollen, wie bereits in \cref{ch:relatedWork} dargelegt, Surveys und das \ac{qa}-Leaderboard verwendet werden.
 Diese geben über die Güte der Antworten und die grundlegende Funktionsweise Aufschluss, können aber, besonders bei Forschungsprojekten,
 die nur über eine bestimmte Zeit finanzielle Mittel erhalten und somit die Pflege nicht gewährleistet werden kann, schnell veralten.
 Besonders bei Benchmarks wie \todo{QALD 10 und Wikidata nicht Ontologie nennen} \ac{qald}-9 ist es außerdem oft so, dass Systeme nur für Ontologien wie Wikidata und die Fragen im Benchmark erstellt wurden und somit nicht portabel sind.
-Gerade das Leaderboard ist jedoch eine nützliche Ressource, da hier viele Question Answering-Systeme mit dem entsprechenden Paper, was sonst auch nicht überall vorliegt, und, falls diese existiert,
+Gerade das Leaderboard ist jedoch eine nützliche Ressource, da hier viele \ac{qa}-Systeme mit dem entsprechenden Paper, was sonst auch nicht überall vorliegt, und, falls diese existiert,
 eine Demo des Systems, was der anfänglichen Evaluation hilft.
 Ziel ist es, mindestens ein System zu finden, und, falls mehr, aus den gefundenen das beste System auszuwählen.
 Es wird allerdings nur die Teilontologie aus \citet{bb} betrachtet, da es kein gefundenes System es schafft, alle Teilontologien zu verbinden.

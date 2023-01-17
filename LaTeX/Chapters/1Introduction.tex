@@ -29,13 +29,13 @@ Alle dieser Möglichkeiten haben jedoch große Nachteile.
 Der RDF-Browser gibt nur ein sehr beschränktes Ergebnis aus, und serialisiertes RDF selbst zu lesen ist schwer und unpraktisch.
 Im Fall von SPARQL nimmt es den Medizininformatik-Studierenden wertvolle Zeit, da sie sich dort erst in die Syntax der Abfragesprache und das Vokabular des Fachbereichs einarbeiten müssen.
 
-Ein Ansatz für die Lösung dieses Problems ist Question Answering.
+Ein Ansatz für die Lösung dieses Problems ist \acl*{qa}.
 \todo{Das stimmt zwar alles, gehört aber nicht hierher zu der Problemstellung sondern zu den Zielen und Aufgaben.}
 Dabei wird eine Frage als ganzer Satz eingegeben, dessen Bedeutung das System versteht und auf Grundlage dessen eine Antwort ausgibt \citep{qadefinition}.
-Die Implementierung eines Question Answering-Systems mit adäquater Qualität der Antworten ist wesentlich aufwändiger~\citep[S.~3]{qanswer}, als es im Rahmen einer BeLL möglich ist.
+Die Implementierung eines \acl*{qa}-Systems mit adäquater Qualität der Antworten ist wesentlich aufwändiger~\citep[S.~3]{qanswer}, als es im Rahmen einer BeLL möglich ist.
 \todo{Achtung: Die Ebene der Problemstellung soll aus Sicht des zukünftigen Nutzers geschrieben sein. Lies dir bitte noch mal das Kapitel 1.2 aus der Vorlage durch \url{https://github.com/IMISE/imise-classicthesis/files/6785593/thesis.pdf}}.
 \begin{itemize}
-	\item Problem P1: Für die Implementierung von Question Answering benötigter Aufwand
+	\item Problem P1: Für die Implementierung von \acl{qa} benötigter Aufwand
 	\item Problem P2: Fehlende Intuitivität und Expressivität existierender Lösungen
 \end{itemize}
 
@@ -46,7 +46,7 @@ Es liegt in Form von Lehrbüchern, aber eben auch in \acs{snik} vor.
 Studenten, die unter Zeitstress leiden und sich nicht immer ganze Bücher oder Kapitel durchlesen können, aber auch nicht über die Kenntnisse verfügen, \acs{snik} effektiv zu verwenden,
 müssen oft ihren Professor oder andere Studierende hinzuziehen, wenn sie eine Frage haben.
 Es wäre viel einfacher, wenn sie das strukturierte Wissen in natürlicher Sprache abfragen könnten.
-Question Answering-Systeme sind im Idealfall aber 24 Stunden am Tag und 7 Tage die Woche nur ein paar Klicks entfernt und können sofort antworten. 
+\acl*{qa}-Systeme sind im Idealfall aber 24 Stunden am Tag und 7 Tage die Woche nur ein paar Klicks entfernt und können sofort antworten. 
 Besonders in Zeiten der Covid-19-Pandemie, wo die Kontakte oft eingeschränkt werden müssen und es häufiger digitale Veranstaltungen ohne örtliche Präsenz gibt, ist solch ein Werkzeug sehr hilfreich.
 
 \section{Zielsetzung}\label{sec:zielsetzung}
@@ -57,11 +57,11 @@ Das Problem P1 des Aufwandes der Implementierung eines eigenen Systems kann durc
 Dieses muss das Wissen \acs{snik}s nutzen, um Fragen zu beantworten.
 
 Das Ziel unterstützt die Lösung des Problems P2 der mangelhaften anderen Möglichkeiten zur Wissensabfrage oder -aneignung in der Medizininformatik,
-und zwar das Ziel des Erreichens eines semantischen Question Answering-Systems, welches Fragen mit hoher Genauigkeit beantworten kann.
+und zwar das Ziel des Erreichens eines semantischen \acl*{qa}-Systems, welches Fragen mit hoher Genauigkeit beantworten kann.
 
 \begin{itemize}
-	\item Ziel Z1: Benchmark für Semantisches Question Answering für \acs{snik}
-	\item Ziel Z2: Semantisches Question Answering-System, welches Fragen zu \acs{snik} mit hoher Qualität beantwortet.
+	\item Ziel Z1: Benchmark für \acl*{sqa} für \acs{snik}
+	\item Ziel Z2: \acl*{sqa}-System, welches Fragen zu \acs{snik} mit hoher Qualität beantwortet.
 \end{itemize}
 \section{Aufgabenstellung}
 
@@ -77,7 +77,7 @@ Den Zielen sind hier jeweils Aufgaben zugeordnet.
 	\end{itemize}
 	\item Aufgaben zu Ziel Z2:
 	\begin{itemize}
-		\item Aufgabe A2.1: Recherche existierender Semantischer Question Answering Ansätze und Systeme
+		\item Aufgabe A2.1: Recherche existierender \acl*{sqa} Ansätze und Systeme
 		\item Aufgabe A2.2: Auswahl eines geeigneten Systems
 		\item Aufgabe A2.3: Evaluation dieses Systems am Benchmark
 		\item Aufgabe A2.4: Diskussion der Ergebnisse
@@ -88,6 +88,6 @@ Den Zielen sind hier jeweils Aufgaben zugeordnet.
 
 Einleitend werden in Kapitel 1 die Problemstellung, Ziele und daraus folgende Aufgaben beschrieben.
 Danach werden in Kapitel 2 grundlegende Begriffe und für die Arbeit relevante Themengebiete geklärt.
-In Kapitel 3 wird der aktuelle Stand der Forschung beschrieben, besonders in Hinsicht auf verschiedene Question Answering-Systeme.
+In Kapitel 3 wird der aktuelle Stand der Forschung beschrieben, besonders in Hinsicht auf verschiedene \acl*{qa}-Systeme.
 Kapitel 4 beinhaltet die Lösungsansätze für die oben benannten Aufgaben, Kapitel 5 die Ausführung dieser und Kapitel 6 Ergebnisse.
 Kapitel 7 ist die kritische Auseinandersetzung mit den Ergebnissen in der Diskussion und ein Ausblick auf mögliche zukünftige Arbeit.
