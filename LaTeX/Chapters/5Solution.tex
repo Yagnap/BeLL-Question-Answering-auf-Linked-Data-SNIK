@@ -30,21 +30,12 @@ Häufige Fragen sind auch Vergleiche, oder auch evaluierende Fragen.
 Hier sollen Gemeinsamkeiten und Unterschiede festzustellen.
 Man kann sie also als zusammengesetzte Frage aus drei Teilfragen verstehen.
 Angenommen man soll zwei fiktive Ressourcen \texttt{?x} und \texttt{?y} vergleichen.
-\todo{Ich glaube an der SPARQL Abfrage stimmt etwas nicht. Die zwei gegebenen fiktiven Ressourcen dürfen kein Fragezeichen haben, sonst wären sie nämlich
-Variablen.
-URIs haben in SPARQL die Form <x> oder mit Präfix meinpraefix:x.
-Selbst wenn wir ?x und ?y durch Beispielsweise <x> und <y> ersetzen, erhalten wir am Ende alle Paare, die beiden gemeinsam sind aber keine Unterschiede.
-Beispiel:
-<x> rdfs:label "Konrad"; rdf:type :Human.
-<y> rdfs:label "Hannes"; rdf:type :Human.
 
-Das Ergebnis der Abfrage wäre die einzige Zeile ?p=rdf:type ?o=:Human.
-}
 \begin{lstlisting}[language=SPARQL]
 SELECT *
 WHERE
-  { ?x ?p ?o
-    ?y ?p ?o . }
+  { <x> ?p ?ox .
+    <y> ?p ?oy . }
 \end{lstlisting}
 Sei die Menge $E$ wie folgt definiert:
 $E(s) = \{(p,o) \in KB | (s,p,o) \in KB\}$.
