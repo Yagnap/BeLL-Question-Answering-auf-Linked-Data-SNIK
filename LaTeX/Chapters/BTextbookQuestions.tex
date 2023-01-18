@@ -4,7 +4,7 @@
 
 Die erste Einordnung der Fragen aus \citet{bb} erfolgt hier\footnote{Basierend auf \citet{arneba}.
 Als CSV verfügbar unter:
-\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/fragenklassifikation.csv}}:
+\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/Tabellen/fragenklassifikation.csv}}:
 
 \begin{longtable}{c p{6.5 cm} c c c c}
     \caption[Fragenklassifikation]{Klassifizierung der Fragen
@@ -108,7 +108,7 @@ Als CSV verfügbar unter:
 \section[Formulierung der SPARQL-Abfragen]{Formulierung der \ac{sparql}-Abfragen}\label{sub:sparqltextbuchfragen}
 
 Im Folgenden wurden die natürlichsprachigen Fragen mit \ac{sparql}-Abfragen beantwortet\footnote{Als CSV verfügbar unter:
-\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/formulierung\_sparql\_bb\_textbuchfragen.csv}}:
+\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/Tabellen/formulierung\_sparql\_bb\_textbuchfragen.csv}}:
 
 \begin{lstlisting}[language=SPARQL]
     # 1/2 What are appropriate models for health information systems?
@@ -255,7 +255,7 @@ Im Folgenden wurden die natürlichsprachigen Fragen mit \ac{sparql}-Abfragen bea
     # 9.3.4.2/2 Which boards and persons are involved in information management?
     SELECT DISTINCT ?s1
     WHERE
-      { ?s1 meta:isInvolvedIn bb:InformationManagement . }
+      { ?s1 meta:isResponsibleForFunction bb:InformationManagement . }
     
     # 9.4/2 What are the typical tasks for strategic HIS planning?
     SELECT DISTINCT ?s1
@@ -297,7 +297,7 @@ Im Folgenden wurden die natürlichsprachigen Fragen mit \ac{sparql}-Abfragen bea
 \section[Antworten auf die SPARQL-Abfragen]{Antworten auf die \ac{sparql}-Abfragen}\label{sub:antwortentextbuch}
 
 Zuletzt eine Auflistung der Antworten auf die \ac{sparql}-Abfragen aus \cref{sub:sparqltextbuchfragen}.
-Diese können über \url{https://www.snik.eu/sparql/} ausgegeben werden.
+Diese können über \url{https://www.snik.eu/sparql} ausgegeben werden.
 
 \textbf{Frage \texttt{1/2}:} What are appropriate models for health information systems?
 
