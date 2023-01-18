@@ -28,11 +28,12 @@ Wissen ist eine generelle Information über einen Begriff \citep[S.~29]{bb}, als
 Es gibt auch andere Definitionen dieser drei Begriffe, hier werden allerdings diese verwendet.
 
 \section{Geschriebene Sprache}
-\todo{Die Arbeit ist ja auf Deutsch, aber die QA Sprache Englisch. Das würde ich daher noch deutlich machen an welcher Stelle die Sachen für alle Sprachen gelten und an welcher Stelle nur für Englisch. Das gilt für die ganze Arbeit.}
+
 In der Schriftsprache werden Daten, Information und Wissen durch Sätze überbracht.
 Dies ist ein sehr komplexes Thema, hier werden allerdings nur die für diese Arbeit wichtigen Begriffe betrachtet.
 Da die Sprache, die für \acl*{qa} verwendet wird, am ehesten und auch in dieser Arbeit Englisch ist,
-wird hier auch insbesondere auf diese Sprache eingegangen.
+wird hier auch insbesondere auf diese Sprache eingegangen
+und die in diesem Kapitel behandelten Themen gelten sowohl für das Deutsche als auch für das Englische.
 
 \subsection{Wort und Begriff}
 
@@ -54,20 +55,24 @@ Beispielsweise ist laut \citet{he} ein \enquote{Anwendungssystem} eine Kombinati
 In \citet{ob} schließt der Oberbegriff \enquote{Anwendungssystem} jedoch auch analoge Methoden zur Speicherung von Daten mit ein.
 
 \subsection{Lexik, Syntax und Semantik}
-Die \emph{Lexik} beschreibt die Wortarten.
-\todo{bitte noch erklären, was eine Lexikalisierung ist.}
+Die \emph{Lexik} beschreibt die Wortarten und beschäftigt sich im Allgemeinen mit dem aus \emph{Lexemen} (hier: Wörtern) bestehenden Wortschatz einer Sprache.
 Es wird zwischen flektierbaren und unflektierbaren Wortarten unterschieden.
 Im Deutschen kann man Verben, Substantive, Adjektive, Artikel und Pronomen konjugieren bzw. deklinieren.
-Sie werden auch flektierbar genannt.
+Sie werden auch flektierbar genannt, ihre From ist veränderlich.
 Die Form unflektierbarer Wortarten ist unveränderlich, im Deutschen sind das Partikel wie Adverbien und Interjektionen \citep[S.~505]{deutschbuch}.
-\todo{Achtung! Du darfst kein Buch über Deutsch zitieren wenn die Sprache Englisch ist!}
+Im Englischen gibt es auch viele flektierbare Wörter Wortarten, diese haben jedoch häufig nur geringe Änderungen in der Form \citep{englishinflection}.
 
 Die \emph{Syntax} behandelt den Satzbau und somit die Satzglieder wie Subjekt, Prädikat und Objekt oder Satzarten wie der Aussage-, Aufforderungs- und Fragesatz und deren Unterarten.
 Unterarten von Fragesätzen sind  die Entscheidungsfrage, wo ein Wahrheitswert als Antwort erwartet wird, die Ergänzungsfrage, wo nach Informationen gesucht wird, und die rhetorische Frage, auf welche keine Antwort erwartet wird.
-Besonders Ergänzungsfragen, welche typischerweise mit einem Fragewort beginnnen, sind in dieser Arbeit wichtig.
+Besonders Ergänzungsfragen, welche typischerweise mit einem Fragewort beginnen, sind in dieser Arbeit wichtig.
 
-Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter und fokussiert sich dabei besonders, aber nicht nur, auf Präpositionen, Adjektive und Adverben.
+Die \emph{Semantik} beschäftigt sich mit der Bedeutung der einzelnen Wörter, Sätze oder Zeichen und fokussiert sich dabei im Sinne der Arbeit besonders, aber nicht nur, auf Präpositionen, Adjektive und Adverbien.
 Sie beschäftigt sich demnach auch mit Synonymen und Homonymen, es wird z.B. versucht, alle möglichen Bedeutungen eines Wortes zu erfahren.
+Die Semantik ist essentiell, um Fragen, die in natürlicher Sprache gestellt werden, interpretieren zu lassen.
+
+\emph{Lexikalisierungen} im semantischen Sinne beschreiben die einzelnen Teilbedeutungen eines Wortes \citep{semanticlexicalization}.
+Im Allgemeinen Sinne beschreiben Lexikalisierungen den Bedeutungswandel von insbesondere zusammengesetzten Wörtern weg von den Teilbedeutungen der ursprünglichen Bestandteile,
+hin zu einer neuen, eigenen Bedeutung. 
 
 \section{Semantic Web}
 
@@ -110,7 +115,7 @@ Das Semantic Web als nutzbares Objekt besteht aus strukturierten Daten, sodass m
 
 Das \ac{rdf} ist das grundlegende zur Beschreibung des Semantic Webs genutzte Format \citep[S.~35]{semanticwebgrundlagen}.
 Mithilfe dieser formalen Sprache, die erstmals 1999 durch das \ac{w3c} spezifiziert wurde, sollten zuerst Metadaten modelliert werden.
-Aufgrund dem Fokus auf der Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
+Aufgrund des Fokus auf die Weiterverarbeitbarkeit der Daten ist es für seine Nutzer gut zur Modellierung des Semantic Webs geeignet.
 RDF wird in Tripeln aus Subjekt, Objekt und Prädikat modelliert.
 Es verhält sich hierbei wie in einem einfachen deutschen Satz, das Prädikat beschreibt also die Beziehung zwischen dem Subjekt und Objekt.
 Alle drei werden normalerweise als \acp{uri} angegeben \citep{linkeddatadesignissues}.
@@ -302,7 +307,7 @@ Es existieren sowohl \ac{cdqa} als auch \ac{odqa}.
 \ac{qa}-Programme mit offener Domäne sind schwieriger zu entwickeln,
 da sie Fragen von allen möglichen Domänen verstehen müssen.
 Ein Beispiel hierfür wäre die Frage, wo eine Bank zu finden sei.
-Die fragenstellende Person könnte entweder eine Filiale einer Bankgesellschaft oder eine Parkbank meinen.
+Die fragenstellende Person könnte entweder eine Filiale einer Bankgesellschaft oder eine Sitzgelegenheit meinen.
 Das Programm, an das die Frage gestellt wird, muss nun mit wenig Kontext herausfinden,
 welche Deutung impliziert wird, was zum Beispiel mit mehr Daten,
 wie etwa dem vorherigen Suchverlauf (Hat sich die Person vorher nach Parks/Geldfilialen erkundigt?)
@@ -358,7 +363,7 @@ Das große Ziel von \ac{nlp} ist, menschliche Sprache maschinell perfekt versteh
 Es behandelt dabei viele Aspekte, von maschineller Übersetzung, womit das Feld überhaupt begann \citep{nlphistory}, über \ac{qa},
 wie es in dieser Arbeit behandelt wird, bis zu Verarbeitung gesprochener Sprache.
 Bei \ac{nlp} wird Sprache in vier Stufen betrachtet \citep{nlpreviewtts}.
-\emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Betonung und Art der Aussprache von Wörtern und ist deshalb für diese Arbeit nicht relevant.
+\emph{Phonologie} existiert nur in gesprochener Sprache und beschreibt die Interpretation der Betonung und Art der Aussprache von Wörtern und ist deshalb für diese Arbeit nicht relevant.
 \emph{Morphologie} beschreibt die Satzstruktur und die Syntax des Satzes.
 Während der Betrachtung der Syntax wird der Satz in einen Baum umgeformt, sodass erkennbar ist, welches Wort von anderen abhängt.
 Ein Beispiel hierfür ist \cref{fig:syntaxtree}.
