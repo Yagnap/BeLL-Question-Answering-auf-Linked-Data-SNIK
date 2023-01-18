@@ -10,26 +10,21 @@ Oft gibt es Fragen wie \texttt{9.3.4.2/1}, \enquote{Which organizational units a
 Hier wird das Prädikat \aurl{meta}{functionComponent} verwendet, obwohl \aurl{meta}{isInvolvedIn} deutlich naheliegender ist.
 Dies lässt auf eine eventuelle Untauglichkeit der Fragen für die Ontologie schließen, oder auf eine manchmal nicht optimal modellierte Datenbasis.
 
-Die Antworten von paar Fragen enthalten noch falsche Ressourcen oder es fehlen wichtige Antworten, dies sollte noch behoben werden.
-Es sollte allerdings kein großes Hindernis sein, da die \ac{sparql}-Abfragen größtenteils richtig sind und ein paar Fehler auch durch die Ontologie selbst stammen könnten,
-also nicht die \ac{sparql}-Abfragen und somit das Training beeinflussen.
-
 Es ist aber trotzdem gelungen, die gegebenen Fragen, welche auch teilweise beantwortet werden können, einen Benchmark zu erstellen.
 Dieser besteht aus Fragen, welche auf in \citet{bb} vorhandenes Wissen zurückgreifen und dieses festigen soll.
 Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht optimal.
 Es lässt sich allerdings auch sagen, dass die Fragen für \acl{qa} von simplen Fragen vergleichsweise definitiv höchst komplex waren.
 Die einfachen Fragen waren recht schnell generierbar und haben die große Datenmenge \ac{snik}s gut genutzt,
-auch wenn durch die Anzahl der Tripel in der Teilontologie \texttt{bb}, 2056, erst mehr Fragen erhofft waren.%\todo{achso, deswegen die diskrepanz? dann steht das aber bei der SPARQL Abfrage falsch da, oder? die erzeugt ja schon fragen dort steht aber 2056. wieviele labels fehlen denn? eigentlich muss in snik alles ein label haben.}
+auch wenn durch die Anzahl der Tripel in der Teilontologie \texttt{bb}, 2056, erst mehr Fragen erhofft waren.
 Dies war allerdings aufgrund von fehlenden Labels oder Subjekten, welche mit vielen Objekten über das gleiche Prädikat verbunden waren und somit die gleiche Frage erzeugten,
 was über das Schlüsselwort \texttt{DISTINCT} gekürzt wurde.
-%\todo{nee, das ist ja gerade das ziel, einfache fragen als baseline für die komplexen zu haben. wenn man die einfachen komplexer macht sind sie ja nicht mehr einfach.}
 
 Es könnte darüber nachgedacht werden, die automatisch generierten Fragen komplexer zu machen, dies ist aber nicht unbedingt erforderlich.
 Es konnten viele Fragen automatisch generiert werden, was viel mehr Trainingsfragen bedeutet hat, was auch dem fine-tuning hilft.
 Gerade die Fragen mit verschiedenen Intentionen sind hilfreich.
-Allerdings würde damit die Funktion der einfachen Fragen als Basiswerte negiert für die Lehrbuchfragen verloren. 
+Allerdings würde damit die Funktion der einfachen Fragen als Basiswerte negiert die Rolle der Lehrbuchfragen als komplexere, der Realität näher liegende Fragen behindert. 
 
-In Zukunft sollten definitiv noch mehr komplexere Fragen erstellt werden.
+In Zukunft sollten noch mehr schwierigere Fragen erstellt werden.
 Denkbar wäre vor allem, Studierende der Medizininformatik nach Fragen, die sie fragen würden, zu fragen.
 Für die Realisierung wäre vermutlich die Nutzung ein digitaler Fragebogen möglich, über den die Studierenden benachrichtigt würden und in den sie Fragen eintragen könnten,
 eine analoge Lösung wäre auch denkbar.
@@ -49,15 +44,15 @@ Dieses geht meist, wie in \cref{sub:qasysteme} gesehen, nach der Methode vor, da
 Da \ac{snik} auf verhältnismäßig wenigen Prädikaten beruht, deren Label noch dazu oft wenig in einem natürlichen Satz verwendet würden, ist es meist unpraktikabel, solche zu verwenden.
 Ein Ansatz für die Lösung dieses Problems ist die \ac{boa} Pattern Library \citep{boapatternlibrary}, welche aus freiem Text \ac{rdf}-Prädikate extrahieren soll, oder die manuelle Erweiterung durch alternative Labels.
 
-An Außnahmen wie \aurl{meta}{isResponsibleForFunction} sieht man, dass diese deutlich besser funktionieren, da sie etwa in der Frage \enquote{What is the CIO responsible for?} vorhanden sind.
+An Ausnahmen wie \aurl{meta}{isResponsibleForFunction} sieht man, dass diese deutlich besser funktionieren, da sie etwa in der Frage \enquote{What is the CIO responsible for?} vorhanden sind.
 Prädikate wie \aurl{meta}{entityTypeComponent} mit dem Label \enquote{entity type component} haben es dort schwerer, da sie auf das Metamodell \ac{snik}s zurückgreifen
 und nicht den normalen Sprachgebrauch wiederspiegeln.
 Hilfreich dafür sind definitiv die Property Mappings von QAnswer, aber diese haben auch nur eine auf die eingegebenen Lexikalisierungen begrenzte Wirkungsweite.
 
 Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches \ac{qa}-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
 jedoch ist es gelungen, ein \ac{qa}-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist beim untrainierten System bei den gegebenen Umständen mit einem F-Maß von 0.24 erstaunlich, jedoch war das Training enttäuschend.
-Es bleibt abzuwarten, was das Training mit dem großen, automatisch generierten Benchmark verursacht.
-Vermutlich waren die 18 Fragen, die zum Training eingesetzt wurden, deutlich zu wenige, um irgendeine Verallgemeinerung möglich zu machen und das System auf die Ontologie einzustellen.
+Es bleibt abzuwarten, was das Training mit dem großen, automatisch generierten Benchmark verursacht.\todo{update}
+Vermutlich waren die 18 Fragen, die zum Training eingesetzt wurden, deutlich zu wenige, um irgendeine Verallgemeinerung möglich zu machen und das System auf die Ontologie einzustellen.\todo{update}
 
 Für die Verwendung der Teilontologien zusammen fehlt nicht nur ein System, dass diese Aufgabe bewältigt, sondern vor allem auch schlicht die Trainingsfragen.
 Bereits die aus dem blauen Buch waren nur teilweise geeignet, für das Training für aller Teilontologien müsste man vermutlich Nutzerfragen von Studierenden sammeln.
@@ -66,8 +61,8 @@ Natürlich können die Ressourcen, die mit \aurl{skos}{closeMatch} oder \aurl{sk
 Aber es gibt ja auch Ressourcen, die nur über \aurl{skos}{broadMatch} oder gar nicht verbunden sind und trotzdem fast gleich heißen.
 Solche Ambiguitäten gilt es aufzulösen, das ist ein weiterer Grund, warum hier nur eine Teilontologie abgefragt wurde.
 
-In Zukunft sollte das System definitiv, wie schon geplant, auch am automatisch definierten Benchmark evaluiert werden und der Effekt der Anzahl und des Typs der Fragen ausgewertet werden.
-Auch denkbar wäre das Erstellen eines eigenen, auf \ac{snik} spezialisierten, \ac{qa}-Systems, was aber aufgrund der hohen Komplexität unpraktisch erscheint.
+In Zukunft sollte das System definitiv, wie schon geplant, auch am automatisch definierten Benchmark evaluiert werden und der Effekt der Anzahl und des Typs der Fragen ausgewertet werden.\todo{update}
+Auch denkbar wäre das Erstellen eines eigenen, auf \ac{snik} spezialisierten, \ac{qa}-Systems, was aber aufgrund der hohen Komplexität unpraktisch erscheint.\todo{update}
 
 Für eine Nutzung des Systems durch Studenten sind die Ergebnisse momentan aber nicht ausreichend.
-Infrage kommend wäre höchstens das untrainierte System, welches eine halbwegs akkurate Beantwortung von Fragen, besonders leichteren, ermöglicht.
+Infrage kommend wäre höchstens das untrainierte System, welches eine halbwegs akkurate Beantwortung von Fragen, besonders leichteren, ermöglicht.\todo{update}
