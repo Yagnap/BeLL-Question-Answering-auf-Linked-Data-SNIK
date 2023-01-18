@@ -255,7 +255,7 @@ Im Folgenden wurden die natürlichsprachigen Fragen mit \ac{sparql}-Abfragen bea
     # 9.3.4.2/2 Which boards and persons are involved in information management?
     SELECT DISTINCT ?s1
     WHERE
-      { ?s1 meta:isResponsibleForFunction bb:InformationManagement . }
+      { ?s1 meta:isInvolvedIn bb:InformationManagement . }
     
     # 9.4/2 What are the typical tasks for strategic HIS planning?
     SELECT DISTINCT ?s1

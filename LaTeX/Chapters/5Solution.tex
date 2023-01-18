@@ -226,22 +226,78 @@ Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What i
 Der Ansatz für die Lösung dieses Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \emph{property paths} zu verwenden,
 mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen kann.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
-Statt etwa \texttt{\aurl{meta}{isResponsibleForEntityType}} stünde nun \texttt{\aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForRole}} dort.
+Statt etwa \texttt{\aurl{meta}{isResponsibleForEntityType}} stünde nun \texttt{\aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForEntityType}} dort.
 Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
 Somit konnte erahnt werden, warum es das macht, was es macht.
+Die ganze Abfrage sähe dann so aus:
+\begin{lstlisting}[language=SPARQL]
+  SELECT ?o
+  WHERE {
+    bb:ChiefInformationOfficer (meta:isResponsibleForRole | meta:isResponsibleForFunction | meta:isResponsibleForEntityType) ?o .
+  }
+\end{lstlisting}
 
-Jedoch kann QAnswer keine solchen property paths bilden.
-Deshalb mussten vor dem Training die \aurl{rdfs}{subClassOf}+-Beziehung materialisiert werden,
-%todo{müsste das nicht subPropertyOf sein? wie genau hatten wir das gemacht?
-%sind die materialisierten Tripel überhaupt noch da?
-%Bei \url{https://www.snik.eu/ontology/bb/ChiefInformationOfficer} sehe ich z.B. nichts materialisiertes.
-%Vielleicht hatten wir das irgendwann mal in den SPARQL Endpunkt gestellt was dann beim neu Aufsetzen verloren gegangen ist?
-%}
+Eine andere Möglichkeit, diese Frage mittels einer \ac{sparql}-Abfrage zu beantworten, ist mittels der \aurl{rdfs}{subPropertyOf}-Beziehung:
+\begin{lstlisting}[language=SPARQL]
+  SELECT ?o
+  WHERE {
+    bb:ChiefInformationOfficer ?p ?o .
+    ?p rdfs:subPropertyOf* meta:isResponsibleFor .
+  }
+\end{lstlisting}
+Dabei wichtig ist, dass hier \texttt{*} statt \texttt{+} verwendet wird, falls \aurl{meta}{isResponsibleFor} selbst genutzt wird,
+und nicht nur die untergeordneten Properties.
 
-% Das hatten wir mit einer SPARQL-Query mit CONSTRUCT gemacht, glaube ich, aber nur für den Datensatz, den wir dann auf QAnswer hochgeladen haben.
-% Sollte es noch in den Dateien in QAnswer geben.
-% Muss subClassOf sein, da in viieelen Fragen Beziehungen zwischen den Ressourcen gewollt sind.
-das heißt es wurden alle transitiven Subklassenbeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt. % Ach, hier stehts ja auch
+Deshalb mussten vor dem Training die \aurl{rdfs}{subPropertyOf}+-Beziehung materialisiert werden%
+\footnote{Es werden nur \aurl{rdfs}{subPropertyOf}+-Beziehungen materialisiert, da das Tripel mit der übergeordneten Property schon in der \ac{kb} ist.},
+das heißt es wurden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
+Das ist mit dieser \ac{sparql}-Abfrage möglich:
+
+\begin{lstlisting}[language=SPARQL]
+  CONSTRUCT {?s ?p ?o}
+  FROM sniko:meta
+  FROM sniko:bb
+  WHERE {
+    ?s ?pp ?o .
+    ?pp rdfs:subPropertyOf+ ?p . 
+  }
+\end{lstlisting}
+
+Zusätzlich werden auch die \aurl{rdfs}{subClassOf}+-Beziehungen materialisiert.
+Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
+Das kann mittels der folgenden Abfrage bewerkstelligt werden:
+
+\begin{lstlisting}[language=SPARQL]
+  CONSTRUCT {?s ?p ?oo}
+  FROM sniko:meta
+  FROM sniko:bb
+  WHERE {
+    ?s ?p ?o . 
+    FILTER(?oo!=owl:Thing && ?oo!=meta:Top) .
+    FILTER(STRSTARTS(STR(?oo),"http://www.snik.eu/ontology/bb")) .
+    ?o rdfs:subClassOf+ ?oo .
+  }
+\end{lstlisting}
+
+Beide dieser \ac{sparql}-Abfragen wurden vom Betreuer bereitgestellt.
+Durch die Materialisierung kann beispielsweise für die Frage \texttt{8/6}, \enquote{How can quality of HIS be evaluated?},
+die Klasse \aurl{bb}{CaseStudy} gefunden werden (siehe \cref{sub:antwortentextbuch}), obwohl diese eine direkte Subklasse von \aurl{bb}{QualitativeEvaluationMethod} ist,
+welche wiederum eine direkte Subklasse von \aurl{bb}{EvaluationMethod} ist, welche in der in \cref{sub:sparqltextbuchfragen} sichtbaren Abfrage gesucht wird.
+Für die \ac{kb} mit den unmaterialisierten transitiven Subklassenbeziehungen sieht die Abfrage so aus:
+\begin{lstlisting}[language=SPARQL]
+  SELECT DISTINCT ?s
+  WHERE
+    { ?s rdfs:subClassOf+ bb:EvaluationMethod . }
+\end{lstlisting}
+
+Nach der Materialisierung kann das \texttt{+} entfernt werden, wodurch folgende Abfrage ausreicht:
+\begin{lstlisting}[language=SPARQL]
+  SELECT DISTINCT ?s
+  WHERE
+    { ?s rdfs:subClassOf bb:EvaluationMethod . }
+\end{lstlisting}
+
+Die erste Abfrage kann nicht durch QAnswer generiert werden, die zweite jedoch schon.
 
 Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \aurl{bb}{ChiefInformationOfficer}.
 Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
