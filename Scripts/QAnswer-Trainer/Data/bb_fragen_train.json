@@ -1,73 +1,72 @@
-[
-{
+[{
 	"question": "What are appropriate models for health information systems?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/Model> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/Model> . }"
 },
 {
 	"question": "What is information management?",
-	"sparql": "SELECT DISTINCT ?o1 WHERE {VALUES ?o1 {<http://snik.eu/ontology/bb/InformationManagement> } . }"
+	"answer": "SELECT DISTINCT ?o1 WHERE {VALUES ?o1 {<http://snik.eu/ontology/bb/InformationManagement> } . }"
 },
 {
 	"question": "What are typical metamodels for modeling various aspects of HIS?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/Metamodel> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/Metamodel> . }"
 },
 {
 	"question": "What are different architectures of HIS?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/HisArchitecture> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/HisArchitecture> . }"
 },
 {
 	"question": "How can architectures of HIS be categorized?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/HisArchitecture> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/HisArchitecture> . }"
 },
 {
 	"question": "Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/EhrStrategy> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/EhrStrategy> . }"
 },
 {
 	"question": "Which facets of quality have to be considered in HIS?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { <http://snik.eu/ontology/bb/HisQuality> <http://snik.eu/ontology/meta/entityTypeComponent> ?o1 . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { <http://snik.eu/ontology/bb/HisQuality> <http://snik.eu/ontology/meta/entityTypeComponent> ?o1 . }"
 },
 {
 	"question": "What are the characteristics of the quality of structures in HIS?",
-	"sparql": "SELECT DISTINCT ?s2 WHERE { <http://snik.eu/ontology/bb/QualityOfHISStructures> <http://snik.eu/ontology/meta/entityTypeComponent> ?o1 . ?s2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?o1 . }"
+	"answer": "SELECT DISTINCT ?s2 WHERE { <http://snik.eu/ontology/bb/QualityOfHISStructures> <http://snik.eu/ontology/meta/entityTypeComponent> ?o1 . ?s2 <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?o1 . }"
 },
 {
 	"question": "What criteria for quality of data exist?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfData> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfData> . }"
 },
 {
 	"question": "What criteria for the overall HIS architecture exist?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfHISArchitecture> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfHISArchitecture> . }"
 },
 {
 	"question": "What are the characteristics of the quality of processes of HIS?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfHISProcesses> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/QualityOfHISProcesses> . }"
 },
 {
 	"question": "What are major phases of an IT evaluation study?",
-	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/ItEvaluationStudyManagementAndExecution> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }"
+	"answer": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/ItEvaluationStudyManagementAndExecution> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }"
 },
 {
 	"question": "What are the tasks and methods for strategic HIS planning?",
-	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISPlanning> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }"
+	"answer": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISPlanning> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }"
 },
 {
 	"question": "What are the tasks and methods for strategic HIS directing?",
-	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISDirecting> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }"
+	"answer": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISDirecting> <http://snik.eu/ontology/meta/functionComponent> ?o1 . }"
 },
 {
 	"question": "Which boards and persons are involved in information management?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://snik.eu/ontology/meta/isResponsibleForFunction> <http://snik.eu/ontology/bb/InformationManagement> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://snik.eu/ontology/meta/isResponsibleForFunction> <http://snik.eu/ontology/bb/InformationManagement> . }"
 },
 {
 	"question": "What are the typical tasks of strategic HIS monitoring?",
-	"sparql": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/StrategicHISMonitoring> . }"
+	"answer": "SELECT DISTINCT ?s1 WHERE { ?s1 <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://snik.eu/ontology/bb/StrategicHISMonitoring> . }"
 },
 {
 	"question": "What are the typical methods of strategic HIS directing?",
-	"sparql": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISDirecting> <http://snik.eu/ontology/meta/uses> ?o1 . }"
+	"answer": "SELECT DISTINCT ?o1 WHERE { <http://snik.eu/ontology/bb/StrategicHISDirecting> <http://snik.eu/ontology/meta/uses> ?o1 . }"
 },
 {
 	"question": "What are health care networks?",
-	"sparql": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {<http://snik.eu/ontology/bb/HealthCareNetwork> } . }"
+	"answer": "SELECT DISTINCT ?o1 WHERE { VALUES ?o1 {<http://snik.eu/ontology/bb/HealthCareNetwork> } . }"
 }]

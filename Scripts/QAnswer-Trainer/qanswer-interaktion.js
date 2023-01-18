@@ -165,7 +165,7 @@ const kb_name = "SNIK_BB";
  * @see {@link login()} for step 1
  * @see {@link provide_feedback()} for step 2a
  * @see {@link train_model()} for step 2b
- * @see {@link evaluatie_iteration()} for step 2c
+ * @see {@link evaluate_iteration()} for step 2c
  * @see {@link reset_model()} for step 2d
  * @see {@link final_evaluation()} for step 3
  */
@@ -203,9 +203,11 @@ export async function main(use_textbook_question_training) {
     console.info("No textbook questions are being used");
   }
 
+  let train_length = generatedQAPairsTraining.length;
+  
   console.groupCollapsed("Loop");
   // 10 new questions per iteration
-  for (let i = 0; i < length; i += 10) {
+  for (let i = 0; i < train_length; i += 10) {
     // Start of a (collapsed) console group.
     console.groupCollapsed(
       "Fragenanzahl: " +
@@ -221,9 +223,9 @@ export async function main(use_textbook_question_training) {
     // (a) The array is almost at its end
     // (b) The test just started, meaning no questions should be used for training.
     // Default: count stays 10
-    if (i + 10 >= length) {
-      count = length - i; // i.e. 1003 - 990 = 13 to add
-      i = length; // for evaluation purposes
+    if (i + count >= generatedQAPairsTraining.length) {
+      count = train_length - i; // i.e. 885 - 870 = 15 to add
+      i = train_length; // for evaluation purposes
     } else if (i == 0) {
       count = 0; // no questions added at all
     }
@@ -239,8 +241,10 @@ export async function main(use_textbook_question_training) {
     // when count = 0, no questions are provided feedback for at all.
     // Questions already provided feedback for will stay
     console.groupCollapsed("Questions-Answer-Pairs");
-    for (j = 0; j < count; j++) {
-      await provide_feedback(generatedQAPairsTraining[i + j]);
+    for (let j = 0; j < count; j++) {
+      let index = i + j;
+      let qa_pair = generatedQAPairsTraining[index];
+      await provide_feedback(qa_pair);
     }
     console.groupEnd();
 
@@ -296,6 +300,7 @@ async function snik_retreive_correct_answers() {
       sparql: pair.answer,
       answers: await select(pair.answer, null, "https://www.snik.eu/sparql"),
     };
+    console.log(JSON.stringify(correct_answers[pair.question]));
   }
 }
 
@@ -376,18 +381,16 @@ async function provide_feedback(question_answer_pair) {
  * API called: /api/feedback/train
  */
 async function train_model() {
-  const body = [kb_name];
-  const url = "https://app.qanswer.ai/api/feedback/train";
+  const url = `https://app.qanswer.ai/api/feedback/train?kb=${kb_name}`;
   const settings = {
-    crossDomain: true,
+    //crossDomain: true,
     method: "GET",
     headers: {
       Authorization: "Bearer " + token,
-      "Content-Type": "application/json",
-      processData: false,
+      //"Content-Type": "application/json",
+      //processData: false,
     },
-    dataType: "jsonp",
-    body: JSON.stringify(body),
+    //dataType: "jsonp",
   };
 
   const response = await fetch(url, settings);
@@ -451,24 +454,23 @@ async function reset_qapairs() {
  *
  */
 async function ask_qanswer(nl_question) {
-  const body = {
+  /*const body = {
     question: nl_question,
     lang: "en",
     kb: [kb_name],
     user: [QANSWER_CREDENTIALS.user],
-  };
+  };*/
 
-  const url = "https://app.qanswer.ai/api/qa/full";
+  const url = `https://app.qanswer.ai/api/qa/full?question=${nl_question}&lang=en&kb=${kb_name}&user=${QANSWER_CREDENTIALS.user}`;
   const settings = {
-    crossDomain: true,
+    //crossDomain: true,
     method: "GET",
     headers: {
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json",
-      processData: false,
+      authorization: "Bearer " + token,
+      //"Content-Type": "application/json",
     },
-    body: JSON.stringify(body),
-    dataType: "jsonp",
+    //body: JSON.stringify(body),
+    //dataType: "jsonp",
   };
 
   // ask QAnswer API
@@ -577,9 +579,14 @@ async function evaluate_iteration(number_of_questions) {
     i++;
   }
 
-  // textbook questions more detailed, looking at the individual quetsions more thorughly
+  // textbook questions more detailed, looking at the individual questions more thorughly
   for (let pair of textbookQAPairsEvaluation) {
     let pair_evaluation = evaluate_pair(pair, number_of_questions);
+
+    // if first eval for question
+    if (typeof evaluations_textbook[pair.question] == "undefined") {
+      evaluations_textbook[pair.question] = [];
+    }
 
     evaluations_textbook[pair.question].push(pair_evaluation);
   }
@@ -589,7 +596,7 @@ async function evaluate_iteration(number_of_questions) {
   evaluation_generated.precision /= i;
   evaluation_generated.recall /= i;
   evaluation_generated.fscore /= i;
-  evaluation_generated.push(evaluations_generated);
+  evaluations_generated.push(evaluation_generated);
 }
 
 /**
@@ -736,4 +743,15 @@ function intersect(bindings1, bindings2) {
 
   var intersection = b1.filter((value) => b2.includes(value));
   return intersection;
+}
+
+/**
+ * Takes in a URL and JSON or Object data and transforms it in a way that it can be passed via a GET request.
+ * 
+ * @param {string} url 
+ * @param {Object} json
+ * @returns {string} URL used in a get request
+ */
+function getify(url, json) {
+  
 }
