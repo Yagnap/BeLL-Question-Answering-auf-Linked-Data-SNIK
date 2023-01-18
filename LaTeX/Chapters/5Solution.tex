@@ -223,7 +223,7 @@ Beim Einrichten der Umgebung wurde die Sprache auf Englisch gestellt, da in dies
 QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete \ac{sparql}-Abfrage dar.
 Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
 \aurl{meta}{isResponsibleForEntityType}, \aurl{meta}{isResponsibleForFunction} und \aurl{meta}{isResponsibleForRole} gemeint sein könnten.
-Der Ansatz für die Lösung dises Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \emph{property paths} zu verwenden,
+Der Ansatz für die Lösung dieses Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \emph{property paths} zu verwenden,
 mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen kann.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
 Statt etwa \texttt{\aurl{meta}{isResponsibleForEntityType}} stünde nun \texttt{\aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForRole}} dort.
