@@ -212,24 +212,49 @@ Es ist leider nicht open-source, steht online\footnote{\url{https://app.qanswer.
 \end{figure}
 
 QAnswer KG beantwortet eine Frage in vier Schritten, die in \cref{fig:qanswerworkflow} dargestellt sind.
+
 Zuerst werden alle sogenannten \emph{N-Gramme} gebildet, d.h. alle möglichen Kombinationen von aufeinanderfolgenden Wörtern mit der maximalen Länge n.
 Die maximale Länge hier ist die Anzahl der Wörter im Satz, d.h. der Satz selbst ist auch ein N-Gramm.
 Wenn man zum Beispiel die Frage \enquote{Is war peace?} stellt,
 sucht das Programm für jedes Wort sowie für die Kombinationen \enquote{is war}, \enquote{war peace} und \enquote{is war peace}
 mithilfe des auf natürliche Sprache vortrainierten Modells die am ehesten passenden Werte im Datensatz heraus.
 Dabei werden normalerweise auch viele falsche Ressourcen ausgewählt, da besonders bei längeren Fragen viele N-Gramme existieren.
+
 Danach werden aus all diesen Werten alle möglichen \ac{sparql}-Anfragen erstellt.
 Dabei werden auch die falschen Interpretationen weitergeführt, jedoch sollte auch die richtige dabei sein.
+
 Deshalb müssen die Abfragen im dritten Schritt bewertet werden.
 Dazu werden mithilfe von verschiedenen Parametern und einer künstlichen Intelligenz die Kandidaten evaluiert.
 Parameter sind etwa die Anzahl der in der Abfrage verwendeten mit einer Ressource assoziierten Wörter verglichen mit der Anzahl der Wörter in der Frage,
 oder die Ähnlichkeit der Label mit den entsprechend ausgewählten Wörtern.
 Label werden meist über das \ac{rdf}-Property \aurl{rdfs}{label} festgelegt.
+
 Dadurch soll die Interpretation, die der Intention der Frage am nächsten kommt, am höchsten gewertet sein.
 Diese wird im letzten Schritt analysiert und es wird entschieden, ob es die richtige Antwort ist.
 Damit wird ein \enquote{confidence score}, zu Deutsch etwa \enquote{Vertrauenswert}, erstellt.
 Sollte dieser unter \SI{50}{\%} liegen, gilt die Frage als falsch beantwortet.
 Sie wird jedoch trotzdem ausgegeben.
+
+\subsubsection{Training und maschinelles Lernen}
+
+Trainiert werden können bei QAnswer die in \cref{fig:qanswerworkflow} dargestellten Schritte drei und vier, also \emph{Query Ranking} und \emph{Answer Decision}.
+Es kann also nur beeinflusst werden, welche Antwort QAnswer warum auswählt, nicht aber, welche Antwortmöglichkeiten es erstellt.
+
+Mittels fine-tuning werden die vortrainierten Modelle für diese beiden Schritte mittels gesammelten Feedbacks adjustiert.
+Die Modelle nehmen auf die Anzahl der Variablen und die Anzahl der Tripel in den \ac{sparql}-Abfragen,
+sowie die Anzahl der Wörter der natürlichsprachigen Fragen, die durch die Ressourcen abgebildet sind.
+Außerdem gibt zwei weitere Kriterien, die verwendet werden, sofern es erforderlich ist.
+Diese sind die Unterschiedlichkeit der eingegebenen Wörter verglichen mit den Labels der Ressourcen
+und die Summe der Relevanz von Ressourcen in der Abfrage.
+Die Relevanz wird durch die Anzahl ein- und ausgehender Verbindungen oder manuelle Zuweisungen festgelegt.
+Idealerweise werden alle fünf Kriterien verwendet.
+
+Da alle diese Kriterien letztendlich in Zahlenwerten zum Ausdruck kommen, können diese zu einer neuen kombiniert werden.
+Hier kommt das Training ins Spiel.
+Dieses bestimmt nämlich die Wichtung der einzelnen Zahlen beim Zusammenrechnen.
+Die Wichtung kommt als Faktor vor dem Wert des Kriteriums zum Ausdruck, die Kriterien werden linear verrechnet, also addiert.
+
+Sofern Trainingsdaten verfügbar sind, werden die Abfragen mittels des F-Maßes (siehe \cref{sub:evaluierungsmasse}) zusätzlich bewertet \citep{qanswerpatentapplication}.
 
 \subsubsection{Vorteile, Grenzen und Probleme}
 
@@ -261,10 +286,6 @@ vermutlich mit einer geringeren Genauigkeit der Ergebnisse und einer langsameren
 
 QAnswer KG kann, wie man an Benchmarks sieht, mit den bisher existierenden Systemen mithalten, ist jedoch in der Intuitivität und Portabilität weit über ihnen.
 Mit Training kann auch eine sehr hohe Genauigkeit erzielt werden.
-
-\subsubsection{Training}
-
-\todo{Training näher beleuchten}
 
 \subsection{AskNow QA}
 
