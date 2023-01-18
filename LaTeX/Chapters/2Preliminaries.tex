@@ -213,19 +213,20 @@ M_i \subseteq M_n \land M_i \supseteq M_1 \\
 \subsection{Individuen und Klassen}
 \label{sec:individuenundklassen}
 Die Beziehung zwischen Individuum und Klasse entspricht einer Elementbeziehung im Sinne der Mengentheorie der Mathematik, für ein Individuum $e$ einer Klasse $K$ gilt also $e \in K$ \citep[S.~261]{semanticwebgrundlagen}.
-Aus dem Beispiel aus \cref{tab:rdftripleexample} ist also Frau Mustermann ein Element der Klasse Leiterin des Informationsmanagements.
+Im Beispiel aus \cref{tab:rdftripleexample} ist also Frau Mustermann ein Element der Klasse \emph{Leiterin des Informationsmanagements}.
 
 Beziehungen zwischen Individuen untereinander werden \emph{Relationen} genannt.
 Relationen können als Teilmenge zwischen Individuen $a \in A$ und $b \in B$ vom kartesischen Produkt der Klassen $A$ und $B$ bezeichnet werden,
 also gilt $(a,b) \in R$, wenn $R \subseteq A \times B$ ist.
 Als Kurzform kann auch $aRb$ geschrieben werden \citep[S.~263]{semanticwebgrundlagen}.
-Es gibt nicht nur \emph{binäre} Relationen, also Relationen zweier Elemente, hier werden aber nur diese benötigt.
+Relationen zweier Elemente werden als \emph{binäre Relationen} bezeichnet.
+Relationen, die nicht binär sind, werden im Folgenden nicht benötigt.
 
 In \ac{rdf} sind nämlich alle Relationen zweistellig, also Paare.
-Die Beschreibung dieser Relation wird \enquote{Property}, also Attribut oder Eigenschaft, genannt.
+Die Beschreibung dieser Relation wird \emph{Property}, also Attribut oder Eigenschaft, genannt.
 Properties nehmen die Rolle von Prädikaten an, so ist zum Beispiel \aurl{meta}{isResponsibleForEntityType} ein Property von der Ressource \aurl{bb}{ChiefInformationOfficer},
-welche im Tripel die Rolle des Subjekts annimmt, mit dem Wert, der das Objekt darstellt, \aurl{bb}{AnnualITBudget}.
-Sie können auch eingeschränkt werden, indem man ihnen mit \ac{rdf} ihren \emph{Definitionsbereich} mit und \emph{Wertebereich} verändert.
+welche im Tripel die Rolle des Subjekts annimmt, mit dem das Objekt darstellenden Wert,  \aurl{bb}{AnnualITBudget}.
+Sie können auch eingeschränkt werden, indem man mit \ac{rdf} ihren \emph{Definitionsbereich} und \emph{Wertebereich} verändert.
 Damit lässt sich einstellen, welche Datentypen als Subjekt und Objekt akzeptiert werden \citep[S.~76]{semanticwebgrundlagen}.
 Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über \aurl{rdfs}{range} bearbeitet.
 
@@ -233,7 +234,7 @@ Der Definitionsbereich wird über \aurl{rdfs}{domain} und der Wertebereich über
 Literale sind Zeichenketten und können über reservierte \acp{uri} die Art des vorhandenen Werts anzeigen.
 Da Properties Klassen als Definitions- und Wertebereich haben, werden sie auch \emph{Object}-Properties genannt.
 So ist in \cref{tab:rdftripleexample} \aurl{bb}{isResponsibleForEntityType} ein Property mit \aurl{meta}{Role} als Definitionsbereich und \aurl{meta}{EntityType} als Wertebereich,
-es beschreibt also eine Eigenschaft von Ressourcen.
+es beschreibt demnach eine Eigenschaft von Ressourcen.
 
 \subsection{Wissensbasen}
 Es wird teilweise auch zwischen A- und TBoxen unterschieden.
@@ -246,24 +247,25 @@ Relationale Datenbanken sind Datenbanken, in welchen die Daten in einer eindeuti
 In den Entitäten sind spezielle Informationen über die Individuen enthalten.
 Die Relationen existieren allerdings nur zwischen den Entitäten, nicht zwischen den Individuen.
 Es sind also immer nur die Klassen miteinander verbunden, die Individuen haben höchstens über Fremdschlüssel etwas miteinander zu tun, dann aber auch immer nur in einem vorher gesetzten Rahmen.
-Bei Wissensbasen können Individuen Relationen mit anderen Individuen sein.
+Bei Wissensbasen können Individuen in Relationen mit anderen Individuen sein.
 Des Weiteren sind Wissensbasen auf zweistellige Relationen beschränkt,
-wohingegen relationale Datenbanken eine deutlich höhere Anzahl an Spalten und somit eine deutlich höhere Stelligkeit der Relationen existiert.
+wohingegen relationale Datenbanken eine deutlich höhere Anzahl an Spalten besitzen und somit eine deutlich höhere Stelligkeit der Relationen existiert.
 
 \subsection{Linked (Open) Data}
 
 Linked Data beschreibt öffentlich verfügbare Informationen, die mittels \acp{uri} erreichbar und in für Maschinen lesbarer Form vorhanden sind \citep{linkeddata}.
-Es sollen verschiedene open-source lizensierte Datenquellen in \ac{rdf} umgeformt und verbunden werden, was allerdings Probleme im Sinne von fehlender Konsistenz der Daten führen kann \citep{semanticwebreview}.
-Berners-Lee verfasste vier Regeln für das veröffentlichen von Daten im Internet, um ein umfassendes Linked Data-System zu ermöglichen \citep{linkeddatadesignissues}.
-Diese sagen vor allem, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen standardisiert durch \ac{rdf} und \ac{sparql} weitere nützliche Informationen und Links zu anderen \acp{uri} enthalten sollen.
+Es sollen verschiedene open-source lizensierte Datenquellen in \ac{rdf} umgeformt und verbunden werden.
+Dies kann zu Problemen im Sinne von fehlender Konsistenz der Daten führen \citep{semanticwebreview}.
+\citet{linkeddatadesignissues} verfasste vier Regeln für das Veröffentlichen von Daten im Internet, um ein umfassendes Linked Data-System zu ermöglichen.
+Diese sagen im Wesentlichen, dass klar mit \ac{http}-\acp{uri} benannte Ressourcen standardisiert durch \ac{rdf} und \ac{sparql} weitere nützliche Informationen und Links zu anderen \acp{uri} enthalten sollen.
 
 \subsection{SPARQL}\label{sub:sparql}
 
 \ac{sparql} ist ein \ac{w3c}-Standard als Abfragesprache für RDF.
 Mit ihr kann man durch eine standardisierte Syntax in RDF geschriebenes Wissen abfragen.
 Es müssen zuerst die verwendeten Präfixe definiert werden, dann die auszugebenden Variablen genannt und dann die eigentliche Anfrage formuliert werden \citep[S.~203]{semanticwebgrundlagen}.
-Möglich ist auch, in dieser Abfrage eine weitere Variable genannt wird.
-Dies könnte zu mehreren Ergebnissen führen.
+Möglich ist auch, dass in dieser Abfrage eine weitere Variable genannt wird.
+Dies kann zu mehreren Ergebnissen führen.
 Ein Beispiel für eine \ac{sparql}-Anfrage ist hier:
 
 \begin{lstlisting}[language=SPARQL]
@@ -287,11 +289,11 @@ Wenn man mehrere Beziehungen abfragen will, kann man \emph{property paths}\footn
 Bei diesen wird zwischen die einzelnen Prädikate ein Zeichen, in diesem Fall ein \texttt{|} geschrieben.
 Diese geben den Pfad an, den die Abfrage verwenden soll.
 So gibt \texttt{/} beispielsweise eine Sequenz an, was im Kontext von \acl*{qa} besonders für komplexe Fragen hilfreich ist.
-Hier werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
+Dabei werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
 Der Charakter \texttt{|} steht für einen alternativen Pfad, ähnlich dem logischen \emph{oder}.
-Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
+Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} benutzen, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
 Bei beiden dieser Methoden kann man auch eine regulären Ausdrücken ähnliche Syntax nutzen.
-Reguläre Ausdrücke sind Zeichenketten, mithilfe in Texten nach bestimmten Folgen, Mustern o.ä. gesucht werden kann.
+Reguläre Ausdrücke sind Zeichenketten, mit deren Hilfe in Texten nach bestimmten Folgen, Mustern o.ä. gesucht werden kann.
 Die Auswahl mehrerer Objekte gleichzeitig ist nützlich, um bei \acs{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
 Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise \texttt{?x} nennen, danach fügt man folgende Zeile ein:
 \begin{lstlisting}[language=SPARQL]
@@ -300,7 +302,7 @@ Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise 
 Da die Teilontologien untereinander mit \aurl{meta}{closeMatch} verbunden sind, wird diese Beziehung hier abgefragt.
 Mittels property path und dem Zeichen \texttt{\^} wird die Suche auch invertiert, sodass auch Ressourcen erhalten werden, wenn die closeMatch-Beziehung von der anderen ausgeht.
 Mit dem Zeichen \texttt{*} wird auch \aurl{bb}{ChiefInformationOfficer} selbst ausgewählt, da dieses Zeichen eine beliebig häufige Anzahl an Wiederholungen des Pfades zulässt.
-Im Gegensatz zu \texttt{+} setzt \texttt{*} jedoch keine Mindestanzahl von einer Wiederholung vorraus, sondern erlaubt auch Zahlen von null,
+Im Gegensatz zu \texttt{+} setzt \texttt{*} jedoch keine Mindestanzahl von einer Wiederholung voraus, sondern erlaubt auch Zahlen von null,
 weshalb auch die Ressource selbst ausgewählt wird.
 
 \section[Semantisches Question Answering]{\acl*{sqa}}
@@ -314,21 +316,23 @@ Die Fragen sind in natürlicher Sprache gestellt, es wird \acs{nlp} benötigt, u
 Es existieren sowohl \ac{cdqa} als auch \ac{odqa}.
 \ac{qa}-Programme mit offener Domäne sind schwieriger zu entwickeln,
 da sie Fragen von allen möglichen Domänen verstehen müssen.
-Ein Beispiel hierfür wäre die Frage, wo eine Bank zu finden sei.
-Die fragenstellende Person könnte entweder eine Filiale einer Bankgesellschaft oder eine Sitzgelegenheit meinen.
+Ein Beispiel dafür wäre die Frage, wo eine Bank zu finden sei.
+Die fragenstellende Person könnte entweder nach der Filiale einer Bankgesellschaft suchen oder eine Sitzgelegenheit meinen.
 Das Programm, an das die Frage gestellt wird, muss nun mit wenig Kontext herausfinden,
-welche Deutung impliziert wird, was zum Beispiel mit mehr Daten,
+welche Deutung impliziert wird
+Das kann beispielsweise mit mehr Daten,
 wie etwa dem vorherigen Suchverlauf (Hat sich die Person vorher nach Parks/Geldfilialen erkundigt?)
-oder persönlichen Daten, wie dem Alter, möglich wäre.
+oder persönlichen Daten, wie dem Alter, möglich sein.
 
 Diese Arbeit beschränkt sich jedoch auf \ac{qa} mit geschlossener Domäne, \acs{snik} (siehe \cref{ch:relatedWork}).
 Solche \ac{qa}-Programme beschränken sich auf einen Fachbereich,
 was etwa den Kontext vom vorherigen Beispiel bereitstellen würde.
+Wenn es sich zum Beispiel um eine Wissensbasis zu Parks handelt, ist es wahrscheinlicher, dass die Person nach Sitzgelegenheiten im Park sucht.
 
 \begin{definition}[Semantisches Question Answering]
-\ac{sqa}, oder auch \ac{kbqa}, ist die Beantwortung von Fragen, die \ac{rdf}-Daten in natürlicher Sprache gestellt wurden.
+\ac{sqa}, oder auch \ac{kbqa}, ist die Beantwortung von Fragen, die \ac{rdf}-Daten in natürlicher Sprache gestellt werden.
 Ein Programm für \ac{sqa} erkennt verschiedene semantische Strukturen in der Frage,
-also zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
+zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
 Dafür wird \acs{nlp} verwendet.
 \end{definition}
 
