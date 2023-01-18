@@ -392,7 +392,7 @@ Eingegebener Satz: \enquote{Erika Mustermann is responsible for the annual IT Bu
 
 \subsection{NLP-Pipeline}
 
-In einer Pipeline werden verschiedene Komponenenten eines Algorithmus oder Verfahren nacheinander ausgeführt.
+In einer Pipeline werden verschiedene Komponenten eines Algorithmus oder Verfahren nacheinander ausgeführt.
 Eine \ac{nlp}-Pipeline führt verschiedene Teilprogramme aus, da das Feld an sich zu komplex ist, als dass die Arbeit eines Programms es vollkommen lösen könnte.
 Dabei gibt der Nutzer, hier ein Programmierer, der z.B. ein \ac{qa}-Programm schreiben will, der Pipeline die Daten, welche je nach Pipeline annotiert vorliegen müssen \citep{curatorpipeline}.
 \ac{nlp}-Pipelines verwenden \acp{nn}, um funktionieren zu können.
@@ -425,19 +425,19 @@ Beispiele für solch ein Vorgehen sind \acs{bert}, siehe hierfür \cref{subsub:b
 \citep{elmo} ist ein \ac{nlp}-Modell, welches Wortsequenzen als Vektoren repräsentiert und dadurch sowohl komplexe Wortstrukturen wie Syntax und Semantik und den Kontext der Wörter behält.
 Im Gegensatz zu anderen Repräsentationsmodellen wird bei \ac{elmo} also jedes Wort im Kontext des Auftretens repräsentiert.
 Es basiert auf \acsp{lstm}, welche später in \cref{sub:lstm} betrachtet werden.
-Diese werden mit einem Wortcorpus vortrainiert und somit gut einsetzbar, und können beisielsweise ohne Veränderung bei Disambiguationsaufgaben verwendet werden.
+Diese werden mit einem Wortcorpus vortrainiert und somit gut einsetzbar, und können beispielsweise ohne Veränderung bei Disambiguationsaufgaben verwendet werden.
 \ac{elmo} ermöglichte zu der Zeit eine große Verbesserung der Leistung bei \ac{nlp}-Aufgaben.
 
 \subsubsection{BERT}\label{subsub:bert}
 \ac{bert}
 % finetuning-basiert
 \citep{bert} ist auch ein \ac{nlp}-Modell, jedoch mit dem hier neuen Ansatz bidirektionaler Transformer \citep{attention}.
-\ac{bert} nutzt eine von der Cloze-Prozedur inspirierte Vorgensweise namens \ac{mlm}, also \enquote{maskiertes Sprachmodell}.
+\ac{bert} nutzt eine von der Cloze-Prozedur inspirierte Vorgehensweise namens \ac{mlm}, also \enquote{maskiertes Sprachmodell}.
 Bei dem Cloze-Verfahren werden zufällig Wörter zensiert, wodurch deren Effekt auf die Lesbarkeit von Sätzen getestet wurde.
 Der Name selbst basiert auf dem Phänomen, dass das menschliche Gehirn unvollkommene Muster vervollständigt.
 Bei \ac{mlm} wird wie bei der Cloze-Prozedur auch versucht, das zufällig gelöschte Wort anhand des Kontexts wiedereinzufügen.
 Der bi-, also zweidirektionale, Transformer betrachtet den Kontext von beiden anstatt von vorher nur einer Seite, sodass bessere Ergebnisse erzielt werden können.
-Erst durch diese Vorgensweise kann von den sehr aufgabenspezifischen Architekturen weg- und zu fine-tuning-basierten Ansätzen hingegangen werden.
+Erst durch diese Vorgehensweise kann von den sehr aufgabenspezifischen Architekturen weg- und zu fine-tuning-basierten Ansätzen hingegangen werden.
 Dadurch erreicht \ac{bert} in Benchmarks sehr gute Ergebnisse, verglichen mit anderen Modellen.
 \ac{bert} verwendet sogenannte Transformer, welche auf dem in \cref{sub:rnn} und in \citet{annotatedtransformer} erklärten Aufmerksamkeitsmechanismus basieren.
 Es ist außerdem ein \acs{dnn}, welche im folgenden Abschnitt genauer betrachtet werden.
@@ -453,7 +453,7 @@ Bei jedem Knoten werden die aus den niederen Schichten ankommenden Werte addiert
 Diese Summe wird dann mithilfe einer Funktion, meistens einer hyperbolischen oder Sigmoidfunktion ($sig(t)=\frac{1}{1+e^{t-1}}$), verändert und dann wieder weitergereicht.
 Es werden genau diese Funktionen genommen, da deren Ableitungen die Fehlerberechnung leichter machen \citep{deeplearningnature}.
 So kann das, je nach der Anzahl der versteckten Schichten, lange weitergehen.
-Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} enstanden.
+Anfangs gab es meist nur eine versteckte Schicht, später wurden mehrere von diesen eingefügt und sogenannte \aclp{dnn} entstanden.
 \begin{figure}%[htbp!]
 \centering
 \includegraphics[width=.8\textwidth, height=.9\textheight, keepaspectratio]{Images/NeuralNetwork.png}
@@ -501,7 +501,7 @@ Dies ist besonders für Video- oder Audioverarbeitung äußerst praktisch \citep
 \end{figure}
 
 \acp{rnn} werden außerdem für Encoder-Decoder-Modelle \citep{seq2seqB} verwendet.
-Diese bestehen aus zwei \acp{rnn}, eines von ihnen ist ein Encoder (Verschlüsseler), das andere ein Decoder (Entschlüsseler
+Diese bestehen aus zwei \acp{rnn}, eines von ihnen ist ein Encoder (Verschlüsseler), das andere ein Decoder (Entschlüsseler).
 Besonders ist, dass die einzelnen \acp{nn} nicht einzeln, sondern das gesamte System zusammen trainiert wird \citep{seq2seqA}.
 Sie wurden zuerst für maschinelle Übersetzung eingesetzt, sind jetzt aber als Methode etabliert.
 

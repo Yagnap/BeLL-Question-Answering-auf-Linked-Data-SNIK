@@ -308,7 +308,7 @@ Darauf folgt ein Hilfstoken, der die Wörter \enquote{is}, \enquote{is kind of},
 Dieser hilft dabei, sprachliche Ambiguitäten aufzulösen, meistens wird das zu verwendende Wort auch durch das Fragewort vorgegeben.
 Auf dieses folgt dann mindestens eine, bei zusammengesetzten Fragen mehrere, Intention, eine Relation als Prädikat und eine Eingabe, welche auf eine Ressource zurückführt.
 Beziehungen und Eingaben kann es bei komplexen Fragen auch mehrere geben, dann aber auch immer in dieser Reihenfolge.
-Bei diesen folgt vor der Beziehung außerdem immer ein Klausalwort, welches die Suche einschränken kann.
+Bei diesen folgt vor der Beziehung außerdem immer ein Kausalwort, welches die Suche einschränken kann.
 
 \begin{figure}[htbp!]
 \centering
@@ -325,7 +325,7 @@ Sätze werden also so umgeformt, dass sie leicht von \emph{\ac{nqs}-Parser} gele
 Dieser analysiert zuerst, welcher Antworttyp erwartet wird, also zum Beispiel ein boolescher Wert, eine Anzahl oder eine Liste.
 Dies wird mithilfe der Frageintention und des Frageworts vollbracht.
 Dann werden im \emph{Entity Mapping} den Eingaben und Beziehungen Ressourcen der Wissensbasis zugeordnet.
-Dazu wird hier DBpedia Spotlight \citep{dbpediaspotlight} verwendet, ein Programm zur Annotierung von Textdokumenten mit DBpedia-\acp{uri}.
+Dazu wird hier DBpedia Spotlight \citep{dbpediaspotlight} verwendet, ein Programm zur Annotation von Textdokumenten mit DBpedia-\acp{uri}.
 Um die Intention mit einem Prädikat zu verbinden, wird versucht, sie über einen einfachen Vergleich,
 Synonyme \citep{wordnet} oder Sprachmuster \citep{boapatternlibrary} mit einem Label zu assoziieren.
 Wenn dies fehlschlägt, wird die Frage als unbeantwortbar eingestuft.
