@@ -145,7 +145,7 @@ var correct_answers = [];
  * @type {string}
  * @const
  */
-const kb_name = "snik_bb_autotest";
+const kb_name = "SNIK_BB";
 
 /**
  * Main function called by button clicked in index.php
@@ -296,21 +296,23 @@ async function login() {
     "password": QANSWER_CREDENTIALS.password
   }
   let settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://app.qanswer.ai/api/user/signin",
-    "method": "POST",
-    "headers": {
+    //"async": true,
+    //"crossDomain": true,
+    "url": "https://app.qanswer.ai/api/user/signin",
+    /**"headers": {
       "Content-Type": "application/json",
       "processData": false,
       "data": args
-    },
+    },*/
+    "data": args,
     "dataType": "jsonp"
   };
 
-  $.ajax(settings).done(function (response) {
-    token = response.accessToken;
-  });
+  let url = "https://app.qanswer.ai/api/user/signin";
+  let dataType = "jsonp";
+
+  const response = await $.post(url, args, null, dataType);
+  token = response.accessToken;
 }
 
 /**
