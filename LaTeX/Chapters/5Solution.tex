@@ -322,15 +322,18 @@ Somit verblieben dann folgende Wörter in der Liste der Stopp-Wörter:
 Aus den \emph{Hidden Properties} wurde \aurl{rdfs}{subClassOf} hinzugefügt.
 Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem gemeint werden können.
 Es wurde \aurl{skos}{altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
-Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{skos}{definition}
-und \texttt{rdfs}{comment} als Beschreibung hinzugefügt wurden.
-\todo{statt texttt bitte aurl nehmen für ressourcen mit prefix}
+Die Mappings mussten auch dahingehend verändert werden, als dass \aurl{skos}{definition}
+und \aurl{rdfs}{comment} als Beschreibung hinzugefügt wurden.
 Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wurde, wenn die zu definierende Ressource richtig erkannt wurde.
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für \acp{uri} zu nutzen.
 Bei den \emph{Property Mapping} können \acp{uri} und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
 Dies wurde hier für \enquote{phases} und \enquote{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
-\todo{bitte erklären warum das gemacht wurde.}
+Für \aurl{meta}{entityTypeComponent} wurde \enquote{facets} hinzugefügt.
+Notwendig war es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen wüsste das Programm nicht, wofür die Ressourcen stehen.
+Da die Properties in \ac{snik} sehr allgemein gehalten sind, fehlen oft Labels, mithilfe deren QAnswer auf die Ressource als Teil der Antwort schließen kann.
+Für diese stehen die Lexikalisierungen zur Verfügung.
+
 \subsubsection{Training}
 
 Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Testen.
