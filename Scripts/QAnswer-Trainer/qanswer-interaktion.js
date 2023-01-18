@@ -170,7 +170,6 @@ const kb_name = "SNIK_BB";
  * @see {@link final_evaluation()} for step 3
  */
 export async function main(use_textbook_question_training) {
-
   console.groupCollapsed("Number of QA Pairs");
   console.log("Following are the lengths of the arrays containing the QA Pairs");
   console.log("generated training: " + generatedQAPairsTraining.length);
@@ -183,7 +182,6 @@ export async function main(use_textbook_question_training) {
   console.groupCollapsed("Retrieving correct answers from SNIK");
   await snik_retreive_correct_answers();
   console.groupEnd();
-
   // login
   await login();
   console.info("Logged in");
@@ -291,28 +289,22 @@ async function snik_retreive_correct_answers() {
  */
 async function login() {
 
-  let args = {
+  const body = {
     "usernameOrEmail": QANSWER_CREDENTIALS.user,
     "password": QANSWER_CREDENTIALS.password
-  }
-  let settings = {
-    //"async": true,
-    //"crossDomain": true,
-    "url": "https://app.qanswer.ai/api/user/signin",
-    /**"headers": {
-      "Content-Type": "application/json",
-      "processData": false,
-      "data": args
-    },*/
-    "data": args,
-    "dataType": "jsonp"
   };
-
-  let url = "https://app.qanswer.ai/api/user/signin";
-  let dataType = "jsonp";
-
-  const response = await $.post(url, args, null, dataType);
-  token = response.accessToken;
+  const url = "https://app.qanswer.ai/api/user/signin";
+  const settings = {
+    "method": "POST",
+    "headers": {
+      "Content-Type": "application/json",
+    },
+	"body": JSON.stringify(body),
+  };
+	console.log(JSON.stringify(settings));
+	const response = await fetch(url, settings);
+	const json = await response.json();
+    token = json.accessToken;
 }
 
 /**
@@ -331,7 +323,7 @@ async function provide_feedback(question_answer_pair) {
   console.log(`Question: ${nl_question}\nAnswer: ${correct_answer}`);
 
   // arguments for api call settings
-  let args = {
+  const body = {
     correct: true,
     knowledgebase: [kb_name],
     language: ["en"],
@@ -343,23 +335,21 @@ async function provide_feedback(question_answer_pair) {
     validated: true
   };
 
+    const url = "https://app.qanswer.ai/api/feedback/create";
   // settings for api call
-  let settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "http://app.qanswer.ai/api/feedback/create",
+  const settings = {
     "method": "POST",
     "headers": {
       "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
       "processData": false,
-      "data": args
     },
-    "dataType": "jsonp"
+      "body": JSON.stringify(body)
   };
 
   // api call
-  await $.ajax(settings);
+  const response = await fetch(url, settings);
+const json = await response.json();
 }
 
 /**
@@ -368,22 +358,22 @@ async function provide_feedback(question_answer_pair) {
  * API called: /api/feedback/train
  */
 async function train_model() {
-  let args = [kb_name];
-  let settings = {
-    "async": true,
+  const body = [kb_name];
+    const url = "https://app.qanswer.ai/api/feedback/train";
+  const settings = {
     "crossDomain": true,
-    "url": "http://app.qanswer.ai/api/feedback/train",
     "method": "GET",
     "headers": {
       "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
       "processData": false,
-      "data": args
     },
-    "dataType": "jsonp"
+    "dataType": "jsonp",
+      "body": JSON.stringify(body)
   };
 
-  await $.ajax(settings);
+  const response = await fetch(url, settings);
+const json = await response.json();
 }
 
 /**
@@ -392,22 +382,20 @@ async function train_model() {
  * API called: /api/dataset/set_default_model
  */
 async function reset_model() {
-  let args = [kb_name];
-  let settings = {
-    "async": true,
+   const url = "https://app.qanswer.ai/api/dataset/set_default_model?kbs="+kb_name;
+  const settings = {
     "crossDomain": true,
-    "url": "http://app.qanswer.ai/api/dataset/set_default_model",
     "method": "POST",
     "headers": {
       "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
       "processData": false,
-      "data": args
     },
-    "dataType": "jsonp"
+    "dataType": "jsonp",
   };
 
-  await $.ajax(settings);
+  const response = await fetch(url, settings);
+const json = await response.json();
 }
 
 /**
@@ -416,22 +404,22 @@ async function reset_model() {
  * API called: ​/api​/feedback​/remove-all-questions
  */
 async function reset_qapairs() {
-  let args = [kb_name];
-  let settings = {
-    "async": true,
+  const body = { knowledgeGraphs: [kb_name]};
+  const url = "https://app.qanswer.ai/api/feedback/remove-all-questions";
+  const settings = {
     "crossDomain": true,
-    "url": "http://app.qanswer.ai/api​/feedback​/remove-all-questions",
     "method": "POST",
     "headers": {
       "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
       "processData": false,
-      "data": args
     },
+      "body": JSON.stringify(body),
     "dataType": "jsonp"
   };
 
-  await $.ajax(settings);
+  const response = await fetch(url, settings);
+const json = await response.json();
 }
 
 /**
@@ -445,34 +433,34 @@ async function reset_qapairs() {
  */
 async function ask_qanswer(nl_question) {
 
-  let args = {
+  const body = {
     question: nl_question,
     lang: "en",
     kb: [kb_name],
     user: [QANSWER_CREDENTIALS.user]
   };
 
-  let settings = {
-    "async": true,
+   const url = "https://app.qanswer.ai/api/qa/full";
+  const settings = {
     "crossDomain": true,
-    "url": "http://app.qanswer.ai/api/qa/full",
     "method": "GET",
     "headers": {
       "Authorization": "Bearer " + token,
       "Content-Type": "application/json",
-      "processData": false,
-      "data": args
+      "processData": false
     },
+      "body": JSON.stringify(body),
     "dataType": "jsonp"
   };
 
   // ask QAnswer API
-  let response = await $.ajax(settings);
+  const response = await fetch(url, settings);
+  const json = await response.json();
   // sort by desc confidence --> highest confidence at index 0
   // response.queries contains all queries QAnswer finds
-  response.queries.sort((a, b) => b.confidence - a.confidence);
+  json.queries.sort((a, b) => b.confidence - a.confidence);
   // query chosen by QAnswer is query with highest confidence
-  let qanswer_query = response.queries[0];
+  let qanswer_query = json.queries[0];
 
   let ret = {
     answer: qanswer_query.query,
