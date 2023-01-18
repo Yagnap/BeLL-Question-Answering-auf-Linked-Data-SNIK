@@ -37,12 +37,24 @@ Für das Tripel mit dem Subjekt \aurl{bb}{ChiefInformationOfficer} gibt es das P
 Es gibt dieses Tripel auch mit diesem als Subjekt und dem anderen als Objekt.
 
 \subsection{Der SNIK-Graph}
-\todo{SNIK Graph screenshot}
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=\textwidth, height=\textheight, keepaspectratio]{Images/snik-graph.png}
+  \caption[Ausschnitt SNIK-Graph]{Ein Ausschnitt des \ac{snik}-Graphen.\\Screenshot von \url{https://www.snik.eu/graph}, abgerufen am 18. Januar 2023}
+  \label{fig:snik-graph}
+\end{figure}
+
 Der \ac{snik}-Graph\footnote{\url{https://www.snik.eu/graph}} ist die Visualisierung von \ac{snik}.
 Hier werden die einzelnen Entitäten nach ihrer entsprechenden Subontologie gefärbt visuell dargestellt.
 Die beschrifteten Verbindungen bzw. Kanten zwischen den Formen stellen Relationen dar,
 welche, wenn sie zwischen zwei Entitäten unterschiedlicher Subontologien verlaufen, keine Richtung haben.
 Entitäten werden durch Dreiecke, Quadrate oder Kreise dargestellt und vertreten die verschiedenen Typen.
+
+In \cref{fig:snik-graph} wird ein Ausschnitt \ac{snik}s dargestellt, und zwar die Klasse des Chief Information Officers in vier Teilontologien,
+sowie die Verbindungen zwischen ihnen und angrenzenden Klassen.
+Diese Verbindungen sind meist gerichtet, es sei denn, es handelt sich um Beziehungen zwischen den Ontologien.
+Solche Beziehungen gehen in beide Richtungen, weshalb einfach eine Linie und kein Pfeil angezeigt wird.
 
 \section{Stichwortsuche}
 
