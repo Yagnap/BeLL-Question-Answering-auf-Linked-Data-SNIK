@@ -72,6 +72,7 @@ Es kann verschiedenste Datentypen durchsuchen, auch Text und Zahlen.
 Dazu serialisiert es Dokumente in \ac{json}, einer auch für die Programmiersprache JavaScript, welche häufig auf Webseiten verwendet wird, lesbare Notation.
 In dieser Serialisierung nutzt es einen \emph{invertierten Index}, d.h. es indiziert das Dokument für alle verschieden vorkommenden Wörter \citep{invertedindex}.
 Das Wort bzw. die Zeichenkette ist also ein Schlüssel mit den Dokumenten als Wert.
+\todo{das buch 1984 ist dafür berühmt, 1948 geschrieben worden zu sein, bei dir steht aber 1990, es ist ja science fiction.}
 Nehme man z.B. die beiden Sätze \enquote{War is peace.} und \enquote{Freedom is slavery.} \citep[S.~6]{orwell1984} als eigene Dokumente, würde es wie in \cref{tab:invertedindexexample} aussehen.
 Das Wort \enquote{is} kommt sowohl in Dokument 1 und 2, das Wort \enquote{war} nur in Satz 1 und das Wort \enquote{freedom} in nur in Satz 2.
 Die Zahl nach dem Doppelpunkt zeigt die Position im Satz an, \enquote{peace} ist z.B. an dritter Stelle im ersten Satz.
