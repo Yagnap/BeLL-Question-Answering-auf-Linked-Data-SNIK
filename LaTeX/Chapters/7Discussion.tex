@@ -49,6 +49,18 @@ Prädikate wie \aurl{meta}{entityTypeComponent} mit dem Label \enquote{entity ty
 und nicht den normalen Sprachgebrauch wiederspiegeln.
 Hilfreich dafür sind definitiv die Property Mappings von QAnswer, aber diese haben auch nur eine auf die eingegebenen Lexikalisierungen begrenzte Wirkungsweite.
 
+Problematisch an QAnswer ist, dass die Abfragen, denen der höchste Confidence-Wert zugeordnet wurde, manchmal nicht als erstes ausgeführt werden.
+Dies ist selbst der Fall, wenn der Wert unter 50\% liegt.
+Unter 50\% Confidence sieht QAnswer eine Antwort als falsch an und gibt sie nicht aus \citep{qanswer}.
+Des Weiteren soll die Antwort mit dem höchsten Confidence-Wert ausgegeben werden, wobei es hierbei noch zu einigen Verrechnungen anderer Faktoren kommen kann \citep{qanswerpatentapplication}.
+So führt QAnswer beispielsweise bei der Frage \enquote{What is used by Medical and Nursing Care planning?},
+einer automatisch generierten Frage, die \ac{sparql}-Abfrage mit den drei Prädikaten \emph{function component}, \emph{is involved in}, \emph{is responsible for}, \emph{supports} aus.
+Der Confidence-Wert für diese Antwort ist 53\%, der Confidence-Wert für die richtige Antwort 93\%; diese wird aber nicht aufgeführt.
+Die richtige Antwort enthält nur das Property \emph{uses} und hat \emph{Medical and Nursing Care planning} an der ersten Stelle des Tripels, ist also auch bedeutend einfacher.
+
+Noch stärker sichtlich wird dieses Problem, wenn man einen Rechtschreibfehler einbaut und \enquote{Medicl} statt \enquote {Medical} schreibt.
+Hier wird eine andere falsche Antwort ausgeführt und gezeigt, diese hat nur einen Confidence-Wert von 35\%, die richtige, die hinter einem Menu versteckt ist, wieder einen von 93\%.
+
 Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches \ac{qa}-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
 jedoch ist es gelungen, ein \ac{qa}-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist beim untrainierten System bei den gegebenen Umständen mit einem F-Maß von 0.24 erstaunlich, jedoch war das Training enttäuschend.
 Es bleibt abzuwarten, was das Training mit dem großen, automatisch generierten Benchmark verursacht.\todo{update}
