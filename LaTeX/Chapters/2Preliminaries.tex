@@ -278,7 +278,7 @@ Hier werden Prädikate hintereinander als \enquote{Weg} der Abfrage geschrieben.
 Der Charakter \texttt{|} steht für einen alternativen Pfad, ähnlich dem logischen \emph{oder}.
 Um die Suche weiter einzuschränken oder auszuweiten kann man das Schlüsselwort \texttt{FILTER} verwenden, nach diesem kann man zum Beispiel auch mehrere Objekte verwenden.
 Bei beiden dieser Methoden kann man auch eine regulären Ausdrücken ähnliche Syntax nutzen.
-\todo{wissen deine Leser, was reguläre Ausdrücke sind? Ansonsten kurz erklären.}
+Reguläre Ausdrücke sind Zeichenketten, mithilfe in Texten nach bestimmten Folgen, Mustern o.ä. gesucht werden kann.
 Die Auswahl mehrerer Objekte gleichzeitig ist nützlich, um bei \acs{snik} gleich über alle drei Teilontologien Abfragen zu stellen.
 Hierfür kann man die gegebene Ressource in der jeweiligen Zeile beispielsweise \texttt{?x} nennen, danach fügt man folgende Zeile ein:
 \begin{lstlisting}[language=SPARQL]
@@ -397,18 +397,16 @@ so kann beispielsweise der Vektor zwischen \enquote{Mutter} und \enquote{Vater} 
 Mit \emph{fine-tuning-} oder \emph{feature-basiertem Training} können solche vortrainierten Repräsentationen auch spezifischere Aufgaben erfüllen,
 also bei einem großen Wortcorpus vortrainiert und für eine weniger häufige Aufgabe verwendet werden.
 Bei feature-basiertem Training werden der Aufgabe spezifische Architekturen verwendet, wie etwa \acs{elmo}, siehe auch \cref{subsub:elmo}.
-Erst später werden für weitere Funktionen über Repräsentationen hinzugefügt.eep contextualized word representations\todo{fix}
+Erst später werden für weitere Funktionen über Repräsentationen hinzugefügt \citep{elmo}.
 Fine-tuning-basiertes Training basiert auf solchen Repräsentationen, hier werden nur minimal aufgabenspezifische Parameter verwendet.
 Beispiele für solch ein Vorgehen sind \acs{bert}, siehe hierfür \cref{subsub:bert}, und OpenAI GPT \citep{openaigpt}.
-\todo{Die Quelle ist unvollständig und kann so nicht benutzt werden! Im Literaturverzeichnis stehen nur Autoren, Titel und Jahr aber kein Journal oder Konferenzband! Guck mal, ob das vielleicht gar kein Paper ist.}
 \todo{OpenAI ChaptGPT ist seit November 2022 in aller Munde. Super Chance für dich, die Leser mitzureißen! Ich würde das unbedingt erwähnen, entweder hier und/oder in der Einleitung oder Diskussion oder Ausblick. Und in mehr Detail beschreiben, was genau GPT ist und wie es sich von ChatGPT abhebt und was das mit Question Answering zu tun hat.}
 
 \subsubsection{ELMo}\label{subsub:elmo}
 \ac{elmo}
 % feature-basiert
 \citep{elmo} ist ein \ac{nlp}-Modell, welches Wortsequenzen als Vektoren repräsentiert und dadurch sowohl komplexe Wortstrukturen wie Syntax und Semantik und den Kontext der Wörter behält.
-Im Gegensatz zu anderen Represäntationsmodellen wird bei \ac{elmo} also jedes Wort im Kontext des Auftretens repräsentiert.
-\todo{Mach am besten mal ne Rechtschreibprüfung auf die ganze Arbeit.}
+Im Gegensatz zu anderen Repräsentationsmodellen wird bei \ac{elmo} also jedes Wort im Kontext des Auftretens repräsentiert.
 Es basiert auf \acsp{lstm}, welche später in \cref{sub:lstm} betrachtet werden.
 Diese werden mit einem Wortcorpus vortrainiert und somit gut einsetzbar, und können beisielsweise ohne Veränderung bei Disambiguationsaufgaben verwendet werden.
 \ac{elmo} ermöglichte zu der Zeit eine große Verbesserung der Leistung bei \ac{nlp}-Aufgaben.
@@ -423,8 +421,7 @@ Der Name selbst basiert auf dem Phänomen, dass das menschliche Gehirn unvollkom
 Bei \ac{mlm} wird wie bei der Cloze-Prozedur auch versucht, das zufällig gelöschte Wort anhand des Kontexts wiedereinzufügen.
 Der bi-, also zweidirektionale, Transformer betrachtet den Kontext von beiden anstatt von vorher nur einer Seite, sodass bessere Ergebnisse erzielt werden können.
 Erst durch diese Vorgensweise kann von den sehr aufgabenspezifischen Architekturen weg- und zu fine-tuning-basierten Ansätzen hingegangen werden.
-\todo{meinst du: Dadurch erreicht BERT in Benchmarks... ?}
-Dadurch erreicht in Benchmarks sehr gute \ac{bert} Ergebnisse, verglichen mit anderen Modellen.
+Dadurch erreicht \ac{bert} in Benchmarks sehr gute Ergebnisse, verglichen mit anderen Modellen.
 \ac{bert} verwendet sogenannte Transformer, welche auf dem in \cref{sub:rnn} und in \citet{annotatedtransformer} erklärten Aufmerksamkeitsmechanismus basieren.
 Es ist außerdem ein \acs{dnn}, welche im folgenden Abschnitt genauer betrachtet werden.
 
@@ -458,8 +455,7 @@ Für Deep Learning gibt es verschiedene Architekturen.
 
 \subsection{Convolutional Neural Network}
 \acp{cnn} werden vor allem zur Bilderkennung und \ac{nlp} verwendet.
-\todo{Kann man das so schreiben? Für mich klingt besser: Sie basieren auf...}
-Sie sind auf dem visuellen Kortex des Menschen basiert, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht,
+Sie basieren auf dem Aufbau des visuellen Kortex des Menschen, was sich in der dreidimensionalen Anordnung der Knoten verdeutlicht,
 welche in \cref{fig:struktur-cnn} dargestellt ist.
 Die Neuronen sind auf jeder Schicht, welche hier auch \emph{Filter} oder \emph{Kern} genannt werden,
 zweidimensional aufgebaut, aber nicht wie sonst zu jedem Neuron der nächsten Schicht verbunden,
