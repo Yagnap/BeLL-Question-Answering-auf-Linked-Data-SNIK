@@ -164,12 +164,12 @@ FROM sniko:bb
 ORDER BY RAND()
 \end{lstlisting}
 
-Dadurch konnten 621 Fragen nach dem Subjekt und 376 Fragen nach dem Objekt generiert werden.\todo{Zahlen updaten}
+Dadurch konnten 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt generiert werden.
 Dies entspricht nicht ganz der Anzahl von Tripeln der Teilontologie \texttt{bb}, was zuerst erwartet war.
 Die Anzahl wird allerdings einerseits dadurch verringert, dass manche Ressourcen kein Label haben und dies in der Abfrage gefordert wird.
 und dass bei der Frage nach den Subjekten viele Fragen durch das Schlüsselwort \texttt{DISTINCT} gekürzt wurden.
 Die Fragen nach einem Objekt mit dem gleichen Prädikat von verschiedenen Subjekten waren natürlich immer gleich,
-äquivalent zu den Fragen nach dem Subjekt mit verschiedenen Objekten und gleichen Prädikaten.\todo{Inhalt verwirrend}
+äquivalent zu den Fragen nach dem Subjekt mit verschiedenen Objekten und gleichen Prädikaten.
 
 \section{Auswahl eines Kandidaten}
 
@@ -368,25 +368,20 @@ Es sind zwei Datensätze dargestellt.
 Der eine wurde andere ausschließlich über die \ac{sparql}-generierten Frage-Antwort-Paare trainiert, beim anderen wurden die Lehrbuchfragen beim Training inkludiert.
 
 Am Anfang, als noch gar keine oder nur sehr wenige Fragen zum Training verwendet wurden, ist das F-Maß eher gering.
-Besonders beim Training mit den Lehrbuchfragen liegt es bei 20 generierten Trainingsfragen deutlich unter 30\%.
-Ab 30 Fragen nähert es sich den Werten des Trainings ohne die Lehrbuchfragen an und übersteigt diese ab 50 Fragen erstmals.
-Bei 150 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 91\% ein Maximum und bleibt nahezu konstant über den Werten des Trainings ohne sie.
+Besonders beim Training mit den Lehrbuchfragen liegt es bei dem Modell ohne Training deutlich unter 30\%.
+Ab 30 Fragen nähert es sich den Werten des Trainings ohne die Lehrbuchfragen an und übersteigt diese bei 40 Fragen erstmals.
+Bei 70 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 90\% ein Maximum und bleibt sehr lange nahezu konstant.
 
 Bei 520 bzw. 570 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, Varianz wird viel größer,
 mit Werten zwischen fast 10\% und mehr als 90\%.
-Das Training ohne Lehrbuchfragen erreicht bei 850 Trainingsfragen sein Maximum von 89\%, bei 890 Fragen jedoch auch sein Minimum von 18\%.
 
-Auch die Graphen von Precision (\cref{plot:genprecision}) und Recall (\cref{plot:genprecision}) bieten ein ähnliches Bild.
-Sie haben auch am Anfang kurz geringere Werte, eine recht starke Mitte und danach eine extreme Varianz.
+Auch die Graphen von Präzision (\cref{plot:genprecision}) und Recall (\cref{plot:genprecision}) bieten ein ähnliches Bild.
+Sie haben auch am Anfang kurz geringere Werte, eine starke, konstante Mitte und danach eine extreme Varianz.
 
 Der Confidence-Wert sieht im Allgemeinen deutlich konstanter aus, an ihm spiegeln sich aber auch einige der beim F-Maß betrachteten Phänomene.
 Anfangs ist der Wert durchschnittlich etwas geringer als später, aber immer noch fast überall über 50\%.
 Ab etwa 100 Fragen erreicht es ein Niveau zwischen 80\% und 90\%, auf dem es bleibt.
 Ab 510 bzw. 560 Fragen kommt es jedoch zu zu größeren Ausreißern, die teilweise bis auf 11\% heruntergehen.
-
-Die Auswertung der automatisch generierten Fragen deutet also darauf hin, dass die Anzahl der generierten Trainingsfragen zwischen 150 und 550 liegen sollte.
-Dass das Training mit Lehrbuchfragen erst schlechter und dann teilweise deutlich bessere Ergebnisse liefert, ist ein Indiz dafür,
-dass QAnswer von der unterschiedlichen Art der Fragen profitieren könnte, sie aber nicht zu schwer sein sollten.
 
 % F-Score
 \begin{figure}%[h!]
@@ -480,11 +475,14 @@ dass QAnswer von der unterschiedlichen Art der Fragen profitieren könnte, sie a
   \end{center}
 \end{figure}
 
-Bei der Betrachtung der Ergebnisse für die Lehrbuchfragen im Testset ist auffällig,
-dass anfangs nur Fragen nach der Definition richtig beantwortet wurden, diese aber konsistent.
-Das liegt daran, dass QAnswer so konfiguriert ist, dass es immer die Definition der gefundenen Ressource mit anzeigt.
-Bei Definitionsfragen wird die Ressource meist genannt und kann so gut vom System gefunden werden.
-Die einzige Frage, wo dies nicht der Fall ist, ist \texttt{10/2}, wo das Kapitel \enquote{Health Care Networks} gefunden wird.
+Die Graphen der Lehrbuchfragen sehen denen der automatisch generierten auf den ersten Blick nicht sehr ähnlich aus,
+es lassen sich aber doch einige Gemeinsamkeiten erkennen.
+Sie sind über die Mitte auch recht konstant und haben mit mehr Trainingsfragen auch eine sehr viel größere Varianz.
+Anfangs sind die Ergebnisse auch hier schlechter.
+
+Die durchschnittliche Varianz ist hier aber größer als bei den generierten Fragen, und außerdem sind die Werte für F-Maß und co. deutlich niedriger.
+Bei den automatisch generierten Fragen waren die Werte konstant bei und über 90\%, hier nur knapp über 25\%.
+Außerdem gibt die Verwendung des Lehrbuchfragen-Trainingssets deutlich schlechtere Ergebnisse, bei den generierten Fragen war dieser Unterschied auch deutlich geringer.
 
 % F-Score TB
 \begin{figure}%[h!]

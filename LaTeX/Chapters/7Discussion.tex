@@ -64,7 +64,6 @@ Hier wird eine andere falsche Antwort ausgeführt und gezeigt, diese hat nur ein
 Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches \ac{qa}-System über alle drei Teilontologien zuverlässig verwendbar zu machen.
 Gelungen ist, ein \ac{qa}-System über eine Teilontologie verwendbar zu machen, die Erfolgsrate ist beim untrainierten System jedoch schon überraschend gut.
 
-
 Für die Verwendung der Teilontologien zusammen fehlt nicht nur ein System, dass diese Aufgabe bewältigt, sondern vor allem auch schlicht die Trainingsfragen.
 Bereits die aus dem blauen Buch waren nur teilweise geeignet, für das Training für aller Teilontologien müsste man vermutlich Nutzerfragen von Studierenden sammeln.
 Noch dazu kommt das Problem der Ambiguität verschiedener Begriffe, welches mit verschiedenen Teilontologien eingeführt wird.
@@ -72,8 +71,11 @@ Natürlich können die Ressourcen, die mit \aurl{skos}{closeMatch} oder \aurl{sk
 Aber es gibt ja auch Ressourcen, die nur über \aurl{skos}{broadMatch} oder gar nicht verbunden sind und trotzdem fast gleich heißen.
 Solche Ambiguitäten gilt es aufzulösen, das ist ein weiterer Grund, warum hier nur eine Teilontologie abgefragt wurde.
 
-In Zukunft sollte das System definitiv, wie schon geplant, auch am automatisch definierten Benchmark evaluiert werden und der Effekt der Anzahl und des Typs der Fragen ausgewertet werden.\todo{update}
-Auch denkbar wäre das Erstellen eines eigenen, auf \ac{snik} spezialisierten, \ac{qa}-Systems, was aber aufgrund der hohen Komplexität unpraktisch erscheint.\todo{update}
+In Zukunft wäre das Erstellen eines eigenen, auf \ac{snik} spezialisierten, \ac{qa}-Systems denkbar, was aber aufgrund der hohen Komplexität unpraktisch erscheint.
 
-Für eine Nutzung des Systems durch Studenten sind die Ergebnisse momentan aber nicht ausreichend.
-Infrage kommend wäre höchstens das untrainierte System, welches eine halbwegs akkurate Beantwortung von Fragen, besonders leichteren, ermöglicht.\todo{update}
+Für eine Nutzung des Systems durch Studenten muss erprobt werden, wie brauchbar die Ergebnisse für Fragen sind, die sie wirklich stellen.
+Wenn das ein Mittelwert zwischen den Ergebnissen der automatisch generierten Fragen und den Lehrbuchfragen ist, dann stellt das eine gute Option dar,
+um zumindest einen Ansatz für eine Beantwortung der Fragen zu erhalten.
+
+Die Systeme mit etwa 300 automatisch generierten Trainingsfragen, die im Trainingsset keine Lehrbuchfragen hatten, waren mit Abstand am erfolgreichsten.
+In einer möglichen praktischen Nutzung von QAnswer sollten auf jeden Fall solche verwendet werden.
