@@ -207,14 +207,14 @@
   %draft, % hyperref's draft mode, for printing see below
   colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
   % uncomment the following line if you want to have black links (e.g., for printing)
-  colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
+  %colorlinks=false, linktocpage=false, pdfstartpage=3, pdfstartview=FitV, pdfborder={0 0 0},%
   breaklinks=true, pageanchor=true,%
   pdfpagemode=UseNone, %
   % pdfpagemode=UseOutlines,%
   plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
   hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
   urlcolor=CTurl, linkcolor=CTlink, citecolor=CTcitation, %pagecolor=RoyalBlue,%
-  urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
+  %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%PRINTING
   pdftitle={\myTitle},%
   pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
   pdfsubject={},%
@@ -339,12 +339,12 @@
   morekeywords={PREFIX, a, CONSTRUCT},
   sensitive=true,
   % DISABLE FOR PRINTING
-  %morecomment=[l][\color{OliveGreen}]{\#},
-  %morestring=[b][\color{RedOrange}]\",
+  morecomment=[l][\color{OliveGreen}]{\#},
+  morestring=[b][\color{RedOrange}]\",
   % ENABLE FOR PRINTING
-  morecomment=[l][\color{Black}]{\#},
-  morestring=[b][\color{Black}]\",
-  keywordstyle=\color{Black}
+  %morecomment=[l][\color{Black}]{\#},
+  %morestring=[b][\color{Black}]\",
+  %keywordstyle=\color{Black}
 }
 
 % line breaking symbols in lstlisting
