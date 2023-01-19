@@ -218,22 +218,24 @@ export async function main(use_textbook_question_training) {
 
     // number of questions to add
     let count = 10;
-
+    // total number of questions
+    let total = count + i;
     // Define how many questions should be added, when
     // (a) The array is almost at its end
     // (b) The test just started, meaning no questions should be used for training.
     // Default: count stays 10
-    if (i + count >= generatedQAPairsTraining.length) {
-      count = train_length - i; // i.e. 885 - 870 = 15 to add
-      i = train_length; // for evaluation purposes
+    if (i + count > generatedQAPairsTraining.length) {
+      count = train_length - i; // i.e. 895 - 890 = 5 to add
+      total = train_length;
     } else if (i == 0) {
       count = 0; // no questions added at all
+      total = 0;
     }
     console.info(
       "Count of " +
         count +
         " QA-pairs to upload, making a total of " +
-        (count + i) +
+        total +
         " pairs"
     );
 
@@ -248,36 +250,48 @@ export async function main(use_textbook_question_training) {
     }
     console.groupEnd();
 
+    await train_model();
+    console.info("Model trained");
+
+    // Evaluation of step
+    console.groupCollapsed("Evaluation");
+    await evaluate_iteration(i);
+    console.groupEnd();
+
     // Reset model
     await reset_model();
     console.info("Model reset");
 
     // End of console group for amount of questions.
     console.groupEnd();
-
-    // Evaluation of step
-    await evaluate_iteration(i);
   }
+  // Loop group
   console.groupEnd();
 
   console.timeEnd("Time required to finish loop");
   console.info("Loop finished");
 
   // Evaluation of whole iteration for the textbook questions
+  console.group("CSV generation");
+  console.groupCollapsed("Textbook questions");
   let csv_textbook = textbook_csv_generation();
+  console.groupEnd();
+  console.groupCollapsed("Generated questions")
   let csv_generated = generated_csv_generation();
+  console.groupEnd();
+  console.groupEnd();
 
   // whether or not textbook questions were used for training
   let file_name_append = use_textbook_question_training ? "-withtb" : "";
   // output
   output(
-    "Textbuchfragen",
+    "Lehrbuchfragen",
     "textbook" + file_name_append + ".csv",
     csv_textbook,
     "text/csv"
   );
   output(
-    "Automatisch generierte Textbuchfragen",
+    "Automatisch generierte Fragen",
     "generated" + file_name_append + ".csv",
     csv_generated,
     "text/csv"
@@ -295,13 +309,16 @@ export async function main(use_textbook_question_training) {
  * @see {@link correct_answers}
  */
 async function snik_retreive_correct_answers() {
-  for (let pair of generatedQAPairsEvaluation) {
+  let counter = 0;
+  for (let pair of generatedQAPairsEvaluation.concat(textbookQAPairsEvaluation)) {
+    counter++;
     correct_answers[pair.question] = {
       sparql: pair.answer,
       answers: await select(pair.answer, null, "https://www.snik.eu/sparql"),
     };
     console.log(JSON.stringify(correct_answers[pair.question]));
   }
+  //console.warn(counter);
 }
 
 /**
@@ -381,7 +398,7 @@ async function provide_feedback(question_answer_pair) {
  * API called: /api/feedback/train
  */
 async function train_model() {
-  const url = `https://app.qanswer.ai/api/feedback/train?kb=${kb_name}`;
+  const url = `https://app.qanswer.ai/api/feedback/train?kbs=${kb_name}`;
   const settings = {
     //crossDomain: true,
     method: "GET",
@@ -487,6 +504,8 @@ async function ask_qanswer(nl_question) {
     confidence: qanswer_query.confidence,
   };
 
+  console.log(`Question: ${nl_question}\nQAnswer-Query: ${ret.answer}\nConfidence: ${ret.confidence}`);
+
   return ret;
 }
 
@@ -507,12 +526,13 @@ async function evaluate_pair(question_answer_pair, number_of_questions) {
   let correct_answer = question_answer_pair.answer;
 
   // Asking QAnswer question
-  let qAnswer_answer = ask_qanswer(nl_question);
+  let qAnswer_answer = await ask_qanswer(nl_question);
 
   // all answers both queries produce
-  let all_correct_answers = correct_answers[nl_question];
+  let all_correct_answers = correct_answers[nl_question].answers;
+  console.log(JSON.stringify(qAnswer_answer));
   let all_qanswer_answers = await select(
-    qAnswer_answer.sparql,
+    qAnswer_answer.answer,
     null,
     "https://www.snik.eu/sparql"
   );
@@ -539,7 +559,7 @@ async function evaluate_pair(question_answer_pair, number_of_questions) {
   let evaluation = {
     question: nl_question,
     correct_query: correct_answer,
-    qanswer_query: qAnswer_answer.sparql,
+    qanswer_query: qAnswer_answer.answer,
     confidence: qAnswer_answer.confidence,
     precision: _precision,
     recall: _recall,
@@ -571,7 +591,9 @@ async function evaluate_iteration(number_of_questions) {
 
   // automatically generated less detailed, mainly used to generate data to evaluate performance of key indicators
   for (let pair of generatedQAPairsEvaluation) {
-    let pair_evaluation = evaluate_pair(pair, number_of_questions);
+    console.groupCollapsed(pair.question);
+    let pair_evaluation = await evaluate_pair(pair, number_of_questions);
+    console.groupEnd();
     evaluation_generated.confidence += pair_evaluation.confidence;
     evaluation_generated.precision += pair_evaluation.precision;
     evaluation_generated.recall += pair_evaluation.precision;
@@ -581,8 +603,10 @@ async function evaluate_iteration(number_of_questions) {
 
   // textbook questions more detailed, looking at the individual questions more thorughly
   for (let pair of textbookQAPairsEvaluation) {
-    let pair_evaluation = evaluate_pair(pair, number_of_questions);
-
+    console.groupCollapsed(pair.question);
+    let pair_evaluation = await evaluate_pair(pair, number_of_questions);
+    console.groupEnd();
+    
     // if first eval for question
     if (typeof evaluations_textbook[pair.question] == "undefined") {
       evaluations_textbook[pair.question] = [];
@@ -604,19 +628,21 @@ async function evaluate_iteration(number_of_questions) {
  * @returns {string} of CSV data
  */
 function textbook_csv_generation() {
+  console.info("Starting")
   let csv = "";
   // each textbook question represented in key of array
-  for (let key in evaluations_textbook.keys()) {
+  for (let key in evaluations_textbook) {
+    console.groupCollapsed(key);
     /** @type {Array.<EvaluationSingle>} */
     let question_evaluation = evaluations_textbook[key];
 
     // new header for each question
-    csv +=
+    let question_csv =
       "Frage,Anzahl Trainingsfragen,Richtige Antwort,QAnswer-Antwort,Confidence,Precision,Recall,F-Score,Richtige Anzahl,QAnswer Anzahl,Schnittmenge\n";
 
     // each round represented
     for (/** @type {EvaluationSingle} */ let round of question_evaluation) {
-      csv +=
+      question_csv +=
         round.question +
         "," +
         round.count +
@@ -640,7 +666,14 @@ function textbook_csv_generation() {
         round.intersection +
         "\n";
     }
+
+    csv += question_csv + "\n";
+    console.log(question_csv);
+    console.groupEnd();
   }
+
+  console.info("Finished");
+
   return csv;
 }
 
@@ -649,14 +682,16 @@ function textbook_csv_generation() {
  * @returns {string} of CSV data
  */
 function generated_csv_generation() {
-  let csv = "";
+  
+  console.info("Starting");
 
-  // new header for each question
-  csv += "Frage,Anzahl Trainingsfragen,Confidence,Precision,Recall,F-Score\n";
+  // only one header for file
+  let csv = "Anzahl Trainingsfragen,Confidence,Precision,Recall,F-Score\n";
+  console.log(csv);
 
   // each round represented
   for (let round of evaluations_generated) {
-    csv +=
+    let line =
       round.count +
       "," +
       round.confidence +
@@ -667,7 +702,13 @@ function generated_csv_generation() {
       "," +
       round.fscore +
       "\n";
+    console.log(line);
+    csv += line;
   }
+
+  console.info("Finished");
+
+  return csv;
 }
 
 /**
@@ -725,6 +766,12 @@ export function output(button_label, file_name, data, datatype) {
  * @returns URIs that bindings1 and bindings2 have in common.
  */
 function intersect(bindings1, bindings2) {
+  
+  console.group("Bindings");
+  console.log(bindings1);
+  console.log(bindings2);
+  console.groupEnd();
+
   // leere Arrays, aus denen später die Schnittmenge gebildet werden soll
   var b1 = [];
   var b2 = [];
@@ -743,15 +790,4 @@ function intersect(bindings1, bindings2) {
 
   var intersection = b1.filter((value) => b2.includes(value));
   return intersection;
-}
-
-/**
- * Takes in a URL and JSON or Object data and transforms it in a way that it can be passed via a GET request.
- * 
- * @param {string} url 
- * @param {Object} json
- * @returns {string} URL used in a get request
- */
-function getify(url, json) {
-  
 }
