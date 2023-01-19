@@ -214,28 +214,22 @@ sodass weder \ac{sparql}-Abfragen noch Ergebnisse angezeigt werden.
 \subsection{QAnswer KG}
 
 QAnswer KG präsentierte sich als einfache Methode, mithilfe von eigenen Daten \acl{qa} zu betreiben.
-Es funktioniert, indem man auf der Website\footnote{\url{https://qanswer-frontend.univ-st-etienne.fr/}} einen Account erstellt und in diesem seine Daten hochlädt.
-Auf der Startseite ist bereits ein Beispiel mit Wikidata vorhanden.
+Es funktioniert, indem man auf der Website\footnote{\url{https://app.qanswer.ai/}} einen Account erstellt und in diesem seine \ac{rdf}-Daten in Form von n-Tripeln hochlädt,
+einem Serialisierungsformat wie \ac{turtle} für \ac{rdf}.
 
 \subsubsection{Anfängliche Konfiguration und Probleme}
 
 Beim Einrichten der Umgebung wurde die Sprache auf Englisch gestellt, da in dieser auch die Fragen beantwortet werden sollen.
+
 QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete \ac{sparql}-Abfrage dar.
 Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
 \aurl{meta}{isResponsibleForEntityType}, \aurl{meta}{isResponsibleForFunction} und \aurl{meta}{isResponsibleForRole} gemeint sein könnten.
-Der Ansatz für die Lösung dieses Problems war es, im Training in den als Lösung markierten \ac{sparql}-Abfragen \emph{property paths} zu verwenden,
-mit denen man zum Beispiel das Prädikat unterschiedliche Ressourcen sein lassen kann.
+Der Ansatz für die Lösung dieses Problems ist es, das System alle drei ausführen zu lassen, oder ihm das zumindest zu ermöglichen.
+Dies kann zum Beispiel über Property Paths realisiert werden.
+In diesem Fall erlauben Property Paths dem Prädikat, in der Abfrage verschiedene Ressourcen darstellen zu können.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
-Statt etwa \texttt{\aurl{meta}{isResponsibleForEntityType}} stünde nun \texttt{\aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForEntityType}} dort.
-Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
-\todo{wir sind doch beim Training, warum steht hier Lokalisierung?}
-Somit konnte erahnt werden, warum es das macht, was es macht.
-\todo{Dieser ganze Abschnitt ist total verwirrend.
-Jemand der kein Experte in dem Gebiet ist versteht so gar nichts.
-An dieser Stelle fehlt der Hinweis, das QAnswer keine Property Paths beherrscht, damit geht auch der Sinn verlonre.
-Lies ihn dir bitte mal im Ganzen durch und achte darauf, dass alle logischen Schlussfolgerungen auch stimmen.
-Da fehlen Verbindungsstücke.}
-Die ganze Abfrage sähe dann so aus:\todo{dann wann?}
+Statt allein \texttt{\aurl{meta}{isResponsibleForEntityType}} steht durch die Nutzung von Property Paths nun \texttt{\aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForEntityType}} dort.
+Die ganze Abfrage sieht unter Verwendung von Property Paths wie folgt aus:
 \begin{lstlisting}[language=SPARQL]
   SELECT ?o
   WHERE {
@@ -243,7 +237,9 @@ Die ganze Abfrage sähe dann so aus:\todo{dann wann?}
   }
 \end{lstlisting}
 
-Eine andere Möglichkeit, diese Frage mittels einer \ac{sparql}-Abfrage zu beantworten, ist mittels der \aurl{rdfs}{subPropertyOf}-Beziehung:
+Jedoch kann QAnswer keine Property Paths austellen, weshalb diese Option zur Lösung des Ambiguitätsproblems wegfällt.
+
+Eine andere Möglichkeit, die obige Frage mittels einer \ac{sparql}-Abfrage zu beantworten, ist mittels der \aurl{rdfs}{subPropertyOf}-Beziehung:
 \begin{lstlisting}[language=SPARQL]
   SELECT ?o
   WHERE {
@@ -251,14 +247,19 @@ Eine andere Möglichkeit, diese Frage mittels einer \ac{sparql}-Abfrage zu beant
     ?p rdfs:subPropertyOf* meta:isResponsibleFor .
   }
 \end{lstlisting}
-Dabei wichtig ist, dass hier \texttt{*} statt \texttt{+} verwendet wird, falls \aurl{meta}{isResponsibleFor} selbst genutzt wird,
+
+Diese regelt die Hierarchie von Properties.
+So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \aurl{meta}{subPropertyOf}.
+
+Dabei wichtig ist, dass hier \texttt{*} statt \texttt{+} oder gar nichts nach \aurl{rdfs}{subPropertyOf} steht, falls \aurl{meta}{isResponsibleFor} selbst genutzt wird,
 und nicht nur die untergeordneten Properties.
-\todo{wieso deshalb? worauf bezieht sich das?}
+Diese Zeichen geben wieder einen Property Path an, der von QAnswer wieder nicht gelöst werden kann.
+
 Deshalb mussten vor dem Training die \aurl{rdfs}{subPropertyOf}+-Beziehung materialisiert werden%
 \footnote{Es werden nur \aurl{rdfs}{subPropertyOf}+-Beziehungen materialisiert, da das Tripel mit der übergeordneten Property schon in der \ac{kb} ist.},
 das heißt es wurden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem \ac{sparql}-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
-Das ist mit dieser \ac{sparql}-Abfrage möglich:
 
+Das ist mit dieser \ac{sparql}-Abfrage möglich:
 \begin{lstlisting}[language=SPARQL]
   CONSTRUCT {?s ?p ?o}
   FROM sniko:meta
@@ -269,10 +270,16 @@ Das ist mit dieser \ac{sparql}-Abfrage möglich:
   }
 \end{lstlisting}
 
+Es werden erst alle Tripel gefunden, die ausschließlich aus den Teilontologien \texttt{meta} und \texttt{bb} bestehen, da dies den Umfang dieser Arbeit beschreibt.
+Somit werden auch nur Prädikate aus \texttt{meta} betrachtet, nicht aber \texttt{rdfs} oder anderen.
+Danach werden alle Subproperties des Prädikats aus dem ersten Tripel ausgewählt.
+Mittels \texttt{CONSTRUCT} werden die ausgewählten Prädikate anstelle dem anderen Property eingesetzt.
+Diese Tripel werden dann manuell den \ac{rdf}-Daten hinzugefügt\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/qanswerset.nt}}
+
 Zusätzlich werden auch die \aurl{rdfs}{subClassOf}+-Beziehungen materialisiert.
 Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
-Das kann mittels der folgenden Abfrage bewerkstelligt werden:
 
+Das kann mittels der folgenden Abfrage bewerkstelligt werden:
 \begin{lstlisting}[language=SPARQL]
   CONSTRUCT {?s ?p ?oo}
   FROM sniko:meta
@@ -309,7 +316,10 @@ Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die R
 Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
 Die Präzision der Ergebnisse ohne jegliches fine-tuning ist aber trotzdem erstaunlich.
 
-Mit der Konfiguration an sich konnten auch schon viele Fehler behoben werden.
+Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
+Somit konnte erahnt werden, warum es das macht, was es macht.
+
+Mit der Konfiguration an sich konnten schon viele Fehler behoben werden.
 So gibt es eine Liste von \enquote{stop words}, welche nicht betrachtet werden.
 Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
 Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
