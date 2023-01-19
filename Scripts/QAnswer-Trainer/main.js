@@ -4,7 +4,7 @@ import { retreive_pairs } from "./fragen-einteilung.js";
 $().ready(function () {
     $("#systemEvaluation").click(async () => {
         console.log("Click on systemEvaluation");
-        let textbookQuestionToggle = $("#useTextbookQuestionsCheckbox").checked;
+        let textbookQuestionToggle = $("#useTextbookQuestionsCheckbox").is(":checked");
         await main(textbookQuestionToggle);
     });
 
