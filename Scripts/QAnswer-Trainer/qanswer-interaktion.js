@@ -121,6 +121,8 @@ var evaluations_generated = [];
  */
 var evaluations_textbook = [];
 
+var evaluations_textbook_averaged = [];
+
 /**
  * All correct Answers for each and every question.
  * Natural language question as keys, {@link Answers} object as data.
@@ -276,8 +278,11 @@ export async function main(use_textbook_question_training) {
   console.groupCollapsed("Textbook questions");
   let csv_textbook = textbook_csv_generation();
   console.groupEnd();
+  console.groupCollapsed("Textbook questions averaged");
+  let csv_textbook_av = generated_csv_generation(evaluations_textbook_averaged);
+  console.groupEnd();
   console.groupCollapsed("Generated questions")
-  let csv_generated = generated_csv_generation();
+  let csv_generated = generated_csv_generation(evaluations_generated);
   console.groupEnd();
   console.groupEnd();
 
@@ -288,6 +293,12 @@ export async function main(use_textbook_question_training) {
     "Lehrbuchfragen",
     "textbook" + file_name_append + ".csv",
     csv_textbook,
+    "text/csv"
+  );
+  output(
+    "Lehrbuchfragen (Durchschnitte)",
+    "textbook-av" + file_name_append + ".csv",
+    csv_textbook_av,
     "text/csv"
   );
   output(
@@ -587,7 +598,17 @@ async function evaluate_iteration(number_of_questions) {
     fscore: 0,
     count: number_of_questions,
   };
+
+  let evaluation_textbook = {
+    confidence: 0,
+    precision: 0,
+    recall: 0,
+    fscore: 0,
+    count: number_of_questions,
+  };
+
   let i = 0;
+  let j = 0;
 
   // automatically generated less detailed, mainly used to generate data to evaluate performance of key indicators
   for (let pair of generatedQAPairsEvaluation) {
@@ -597,7 +618,7 @@ async function evaluate_iteration(number_of_questions) {
     evaluation_generated.confidence += pair_evaluation.confidence;
     evaluation_generated.precision += pair_evaluation.precision;
     evaluation_generated.recall += pair_evaluation.precision;
-    evaluation_generated.fscore += pair_evaluation.precision;
+    evaluation_generated.fscore += pair_evaluation.fscore;
     i++;
   }
 
@@ -606,6 +627,10 @@ async function evaluate_iteration(number_of_questions) {
     console.groupCollapsed(pair.question);
     let pair_evaluation = await evaluate_pair(pair, number_of_questions);
     console.groupEnd();
+    evaluation_textbook.confidence += pair_evaluation.confidence;
+    evaluation_textbook.precision += pair_evaluation.precision;
+    evaluation_textbook.recall += pair_evaluation.precision;
+    evaluation_textbook.fscore += pair_evaluation.fscore;
     
     // if first eval for question
     if (typeof evaluations_textbook[pair.question] == "undefined") {
@@ -613,9 +638,17 @@ async function evaluate_iteration(number_of_questions) {
     }
 
     evaluations_textbook[pair.question].push(pair_evaluation);
+
+    j++;
   }
 
   // averaging and outputs
+  evaluation_textbook.confidence /= j;
+  evaluation_textbook.precision /= j;
+  evaluation_textbook.recall /= j;
+  evaluation_textbook.fscore /= j;
+  evaluations_textbook_averaged.push(evaluation_textbook);
+
   evaluation_generated.confidence /= i;
   evaluation_generated.precision /= i;
   evaluation_generated.recall /= i;
@@ -681,9 +714,10 @@ function textbook_csv_generation() {
 
 /**
  * Generating the CSV table for the averaged out key indicators of the generated questions.
+ * @param {Array.<EvaluationIteration>} evaluations - Evaluations
  * @returns {string} of CSV data
  */
-function generated_csv_generation() {
+function generated_csv_generation(evaluations) {
   
   console.info("Starting");
 
@@ -692,7 +726,7 @@ function generated_csv_generation() {
   console.log(csv);
 
   // each round represented
-  for (let round of evaluations_generated) {
+  for (let round of evaluations) {
     let line =
       round.count +
       "," +
