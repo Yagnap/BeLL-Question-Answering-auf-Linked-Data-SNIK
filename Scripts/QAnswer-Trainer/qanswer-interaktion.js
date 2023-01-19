@@ -629,16 +629,18 @@ async function evaluate_iteration(number_of_questions) {
  */
 function textbook_csv_generation() {
   console.info("Starting")
-  let csv = "";
+
+  // just one header for everything
+  let csv = "Frage,Anzahl Trainingsfragen,Richtige Antwort,QAnswer-Antwort,Confidence,Precision,Recall,F-Score,Richtige Anzahl,QAnswer Anzahl,Schnittmenge\n";
   // each textbook question represented in key of array
   for (let key in evaluations_textbook) {
     console.groupCollapsed(key);
     /** @type {Array.<EvaluationSingle>} */
     let question_evaluation = evaluations_textbook[key];
 
-    // new header for each question
-    let question_csv =
-      "Frage,Anzahl Trainingsfragen,Richtige Antwort,QAnswer-Antwort,Confidence,Precision,Recall,F-Score,Richtige Anzahl,QAnswer Anzahl,Schnittmenge\n";
+    
+    let question_csv = "";
+      
 
     // each round represented
     for (/** @type {EvaluationSingle} */ let round of question_evaluation) {
