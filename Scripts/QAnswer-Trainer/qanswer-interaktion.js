@@ -327,7 +327,6 @@ async function snik_retreive_correct_answers() {
       sparql: pair.answer,
       answers: await select(pair.answer, null, "https://www.snik.eu/sparql"),
     };
-    console.log(JSON.stringify(correct_answers[pair.question]));
   }
   //console.warn(counter);
 }
@@ -353,7 +352,6 @@ async function login() {
     },
     body: JSON.stringify(body),
   };
-  console.log(JSON.stringify(settings));
   const response = await fetch(url, settings);
   const json = await response.json();
   token = json.accessToken;
@@ -369,10 +367,7 @@ async function login() {
 async function provide_feedback(question_answer_pair) {
   let nl_question = question_answer_pair.question;
   let correct_answer = question_answer_pair.answer;
-
-  // log to pair console
-  console.log(`Question: ${nl_question}\nAnswer: ${correct_answer}`);
-
+  
   // arguments for api call settings
   const body = {
     correct: true,
@@ -514,9 +509,6 @@ async function ask_qanswer(nl_question) {
     answer: qanswer_query.query,
     confidence: qanswer_query.confidence,
   };
-
-  console.log(`Question: ${nl_question}\nQAnswer-Query: ${ret.answer}\nConfidence: ${ret.confidence}`);
-
   return ret;
 }
 
@@ -541,7 +533,6 @@ async function evaluate_pair(question_answer_pair, number_of_questions) {
 
   // all answers both queries produce
   let all_correct_answers = correct_answers[nl_question].answers;
-  console.log(JSON.stringify(qAnswer_answer));
   let all_qanswer_answers = await select(
     qAnswer_answer.answer,
     null,
@@ -612,9 +603,9 @@ async function evaluate_iteration(number_of_questions) {
 
   // automatically generated less detailed, mainly used to generate data to evaluate performance of key indicators
   for (let pair of generatedQAPairsEvaluation) {
-    console.groupCollapsed(pair.question);
+    //console.groupCollapsed(pair.question);
     let pair_evaluation = await evaluate_pair(pair, number_of_questions);
-    console.groupEnd();
+    //console.groupEnd();
     evaluation_generated.confidence += pair_evaluation.confidence;
     evaluation_generated.precision += pair_evaluation.precision;
     evaluation_generated.recall += pair_evaluation.precision;
@@ -624,9 +615,9 @@ async function evaluate_iteration(number_of_questions) {
 
   // textbook questions more detailed, looking at the individual questions more thorughly
   for (let pair of textbookQAPairsEvaluation) {
-    console.groupCollapsed(pair.question);
+    //console.groupCollapsed(pair.question);
     let pair_evaluation = await evaluate_pair(pair, number_of_questions);
-    console.groupEnd();
+    //console.groupEnd();
     evaluation_textbook.confidence += pair_evaluation.confidence;
     evaluation_textbook.precision += pair_evaluation.precision;
     evaluation_textbook.recall += pair_evaluation.precision;
@@ -803,10 +794,10 @@ export function output(button_label, file_name, data, datatype) {
  */
 function intersect(bindings1, bindings2) {
   
-  console.group("Bindings");
+  /*console.group("Bindings");
   console.log(bindings1);
   console.log(bindings2);
-  console.groupEnd();
+  console.groupEnd();*/
 
   // leere Arrays, aus denen später die Schnittmenge gebildet werden soll
   var b1 = [];

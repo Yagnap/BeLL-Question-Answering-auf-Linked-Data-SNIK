@@ -9,7 +9,7 @@ async function select(query, graph, endpoint) {
 		json = await response.json();
 		const bindings = json['results'].bindings;
 
-		console.groupCollapsed('SPARQL ' + query.split('\n', 1)[0] + '...');
+		/*console.groupCollapsed('SPARQL ' + query.split('\n', 1)[0] + '...');
 
 		//is never entered on our data with limitation to 99
 		if (bindings.length < 100) {
@@ -25,7 +25,7 @@ async function select(query, graph, endpoint) {
 		console.debug(query);
 		console.debug(url);
 		console.groupEnd();
-
+		*/
 		return bindings;
 	} catch (err) {
 		console.error(err);
