@@ -372,8 +372,8 @@ Besonders beim Training mit den Lehrbuchfragen liegt es bei 20 generierten Train
 Ab 30 Fragen nähert es sich den Werten des Trainings ohne die Lehrbuchfragen an und übersteigt diese ab 50 Fragen erstmals.
 Bei 150 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 91\% ein Maximum und bleibt nahezu konstant über den Werten des Trainings ohne sie.
 
-Bei 590 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, die sowieso schon große Varianz wird noch viel größer,
-mit Werten zwischen fast 10\% und fast 90\%.
+Bei 520 bzw. 570 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, Varianz wird viel größer,
+mit Werten zwischen fast 10\% und mehr als 90\%.
 Das Training ohne Lehrbuchfragen erreicht bei 850 Trainingsfragen sein Maximum von 89\%, bei 890 Fragen jedoch auch sein Minimum von 18\%.
 
 Auch die Graphen von Precision (\cref{plot:genprecision}) und Recall (\cref{plot:genprecision}) bieten ein ähnliches Bild.
@@ -486,3 +486,94 @@ Das liegt daran, dass QAnswer so konfiguriert ist, dass es immer die Definition 
 Bei Definitionsfragen wird die Ressource meist genannt und kann so gut vom System gefunden werden.
 Die einzige Frage, wo dies nicht der Fall ist, ist \texttt{10/2}, wo das Kapitel \enquote{Health Care Networks} gefunden wird.
 
+% F-Score TB
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=F-Maß,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittliches F-Maß bei den Lehrbuchfragen im Testset in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genfscore}
+  \end{center}
+\end{figure}
+
+% Precision TB
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Präzision,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittliche Präzision bei den Lehrbuchfragen im Testset in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genprecision}
+  \end{center}
+\end{figure}
+
+% Recall TB
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Recall,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittlicher Recall bei den Lehrbuchfragen im Testset in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genrecall}
+  \end{center}
+\end{figure}
+
+% Confidence TB
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Confidence-Wert,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittlicher Confidence-Wert QAnswers bei den Lehrbuchfragen im Testset in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genconfidence}
+  \end{center}
+\end{figure}

@@ -105,7 +105,7 @@ Bei der \ac{qald}-Challenge werden \ac{qa}-Systeme anhand eines Benchmark objekt
 Diese fand schon mehrmals statt, die zur Zeit dieser Arbeit aktuelle ist \ac{qald}-9 \citep{qald9}\footnote{\ac{qald}-9-Plus
 nahm die Fragen aus \ac{qald}-9 und übersetzte diese in acht verschiedene Sprachen (Deutsch, Französisch, Russisch, Ukrainisch, Belarussisch, Armenisch, Baschkirisch, Litauisch),
 um Entwicklung im Bereich der Multilingualismus von Systemen voranzutreiben, gilt aber nicht als offizielle Version der \ac{qald}-Challenge \citep{qald9plus}.},
-für \ac{qald}-10 können jedoch schon Systeme eingereicht werden\footnote{\url{https://www.nliwod.org/challenge}, abgerufen am 17. Januar 2023}.
+für \ac{qald}-10 können jedoch bereits Systeme eingereicht werden\footnote{\url{https://www.nliwod.org/challenge}, abgerufen am 17. Januar 2023}.
 
 In jeder dieser Versionen gibt es unterschiedliche Trainingsdatensätze und Teilnehmer.
 Die Teilnehmer müssen zu dem jeweiligen Trainingsdatensatz natürlichsprachige Fragen in \ac{sparql}-Abfragen umformen,
@@ -256,8 +256,7 @@ Trainiert werden können bei QAnswer die in \cref{fig:qanswerworkflow} dargestel
 Es kann also nur beeinflusst werden, welche Antwort QAnswer warum auswählt, nicht aber, welche Antwortmöglichkeiten es erstellt.
 
 Mittels fine-tuning werden die vortrainierten Modelle für diese beiden Schritte mittels gesammelten Feedbacks adjustiert.
-Die Modelle nehmen auf die Anzahl der Variablen und die Anzahl der Tripel in den \ac{sparql}-Abfragen,
-sowie die Anzahl der Wörter der natürlichsprachigen Fragen, die durch die Ressourcen abgebildet sind.
+Die Modelle nehmen die Anzahl der Variablen, Tripel in den \ac{sparql}-Abfragen und Wörter der natürlichsprachigen Fragen, die durch die Ressourcen abgebildet sind, als Eingabewerte auf.
 Außerdem gibt zwei weitere Kriterien, die verwendet werden, sofern es erforderlich ist.
 Diese sind die Unterschiedlichkeit der eingegebenen Wörter verglichen mit den Labels der Ressourcen
 und die Summe der Relevanz von Ressourcen in der Abfrage.

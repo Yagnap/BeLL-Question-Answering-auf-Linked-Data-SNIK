@@ -4,13 +4,13 @@
 
 \section{Benchmark}
 
-Der Benchmark wurde erstellt, indem Fragen aus \citet{bb} genommen wurden und wegen ihrer theoretischen Beantwortbarkeit klassifiziert wurden.
-Die Eignung dieser Fragen für ein System, das anhand der gegebenen Frage und den in ihr enthaltenen Wörter herausfinden soll, was die Antwort auf sie ist, ist manchmal fraglich.
-Oft gibt es Fragen wie \texttt{9.3.4.2/1}, \enquote{Which organizational units are involved in information management?}, wo Ressourcen nicht mit ihrem Namen genannt werden.
-Hier wird das Prädikat \aurl{meta}{functionComponent} verwendet, obwohl \aurl{meta}{isInvolvedIn} deutlich naheliegender ist.
-Dies lässt auf eine eventuelle Untauglichkeit der Fragen für die Ontologie schließen, oder auf eine manchmal nicht optimal modellierte Datenbasis.
+Der Benchmark wurde erstellt, indem Fragen aus \citet{bb} genommen wurden und nach ihrer theoretischen Beantwortbarkeit klassifiziert wurden.
+Die Eignung dieser Fragen für ein System, das anhand der gegebenen Frage und den in ihr enthaltenen Wörter herausfinden soll, die auf die Frage zutreffende Antwort finden soll, ist fraglich.
+Oft gibt es Fragen wie \texttt{9.3.4.2/1}, \enquote{Which organizational units are involved in information management?}, bei der die Ressourcen nicht mit ihrem Namen genannt werden.
+Hier wird das Prädikat \aurl{meta}{functionComponent} verwendet, um die richtige Antwort zu erhalten, obwohl \aurl{meta}{isInvolvedIn} deutlich naheliegender ist.
+Dies lässt auf eine eventuelle Untauglichkeit der Fragen für die Ontologie schließen, da die Ontologie meist nur sehr generelle Properties hat, um die Beziehungen darzustellen.
 
-Es ist aber trotzdem gelungen, die gegebenen Fragen, welche auch teilweise beantwortet werden können, einen Benchmark zu erstellen.
+Es ist aber trotzdem gelungen, die gegebenen Fragen, welche teilweise beantwortet werden können, einen Benchmark zu erstellen.
 Dieser besteht aus Fragen, welche auf in \citet{bb} vorhandenes Wissen zurückgreifen und dieses festigen soll.
 Dies ist eigentlich perfekt für die Nutzung mit \ac{snik}, nur die Formulierung ist manchmal nicht optimal.
 Es lässt sich allerdings auch sagen, dass die Fragen für \acl{qa} von simplen Fragen vergleichsweise definitiv höchst komplex waren.
@@ -61,10 +61,9 @@ Die richtige Antwort enthält nur das Property \emph{uses} und hat \emph{Medical
 Noch stärker sichtlich wird dieses Problem, wenn man einen Rechtschreibfehler einbaut und \enquote{Medicl} statt \enquote {Medical} schreibt.
 Hier wird eine andere falsche Antwort ausgeführt und gezeigt, diese hat nur einen Confidence-Wert von 35\%, die richtige, die hinter einem Menu versteckt ist, wieder einen von 93\%.
 
-Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches \ac{qa}-System über alle drei Teilontologien zuverlässig verwendbar zu machen,
-jedoch ist es gelungen, ein \ac{qa}-System über eine Teilontologie zumindest theoretisch verwendbar zu machen, die Erfolgsrate ist beim untrainierten System bei den gegebenen Umständen mit einem F-Maß von 0.24 erstaunlich, jedoch war das Training enttäuschend.
-Es bleibt abzuwarten, was das Training mit dem großen, automatisch generierten Benchmark verursacht.\todo{update}
-Vermutlich waren die 18 Fragen, die zum Training eingesetzt wurden, deutlich zu wenige, um irgendeine Verallgemeinerung möglich zu machen und das System auf die Ontologie einzustellen.\todo{update}
+Es ist nicht, wie anfangs gewollt, gelungen, ein semantisches \ac{qa}-System über alle drei Teilontologien zuverlässig verwendbar zu machen.
+Gelungen ist, ein \ac{qa}-System über eine Teilontologie verwendbar zu machen, die Erfolgsrate ist beim untrainierten System jedoch schon überraschend gut.
+
 
 Für die Verwendung der Teilontologien zusammen fehlt nicht nur ein System, dass diese Aufgabe bewältigt, sondern vor allem auch schlicht die Trainingsfragen.
 Bereits die aus dem blauen Buch waren nur teilweise geeignet, für das Training für aller Teilontologien müsste man vermutlich Nutzerfragen von Studierenden sammeln.
