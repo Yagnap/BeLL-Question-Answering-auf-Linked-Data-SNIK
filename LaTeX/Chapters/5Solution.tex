@@ -164,12 +164,12 @@ FROM sniko:bb
 ORDER BY RAND()
 \end{lstlisting}
 
-Dadurch konnten 621 Fragen nach dem Subjekt und 376 Fragen nach dem Objekt generiert werden.
+Dadurch konnten 621 Fragen nach dem Subjekt und 376 Fragen nach dem Objekt generiert werden.\todo{Zahlen updaten}
 Dies entspricht nicht ganz der Anzahl von Tripeln der Teilontologie \texttt{bb}, was zuerst erwartet war.
 Die Anzahl wird allerdings einerseits dadurch verringert, dass manche Ressourcen kein Label haben und dies in der Abfrage gefordert wird.
 und dass bei der Frage nach den Subjekten viele Fragen durch das Schlüsselwort \texttt{DISTINCT} gekürzt wurden.
 Die Fragen nach einem Objekt mit dem gleichen Prädikat von verschiedenen Subjekten waren natürlich immer gleich,
-äquivalent zu den Fragen nach dem Subjekt mit verschiedenen Objekten und gleichen Prädikaten.
+äquivalent zu den Fragen nach dem Subjekt mit verschiedenen Objekten und gleichen Prädikaten.\todo{Inhalt verwirrend}
 
 \section{Auswahl eines Kandidaten}
 
@@ -346,46 +346,140 @@ Für diese stehen die Lexikalisierungen zur Verfügung.
 
 \subsubsection{Training}
 
-Das Fragenset wurde in zwei Hälften geteilt, eine zum Training und eine zum Testen.
-Vor dem Training wurde der Testdatensatz verwendet, um die Leistung des Systems vor und nach dem Training vergleichen zu können.
-Siehe hierzu \cref{tab:qanswervortraining}.
-Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 19 im Trainingsdatensatz und 18 im Testdatensatz sind.
+Das Frage-Antwort-Set aus dem Lehrbuch wurde in zwei Hälften geteilt, eine zum Training und eine zum Testen.
+Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 18 im Trainingsdatensatz und 18 im Testdatensatz sind.
 
-\begin{longtable}{r c c c c c c c}
-  \caption[Testdatensatz QAnswer vor Training]{Testdatensatz auf QAnswer KG vor dem Training.
-  Conf.: QAnswer \emph{Confidence}-Wert}
-  \label{tab:qanswervortraining}
-  \\
-  \toprule
-  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
-  \midrule
-  \endfirsthead
-  \toprule
-  Kapitel/ID    & Conf. & |O|   & |C|   & $|O \cap C|$  & P     & R     & F-Maß   \\
-  \midrule
-  \endhead
-	4/1			& 0.95 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-	4/2			& 0.93 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-	4/4			& 0.89 & 1 & 1  & 1 & 1.00 & 1.00 & 1.00 \\
-	5/3			& 0.79 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-	5/4			& 0.35 & 0 & 7  & 0 & 0.00 & 0.00 & 0.00 \\
-	6/2			& 0.33 & 4 & 4  & 4 & 1.00 & 1.00 & 1.00 \\
-	6.6/2		& 0.22 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-	6.7/2		& 0.49 & 1 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-	8/3			& 0.27 & 1 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
-	8/6			& 0.22 & 1 & 24 & 0 & 0.00 & 0.00 & 0.00 \\
-	8.6/2		& 0.27 & 1 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
-	9/4			& 0.42 & 1 & 4  & 1 & 1.00 & 0.25 & 0.40 \\
-	9.2/2		& 0.24 & 1 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
-	9.3.4.2/1	& 0.24 & 5 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-	9.4/1		& 0.54 & 0 & 5  & 0 & 0.00 & 0.00 & 0.00 \\
-	9.5/2		& 0.66 & 4 & 4  & 4 & 1.00 & 1.00 & 1.00 \\
-	9.6/1		& 0.67 & 6 & 6  & 6 & 1.00 & 1.00 & 1.00 \\
-	10/2		& 0.47 & 3 & 1  & 0 & 0.00 & 0.00 & 0.00 \\
-  \midrule
-  Durchschnitt  & 0.50 &  &    &   & 0.28 & 0.24 & 0.24 \\
-  \bottomrule
-\end{longtable}
+Von den automatisch generierten Paaren wurden 100 für das Testen und 895 für das Training genutzt.
+
+Das Training verläuft so ab, das dem System automatisiert pro Schritt zehn weitere automatisch generierte Paare aus dem Trainingsdatensatz gegeben werden,
+sodass jede Runde mit zehn zusätzlichen Fragen trainiert wird.
+Der Trainingssatz der Lehrbuchfragen wird in der ersten Runde nicht mit verwendet,
+in der zweiten Runde werden von Anfang an alle Textbuchfragen verwendet.
+
+Dann wird QAnswer mithilfe der \ac{api}-Methode trainiert.
+Auf das trainierte System wird der Testdatensatz zur Evaluierung angewandt.
+Über eine \ac{api}-Abfrage wird die Antwort mit dem höchsten Confidence-Wert, eine \ac{sparql}-Abfrage, geholt und auf dem \ac{sparql}-Endpunkt von \ac{snik} ausgeführt.
+Die Antworten der richtigen Lösung wurden schon vorher gespeichert und werden nun mit denen der Abfrage von QAnswer verglichen.
+
+Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paare bleiben jedoch erhalten.
+
+In \cref{plot:genfscore} sieht man, wie groß das F-Maß abhängig von der Fragenanzahl ist.
+Es sind zwei Datensätze dargestellt.
+Der eine wurde auch mit den Lehrbuchfragen trainiert, der andere ausschließlich über die \ac{sparql}-generierten Frage-Antwort-Paare.
+Am Anfang, wo noch gar keine oder nur sehr wenige Fragen zum Training verwendet wurden, ist das F-Maß vergleichsweise eher gering.
+Besonders beim Training mit den Lehrbuchfragen liegt es bei 20 generierten Trainingsfragen deutlich unter 30\%.
+Ab 30 Fragen nähert es sich den Werten des Trainings ohne Lehrbuchfragen an und übersteigt diese ab 50 Fragen erstmals.
+Bei 150 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 91\% ein Maximum und bleibt recht konstant über den Werten des Trainings ohne sie.
+
+Bei 590 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, die sowieso schon große Varianz wird noch viel größer,
+mit Werten zwischen fast 10\% und fast 90\%.
+Das Training ohne Lehrbuchfragen erreicht bei 850 Trainingsfragen sein Maximum von 89\%, bei 890 Fragen jedoch auch sein Minimum von 18\%.
+
+Auch die Graphen von Precision (\cref{plot:genprecision}) und Recall (\cref{plot:genprecision}) bieten ein ähnliches Bild.
+Sie haben auch am Anfang kurz geringere Werte, eine recht starke Mitte und danach eine extreme Varianz.
+
+Der Confidence-Wert sieht im Allgemeinen deutlich konstanter aus, an ihm spiegeln sich aber auch einige der beim F-Maß betrachteten Phänomene.
+Anfangs ist der Wert durchschnittlich etwas geringer als später, aber immer noch fast überall über 50\%.
+Ab etwa 100 Fragen erreicht es ein Niveau zwischen 80\% und 90\%, auf dem es bleibt.
+Ab 510 bzw. 560 Fragen kommt es jedoch zu zu größeren Ausreißern, die teilweise bis auf 11\% heruntergehen.
+
+Die Auswertung der automatisch generierten Fragen deutet also darauf hin, dass die Anzahl der generierten Trainingsfragen zwischen 150 und 550 liegen sollte.
+Dass das Training mit Lehrbuchfragen erst schlechter und dann teilweise deutlich bessere Ergebnisse liefert, ist ein Indiz dafür,
+dass QAnswer von der unterschiedlichen Art der Fragen profitieren könnte, sie aber nicht zu schwer sein sollten.
+
+% F-Score
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=F-Maß,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittliches F-Maß bei den automatisch generierten Testfragen in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genfscore}
+  \end{center}
+\end{figure}
+
+% Precision
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Präzision,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittliche Präzision bei den automatisch generierten Testfragen in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genfscore}
+  \end{center}
+\end{figure}
+
+% Recall
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Recall,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittlicher Recall bei den automatisch generierten Testfragen in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genfscore}
+  \end{center}
+\end{figure}
+
+% Confidence
+\begin{figure}%[h!]
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Confidence-Wert,
+          legend style={at={(0.5,-0.10)},anchor=north}, % Put the legend below the plot
+          x tick label style={rotate=45,anchor=east} % Display labels sideways
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
+      \end{axis}
+    \end{tikzpicture}
+    \caption{Durchschnittlicher Confidence-Wert QAnswers bei den automatisch generierten Testfragen in Abhängigkeit zur Anzahl der generierten Trainingsfragen.}\label{plot:genconfidence}
+  \end{center}
+\end{figure}
+
+\todo{Ab hier weg/updaten}
 
 Auffällig ist, dass nur Fragen nach der Definition richtig beantwortet wurden, diese aber konsistent.
 Das liegt daran, dass QAnswer so konfiguriert ist, dass es immer die Definition der gefundenen Ressource mit anzeigt.
