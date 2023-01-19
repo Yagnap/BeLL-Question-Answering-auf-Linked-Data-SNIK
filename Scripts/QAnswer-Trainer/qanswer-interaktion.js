@@ -121,6 +121,11 @@ var evaluations_generated = [];
  */
 var evaluations_textbook = [];
 
+/**
+ * Collected evaluations of textbook questions, but averaged key indicators so it's parallel to {@link evaluations_generated}.
+ * @see {@link evaluate_iteration}
+ * @type {Array.<string, Array.<EvaluationSingle>>}
+ */
 var evaluations_textbook_averaged = [];
 
 /**
