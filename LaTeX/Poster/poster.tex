@@ -1,0 +1,85 @@
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[portrait,final,a0paper,fontscale=0.320]{imiseposter}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}% change to ngerman for a German poster
+\microtypecontext{spacing=nonfrench}
+% Using biblatex and biber. It's more modern but takes more than twice as long to compile in my case. ****
+% If you use biblatex, you need to comment and uncomment the marked statements in the references as well.
+%\usepackage{csquotes}
+%\usepackage[style=numeric,backend=biber]{biblatex}
+%\addbibresource{poster.bib}
+%*********************************************************************************************************
+\usepackage{graphicx}
+\usepackage{url}% do not use hyperref as its links are displaced with baposter because of the font scale 
+
+\usepackage{blindtext}% remove for production
+
+% Select Font %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{helvet} % closest to arial
+\usepackage{bookman} % has some resemblance to Futura
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\familydefault}{\sfdefault}
+
+\newcommand{\captionfont}{\footnotesize}
+\usepackage[font=small,labelfont=bf]{caption}
+
+\begin{document}
+
+\begin{poster}% Set grid to false for final print
+  {grid=true,}
+  % Eye Catcher
+  {\includegraphics[height=4.5cm]{img/medfak.pdf}} 
+  % Title
+  {This title may span one or multiple lines}
+  % Authors
+  {First Author{\small <first.author@imise.uni-leipzig.de>}, Another Author, Another Author}
+  % University logo
+  {% The makebox allows the title to flow into the logo, this is a hack because of the L shaped logo.
+    %\includegraphics[height=9.0em]{img/medfak.pdf}
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{posterbox}[name=background,column=0,row=0]{Background}
+Some text~\cite{bb} and some more text~\cite{ob} and even more text~\cite{he}.
+\blindtext
+\end{posterbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{posterbox}[name=methods,below=background]{Methods}
+\Blindtext
+\end{posterbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{posterbox}[name=results,column=1]{Results}
+\Blindtext
+\end{posterbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{posterbox}[name=discussion,column=1,below=results]{Discussion}
+\blindtext
+\end{posterbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{posterbox}[name=references,column=0,below=methods]{References}
+    \small
+    \begingroup
+    \renewcommand{\section}[2]{}%suppress heading
+    % using bibtex ***********
+    \bibliographystyle{abbrv}
+    \bibliography{poster}
+    % using biblatex *********
+    %\printbibliography
+    %*************************
+    \endgroup
+    \vspace{0.3em}
+    Myproject is supported under the DFG grant numbers 1234/5-6 and 6543/2-1.
+  \end{posterbox}
+%%%%%%%%%%%%%%% IMISE Logo
+ \node [anchor=south east, inner sep=1pt,xshift=-26em] at (current page.south east)
+ {\includegraphics[height=0.03\textheight]{img/imise-logo.pdf}
+ };
+%%%%%%%%%%%%%%% DFG Logo, remove or replace if your project is funded by a different organization 
+ \node [anchor=south east, inner sep=1pt,xshift=-2.5em] at (current page.south east) % for unknown reasons the xshift is necessary
+ {\includegraphics[height=0.03\textheight]{img/dfg-logo.pdf}
+ };
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{poster}
+\end{document}
+
