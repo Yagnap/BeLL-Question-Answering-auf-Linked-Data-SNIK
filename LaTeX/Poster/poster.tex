@@ -6,9 +6,9 @@
 \microtypecontext{spacing=nonfrench}
 % Using biblatex and biber. It's more modern but takes more than twice as long to compile in my case. ****
 % If you use biblatex, you need to comment and uncomment the marked statements in the references as well.
-%\usepackage{csquotes}
-%\usepackage[style=numeric,backend=biber]{biblatex}
-%\addbibresource{poster.bib}
+\usepackage{csquotes}
+\usepackage[style=numeric,backend=biber]{biblatex}
+\addbibresource{poster.bib}
 %*********************************************************************************************************
 \usepackage{graphicx}
 \usepackage{url}% do not use hyperref as its links are displaced with baposter because of the font scale 
@@ -46,7 +46,7 @@ Some text~\cite{bb} and some more text~\cite{ob} and even more text~\cite{he}.
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=methods,below=background]{Methods}
-\Blindtext
+\blindtext
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=results,column=1]{Results}
@@ -62,14 +62,14 @@ Some text~\cite{bb} and some more text~\cite{ob} and even more text~\cite{he}.
     \begingroup
     \renewcommand{\section}[2]{}%suppress heading
     % using bibtex ***********
-    \bibliographystyle{abbrv}
-    \bibliography{poster}
+    %\bibliographystyle{abbrv}
+    %\bibliography{poster}
     % using biblatex *********
-    %\printbibliography
+    \printbibliography
     %*************************
     \endgroup
     \vspace{0.3em}
-    Myproject is supported under the DFG grant numbers 1234/5-6 and 6543/2-1.
+    %Myproject is supported under the DFG grant numbers 1234/5-6 and 6543/2-1.
   \end{posterbox}
 %%%%%%%%%%%%%%% IMISE Logo
  \node [anchor=south east, inner sep=1pt,xshift=-26em] at (current page.south east)
