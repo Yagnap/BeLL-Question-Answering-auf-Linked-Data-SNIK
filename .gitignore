@@ -248,6 +248,7 @@ TSWLatexianTemp*
 thesis.run.xml
 thesis-blx.bib
 *~
+*.pgf
 
 # Scripts/QAnswer-Trainer
 pw.js
