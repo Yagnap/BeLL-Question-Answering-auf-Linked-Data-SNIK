@@ -42,6 +42,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=background,column=0,row=0]{Hintergrund}
 Some text~\cite{bb} and some more text~\cite{ob} and even more text~\cite{he}.
+\includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}
+
+\includegraphics[width=0.5\linewidth]{../Dokumentation/Images/hierarchy.pdf}
+
 \blindtext
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -72,18 +76,11 @@ Some text~\cite{bb} and some more text~\cite{ob} and even more text~\cite{he}.
     %Myproject is supported under the DFG grant numbers 1234/5-6 and 6543/2-1.
   \end{posterbox}
 %%%%%%%%%%%%%%% IMISE Logo
- \node [anchor=south east, inner sep=1pt,xshift=-26em] at (current page.south east)
- {\includegraphics[height=0.03\textheight]{img/logos/imise-logo.pdf}
- };
-%%%%%%%%%%%%%%% DFG Logo, remove or replace if your project is funded by a different organization 
-% \node [anchor=south east, inner sep=1pt,xshift=-2.5em] at (current page.south east) % for unknown reasons the xshift is necessary
-% {\includegraphics[height=0.03\textheight]{img/logos/dfg-logo.pdf}
-% };
-%%%%%%%%%%%%%%% Uni/Medizinische Fakultät Logo
-\node [anchor=south east, inner sep=1pt,xshift=-15em] at (current page.south east)
-{\includegraphics[height=0.03\textheight]{img/logos/medfak.pdf}
-};
-
+\node [anchor=south east, inner sep=1pt,xshift=-3em,yshift=1em] at (current page.south east)
+{\includegraphics[height=1.5cm]{img/logos/imise-logo.pdf}};
+%%%%%%%%%%%%%%% Medical Faculty Logo
+\node [anchor=south east, inner sep=1pt,xshift=-19.5em,yshift=-1.5em] at (current page.south east)
+{\includegraphics[height=3.3cm,decodearray=0 0 0 0 0 1]{img/logos/medfak.pdf}};
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{poster}
 \end{document}
