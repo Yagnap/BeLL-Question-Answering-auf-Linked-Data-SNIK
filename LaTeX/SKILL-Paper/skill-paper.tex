@@ -74,6 +74,23 @@ Es fasst Wissen aus drei Lehrbüchern, welches es in semantischer Weise modellie
 In der Ontologie (siehe \cref{sub:ontology}) sind Zusammenhänge zwischen verschiedenen Informationen vorhanden,
 welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen dargestellt sind.
 
+\section{Ergebnisse}
+
+* hier die Plots mit den Kurven möglichst auf einer Seite darstellen
+* herausfinden wie das offiziell heißt, Lernkurve?
+
+\section{Diskussion und Ausblick}
+
+Ein Modell ist immer für einen bestimmten Zweck erstellt und bildet nur einen Teil der Wirklichkeit ab.
+SNIK fokussiert sich auf das Beantworten der Fragestellung "Wer (Rolle) macht was (Aufgabe) womit (Objekttyp)?".
+Solche Fragen beantwortet das trainierte System auch sehr gut, die größte Herausforderung ist allerdings der "Mismatch" im verwendeten Vokabular eines menschlichen Nutzers zu den Properties der Ontologie.
+Während in einer Wissensbasis die Abbildung von Verben zu Properties einfacher ist, weicht besonders bei der Beschreibung von Subklassen und Teil-Ganzes-Beziehungen das Vokabular menschlicher Nutzer oft von den Labels in der Ontologie ab.
+Insgesamt erreicht das System bei dieser Art von Fragen  einen F-Score von 0.9... auf ..., siehe ...
+Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb} (fußnote zu link im zenodo archiv), können selbst nach dem Training nur selten richtig beantwortet werden (F-Score von ... auf ..., siehe ...).
+Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
+Wir planen zur Beantwortung allgemeiner Fragen, die über "Wer macht was womit" hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
+Ein hybrides System aus KBQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
+
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
 %% Starten Sie "biber paper", um eine Biliographie zu erzeugen.
 \printbibliography
