@@ -5,7 +5,7 @@
 \RequirePackage[l2tabu, orthodox]{nag}
 
 \documentclass[utf8,biblatex]{lni}
-\bibliography{bibliography}
+\bibliography{../Dokumentation/Bibliography, ../Dokumentation/snik}
 
 %% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
@@ -18,7 +18,6 @@
 %% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
 %% Bitte \iffalse und \fi entfernen, dann ist diese Konfiguration aktiviert.
 
-\iffalse
 \AtEveryBibitem{%
   \ifentrytype{article}{%
   }{%
@@ -35,7 +34,6 @@
     \clearfield{urldate}%
   }%
 }
-\fi
 
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
