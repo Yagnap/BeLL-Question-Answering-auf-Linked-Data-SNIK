@@ -59,6 +59,11 @@ Die \LaTeX-Klasse \texttt{lni} setzt die Layout-Vorgaben für Beiträge in LNI K
 Dieses Dokument beschreibt ihre Verwendung und ist ein Beispiel für die entsprechende Darstellung.
 Der Abstract ist ein kurzer Überblick über die Arbeit der zwischen 70 und 150 Wörtern lang sein und das Wichtigste enthalten sollte.
 Die Formatierung erfolgt automatisch innerhalb des abstract-Bereichs.
+
+\begin{itemize}
+  \item 
+\end{itemize}
+
 \end{abstract}
 
 \begin{keywords}
@@ -69,19 +74,38 @@ LNI Guidelines \and \LaTeX Vorlage
 
 \section{Einleitung}
 
-\ac{snik} ist ein Projekt zum Informationsmanagement im Gesundheitswesen.
-Es fasst Wissen aus drei Lehrbüchern, welches es in semantischer Weise modelliert und publiziert.
-In der Ontologie (siehe \cref{sub:ontology}) sind Zusammenhänge zwischen verschiedenen Informationen vorhanden,
-welche auf der öffentlich erreichbaren Visualisierung in Form eines Graphen dargestellt sind.
+Das semantische Netz des Informationsmanagements im Krankenhaus (\acsu{snik}\label{acro:snik}) ist eine
+die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie \cite{domaene}.
+Sie behandelt Wissen über Krankenhausinformationssysteme und deren Management.
+Dieses wurde aus drei Lehrbüchern \cite{bb,ob,he} und einem Interview \cite{ciosurvey} manuell extrahiert und in RDF modelliert.
+
+\section{Grundlagen}
+\begin{itemize}
+  \item SNIK Metamodell --> Snik ist Ontologie und Wissensbasis in einem, besteht aus Metaontologie und Ontologie, weil Klassen weil Lehrbücher abstraktes Wissen, reden nicht über spezielle Krankenhäuser; Nutzung in QA mittels Verwendung als Wissensbasis und Klassen als Individuen
+  \item kurz über QA schreiben, viele Verweise auf QALD etc.
+  \item nach neueren Quellen gucken!
+  \item Portabilität etc. 
+  \item Angeguckte Systeme ein Satz pro System (kleines bisschen mehr über QAnswer KG)
+\end{itemize}
+
+\section{Anpasssung von QAnswer KG an SNIK}
+\begin{itemize}
+  \item Konfiguration: Stopwords, Lexikalisierungen etc.
+  \item Verwendung von ausschließlich BB begründen
+  \item Materialisierungen und Notwendigkeit derer beschreiben
+\end{itemize}
+
+\section{Benchmark}
 
 \section{Ergebnisse}
 
 \begin{itemize}
-\item hier die Plots mit den Kurven möglichst auf einer Seite darstellen
-\begin{itemize}
-  \item[$\rightarrow$] Mit groupplots \url{https://tex.stackexchange.com/questions/237213/how-to-add-one-single-legend-entry-for-several-plots}
-\end{itemize}
-\item herausfinden wie das offiziell heißt, Lernkurve?
+  \item Training beschreiben
+  \item hier die Plots mit den Kurven möglichst auf einer Seite darstellen
+  \begin{itemize}
+    \item[$\rightarrow$] Mit groupplots \url{https://tex.stackexchange.com/questions/237213/how-to-add-one-single-legend-entry-for-several-plots}
+  \end{itemize}
+  \item herausfinden wie das offiziell heißt, Lernkurve?
   \begin{itemize}
     \item Die Methodologie dort an sich ist wohl sehr komplex, muss ich wohl auch einen Paragraphen oder so zu schreiben
     \item Paar Ergebnisse, die ich gefunden habe:
@@ -112,6 +136,10 @@ Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \c
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
 Wir planen zur Beantwortung allgemeiner Fragen, die über "Wer macht was womit" hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
 Ein hybrides System aus KBQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
+
+\begin{itemize}
+  \item Diskussion von Kurven etc.
+\end{itemize}
 
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
 %% Starten Sie "biber paper", um eine Biliographie zu erzeugen.
