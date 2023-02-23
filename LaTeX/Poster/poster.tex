@@ -44,10 +44,8 @@
 Das Wissen, welches von Studenten der Medizininformatik erwartet wird, ist komplex und umfangreich.
 Es liegt in Lehrbüchern wie etwa \cite{bb}, \cite{ob} oder \cite{he} vor, oft aber verteilt und nicht den genauen Fragen der Studenten entsprechend,
 wodurch einfache Fragen zu beantworten viel Zeit und Arbeit benötigt.
-
 In SNIK liegt dieses Wissen strukturiert vor \cite{snik}.
-Konventionelle Methoden, es zu durchsuchen, sind jedoch sowohl in ihrer Intuitivität als auch ihrer Expressivität mangelhaft.
-
+Konventionelle Methoden es zu durchsuchen sind jedoch sowohl in ihrer Intuitivität als auch ihrer Expressivität mangelhaft.
 Eine Lösung für dieses Problem ist Question Answering (QA), die Beantwortung von in natürlicher Sprache verfassten Fragen.
 Die Arbeit befasst sich mit folgendem:
 \begin{enumerate}
@@ -55,15 +53,22 @@ Die Arbeit befasst sich mit folgendem:
   \item Recherche von QA-Systemen sowie Evaluierung dieser anhand des Benchmarks
 \end{enumerate}
 
+SNIK ist im Resource Description Format (RDF) modelliert.
+Dieses beschreibt das Strukturieren von Daten in der Form von Tripeln als \emph{Subjekt -- Prädikat --  Objekt}.
+Einzelne Glieder werden über URIs eindeutig identifiziert und als \emph{Ressourcen} bezeichnet.
+Gibt es etwa die Frage
+{\large\enquote{What is the Chief Information Officer responsible for?}}
+muss das QA-System anhand der Wortgruppen \enquote{Chief Information Officer} und \enquote{is responsible for}, im Tripel Subjekt und Prädikat, die als Objekt stehende Antwort finden.
+Zuerst muss das QA-System diese Wortgruppen identifizieren und ihnen Ressourcen zuordnen,
+dann muss es eine die Antwort lieferende Abfrage erstellen.
+Dazu gibt es Abfragesprachen wie SPARQL, mit welchen RDF-Daten etwa durchsucht werden können.
+
 \includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}
 
-\includegraphics[width=0.5\linewidth]{../Dokumentation/Images/hierarchy.pdf}
-
-\blindtext
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=methods,below=background]{Methodik}
-\blindtext
+
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=results,column=1]{Ergebnisse}
@@ -72,7 +77,7 @@ Die Arbeit befasst sich mit folgendem:
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=discussion,column=1,below=results]{Diskussion}
-\blindtext
+
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=references,column=0,below=methods]{Literatur}
