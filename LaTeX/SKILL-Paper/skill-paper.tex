@@ -81,6 +81,27 @@ die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie \ci
 Sie behandelt Wissen über Krankenhausinformationssysteme und deren Management.
 Dieses wurde aus drei Lehrbüchern \cite{bb,ob,he} und einem Interview \cite{ciosurvey} manuell extrahiert und in RDF modelliert.
 
+Momentan müssen Studierende der Medizininformatik, die nach Wissen suchen, auf eine der drei oben genannten Optionen zurückgreifen.
+Jede dieser Möglichkeiten hat jedoch große Nachteile.
+Der Resource Description Format (RDF)-Browser gibt nur ein sehr beschränktes Ergebnis aus, und serialisiertes RDF selbst zu lesen ist schwer und unpraktisch.
+Die Graphvisualisierung kann im Zweifel unübersichtlich oder überwältigend sein, da es schwer sein kann, überhaupt die Ressource zu finden, zu der man eine Frage hat, und dann zur Antwort zu navigieren.
+Im Fall von SPARQL Protocol and RDF Query Language (SPARQL) gibt es einen erheblichen Zeitaufwand für die Studierenden, da sie sich dort erst in die Syntax der Abfragesprache und das Vokabular des Fachbereichs einarbeiten müssen.
+
+Daraus ergibt sich das Problem, dass keine der momentan existierenden Lösungen intuitiv genug funktioniert, als dass es nahezu keine Einarbeitungszeit gibt.
+Die existierenden Lösungen liefern zudem nicht übersichtlich ausreichend Informationen, ihrer Expressivität sind demnach deutliche Grenzen gesetzt.
+
+Obwohl ein Ansatz für die Lösung dieses Problems besteht, Question Answering (QA), wirft dieser direkt ein neues Problem für die entwickelnden Personen auf.
+Die Implementierung eines QA-Systems mit adäquater Qualität der Antworten ist wesentlich aufwändiger~\citep[S.~3]{qanswer}, als es in einem angemessenem Zeitraum bei stark beschränkten Mitteln möglich ist.
+
+Das Wissen zum Informationsmanagement im Krankenhaus ist komplex und oft nur schwer greifbar.
+Es liegt in Form von Lehrbüchern, aber auch in \acs{snik} vor.
+
+Studierende haben selten Zeit, sich ganze Kapitel oder gar Bücher durchzulesen, verfügen jedoch auch nicht über die Kenntnisse SNIK effektiv zu verwenden.
+Als Folge müssen sie bei Fragen oft ihren Professor oder andere Studierende hinzuziehen.
+Es wäre ungemein einfacher, wenn sie das strukturierte Wissen in natürlicher Sprache abfragen könnten.
+QA-Systeme sind im Idealfall 24 Stunden am Tag und 7 Tage die Woche leicht erreichbar und können sofort antworten. 
+Besonders in Zeiten während und nach der Covid-19-Pandemie und immer mehr remote work, in denen direkte Kontakte mit Studierenden und Professoren oft eingeschränkt werden müssen und es digitale Veranstaltungen ohne örtliche Präsenz gibt, ist solch ein Werkzeug sehr hilfreich.
+
 \section{Grundlagen}
 
 \subsection{SNIK}
@@ -134,13 +155,11 @@ So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Rel
   \begin{itemize}
     \item Die Methodologie dort an sich ist wohl sehr komplex, muss ich wohl auch einen Paragraphen oder so zu schreiben
     \item Paar Ergebnisse, die ich gefunden habe:
-    \begin{itemize}
-      \item \url{https://towardsdatascience.com/how-do-you-know-you-have-enough-training-data-ad9b1fd679ee}
-      \item \url{https://towardsdatascience.com/predicting-the-effect-of-more-training-data-by-using-less-c3dde2f9ae48}
-      \item \url{https://www.researchgate.net/publication/319272101\_Bootstrapping_the_Out-of-sample\_Predictions\_for\_Efficient\_and\_Accurate\_Cross-Validation}
-      \item \url{https://www.researchgate.net/post/What\_should\_be\_Optimal\_size\_of\_training\_data}
-      \item \url{https://machinelearningmastery.com/much-training-data-required-machine-learning/}
-    \end{itemize}
+    %  \item \url{https://towardsdatascience.com/how-do-you-know-you-have-enough-training-data-ad9b1fd679ee}
+    %  \item \url{https://towardsdatascience.com/predicting-the-effect-of-more-training-data-by-using-less-c3dde2f9ae48}
+    %  \item \url{https://www.researchgate.net/publication/319272101\_Bootstrapping_the_Out-of-sample\_Predictions\_for\_Efficient\_and\_Accurate\_Cross-Validation}
+    %  \item \url{https://www.researchgate.net/post/What\_should\_be\_Optimal\_size\_of\_training\_data}
+    %  \item \url{https://machinelearningmastery.com/much-training-data-required-machine-learning/}
     \item Es gibt anscheinend keinen richtigen Namen für den Graphen, würde es also Performance in Abhängigkeit der Datenmenge oder so nennen
     \item Lernkurve ist anscheinend Performance in Abhängigkeit von Zeit, und darauf haben wir nur indirekt und nicht wirklich Einfluss
     \item Die Form scheint recht normal zu sein, also dass das erst recht steil ansteigt und dann einen Grenzwert hat (sieht fast schon wie eine Wurzelfunktion aus bei uns, oder?)
