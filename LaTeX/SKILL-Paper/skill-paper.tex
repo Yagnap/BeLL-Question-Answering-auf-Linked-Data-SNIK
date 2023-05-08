@@ -3,8 +3,9 @@
 
 %% Dies gibt Warnungen aus, sollten veraltete LaTeX-Befehle verwendet werden
 \RequirePackage[l2tabu, orthodox]{nag}
-
 \documentclass[utf8,biblatex]{lni}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % T2A for cyrillics
 \bibliography{../Dokumentation/Bibliography, ../Dokumentation/snik}
 
 %% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
@@ -18,18 +19,18 @@
 \usepackage{acronym}
 
 % Listings
-
-\lstdefinelanguage{SPARQl}{
+\definecolor{olivegreen}{rgb}{0.2,0.8,0.5}
+\lstdefinelanguage{SPARQL}{
   language=SQL,
   morekeywords={PREFIX, a, CONSTRUCT},
   sensitive=true,
   % DISABLE FOR PRINTING
-  morecomment=[l][\color{OliveGreen}]{\#},
-  morestring=[b][\color{Orange}]\",
+  morecomment=[l][\color{olivegreen}]{\#},
+  morestring=[b][\color{orange}]\",
   % ENABLE FOR PRINTING
-  %morecomment=[l][\color{Black}]{\#},
-  %morestring=[b][\color{Black}]\",
-  %keywordstyle=\color{Black}
+  %morecomment=[l][\color{black}]{\#},
+  %morestring=[b][\color{black}]\",
+  %keywordstyle=\color{black}
 }
 
 %% BibLaTeX-Sonderkonfiguration,
@@ -360,7 +361,7 @@ Insgesamt gibt es 36 Lehrbuchfragen und zugehörige Antworten.
 Da diese Fragen a) sehr kompliziert gestellt und b) viel zu wenige sind, werden aus dem Datenbestand der Teilontologie auch Fragen nach dem Schema \emph{Subjekt bzw. Objekt - Prädikat - Objekt bzw. Subjekt} gestellt.
 Folgende Abfragen ergeben 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt, also insgesamt 995 weitere Fragen, mit denen das Training beginnen kann.
 \begin{lstlisting}[language=SPARQL]
-# SPARQL-Abfrage für Fragen nach dem Objekt
+# SPARQL-Abfrage Fragen nach dem Objekt
 SELECT DISTINCT CONCAT(
     "What ", REPLACE(REPLACE(REPLACE(
     STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
@@ -382,7 +383,7 @@ FROM sniko:bb
 ORDER BY RAND()
 \end{lstlisting}
 \begin{lstlisting}[language=SPARQL]
-  # SPARQL-Abfrage für Fragen nach dem Subjekt
+  # SPARQL-Abfrage Fragen nach dem Subjekt
   SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
           CONCAT("What ",?pl, " ", ?ol, "?"),
           "What is responsible", "Who is responsible"),
@@ -405,7 +406,7 @@ ORDER BY RAND()
   \end{lstlisting}
 
   \begin{lstlisting}[language=SPARQL]
-    # SPARQL-Abfrage für Fragen nach dem Objekt
+    # SPARQL-Abfrage Fragen nach dem Objekt
     SELECT DISTINCT CONCAT(
         "What ", REPLACE(REPLACE(REPLACE(
         STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
