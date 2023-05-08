@@ -17,6 +17,21 @@
 %% Akronyme
 \usepackage{acronym}
 
+% Listings
+
+\lstdefinelanguage{SPARQl}{
+  language=SQL,
+  morekeywords={PREFIX, a, CONSTRUCT},
+  sensitive=true,
+  % DISABLE FOR PRINTING
+  morecomment=[l][\color{OliveGreen}]{\#},
+  morestring=[b][\color{Orange}]\",
+  % ENABLE FOR PRINTING
+  %morecomment=[l][\color{Black}]{\#},
+  %morestring=[b][\color{Black}]\",
+  %keywordstyle=\color{Black}
+}
+
 %% BibLaTeX-Sonderkonfiguration,
 %% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
 %% Bitte \iffalse und \fi entfernen, dann ist diese Konfiguration aktiviert.
@@ -69,7 +84,7 @@ Als Kandidat wird QAnswer vorgeschlagen.
 \end{abstract}
 
 \begin{keywords}
-Semantic Web \and Question Answering \and Knowledge Graph Question Answering \and Closed Domain Question Answering \and SNIK
+Semantic Web \and Question Answering \and Knowledge Graph Question Answering \and Closed Domain Question Answering \and SNIK \and QAnswer
 \end{keywords}
 
 %\input{Acronym.tex}
@@ -94,7 +109,7 @@ Obwohl ein Ansatz für die Lösung dieses Problems besteht, Question Answering (
 Die Implementierung eines QA-Systems mit adäquater Qualität der Antworten ist wesentlich aufwändiger~\citep[S.~3]{qanswer}, als es in einem angemessenem Zeitraum bei stark beschränkten Mitteln möglich ist.
 
 Das Wissen zum Informationsmanagement im Krankenhaus ist komplex und oft nur schwer greifbar.
-Es liegt in Form von Lehrbüchern, aber auch in \acs{snik} vor.
+Es liegt in Form von Lehrbüchern, aber auch in SNIK vor.
 
 Studierende haben selten Zeit, sich ganze Kapitel oder gar Bücher durchzulesen, verfügen jedoch auch nicht über die Kenntnisse SNIK effektiv zu verwenden.
 Als Folge müssen sie bei Fragen oft ihren Professor oder andere Studierende hinzuziehen.
@@ -123,14 +138,6 @@ Von den drei Klassen \emph{Role}, \emph{EntityType} und \emph{Function} stammen 
 Sie beschreiben Personen, Prozesse und Informationen im Krankenhaus.
 Alle in der Ontologie vorhandenen Prädikate sind in der Metaontologie definiert.
 So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Relation gesetzt und die Beziehungen zwischen Ressourcen in den einzelnen Teilontologien dargestellt.
-
-\begin{itemize}
-%  \item SNIK Metamodell --> Snik ist Ontologie und Wissensbasis in einem, besteht aus Metaontologie und Ontologie, weil Klassen weil Lehrbücher abstraktes Wissen, reden nicht über spezielle Krankenhäuser; Nutzung in QA mittels Verwendung als Wissensbasis und Klassen als Individuen
-  \item kurz über QA schreiben, viele Verweise auf QALD etc.
-  \item nach neueren Quellen gucken!
-  \item Portabilität etc. 
-  \item Angeguckte Systeme ein Satz pro System (kleines bisschen mehr über QAnswer KG)
-\end{itemize}
 
 \subsection{Question Answering}
 
@@ -175,16 +182,250 @@ So besteht beispielsweise die Frage \enquote{Wofür sind die Leiterin des Inform
 Die Frage kann also mehrere Intentionen gleichzeitig verfolgen.
 Teilfragen können sowohl komplexe als auch simple Fragen sein.
 
+Question Answering wird momentan zumeist in drei Schritten betrieben \cite{ckbqasurvey, muheqa}.
+Zuerst wird die Frage analysiert, dann die Informationen herausgelesen und am Ende eine Antwort ausgewählt und ausgegeben.
+Fragen werden auf ihre semantische oder syntaktische Struktur untersucht, etwa durch Part of Speech (PoS)-Tagging.
+Dann werden gegebenenfalls Artikel o.ä. aus der weiteren Betrachtung ausgeschlossen, da sie semantisch keine weitere Bedeutung bringen.
+Die verbleibenden Satzteile müssen nun mit den Labels oder anderen Informationen der Wissensbasis oder Ontologie abgeglichen werden, um die korrespondierenden Ressourcen zu finden.
+Daraus wird meistens eine SPARQL-Abfrage mittels entweder vorgefertigter Vorlagen oder automatisch generierter Muster erzeugt.
+
 \subsection{QA-Systeme}
 
-\section{Anpasssung von QAnswer KG an SNIK}
-\begin{itemize}
-  \item Konfiguration: Stopwords, Lexikalisierungen etc.
-  \item Verwendung von ausschließlich BB begründen
-  \item Materialisierungen und Notwendigkeit derer beschreiben
-\end{itemize}
+Das QA-Leaderboard \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
+dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des KGQA eine vereinheitliche Liste mit verfügbaren QA-Systemen zu geben.
+Hier werden Fragenkataloge wie QALD-9 als Benchmarks auf die verschiedenen KGQA-Systeme angewendet und die Ergebnisse aufgezeichnet.
+Des Weiteren sind die 123 Systeme in einer Liste mit dem Namen des Systems, einer Beschreibung und Links zu dem originalen Paper und einer Demonstration,
+REST-API oder dem GitHub-Projekt, falls diese öffentlich verfügbar existieren, ausgestattet.
+Mithilfe dieses Projektes konnten mehrere Kandidaten für das Question Answering auf SNIK ausgewählt werden.
+
+Das System gAnswer \cite{ganswer2} spaltet Fragen in Syntaxbäume auf und vergleicht später Subgraphen der möglichen Antworten, jedoch kommt es bei der komplexen Vorbereitung der Daten immer wieder zu Fehlern.
+DeepPavlov \cite{deeppavlov} ist ein hochmodulares, hochflexibles System mit der Oberfläche eines Chatbots, leider aber nur für ODQA und deshalb nicht weiter nützlich für dieses Problem.
+TeBaQA \cite{tebaqa} analysiert die Struktur einer Frage und versucht, sie einer Vorlage zuzuordnen, wodurch dann die SPARQL-Abfrage erstellt wird.
+Auch hier gibt es nicht behebbare Probleme bei der Einrichtung des Systems für SNIK.
+Betrachtet wird außerdem AskNow QA \cite{asknow}, welches mittels PoS-Tagging versucht, eine \emph{normalisierte Fragenstruktur} herzustellen und darüber eine SPARQL-Abfrage zu generieren.
+Aufgrund des Entity Linkings kann allerdings momentan nur DBpedia verwendet werden.
+
+Insbesondere wird hier QAnswer KG \cite{qanswer} verwendet.
+Dieses will vor allem die Verfügbarkeit von Question Answering für eigene Datensätze erhöhen,
+also das Problem der fehlenden Portabilität lösen.
+Viele andere QA-Systeme fokussieren sich auf große Wissensbasen wie DBpedia und WikiData \cite{qald9plus},
+welche große Mengen an Daten zur Verfügung stellen.
+Bei kleineren Datenmengen gibt es aber das Problem, das häufig zu wenige Trainingsdaten zur Verfügung stehen, als dass man ein Modell von Grund auf trainieren kann.
+Deshalb verwendet QAnswer Modelle, welche schon vorher viel auf normale Texte trainiert wurden und nun mittels Nutzerfragen gefinetuned wird.
+
+QAnswer erstellt alle für die gegebene Frage möglichen N-Gramme, nachdem die sogenannten \emph{stop words}, eine vorgefertigte Liste an z.B. Artikeln, entfernt wurden.
+Diese N-Gramme versucht es dann auf mögliche Repräsentationen im Datensatz mittels Labels zu matchen.
+Daraus werden viele mögliche SPARQL-Abfragen kreiert, welche anhand bestimmter Kriterien einen \emph{Confidence}-Wert zwischen $0\%$ und $100\%$ erhalten.
+Die SPARQL-Abfrage mit dem höchsten Wert wird ausgewählt, ist er größer als $50\%$ gilt die Antwort als richtig, sonst wird keine ausgegeben.
+
+\section{Anpassung von QAnswer KG an SNIK}
+
+Beim Einrichten der Umgebung wurde die Sprache auf Englisch gestellt, da in dieser auch die Fragen beantwortet werden sollen.
+
+QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete SPARQL-Abfrage dar.
+Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
+\texttt{meta:isResponsibleForEntityType}, \texttt{meta:isResponsibleForFunction} und \texttt{meta:isResponsibleForRole} gemeint sein könnten.
+Der Ansatz für die Lösung dieses Problems ist es, das System alle drei ausführen zu lassen, oder ihm das zumindest zu ermöglichen.
+Dies kann zum Beispiel über Property Paths realisiert werden.
+In diesem Fall erlauben Property Paths dem Prädikat, in der Abfrage verschiedene Ressourcen darstellen zu können.
+Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
+Statt allein \texttt{meta:isResponsibleForEntityType} steht durch die Nutzung von Property Paths nun \texttt{\texttt{meta:isResponsibleForRole} | \texttt{meta:isResponsibleForFunction} | \texttt{meta:isResponsibleForEntityType}} dort.
+Die ganze Abfrage sieht unter Verwendung von Property Paths wie folgt aus:
+\begin{lstlisting}[language=SPARQL]
+  SELECT ?o
+  WHERE {
+    bb:ChiefInformationOfficer (meta:isResponsibleForRole | meta:isResponsibleForFunction | meta:isResponsibleForEntityType) ?o .
+  }
+\end{lstlisting}
+
+Jedoch kann QAnswer keine Property Paths austellen, weshalb diese Option zur Lösung des Ambiguitätsproblems wegfällt.
+
+Eine andere Möglichkeit, die obige Frage mittels einer SPARQL-Abfrage zu beantworten, ist mittels der \texttt{rdfs:subPropertyOf}-Beziehung:
+\begin{lstlisting}[language=SPARQL]
+  SELECT ?o
+  WHERE {
+    bb:ChiefInformationOfficer ?p ?o .
+    ?p rdfs:subPropertyOf* meta:isResponsibleFor .
+  }
+\end{lstlisting}
+
+Diese regelt die Hierarchie von Properties.
+So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \texttt{meta:subPropertyOf}.
+
+Dabei wichtig ist, dass hier \texttt{*} statt \texttt{+} oder gar nichts nach \texttt{rdfs:subPropertyOf} steht, falls \texttt{meta:isResponsibleFor} selbst genutzt wird,
+und nicht nur die untergeordneten Properties.
+Diese Zeichen geben wieder einen Property Path an, der von QAnswer wieder nicht gelöst werden kann.
+
+Deshalb mussten vor dem Training die \texttt{rdfs:subPropertyOf}+-Beziehung materialisiert werden,
+das heißt es wurden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
+
+Das ist mit dieser SPARQL-Abfrage möglich:
+\begin{lstlisting}[language=SPARQL]
+  CONSTRUCT {?s ?p ?o}
+  FROM sniko:meta
+  FROM sniko:bb
+  WHERE {
+    ?s ?pp ?o .
+    ?pp rdfs:subPropertyOf+ ?p . 
+  }
+\end{lstlisting}
+
+Es werden erst alle Tripel gefunden, die ausschließlich aus den Teilontologien \texttt{meta} und \texttt{bb} bestehen, da dies den Umfang dieser Arbeit beschreibt.
+Somit werden auch nur Prädikate aus \texttt{meta} betrachtet, nicht aber \texttt{rdfs} oder anderen.
+Danach werden alle Subproperties des Prädikats aus dem ersten Tripel ausgewählt.
+Mittels \texttt{CONSTRUCT} werden die ausgewählten Prädikate anstelle dem anderen Property eingesetzt.
+Diese Tripel werden dann manuell den RDF-Daten hinzugefügt\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/qanswerset.nt}}
+
+Zusätzlich werden auch die \texttt{rdfs:subClassOf}+-Beziehungen materialisiert.
+Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
+
+Das kann mittels der folgenden Abfrage bewerkstelligt werden:
+%\todo{das ist noch die alte Abfrage, die neue ist die mit ?s rdfs:subClassOf ?oo und ?s rdfs:subClassOf ?o.}
+\begin{lstlisting}[language=SPARQL]
+  CONSTRUCT {?s ?p ?oo}
+  FROM sniko:meta
+  FROM sniko:bb
+  WHERE {
+    ?s ?p ?o . 
+    FILTER(?oo!=owl:Thing && ?oo!=meta:Top) .
+    FILTER(STRSTARTS(STR(?oo),"http://www.snik.eu/ontology/bb")) .
+    ?o rdfs:subClassOf+ ?oo .
+  }
+\end{lstlisting}
+
+Beide dieser SPARQL-Abfragen wurden vom Betreuer bereitgestellt.
+Durch die Materialisierung kann beispielsweise für die Frage \texttt{8/6}, \enquote{How can quality of HIS be evaluated?},
+die Klasse \texttt{bb:CaseStudy} gefunden werden (siehe \cref{sub:antwortentextbuch}), obwohl diese eine direkte Subklasse von \texttt{bb:QualitativeEvaluationMethod} ist,
+welche wiederum eine direkte Subklasse von \texttt{bb:EvaluationMethod} ist, welche in der in \cref{sub:sparqltextbuchfragen} sichtbaren Abfrage gesucht wird.
+Für die Wissensbasis mit den unmaterialisierten transitiven Subklassenbeziehungen sieht die Abfrage so aus:
+\begin{lstlisting}[language=SPARQL]
+  SELECT DISTINCT ?s
+  WHERE
+    { ?s rdfs:subClassOf+ bb:EvaluationMethod . }
+\end{lstlisting}
+
+Nach der Materialisierung kann das \texttt{+} entfernt werden, wodurch folgende Abfrage ausreicht:
+\begin{lstlisting}[language=SPARQL]
+  SELECT DISTINCT ?s
+  WHERE
+    { ?s rdfs:subClassOf bb:EvaluationMethod . }
+\end{lstlisting}
+
+Die erste Abfrage kann nicht durch QAnswer generiert werden, die zweite jedoch schon.
+
+Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \texttt{bb:ChiefInformationOfficer}.
+Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
+Die Präzision der Ergebnisse ohne jegliches fine-tuning ist aber trotzdem erstaunlich.
+
+Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
+Somit konnte erahnt werden, warum es das macht, was es macht.
+
+Mit der Konfiguration an sich konnten schon viele Fehler behoben werden.
+So gibt es eine Liste von \enquote{stop words}, welche nicht betrachtet werden.
+Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
+Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
+Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
+besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
+Entfernt wurden auch \texttt{define} und \texttt{describe}.
+
+Aus den \emph{Hidden Properties} wurde \texttt{rdfs:subClassOf} hinzugefügt.
+Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem gemeint werden können.
+Es wurde \texttt{skos:altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
+Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{skos:definition}
+und \texttt{rdfs:comment} als Beschreibung hinzugefügt wurden.
+Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wurde, wenn die zu definierende Ressource richtig erkannt wurde.
+
+Es gibt auch die Möglichkeit, direkt Wörter als Aliase für URIs zu nutzen.
+Bei den \emph{Property Mapping} können URIs und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
+Dies wurde hier für \enquote{phases} und \enquote{methods} bei \texttt{meta:updates} sowie \enquote{tasks} und \texttt{meta:functionComponent} gemacht.
+Für \texttt{meta:entityTypeComponent} wurde \enquote{facets} hinzugefügt.
+Notwendig war es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen wüsste das Programm nicht, wofür die Ressourcen stehen.
+Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels, mithilfe deren QAnswer auf die Ressource als Teil der Antwort schließen kann.
+Für diese stehen die Lexikalisierungen zur Verfügung.
 
 \section{Benchmark}
+
+Die Performance des Systems soll anhand eines Benchmarks aus Frage-Antwort-Paaren untersucht werden.
+Die Frage liegt hierbei in natürlicher Sprache, die Antwort als SPARQL-Abfrage vor.
+100 Fragen sollen als Testdatensatz, der immer wieder abgefragt wird, dienen,
+alle anderen Fragen sollen in Schritten von 10 Fragen QAnswer trainieren und somit die Abhängigkeit von den Indikatoren \emph{Präzision}, \emph{Recall} und \emph{F-Maß} zur Anzahl der Fragen geben.
+
+Das Lehrbuch selbst \cite{bb} enthält am Ende vn Kapiteln bereits Fragen, welche dasGelernte zusammenfassen sollen.
+Ausgehend von \cite{arneba} wurden die Fragen anhand ihrer Eignung für das Training klassifiziert.
+Es wurden nur Fragen in Betracht gezogen, die Anforderungsbereich 1 entsprechen, also Fakten wiedergeben sollen und nicht z.B. zusammenfassen.
+Nicht alle Fragen haben Antworten in der Ontologie, diese wurden auch herausgefiltert.
+Der Rest wurde in SPARQL-Abfragen umgewandelt.
+Insgesamt gibt es 36 Lehrbuchfragen und zugehörige Antworten.
+
+Da diese Fragen a) sehr kompliziert gestellt und b) viel zu wenige sind, werden aus dem Datenbestand der Teilontologie auch Fragen nach dem Schema \emph{Subjekt bzw. Objekt - Prädikat - Objekt bzw. Subjekt} gestellt.
+Folgende Abfragen ergeben 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt, also insgesamt 995 weitere Fragen, mit denen das Training beginnen kann.
+\begin{lstlisting}[language=SPARQL]
+# SPARQL-Abfrage für Fragen nach dem Objekt
+SELECT DISTINCT CONCAT(
+    "What ", REPLACE(REPLACE(REPLACE(
+    STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
+    "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")),
+    "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))),
+    "?") as ?question,
+CONCAT ("SELECT DISTINCT ?o WHERE { <", STR(?s), "> <", STR(?p), "> ?o. }") as ?sparql
+FROM sniko:meta
+FROM sniko:bb
+{
+ ?s ?p ?o.
+ ?p rdfs:domain [rdfs:subClassOf meta:Top].
+ ?p rdfs:range [rdfs:subClassOf meta:Top].
+ ?s a [rdfs:subClassOf meta:Top].
+ ?o a [rdfs:subClassOf meta:Top].
+ ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
+ ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
+}
+ORDER BY RAND()
+\end{lstlisting}
+\begin{lstlisting}[language=SPARQL]
+  # SPARQL-Abfrage für Fragen nach dem Subjekt
+  SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
+          CONCAT("What ",?pl, " ", ?ol, "?"),
+          "What is responsible", "Who is responsible"),
+          "What approves", "Who approves"),
+          "What is involved", "Who is involved"),
+          "What .* component", "What has the component") as ?question,
+  CONCAT("SELECT DISTINCT ?s WHERE { ?s <", STR(?p), "> <", STR(?o), ">. }") as ?sparql
+  FROM sniko:meta
+  FROM sniko:bb
+  {
+   ?s ?p ?o.
+   ?p rdfs:domain [rdfs:subClassOf meta:Top].
+   ?p rdfs:range [rdfs:subClassOf meta:Top].
+   ?s a [rdfs:subClassOf meta:Top].
+   ?o a [rdfs:subClassOf meta:Top].
+   ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
+   ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
+  }
+  ORDER BY RAND()
+  \end{lstlisting}
+
+  \begin{lstlisting}[language=SPARQL]
+    # SPARQL-Abfrage für Fragen nach dem Objekt
+    SELECT DISTINCT CONCAT(
+        "What ", REPLACE(REPLACE(REPLACE(
+        STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
+        "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")),
+        "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))),
+        "?") as ?question,
+    CONCAT ("SELECT DISTINCT ?o WHERE { <", STR(?s), "> <", STR(?p), "> ?o. }") as ?sparql
+    FROM sniko:meta
+    FROM sniko:bb
+    {
+     ?s ?p ?o.
+     ?p rdfs:domain [rdfs:subClassOf meta:Top].
+     ?p rdfs:range [rdfs:subClassOf meta:Top].
+     ?s a [rdfs:subClassOf meta:Top].
+     ?o a [rdfs:subClassOf meta:Top].
+     ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
+     ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
+    }
+    ORDER BY RAND()
+    \end{lstlisting}
 
 \section{Ergebnisse}
 
