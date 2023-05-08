@@ -69,7 +69,7 @@ Als Kandidat wird QAnswer vorgeschlagen.
 \end{abstract}
 
 \begin{keywords}
-Semantic Web \and Question Answering \and KBQA \and KGQA \and ODQA \and NLP
+Semantic Web \and Question Answering \and Knowledge Graph Question Answering \and Closed Domain Question Answering \and SNIK
 \end{keywords}
 
 %\input{Acronym.tex}
@@ -82,13 +82,36 @@ Sie behandelt Wissen über Krankenhausinformationssysteme und deren Management.
 Dieses wurde aus drei Lehrbüchern \cite{bb,ob,he} und einem Interview \cite{ciosurvey} manuell extrahiert und in RDF modelliert.
 
 \section{Grundlagen}
+
+\subsection{SNIK}
+
+Die in RDF modellierten Quellen SNIKs werden alle in je einer Ontologie abgebildet.
+Teilontologien werden mittels der Metaontologie modelliert und miteinander verbunden.
+Deshalb ist SNIK sowohl eine Wissensbasis als auch Ontologie:
+Es werden zwar keine einzelnen Krankenhäuser abgebildet, aber das Wissen aus verschiedenen Lehrbüchern, die im allgemeinen davon handeln.
+Es gibt also mehrere Abstraktionsebenen.
+Dadurch ist SNIK eine Ontologie mit Charakteristiken einer Wissensbasis.
+Es werden zwar keine wirklichen Individuen abgebildet
+- das Wissen liegt immer noch abstrakt aus Lehrbüchern vor, keine speziellen Krankenhäuser und ihre bestimmten Elemente werden betrachtet -
+jedoch gibt die Metaontologie allem eine einer Wissensbasis ähnliche Struktur.
+
+\includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}\label{fig:snik-metamodel}
+
+In \cref{fig:snik-metamodel} ist die Metaontologie dargestellt.
+Von den drei Klassen \emph{Role}, \emph{EntityType} und \emph{Function} stammen alle anderen Klassen der Teilontologien ab.
+Sie beschreiben Personen, Prozesse und Informationen im Krankenhaus.
+Alle in der Ontologie vorhandenen Prädikate sind in der Metaontologie definiert.
+So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Relation gesetzt und die Beziehungen zwischen Ressourcen in den einzelnen Teilontologien dargestellt.
+
 \begin{itemize}
-  \item SNIK Metamodell --> Snik ist Ontologie und Wissensbasis in einem, besteht aus Metaontologie und Ontologie, weil Klassen weil Lehrbücher abstraktes Wissen, reden nicht über spezielle Krankenhäuser; Nutzung in QA mittels Verwendung als Wissensbasis und Klassen als Individuen
+%  \item SNIK Metamodell --> Snik ist Ontologie und Wissensbasis in einem, besteht aus Metaontologie und Ontologie, weil Klassen weil Lehrbücher abstraktes Wissen, reden nicht über spezielle Krankenhäuser; Nutzung in QA mittels Verwendung als Wissensbasis und Klassen als Individuen
   \item kurz über QA schreiben, viele Verweise auf QALD etc.
   \item nach neueren Quellen gucken!
   \item Portabilität etc. 
   \item Angeguckte Systeme ein Satz pro System (kleines bisschen mehr über QAnswer KG)
 \end{itemize}
+
+\subsection{Question Answering}
 
 \section{Anpasssung von QAnswer KG an SNIK}
 \begin{itemize}
