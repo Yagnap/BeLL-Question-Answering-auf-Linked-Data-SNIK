@@ -134,6 +134,49 @@ So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Rel
 
 \subsection{Question Answering}
 
+QA behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
+Ein QA-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
+Die Fragen sind in natürlicher Sprache gestellt, es wird Natural Language Processing (NLP) benötigt, um sie zu verarbeiten.
+
+Es existiert sowohl Closed Domain Question Answering (CDQA) als auch Open Domain Question Answering (ODQA).
+Hier wird sich jedoch auf CDQA beschränkt, mit der durch SNIK gegebenen Domäne der Medizininformatik.
+Solche QA-Programme beschränken sich auf einen Fachbereich.
+
+Semantic Question Answering (SQA), oder auch Knowledge Base Question Answering (KBQA) bzw. KGQA, ist die Beantwortung von Fragen, die RDF-Daten in natürlicher Sprache gestellt werden.
+Ein Programm für SQA erkennt verschiedene semantische Strukturen in der Frage,
+zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
+Dafür wird NLP verwendet.
+
+Fragen werden zudem anhand ihrer Komplexität in simple und komplexe Fragen unterschieden.
+Die Komplexität einer Frage leitet sich daraus ab, wie viele Schritte zum Erreichen der Antwort nötig sind.
+Bei der Formulierung einer SPARQL-Abfrage zum Erhalten der Antwort lässt sich das gut erkennen.
+Es ist zum Beispiel wichtig, wie viele Tripel zur Verknüpfung der Frage mit der Antwort gebraucht, oder ob Filter oder ähnliches verwendet werden.
+
+So ist beispielsweise die Frage \enquote{Wer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
+da hier nur die Beziehung zwischen \texttt{bb:AnnualITBudget} und den jeweiligen Antworten benötigt werden.
+Die Frage \enquote{Welche Aufgaben hat die Person, welche auch für das jährliche IT-Budget verantwortlich ist?} könnte schon als komplex gelten,
+da hier zwei oder drei Tripel für die eigentliche SPARQL-Abfrage benötigt werden:
+Eines, um herauszufinden, wer alles für das jährliche IT-Budget verantwortlich ist;
+eines, um ggf. zu fordern, dass es sich bei der Ressource aus dem ersten Tripel um eine Person handelt;
+und eines, um letztendlich die eigentliche Intention der Frage, die Aufgaben dieser Person, auszugeben.
+
+Eine einfache Frage ist eine Frage mit einer eindeutigen Intention, aus der eine oder mehrere Antworten erreicht werden können.
+Es werden genau zwei Elemente eines Tripels, also zum Beispiel Subjekt und Prädikat, gegeben.
+In ihr gibt es keine Ein- oder Beschränkungen oder Verzweigungen des Graphen.
+Im Englischen wird eine solche Frage auch \emph{single-hop} genannt.
+
+Eine komplexe Frage hat auch, wie eine einfache Frage, eine eindeutige Intention, es gibt aber mehr Eingaben als nur zwei Elemente des Tripels.
+Es können komplexere Graphen entstehen, Verzweigungen und Einschränkungen können existieren.
+Solche Fragen werden auch als \emph{multi-hop} bezeichnet.
+
+Eine zusammengesetzte Frage besteht aus einer oder mehreren Teilfragen, welche miteinander verbunden sind.
+So besteht beispielsweise die Frage \enquote{Wofür sind die Leiterin des Informationsmanagements und der Projektleiter jeweils verantwortlich?} aus den Teilfragen
+\enquote{Wofür ist die Leiterin des Informationsmanagements verantwortlich?} und \enquote{Wofür ist der Projektleiter verantwortlich?}.
+Die Frage kann also mehrere Intentionen gleichzeitig verfolgen.
+Teilfragen können sowohl komplexe als auch simple Fragen sein.
+
+\subsection{QA-Systeme}
+
 \section{Anpasssung von QAnswer KG an SNIK}
 \begin{itemize}
   \item Konfiguration: Stopwords, Lexikalisierungen etc.
