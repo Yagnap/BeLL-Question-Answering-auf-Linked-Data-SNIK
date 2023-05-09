@@ -249,75 +249,9 @@ Nicht alle Fragen haben Antworten in der Ontologie, diese wurden auch herausgefi
 Der Rest wurde in SPARQL-Abfragen umgewandelt.
 Insgesamt gibt es 36 Lehrbuchfragen und zugehörige Antworten.
 
-Da diese Fragen a) sehr kompliziert gestellt und b) viel zu wenige sind, werden aus dem Datenbestand der Teilontologie auch Fragen nach dem Schema \emph{Subjekt bzw. Objekt - Prädikat - Objekt bzw. Subjekt} gestellt.
-Folgende Abfragen ergeben 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt, also insgesamt 995 weitere Fragen, mit denen das Training beginnen kann.
-\begin{lstlisting}[language=SPARQL]
-# SPARQL-Abfrage Fragen nach dem Objekt
-SELECT DISTINCT CONCAT(
-    "What ", REPLACE(REPLACE(REPLACE(
-    STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
-    "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")),
-    "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))),
-    "?") as ?question,
-CONCAT ("SELECT DISTINCT ?o WHERE { <", STR(?s), "> <", STR(?p), "> ?o. }") as ?sparql
-FROM sniko:meta
-FROM sniko:bb
-{
- ?s ?p ?o.
- ?p rdfs:domain [rdfs:subClassOf meta:Top].
- ?p rdfs:range [rdfs:subClassOf meta:Top].
- ?s a [rdfs:subClassOf meta:Top].
- ?o a [rdfs:subClassOf meta:Top].
- ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
- ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
-}
-ORDER BY RAND()
-\end{lstlisting}
-\begin{lstlisting}[language=SPARQL]
-  # SPARQL-Abfrage Fragen nach dem Subjekt
-  SELECT DISTINCT REPLACE(REPLACE(REPLACE(REPLACE(
-          CONCAT("What ",?pl, " ", ?ol, "?"),
-          "What is responsible", "Who is responsible"),
-          "What approves", "Who approves"),
-          "What is involved", "Who is involved"),
-          "What .* component", "What has the component") as ?question,
-  CONCAT("SELECT DISTINCT ?s WHERE { ?s <", STR(?p), "> <", STR(?o), ">. }") as ?sparql
-  FROM sniko:meta
-  FROM sniko:bb
-  {
-   ?s ?p ?o.
-   ?p rdfs:domain [rdfs:subClassOf meta:Top].
-   ?p rdfs:range [rdfs:subClassOf meta:Top].
-   ?s a [rdfs:subClassOf meta:Top].
-   ?o a [rdfs:subClassOf meta:Top].
-   ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
-   ?o rdfs:label ?ol. FILTER(langmatches(lang(?ol),"en")).
-  }
-  ORDER BY RAND()
-  \end{lstlisting}
-
-  \begin{lstlisting}[language=SPARQL]
-    # SPARQL-Abfrage Fragen nach dem Objekt
-    SELECT DISTINCT CONCAT(
-        "What ", REPLACE(REPLACE(REPLACE(
-        STR(?pl), ".* component", CONCAT("are components of ", STR(?sl))),
-        "^is ([a-z]* [a-z]*)", CONCAT("is ", STR(?sl), " $1")),
-        "^([a-z]*e)s", CONCAT("is $1d by ", STR(?sl))),
-        "?") as ?question,
-    CONCAT ("SELECT DISTINCT ?o WHERE { <", STR(?s), "> <", STR(?p), "> ?o. }") as ?sparql
-    FROM sniko:meta
-    FROM sniko:bb
-    {
-     ?s ?p ?o.
-     ?p rdfs:domain [rdfs:subClassOf meta:Top].
-     ?p rdfs:range [rdfs:subClassOf meta:Top].
-     ?s a [rdfs:subClassOf meta:Top].
-     ?o a [rdfs:subClassOf meta:Top].
-     ?s rdfs:label ?sl. FILTER(langmatches(lang(?sl),"en")).
-     ?p rdfs:label ?pl. FILTER(langmatches(lang(?pl),"en")).
-    }
-    ORDER BY RAND()
-    \end{lstlisting}
+Da diese Fragen sowohl sehr kompliziert gestellt als auch viel zu wenige sind, werden aus dem Datenbestand der Teilontologie auch Fragen nach dem Schema \emph{Subjekt bzw. Objekt - Prädikat - Objekt bzw. Subjekt} gestellt.
+Diese und die zugehörigen Antworten lassen sich mittels SPARQL-Abfragen automatisch erstellen.
+Daraus entstehen 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt, also insgesamt 995 weitere Frage-Antwort-Paare, mit denen das Training beginnen kann.
 
 \section{Ergebnisse}
 
