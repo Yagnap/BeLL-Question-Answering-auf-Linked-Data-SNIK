@@ -140,56 +140,6 @@ Sie beschreiben Personen, Prozesse und Informationen im Krankenhaus.
 Alle in der Ontologie vorhandenen Prädikate sind in der Metaontologie definiert.
 So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Relation gesetzt und die Beziehungen zwischen Ressourcen in den einzelnen Teilontologien dargestellt.
 
-\subsection{Question Answering}
-
-QA behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
-Ein QA-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
-Die Fragen sind in natürlicher Sprache gestellt, es wird Natural Language Processing (NLP) benötigt, um sie zu verarbeiten.
-
-Es existiert sowohl Closed Domain Question Answering (CDQA) als auch Open Domain Question Answering (ODQA).
-Hier wird sich jedoch auf CDQA beschränkt, mit der durch SNIK gegebenen Domäne der Medizininformatik.
-Solche QA-Programme beschränken sich auf einen Fachbereich.
-
-Semantic Question Answering (SQA), oder auch Knowledge Base Question Answering (KBQA) bzw. KGQA, ist die Beantwortung von Fragen, die RDF-Daten in natürlicher Sprache gestellt werden.
-Ein Programm für SQA erkennt verschiedene semantische Strukturen in der Frage,
-zum Beispiel was für ein Typ die Antwort auf die Frage sein soll, wie etwa eine Zeit oder ein Ort \citep{sqadefinition}.
-Dafür wird NLP verwendet.
-
-Fragen werden zudem anhand ihrer Komplexität in simple und komplexe Fragen unterschieden.
-Die Komplexität einer Frage leitet sich daraus ab, wie viele Schritte zum Erreichen der Antwort nötig sind.
-Bei der Formulierung einer SPARQL-Abfrage zum Erhalten der Antwort lässt sich das gut erkennen.
-Es ist zum Beispiel wichtig, wie viele Tripel zur Verknüpfung der Frage mit der Antwort gebraucht, oder ob Filter oder ähnliches verwendet werden.
-
-So ist beispielsweise die Frage \enquote{Wer ist für das jährliche IT-Budget verantwortlich?} nicht komplex,
-da hier nur die Beziehung zwischen \texttt{bb:AnnualITBudget} und den jeweiligen Antworten benötigt werden.
-Die Frage \enquote{Welche Aufgaben hat die Person, welche auch für das jährliche IT-Budget verantwortlich ist?} könnte schon als komplex gelten,
-da hier zwei oder drei Tripel für die eigentliche SPARQL-Abfrage benötigt werden:
-Eines, um herauszufinden, wer alles für das jährliche IT-Budget verantwortlich ist;
-eines, um ggf. zu fordern, dass es sich bei der Ressource aus dem ersten Tripel um eine Person handelt;
-und eines, um letztendlich die eigentliche Intention der Frage, die Aufgaben dieser Person, auszugeben.
-
-Eine einfache Frage ist eine Frage mit einer eindeutigen Intention, aus der eine oder mehrere Antworten erreicht werden können.
-Es werden genau zwei Elemente eines Tripels, also zum Beispiel Subjekt und Prädikat, gegeben.
-In ihr gibt es keine Ein- oder Beschränkungen oder Verzweigungen des Graphen.
-Im Englischen wird eine solche Frage auch \emph{single-hop} genannt.
-
-Eine komplexe Frage hat auch, wie eine einfache Frage, eine eindeutige Intention, es gibt aber mehr Eingaben als nur zwei Elemente des Tripels.
-Es können komplexere Graphen entstehen, Verzweigungen und Einschränkungen können existieren.
-Solche Fragen werden auch als \emph{multi-hop} bezeichnet.
-
-Eine zusammengesetzte Frage besteht aus einer oder mehreren Teilfragen, welche miteinander verbunden sind.
-So besteht beispielsweise die Frage \enquote{Wofür sind die Leiterin des Informationsmanagements und der Projektleiter jeweils verantwortlich?} aus den Teilfragen
-\enquote{Wofür ist die Leiterin des Informationsmanagements verantwortlich?} und \enquote{Wofür ist der Projektleiter verantwortlich?}.
-Die Frage kann also mehrere Intentionen gleichzeitig verfolgen.
-Teilfragen können sowohl komplexe als auch simple Fragen sein.
-
-Question Answering wird momentan zumeist in drei Schritten betrieben \cite{ckbqasurvey, muheqa}.
-Zuerst wird die Frage analysiert, dann die Informationen herausgelesen und am Ende eine Antwort ausgewählt und ausgegeben.
-Fragen werden auf ihre semantische oder syntaktische Struktur untersucht, etwa durch Part of Speech (PoS)-Tagging.
-Dann werden gegebenenfalls Artikel o.ä. aus der weiteren Betrachtung ausgeschlossen, da sie semantisch keine weitere Bedeutung bringen.
-Die verbleibenden Satzteile müssen nun mit den Labels oder anderen Informationen der Wissensbasis oder Ontologie abgeglichen werden, um die korrespondierenden Ressourcen zu finden.
-Daraus wird meistens eine SPARQL-Abfrage mittels entweder vorgefertigter Vorlagen oder automatisch generierter Muster erzeugt.
-
 \subsection{QA-Systeme}
 
 Das QA-Leaderboard \citep{kgqaleaderboard} hat es sich zur Aufgabe gemacht,
@@ -221,57 +171,27 @@ Die SPARQL-Abfrage mit dem höchsten Wert wird ausgewählt, ist er größer als 
 
 \section{Anpassung von QAnswer KG an SNIK}
 
-Beim Einrichten der Umgebung wurde die Sprache auf Englisch gestellt, da in dieser auch die Fragen beantwortet werden sollen.
+Beim Einrichten der Umgebung wird die Sprache auf Englisch gestellt, da in dieser auch die Fragen gestellt werden.
 
 QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete SPARQL-Abfrage dar.
 Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
-\texttt{meta:isResponsibleForEntityType}, \texttt{meta:isResponsibleForFunction} und \texttt{meta:isResponsibleForRole} gemeint sein könnten.
+\texttt{meta:isResponsibleForEntityType}, \texttt{meta:isResponsibleForFunction} und \texttt{meta:isResponsibleForRole} gemeint sein können.
 Der Ansatz für die Lösung dieses Problems ist es, das System alle drei ausführen zu lassen, oder ihm das zumindest zu ermöglichen.
+
 Dies kann zum Beispiel über Property Paths realisiert werden.
 In diesem Fall erlauben Property Paths dem Prädikat, in der Abfrage verschiedene Ressourcen darstellen zu können.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
-Statt allein \texttt{meta:isResponsibleForEntityType} steht durch die Nutzung von Property Paths nun \texttt{\texttt{meta:isResponsibleForRole} | \texttt{meta:isResponsibleForFunction} | \texttt{meta:isResponsibleForEntityType}} dort.
-Die ganze Abfrage sieht unter Verwendung von Property Paths wie folgt aus:
-\begin{lstlisting}[language=SPARQL]
-  SELECT ?o
-  WHERE {
-    bb:ChiefInformationOfficer (meta:isResponsibleForRole | meta:isResponsibleForFunction | meta:isResponsibleForEntityType) ?o .
-  }
-\end{lstlisting}
+Statt allein \texttt{meta:isResponsibleForEntityType} steht durch die Nutzung von Property Paths nun \texttt{meta:isResponsibleForRole | meta:isResponsibleForFunction | meta:isResponsibleForEntityType} dort.
+Jedoch kann QAnswer keine Property Paths aufstellen, weshalb diese Option zur Lösung des Ambiguitätsproblems wegfällt.
 
-Jedoch kann QAnswer keine Property Paths austellen, weshalb diese Option zur Lösung des Ambiguitätsproblems wegfällt.
-
-Eine andere Möglichkeit, die obige Frage mittels einer SPARQL-Abfrage zu beantworten, ist mittels der \texttt{rdfs:subPropertyOf}-Beziehung:
-\begin{lstlisting}[language=SPARQL]
-  SELECT ?o
-  WHERE {
-    bb:ChiefInformationOfficer ?p ?o .
-    ?p rdfs:subPropertyOf* meta:isResponsibleFor .
-  }
-\end{lstlisting}
-
+Eine andere Möglichkeit, die obige Frage mittels einer SPARQL-Abfrage zu beantworten, ist mittels der \texttt{rdfs:subPropertyOf}-Beziehung.
 Diese regelt die Hierarchie von Properties.
 So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \texttt{meta:subPropertyOf}.
 
-Dabei wichtig ist, dass hier \texttt{*} statt \texttt{+} oder gar nichts nach \texttt{rdfs:subPropertyOf} steht, falls \texttt{meta:isResponsibleFor} selbst genutzt wird,
-und nicht nur die untergeordneten Properties.
-Diese Zeichen geben wieder einen Property Path an, der von QAnswer wieder nicht gelöst werden kann.
+Deshalb müssen vor dem Training die \texttt{rdfs:subPropertyOf}+-Beziehung materialisiert werden.
+Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
 
-Deshalb mussten vor dem Training die \texttt{rdfs:subPropertyOf}+-Beziehung materialisiert werden,
-das heißt es wurden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
-
-Das ist mit dieser SPARQL-Abfrage möglich:
-\begin{lstlisting}[language=SPARQL]
-  CONSTRUCT {?s ?p ?o}
-  FROM sniko:meta
-  FROM sniko:bb
-  WHERE {
-    ?s ?pp ?o .
-    ?pp rdfs:subPropertyOf+ ?p . 
-  }
-\end{lstlisting}
-
-Es werden erst alle Tripel gefunden, die ausschließlich aus den Teilontologien \texttt{meta} und \texttt{bb} bestehen, da dies den Umfang dieser Arbeit beschreibt.
+Es werden erst alle Tripel gefunden, die ausschließlich aus den Teilontologien \texttt{meta} und \texttt{bb} bestehen.
 Somit werden auch nur Prädikate aus \texttt{meta} betrachtet, nicht aber \texttt{rdfs} oder anderen.
 Danach werden alle Subproperties des Prädikats aus dem ersten Tripel ausgewählt.
 Mittels \texttt{CONSTRUCT} werden die ausgewählten Prädikate anstelle dem anderen Property eingesetzt.
@@ -280,68 +200,39 @@ Diese Tripel werden dann manuell den RDF-Daten hinzugefügt\footnote{Verwendete 
 Zusätzlich werden auch die \texttt{rdfs:subClassOf}+-Beziehungen materialisiert.
 Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
 
-Das kann mittels der folgenden Abfrage bewerkstelligt werden:
-%\todo{das ist noch die alte Abfrage, die neue ist die mit ?s rdfs:subClassOf ?oo und ?s rdfs:subClassOf ?o.}
-\begin{lstlisting}[language=SPARQL]
-  CONSTRUCT {?s ?p ?oo}
-  FROM sniko:meta
-  FROM sniko:bb
-  WHERE {
-    ?s ?p ?o . 
-    FILTER(?oo!=owl:Thing && ?oo!=meta:Top) .
-    FILTER(STRSTARTS(STR(?oo),"http://www.snik.eu/ontology/bb")) .
-    ?o rdfs:subClassOf+ ?oo .
-  }
-\end{lstlisting}
-
-Beide dieser SPARQL-Abfragen wurden vom Betreuer bereitgestellt.
 Durch die Materialisierung kann beispielsweise für die Frage \texttt{8/6}, \enquote{How can quality of HIS be evaluated?},
-die Klasse \texttt{bb:CaseStudy} gefunden werden (siehe \cref{sub:antwortentextbuch}), obwohl diese eine direkte Subklasse von \texttt{bb:QualitativeEvaluationMethod} ist,
-welche wiederum eine direkte Subklasse von \texttt{bb:EvaluationMethod} ist, welche in der in \cref{sub:sparqltextbuchfragen} sichtbaren Abfrage gesucht wird.
-Für die Wissensbasis mit den unmaterialisierten transitiven Subklassenbeziehungen sieht die Abfrage so aus:
-\begin{lstlisting}[language=SPARQL]
-  SELECT DISTINCT ?s
-  WHERE
-    { ?s rdfs:subClassOf+ bb:EvaluationMethod . }
-\end{lstlisting}
+die Klasse \texttt{bb:CaseStudy} gefunden werden, obwohl diese eine direkte Subklasse von \texttt{bb:QualitativeEvaluationMethod} ist,
+welche wiederum eine direkte Subklasse von \texttt{bb:EvaluationMethod} ist, welche in der Abfrage gesucht wird.
+Die Abfrage, welche die \texttt{rdfs:subClassOf+}-Beziehung kann nicht durch QAnswer generiert werden, die materialisierte \texttt{rdfs:subClassOf} jedoch schon.
 
-Nach der Materialisierung kann das \texttt{+} entfernt werden, wodurch folgende Abfrage ausreicht:
-\begin{lstlisting}[language=SPARQL]
-  SELECT DISTINCT ?s
-  WHERE
-    { ?s rdfs:subClassOf bb:EvaluationMethod . }
-\end{lstlisting}
-
-Die erste Abfrage kann nicht durch QAnswer generiert werden, die zweite jedoch schon.
-
-Wenn keine Lösung für die Frage gefunden wurde, gab es als Ausgabe meist die Ressource selbst, also zum Beispiel \texttt{bb:ChiefInformationOfficer}.
-Dies kann zwar nützlich, aber auch verwirrend sein und sollte mithilfe von Training verhindert werden.
+Wenn keine Lösung für die Frage gefunden wird, gibt es als Ausgabe meist die Ressource selbst, also zum Beispiel \texttt{bb:ChiefInformationOfficer}.
+Dies kann zwar nützlich, aber auch verwirrend sein und soll mithilfe von Training verhindert werden.
 Die Präzision der Ergebnisse ohne jegliches fine-tuning ist aber trotzdem erstaunlich.
 
-Praktisch für die Lokalisierung der Fehler war die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
-Somit konnte erahnt werden, warum es das macht, was es macht.
+Praktisch für die Lokalisierung der Fehler ist die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
+Somit kann erahnt werden, warum es das macht, was es macht.
 
-Mit der Konfiguration an sich konnten schon viele Fehler behoben werden.
-So gibt es eine Liste von \enquote{stop words}, welche nicht betrachtet werden.
-Unter diesen sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
+Mit der Konfiguration an sich können bereits viele Fehler behoben werden.
+Unter den \emph{stop words} sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
 Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
-Hier musste diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
+Hier muss diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
-Entfernt wurden auch \texttt{define} und \texttt{describe}.
+Entfernt wurden auch \texttt{define} und \texttt{describe}, da auch diese in Labels vorkommen.
 
-Aus den \emph{Hidden Properties} wurde \texttt{rdfs:subClassOf} hinzugefügt.
-Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem gemeint werden können.
+Zu den \emph{Hidden Properties} wurde \texttt{rdfs:subClassOf} hinzugefügt.
+Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem impliziert werden können.
+
 Es wurde \texttt{skos:altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
-Die Mappings mussten auch dahingehend verändert werden, als dass \texttt{skos:definition}
-und \texttt{rdfs:comment} als Beschreibung hinzugefügt wurden.
-Die Definition wurde auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wurde, wenn die zu definierende Ressource richtig erkannt wurde.
+Die Mappings müssen auch dahingehend verändert werden, als dass \texttt{skos:definition}
+und \texttt{rdfs:comment} als Beschreibung hinzugefügt werden.
+Die Definition wird auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wird, wenn die zu definierende Ressource richtig erkannt wurde.
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für URIs zu nutzen.
 Bei den \emph{Property Mapping} können URIs und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
-Dies wurde hier für \enquote{phases} und \enquote{methods} bei \texttt{meta:updates} sowie \enquote{tasks} und \texttt{meta:functionComponent} gemacht.
-Für \texttt{meta:entityTypeComponent} wurde \enquote{facets} hinzugefügt.
-Notwendig war es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen wüsste das Programm nicht, wofür die Ressourcen stehen.
-Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels, mithilfe deren QAnswer auf die Ressource als Teil der Antwort schließen kann.
+Dies wird hier für \enquote{phases} und \enquote{methods} bei \texttt{meta:updates} sowie \enquote{tasks} und \texttt{meta:functionComponent} gemacht.
+Für \texttt{meta:entityTypeComponent} wird \enquote{facets} hinzugefügt.
+Notwendig ist es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen weiß das Programm nicht, wofür die Ressourcen stehen.
+Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels, mithilfe derer QAnswer auf die Ressource als Teil der Antwort schließen kann.
 Für diese stehen die Lexikalisierungen zur Verfügung.
 
 \section{Benchmark}
