@@ -137,8 +137,10 @@ Es werden zwar keine wirklichen Individuen abgebildet
 - das Wissen liegt immer noch abstrakt aus Lehrbüchern vor, keine speziellen Krankenhäuser und ihre bestimmten Elemente werden betrachtet -
 jedoch gibt die Metaontologie allem eine einer Wissensbasis ähnliche Struktur.
 
-\includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}\label{fig:snik-metamodel}
-
+\begin{figure}[h]
+  \includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}\label{fig:snik-metamodel}
+  \caption[SNIK Metamodell Version 8]{Das SNIK Metamodell Version 8. Quelle: \url{https://www.snik.eu/public/SNIK_Metamodell_V8.svg}}
+\end{figure}
 In \cref{fig:snik-metamodel} ist die Metaontologie dargestellt.
 Von den drei Klassen \emph{Role}, \emph{EntityType} und \emph{Function} stammen alle anderen Klassen der Teilontologien ab.
 Sie beschreiben Personen, Prozesse und Informationen im Krankenhaus.
@@ -290,7 +292,7 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           ylabels at = edge left,
           horizontal sep = 2cm,
           vertical sep = 3cm,
-          group size = 2 by 4
+          group size = 2 by 3,
         },
         width = 0.5\linewidth
         ]
@@ -302,6 +304,8 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
           ylabel=F-Maß,
+          label style={font=\scriptsize},
+					xtick distance=200,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
@@ -313,6 +317,8 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
           ylabel=F-Maß,
+          label style={font=\scriptsize},
+					xtick distance=200,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
@@ -324,6 +330,8 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
           ylabel=Präzision,
+          label style={font=\scriptsize},
+					xtick distance=200,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
@@ -335,6 +343,8 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
           ylabel=Präzision,
+          label style={font=\scriptsize},
+					xtick distance=200,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
@@ -346,6 +356,8 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
           ylabel=Recall,
+          label style={font=\scriptsize},
+					xtick distance=200,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
@@ -357,41 +369,71 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
           ylabel=Recall,
+          label style={font=\scriptsize},
+					xtick distance=200,
+          legend style={at={(-0.2,-0.3)},anchor=north}, % Put the legend below the plot
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addlegendentry{Training ohne Lehrbuchfragen}
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        \addlegendentry{Training mit Lehrbuchfragen}
 
-        % Confidence
-        \nextgroupplot[
-          title=Confidence autogenerierte Fragen
-          grid=major, % Display a grid
-          grid style={dashed,gray!30}, % Set the style
-          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
-          ylabel=Confidence-Wert,
-        ]
-        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
-        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
-
-        % Confidence TB
-        \nextgroupplot[
-          title=Confidence Textbuchfragen,
-          grid=major, % Display a grid
-          grid style={dashed,gray!30}, % Set the style
-          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
-          ylabel=Confidence-Wert,
-        ]
-        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
-        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
-        
         \legend{Training ohne Lehrbuchfragen,Training mit Lehrbuchfragen}
     \end{groupplot}
   \end{tikzpicture}
-  \caption{F-Maß, Präzision, Recall und Confidence-Wert von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
+  \caption{F-Maß, Präzision, und Recall von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
+\end{figure}
+
+\begin{figure}
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style = {
+        xlabels at = edge bottom,
+        ylabels at = edge left,
+        horizontal sep = 2cm,
+        vertical sep = 3cm,
+        group size = 2 by 1,
+      },
+      width = 0.5\linewidth
+      ]
+
+      % Confidence
+      \nextgroupplot[
+        title=Confidence autogenerierte Fragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Confidence-Wert,
+        label style={font=\scriptsize},
+        xtick distance=200,
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+
+      % Confidence TB
+      \nextgroupplot[
+        title=Confidence Textbuchfragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Confidence-Wert,
+        label style={font=\scriptsize},
+        xtick distance=200,
+        legend style={at={(-0.2,-0.3)},anchor=north}, % Put the legend below the plot
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+      \addlegendentry{Training ohne Lehrbuchfragen}
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+      \addlegendentry{Training mit Lehrbuchfragen}
+
+    \end{groupplot}
+  \end{tikzpicture}
+  \caption{Confidence-Wert von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
 \end{figure}
 
 An den Daten der automatisch generierten Fragen sieht man, wie groß das F-Maß abhängig von der Fragenanzahl ist.
 Es sind zwei Datensätze dargestellt.
-Der eine wurde andere ausschließlich über die \ac{sparql}-generierten Frage-Antwort-Paare trainiert, beim anderen wurden die Lehrbuchfragen beim Training inkludiert.
+Der eine wurde andere ausschließlich über die SPARQL-generierten Frage-Antwort-Paare trainiert, beim anderen wurden die Lehrbuchfragen beim Training inkludiert.
 Am Anfang, als noch gar keine oder nur sehr wenige Fragen zum Training verwendet wurden, ist das F-Maß eher gering.
 Besonders beim Training mit den Lehrbuchfragen liegt es bei dem Modell ohne Training deutlich unter 30\%.
 Ab 30 Fragen nähert es sich den Werten des Trainings ohne die Lehrbuchfragen an und übersteigt diese bei 40 Fragen erstmals.
@@ -400,7 +442,7 @@ Bei 70 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 90\% 
 Bei 520 bzw. 570 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, Varianz wird viel größer,
 mit Werten zwischen fast 10\% und mehr als 90\%.
 
-Auch die Graphen von Präzision (\cref{plot:genprecision}) und Recall (\cref{plot:genprecision}) bieten ein ähnliches Bild.
+Auch die Graphen von Präzision und Recall bieten ein ähnliches Bild.
 Sie haben auch am Anfang kurz geringere Werte, eine starke, konstante Mitte und danach eine extreme Varianz.
 
 Der Confidence-Wert sieht im Allgemeinen deutlich konstanter aus, an ihm spiegeln sich aber auch einige der beim F-Maß betrachteten Phänomene.
