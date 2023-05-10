@@ -21,6 +21,7 @@
 %% Plots
 \usepackage{tikz}
 \usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 \usepgfplotslibrary{groupplots}
 
 % Listings
@@ -291,7 +292,7 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           xlabels at = edge bottom,
           ylabels at = edge left,
           horizontal sep = 2cm,
-          vertical sep = 3cm,
+          vertical sep = 2cm,
           group size = 2 by 3,
         },
         width = 0.5\linewidth
@@ -306,6 +307,12 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           ylabel=F-Maß,
           label style={font=\scriptsize},
 					xtick distance=200,
+					mark size=0.6,
+          title style={
+            at={(0.5,0.95)}, above, yshift=0,
+          },
+          xmin=0,xmax=895,
+          ymin=0,ymax=1,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
@@ -319,58 +326,88 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
           ylabel=F-Maß,
           label style={font=\scriptsize},
 					xtick distance=200,
+					mark size=0.6,
+          title style={
+            at={(0.5,0.95)}, above, yshift=0,
+          },
+          xmin=0,xmax=895,
+          ymin=0,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
         
         % Precision
         \nextgroupplot[
-          title=Präzision autogenerierte Fragen,
+          title=Genauigkeit autogenerierte Fragen,
           grid=major, % Display a grid
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
-          ylabel=Präzision,
-          label style={font=\scriptsize},
+          ylabel=Genauigkeit,
+					label style={font=\scriptsize},
 					xtick distance=200,
+					mark size=0.6,
+          title style={
+            at={(0.5,0.95)}, above, yshift=0,
+          },
+          xmin=0,xmax=895,
+          ymin=0,ymax=1,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
 
         % Precision TB
         \nextgroupplot[
-          title = Präzision Lehrbuchfragen,
+          title = Genauigkeit Lehrbuchfragen,
           grid=major, % Display a grid
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
-          ylabel=Präzision,
+          ylabel=Genauigkeit,
           label style={font=\scriptsize},
 					xtick distance=200,
+					mark size=0.6,
+          title style={
+            at={(0.5,0.95)}, above, yshift=0,
+          },
+          xmin=0,xmax=895,
+          ymin=0,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
         
         % Recall
         \nextgroupplot[
-          title=Recall autogenerierte Fragen,
+          title=Trefferquote autogenerierte Fragen,
           grid=major, % Display a grid
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
-          ylabel=Recall,
+          ylabel=Trefferquote,
           label style={font=\scriptsize},
 					xtick distance=200,
+					mark size=0.6,
+          title style={
+            at={(0.5,0.95)}, above, yshift=0,
+          },
+          xmin=0,xmax=895,
+          ymin=0,ymax=1,
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
 
         % Recall TB
         \nextgroupplot[
-          title=Recall Textbuchfragen,
+          title=Trefferquote Textbuchfragen,
           grid=major, % Display a grid
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
-          ylabel=Recall,
+          ylabel=Trefferquote,
           label style={font=\scriptsize},
 					xtick distance=200,
+					mark size=0.6,
+          title style={
+            at={(0.5,0.95)}, above, yshift=0,
+          },
+          xmin=0,xmax=895,
+          ymin=0,
           legend style={at={(-0.2,-0.3)},anchor=north}, % Put the legend below the plot
         ]
         \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
@@ -381,7 +418,7 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
         \legend{Training ohne Lehrbuchfragen,Training mit Lehrbuchfragen}
     \end{groupplot}
   \end{tikzpicture}
-  \caption{F-Maß, Präzision, und Recall von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
+  \caption{F-Maß, Genauigkeit, und Trefferquote von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
 \end{figure}
 
 \begin{figure}
@@ -391,7 +428,7 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
         xlabels at = edge bottom,
         ylabels at = edge left,
         horizontal sep = 2cm,
-        vertical sep = 3cm,
+        vertical sep = 2cm,
         group size = 2 by 1,
       },
       width = 0.5\linewidth
@@ -406,6 +443,12 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
         ylabel=Confidence-Wert,
         label style={font=\scriptsize},
         xtick distance=200,
+				mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,ymax=1
       ]
       \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
       \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
@@ -419,6 +462,12 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
         ylabel=Confidence-Wert,
         label style={font=\scriptsize},
         xtick distance=200,
+				mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,
         legend style={at={(-0.2,-0.3)},anchor=north}, % Put the legend below the plot
       ]
       \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
