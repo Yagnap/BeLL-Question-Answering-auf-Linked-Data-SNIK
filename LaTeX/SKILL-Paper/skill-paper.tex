@@ -18,6 +18,11 @@
 %% Akronyme
 \usepackage{acronym}
 
+%% Plots
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+
 % Listings
 \definecolor{olivegreen}{rgb}{0.2,0.8,0.5}
 \lstdefinelanguage{SPARQL}{
@@ -242,6 +247,10 @@ Die Frage liegt hierbei in natürlicher Sprache, die Antwort als SPARQL-Abfrage 
 100 Fragen sollen als Testdatensatz, der immer wieder abgefragt wird, dienen,
 alle anderen Fragen sollen in Schritten von 10 Fragen QAnswer trainieren und somit die Abhängigkeit von den Indikatoren \emph{Präzision}, \emph{Recall} und \emph{F-Maß} zur Anzahl der Fragen geben.
 
+QAnswer kann mittels Nutzerfragen trainiert werden.
+Herausgefunden werden soll der Einfluss der Anzahl der Nutzerfragen auf die Qualität der Antworten und somit das mögliche Finden eines Optimums.
+Weiterhin wird dies einmal mit und einmal ohne Lehrbuchfragen geschehen, da auch der Einfluss von deren erhöhter Schwierigkeit auf die Ergebnisse bestimmt wird.
+
 Das Lehrbuch selbst \cite{bb} enthält am Ende vn Kapiteln bereits Fragen, welche dasGelernte zusammenfassen sollen.
 Ausgehend von \cite{arneba} wurden die Fragen anhand ihrer Eignung für das Training klassifiziert.
 Es wurden nur Fragen in Betracht gezogen, die Anforderungsbereich 1 entsprechen, also Fakten wiedergeben sollen und nicht z.B. zusammenfassen.
@@ -252,32 +261,161 @@ Insgesamt gibt es 36 Lehrbuchfragen und zugehörige Antworten.
 Da diese Fragen sowohl sehr kompliziert gestellt als auch viel zu wenige sind, werden aus dem Datenbestand der Teilontologie auch Fragen nach dem Schema \emph{Subjekt bzw. Objekt - Prädikat - Objekt bzw. Subjekt} gestellt.
 Diese und die zugehörigen Antworten lassen sich mittels SPARQL-Abfragen automatisch erstellen.
 Daraus entstehen 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt, also insgesamt 995 weitere Frage-Antwort-Paare, mit denen das Training beginnen kann.
-
 \section{Ergebnisse}
 
-\begin{itemize}
-  \item Training beschreiben
-  \item hier die Plots mit den Kurven möglichst auf einer Seite darstellen
-  \begin{itemize}
-    \item[$\rightarrow$] Mit groupplots \url{https://tex.stackexchange.com/questions/237213/how-to-add-one-single-legend-entry-for-several-plots}
-  \end{itemize}
-  \item herausfinden wie das offiziell heißt, Lernkurve?
-  \begin{itemize}
-    \item Die Methodologie dort an sich ist wohl sehr komplex, muss ich wohl auch einen Paragraphen oder so zu schreiben
-    \item Paar Ergebnisse, die ich gefunden habe:
-    %  \item \url{https://towardsdatascience.com/how-do-you-know-you-have-enough-training-data-ad9b1fd679ee}
-    %  \item \url{https://towardsdatascience.com/predicting-the-effect-of-more-training-data-by-using-less-c3dde2f9ae48}
-    %  \item \url{https://www.researchgate.net/publication/319272101\_Bootstrapping_the_Out-of-sample\_Predictions\_for\_Efficient\_and\_Accurate\_Cross-Validation}
-    %  \item \url{https://www.researchgate.net/post/What\_should\_be\_Optimal\_size\_of\_training\_data}
-    %  \item \url{https://machinelearningmastery.com/much-training-data-required-machine-learning/}
-    \item Es gibt anscheinend keinen richtigen Namen für den Graphen, würde es also Performance in Abhängigkeit der Datenmenge oder so nennen
-    \item Lernkurve ist anscheinend Performance in Abhängigkeit von Zeit, und darauf haben wir nur indirekt und nicht wirklich Einfluss
-    \item Die Form scheint recht normal zu sein, also dass das erst recht steil ansteigt und dann einen Grenzwert hat (sieht fast schon wie eine Wurzelfunktion aus bei uns, oder?)
-    \item Nur das Ende ist halt komisch, eigentlich scheinen alle zu sagen, dass mehr Daten auch gleich mehr gut sind normalerweise
-    \item Liegt also entweder am Training von QAnswer oder an uns, ich würde im Rahmen vom Paper eventuell zumindest nochmal nach Ursachen zu gucken versuchen?
-  \end{itemize}
-\end{itemize}
+Das Frage-Antwort-Set aus dem Lehrbuch wurde in zwei Hälften geteilt, eine zum Training und eine zum Testen.
+Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 18 im Trainingsdatensatz und 18 im Testdatensatz sind.
 
+Von den automatisch generierten Paaren wurden 100 für das Testen und 895 für das Training genutzt.
+
+Das Training verläuft so ab, dass dem System automatisiert pro Schritt zehn weitere automatisch generierte Paare aus dem Trainingsdatensatz gegeben werden,
+wodurch jede Runde mit zehn zusätzlichen Fragen trainiert wird.
+Der Trainingssatz der Lehrbuchfragen wird in der ersten Runde nicht mit verwendet,
+in der zweiten Runde werden von Anfang an alle Textbuchfragen verwendet.
+
+Dann wird QAnswer mithilfe der API-Methode trainiert.
+Auf das trainierte System wird der Testdatensatz zur Evaluierung angewandt.
+Über eine API-Abfrage wird die Antwort mit dem höchsten Confidence-Wert, eine SPARQL-Abfrage, geholt und auf dem SPARQL-Endpunkt von SNIK ausgeführt.
+Die Antworten der richtigen Lösung wurden schon vorher gespeichert und werden nun mit denen der Abfrage von QAnswer verglichen.
+
+Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paare bleiben jedoch erhalten.
+
+% PLOTS
+\begin{figure}%[h!]
+  \centering
+  \begin{tikzpicture}
+    \begin{groupplot}[
+        group style = {
+          xlabels at = edge bottom,
+          ylabels at = edge left,
+          horizontal sep = 2cm,
+          vertical sep = 3cm,
+          group size = 2 by 4
+        },
+        width = 0.5\linewidth
+        ]
+
+        % F-Score
+        \nextgroupplot[
+          title=F-Maß autogenerierte Fragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=F-Maß,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+
+        % F-Score TB
+        \nextgroupplot[
+          title=F-Maß Lehrbuchfragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=F-Maß,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        
+        % Precision
+        \nextgroupplot[
+          title=Präzision autogenerierte Fragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Präzision,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+
+        % Precision TB
+        \nextgroupplot[
+          title = Präzision Lehrbuchfragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Präzision,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        
+        % Recall
+        \nextgroupplot[
+          title=Recall autogenerierte Fragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Recall,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+
+        % Recall TB
+        \nextgroupplot[
+          title=Recall Textbuchfragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Recall,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+
+        % Confidence
+        \nextgroupplot[
+          title=Confidence autogenerierte Fragen
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Confidence-Wert,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+
+        % Confidence TB
+        \nextgroupplot[
+          title=Confidence Textbuchfragen,
+          grid=major, % Display a grid
+          grid style={dashed,gray!30}, % Set the style
+          xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+          ylabel=Confidence-Wert,
+        ]
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+        \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+        
+        \legend{Training ohne Lehrbuchfragen,Training mit Lehrbuchfragen}
+    \end{groupplot}
+  \end{tikzpicture}
+  \caption{F-Maß, Präzision, Recall und Confidence-Wert von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
+\end{figure}
+
+An den Daten der automatisch generierten Fragen sieht man, wie groß das F-Maß abhängig von der Fragenanzahl ist.
+Es sind zwei Datensätze dargestellt.
+Der eine wurde andere ausschließlich über die \ac{sparql}-generierten Frage-Antwort-Paare trainiert, beim anderen wurden die Lehrbuchfragen beim Training inkludiert.
+Am Anfang, als noch gar keine oder nur sehr wenige Fragen zum Training verwendet wurden, ist das F-Maß eher gering.
+Besonders beim Training mit den Lehrbuchfragen liegt es bei dem Modell ohne Training deutlich unter 30\%.
+Ab 30 Fragen nähert es sich den Werten des Trainings ohne die Lehrbuchfragen an und übersteigt diese bei 40 Fragen erstmals.
+Bei 70 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 90\% ein Maximum und bleibt sehr lange nahezu konstant.
+
+Bei 520 bzw. 570 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, Varianz wird viel größer,
+mit Werten zwischen fast 10\% und mehr als 90\%.
+
+Auch die Graphen von Präzision (\cref{plot:genprecision}) und Recall (\cref{plot:genprecision}) bieten ein ähnliches Bild.
+Sie haben auch am Anfang kurz geringere Werte, eine starke, konstante Mitte und danach eine extreme Varianz.
+
+Der Confidence-Wert sieht im Allgemeinen deutlich konstanter aus, an ihm spiegeln sich aber auch einige der beim F-Maß betrachteten Phänomene.
+Anfangs ist der Wert durchschnittlich etwas geringer als später, aber immer noch fast überall über 50\%.
+Ab etwa 100 Fragen erreicht es ein Niveau zwischen 80\% und 90\%, auf dem es bleibt.
+Ab 510 bzw. 560 Fragen kommt es jedoch zu zu größeren Ausreißern, die teilweise bis auf 11\% heruntergehen.
+
+Die Graphen der Lehrbuchfragen sehen denen der automatisch generierten auf den ersten Blick nicht sehr ähnlich aus,
+es lassen sich aber doch einige Gemeinsamkeiten erkennen.
+Sie sind über die Mitte auch recht konstant und haben mit mehr Trainingsfragen auch eine sehr viel größere Varianz.
+Anfangs sind die Ergebnisse auch hier schlechter.
+
+Die durchschnittliche Varianz ist hier aber größer als bei den generierten Fragen, und außerdem sind die Werte deutlich niedriger.
+Bei den automatisch generierten Fragen waren die Werte konstant bei und über 90\%, hier nur knapp über 25\%.
+Außerdem gibt die Verwendung des Lehrbuchfragen-Trainingssets deutlich schlechtere Ergebnisse, bei den generierten Fragen war dieser Unterschied auch deutlich geringer.
 
 \section{Diskussion und Ausblick}
 
@@ -289,14 +427,14 @@ Insgesamt erreicht das System bei dieser Art von Fragen  einen F-Score von 0.9..
 Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb} (fußnote zu link im zenodo archiv), können selbst nach dem Training nur selten richtig beantwortet werden (F-Score von ... auf ..., siehe ...).
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
 Wir planen zur Beantwortung allgemeiner Fragen, die über "Wer macht was womit" hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
-Ein hybrides System aus KBQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
+Ein hybrides System aus KGQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
 
 \begin{itemize}
   \item Diskussion von Kurven etc.
 \end{itemize}
 
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
-%% Starten Sie "biber paper", um eine Biliographie zu erzeugen.
+%% Starten Sie "biber paper", um eine Bibliographie zu erzeugen.
 \printbibliography
 
 \end{document}
