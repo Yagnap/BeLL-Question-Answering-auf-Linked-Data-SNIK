@@ -144,6 +144,10 @@ So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Rel
 
 \subsection{QA-Systeme}
 
+Question Answering(Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
+Ein QA-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
+Die Fragen sind in natürlicher Sprache gestellt
+
 Das QA-Leaderboard \citep{leaderboardinproceedings} hat es sich zur Aufgabe gemacht,
 dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des KGQA eine vereinheitliche Liste mit verfügbaren QA-Systemen zu geben.
 Hier werden Fragenkataloge wie QALD-9 \cite{qald9} als Benchmarks auf die verschiedenen KGQA-Systeme angewendet und die Ergebnisse aufgezeichnet.
@@ -161,13 +165,14 @@ Dieses fokussiert sich auf die Verfügbarkeit von Question Answering für indivi
 also auf das Problem der fehlenden Portabilität.
 Viele andere QA-Systeme fokussieren sich auf große Wissensbasen wie DBpedia und WikiData \cite{qald9plus},
 welche große Mengen an Daten zur Verfügung stellen.
-Bei kleineren Datenmengen gibt es aber das Problem, das häufig zu wenige Trainingsdaten für das Abstimmen der Algorithmen auf die Wissensbasen zur Verfügung stehen, als dass man ein Modell von Grund auf trainieren kann.
-Deshalb verwendet QAnswer Modelle, welche schon vorher viel auf normale Texte trainiert wurden und nun mittels Nutzerfragen gefinetuned wird.
+Bei kleineren Datenmengen gibt es aber das Problem, das häufig zu wenige Trainingsdaten für das Abstimmen der Algorithmen auf die Wissensbasen zur Verfügung stehen, als dass man ein Sprachmodell zum Verstehen natürlichsprachiger Fragen von Grund auf trainieren kann.
+Deshalb verwendet QAnswer Sprachmodelle, welche schon vorher viel auf normale Texte trainiert wurden und nun mittels Nutzerfragen präzisiert werden.
 
-QAnswer erstellt alle für die gegebene Frage möglichen N-Gramme, nachdem die sogenannten \emph{stop words}, eine vorgefertigte Liste an z.B. Artikeln, entfernt wurden.
+QAnswer erstellt alle für die gegebene Frage möglichen Kombinationen von Wörtern der Frage (N-Gramme), nachdem die sogenannten \emph{stop words}, eine vorgefertigte Liste an z.B. Artikeln, entfernt wurden.
 Diese N-Gramme versucht es dann auf mögliche Repräsentationen im Datensatz mittels Labels zu matchen.
 Daraus werden viele mögliche SPARQL-Abfragen kreiert, welche anhand bestimmter Kriterien einen \emph{Confidence}-Wert zwischen $0\%$ und $100\%$ erhalten.
 Die SPARQL-Abfrage mit dem höchsten Wert wird ausgewählt, ist er größer als $50\%$ gilt die Antwort als richtig, sonst wird keine ausgegeben.
+SPARQL ist ein World Wide Web Consortium (W3C)-Standard als Abfragesprache für RDF.
 
 \section{Anpassung von QAnswer KG an SNIK}
 
@@ -176,7 +181,7 @@ Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What i
 \texttt{meta:isResponsibleForEntityType}, \texttt{meta:isResponsibleForFunction} und \texttt{meta:isResponsibleForRole} gemeint sein können.
 Der Ansatz für die Lösung dieses Problems ist es, das System alle drei ausführen zu lassen, oder ihm das zumindest zu ermöglichen.
 
-Dies kann zum Beispiel über Property Paths realisiert werden.
+Dies kann zum Beispiel über SPARQL 1.1 Property Paths realisiert werden.
 In diesem Fall erlauben Property Paths dem Prädikat, in der Abfrage verschiedene Ressourcen darstellen zu können.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
 Statt allein \texttt{meta:isResponsibleForEntityType} steht durch die Nutzung von Property Paths nun \texttt{meta:isResponsibleForRole | meta:isResponsibleForFunction | meta:isResponsibleForEntityType} dort.
@@ -187,18 +192,12 @@ Diese regelt die Hierarchie von Properties.
 So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \texttt{meta:subPropertyOf}.
 
 Deshalb müssen vor dem Training die \texttt{rdfs:subPropertyOf}+-Beziehung materialisiert werden.
-Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.
-
-Es werden erst alle Tripel gefunden, die ausschließlich aus den Teilontologien \texttt{meta} und \texttt{bb} bestehen.
-Somit werden auch nur Prädikate aus \texttt{meta} betrachtet, nicht aber \texttt{rdfs} oder anderen.
-Danach werden alle Subproperties des Prädikats aus dem ersten Tripel ausgewählt.
-Mittels \texttt{CONSTRUCT} werden die ausgewählten Prädikate anstelle dem anderen Property eingesetzt.
-Diese Tripel werden dann manuell den RDF-Daten hinzugefügt\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/qanswerset.nt}}
+Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/qanswerset.nt}}
 
 Zusätzlich werden auch die \texttt{rdfs:subClassOf}+-Beziehungen materialisiert.
 Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
 
-Durch die Materialisierung kann beispielsweise für die Frage \texttt{8/6}, \enquote{How can quality of HIS be evaluated?},
+Durch die Materialisierung kann beispielsweise für die Frage \enquote{How can quality of HIS be evaluated?}
 die Klasse \texttt{bb:CaseStudy} gefunden werden, obwohl diese eine direkte Subklasse von \texttt{bb:QualitativeEvaluationMethod} ist,
 welche wiederum eine direkte Subklasse von \texttt{bb:EvaluationMethod} ist, welche in der Abfrage gesucht wird.
 Die Abfrage, welche die \texttt{rdfs:subClassOf+}-Beziehung kann nicht durch QAnswer generiert werden, die materialisierte \texttt{rdfs:subClassOf} jedoch schon.
@@ -237,7 +236,7 @@ Für diese stehen die Lexikalisierungen zur Verfügung.
 Die Performance des Systems soll anhand eines Benchmarks aus Frage-Antwort-Paaren untersucht werden.
 Die Frage liegt hierbei in natürlicher Sprache, die Antwort als SPARQL-Abfrage vor.
 100 Fragen sollen als Testdatensatz, der immer wieder abgefragt wird, dienen,
-alle anderen Fragen sollen in Schritten von 10 Fragen QAnswer trainieren und somit die Abhängigkeit von den Indikatoren \emph{Präzision}, \emph{Recall} und \emph{F-Maß} zur Anzahl der Fragen geben.
+alle anderen Fragen sollen in Schritten von 10 Fragen QAnswer trainieren und somit die Abhängigkeit von den Indikatoren \emph{Genauigkeit} (\emph{precision}), \emph{Trefferquote} (\emph{recall}) und \emph{F-Maß} (\emph{F-score}) zur Anzahl der Fragen geben.
 
 QAnswer kann mittels Nutzerfragen trainiert werden.
 Herausgefunden werden soll der Einfluss der Anzahl der Nutzerfragen auf die Qualität der Antworten und somit das mögliche Finden eines Optimums.
@@ -501,7 +500,7 @@ Außerdem gibt die Verwendung des Lehrbuchfragen-Trainingssets deutlich schlecht
 
 Ein Modell ist immer für einen bestimmten Zweck erstellt und bildet nur einen Teil der Wirklichkeit ab.
 SNIK fokussiert sich auf das Beantworten der Fragestellung "Wer (Rolle) macht was (Aufgabe) womit (Objekttyp)?".
-Solche Fragen beantwortet das trainierte System auch sehr gut, die größte Herausforderung ist allerdings der "Mismatch" im verwendeten Vokabular eines menschlichen Nutzers zu den Properties der Ontologie.
+Solche Fragen beantwortet das trainierte System auch sehr gut, die größte Herausforderung ist allerdings der Unterschied im verwendeten Vokabular eines menschlichen Nutzers zu den Properties der Ontologie.
 Während in einer Wissensbasis die Abbildung von Verben zu Properties einfacher ist, weicht besonders bei der Beschreibung von Subklassen und Teil-Ganzes-Beziehungen das Vokabular menschlicher Nutzer oft von den Labels in der Ontologie ab.
 Insgesamt erreicht das System bei dieser Art von Fragen  einen F-Score von 0.9... auf ..., siehe ...
 Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb} (fußnote zu link im zenodo archiv), können selbst nach dem Training nur selten richtig beantwortet werden (F-Score von ... auf ..., siehe ...).
