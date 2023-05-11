@@ -10,7 +10,7 @@ ID,Frage,SPARQL
 6/2,What are the main hospital functions?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HospitalFunction . }
 6/4,What are different architectures of HIS?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HisArchitecture . }
 6.5/1,How can architectures of HIS be categorized?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:HisArchitecture . }
-6.6/2,What is meant by the term "infrastructure"?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . }
+6.6/2,What is meant by the term 'infrastructure'?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . }
 6.7/2,What is meant by physical integration?,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:PhysicalIntegration } . }
 7/3,Which strategies are appropriate for maintaining electronic health records in a transinstitutional health information system?,SELECT DISTINCT ?s1 WHERE { ?s1 rdfs:subClassOf bb:EhrStrategy . }
 8/1,Which facets of quality have to be considered in HIS?,SELECT DISTINCT ?s1 WHERE { bb:HisQuality meta:entityTypeComponent ?o1 . }

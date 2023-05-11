@@ -555,117 +555,86 @@ What is meant by the term 'infrastructure'?,60,SELECT DISTINCT ?o1 WHERE { VALUE
 What is meant by the term 'infrastructure'?,70,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 ?o2 WHERE { 	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 .  }  LIMIT 1000,0.06,0,0,0,1,1000, 0
 What is meant by the term 'infrastructure'?,80,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,90,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,100,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.03,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,100,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.03,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,110,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?o1) as ?count)  ?o2  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 . }   GROUP BY ?o2   LIMIT 1000,0.03,0,0,0,1,528, 0
 What is meant by the term 'infrastructure'?,120,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.03,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,130,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,130,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,140,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.03,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,150,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.06,0,0,0,1,1000, 0
-What is meant by the term 'infrastructure'?,160,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,160,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,170,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?o1) as ?count)  ?o2  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 . }   GROUP BY ?o2   LIMIT 1000,0.01,0,0,0,1,528, 0
 What is meant by the term 'infrastructure'?,180,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.03,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,190,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 ?o2 WHERE { 	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 .  }  LIMIT 1000,0.03,0,0,0,1,1000, 0
 What is meant by the term 'infrastructure'?,200,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 ?o2 WHERE { 	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 .  }  LIMIT 1000,0.03,0,0,0,1,814, 0
 What is meant by the term 'infrastructure'?,210,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.03,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,220,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.01,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,230,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,220,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,230,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,240,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?o1) as ?count)  ?o2  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 . }   GROUP BY ?o2   LIMIT 1000,0.02,0,0,0,1,528, 0
-What is meant by the term 'infrastructure'?,250,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,260,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.03,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,250,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,260,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.03,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,270,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,55, 0
-What is meant by the term 'infrastructure'?,280,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.05,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,290,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.01,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,300,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,280,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.05,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,290,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,300,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.01,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,310,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,320,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 ?o2 WHERE { 	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 .  }  LIMIT 1000,0.02,0,0,0,1,1000, 0
 What is meant by the term 'infrastructure'?,330,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.04,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,340,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,350,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.05,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,350,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.05,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,360,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,370,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.01,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,380,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.03,0,0,0,1,1000, 0
 What is meant by the term 'infrastructure'?,390,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,400,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,400,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,410,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,420,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,430,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.05,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,430,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.05,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,440,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,450,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,460,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.03,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,470,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.05,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,470,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.05,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,480,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,490,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,500,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.03,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,510,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,520,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,530,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,530,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,540,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.03,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,550,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,550,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,560,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,570,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 .  }  LIMIT 1000,0,0,0,0,1,55, 0
 What is meant by the term 'infrastructure'?,580,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,55, 0
 What is meant by the term 'infrastructure'?,590,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,600,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.03,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,610,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,620,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.04,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,630,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,640,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,600,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.03,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,610,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,620,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.04,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,630,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,640,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,650,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,660,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,660,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,670,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,680,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.01,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,690,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,700,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,710,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,720,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.03,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,720,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.03,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,730,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,740,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,750,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0,0,0,0,1,529, 0
 What is meant by the term 'infrastructure'?,760,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.02,0,0,0,1,1000, 0
-What is meant by the term 'infrastructure'?,770,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,770,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,780,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.01,0,0,0,1,55, 0
 What is meant by the term 'infrastructure'?,790,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.04,0,0,0,1,55, 0
-What is meant by the term 'infrastructure'?,800,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,800,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,810,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?s1 ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.02,0,0,0,1,1000, 0
 What is meant by the term 'infrastructure'?,820,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT DISTINCT ?o1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.04,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,830,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,840,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,850,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,830,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,840,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.01,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,850,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
 What is meant by the term 'infrastructure'?,860,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o1  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 . }   GROUP BY ?o1   LIMIT 1000,0.02,0,0,0,1,529, 0
-What is meant by the term 'infrastructure'?,870,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,880,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
-What is meant by the term 'infrastructure'?,890,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,870,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,880,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/2000/01/rdf-schema#subClassOf> }  },0.02,0,0,0,1,1, 0
+What is meant by the term 'infrastructure'?,890,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:HisInfrastructure } . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> }  },0.02,0,0,0,1,1, 0
 
 What is meant by physical integration?,0,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:PhysicalIntegration } . },SELECT  (COUNT(DISTINCT ?s1) as ?count)  ?o2  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  <http://www.snik.eu/ontology/bb/Integrity> . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 . }   GROUP BY ?o2   LIMIT 1000,0.59,0,0,0,1,3, 0
 What is meant by physical integration?,10,SELECT DISTINCT ?o1 WHERE { VALUES ?o1 { bb:PhysicalIntegration } . },SELECT  ?s1  (COUNT(DISTINCT ?o2) as ?count)  WHERE {	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  <http://www.snik.eu/ontology/bb/Integrity> . 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o2 . }   GROUP BY ?s1   LIMIT 1000,0.5,0,0,0,1,4, 0
@@ -1459,8 +1428,7 @@ What are the typical methods of strategic HIS monitoring?,600,SELECT DISTINCT ?o
 What are the typical methods of strategic HIS monitoring?,610,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT DISTINCT ?o1 WHERE { 	 <http://www.snik.eu/ontology/bb/StrategicHISMonitoring>  <http://www.snik.eu/ontology/meta/uses>  ?o1 .  }  LIMIT 1000,0.22,1,1,1,4,4, 4
 What are the typical methods of strategic HIS monitoring?,620,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT DISTINCT ?s1 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  <http://www.snik.eu/ontology/bb/StrategicHISMonitoring> .  }  LIMIT 1000,0.23,0,0,0,4,9, 0
 What are the typical methods of strategic HIS monitoring?,630,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT DISTINCT ?o1 WHERE { 	 <http://www.snik.eu/ontology/bb/StrategicHISMonitoring>  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  ?o1 .  }  LIMIT 1000,0.11,0,0,0,4,1, 0
-What are the typical methods of strategic HIS monitoring?,640,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT ?s0  WHERE { 
-VALUES ?s0 { <http://www.snik.eu/ontology/bb/StrategicHISMonitoring> }  },0.03,0,0,0,4,1, 0
+What are the typical methods of strategic HIS monitoring?,640,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT ?s0  WHERE { VALUES ?s0 { <http://www.snik.eu/ontology/bb/StrategicHISMonitoring> }  },0.03,0,0,0,4,1, 0
 What are the typical methods of strategic HIS monitoring?,650,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT DISTINCT ?o1 WHERE { 	 <http://www.snik.eu/ontology/bb/StrategicHISMonitoring>  <http://www.snik.eu/ontology/meta/uses>  ?o1 .  }  LIMIT 1000,0.26,1,1,1,4,4, 4
 What are the typical methods of strategic HIS monitoring?,660,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT DISTINCT ?s1 ?o2 WHERE { 	 ?s1  <http://www.w3.org/2000/01/rdf-schema#subClassOf>  <http://www.snik.eu/ontology/bb/HealthInformationSystem> . 	 ?s1  <http://www.snik.eu/ontology/meta/uses>  ?o2 .  }  LIMIT 1000,0.12,0,0,0,4,0, 0
 What are the typical methods of strategic HIS monitoring?,670,SELECT DISTINCT ?o1 WHERE { bb:StrategicHISMonitoring meta:uses ?o1 . },SELECT DISTINCT ?o1 WHERE { 	 <http://www.snik.eu/ontology/bb/StrategicHISMonitoring>  <http://www.snik.eu/ontology/meta/uses>  ?o1 .  }  LIMIT 1000,0.34,1,1,1,4,4, 4

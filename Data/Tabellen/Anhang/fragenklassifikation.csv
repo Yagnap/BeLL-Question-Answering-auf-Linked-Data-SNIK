@@ -1,7 +1,7 @@
 Kapitel/ID,Frage,Fragetyp,Frageart,Eignung,Original
 1/1,Why is systematic information processing in health care institutions important?,K,S,\xmark,\xmark
 1/2,What are appropriate models for health information systems?,F,S,\cmark,\cmark
-1/3,How do health information systems look like and what architectures are appropriate?,P, F,Z,\xmark,\xmark
+1/3,How do health information systems look like and what architectures are appropriate?,P,Z,\xmark,\xmark
 1/4,How can we assess the quality of health information systems?,P,S,\xmark,\xmark
 1/5,How can we strategically manage health information systems?,P,S,\xmark,\xmark
 1/6,How can good information systems be designed and maintained?,P,S,\xmark,\xmark
