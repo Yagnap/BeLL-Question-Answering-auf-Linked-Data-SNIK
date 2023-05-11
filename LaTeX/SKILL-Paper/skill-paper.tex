@@ -486,6 +486,14 @@ Der Confidence-Wert sieht im Allgemeinen deutlich konstanter aus, an ihm spiegel
 Anfangs ist der Wert durchschnittlich etwas geringer als später, aber immer noch fast überall über 50\%.
 Ab etwa 100 Fragen erreicht es ein Niveau zwischen 80\% und 90\%, auf dem es bleibt.
 Ab 510 bzw. 560 Fragen kommt es jedoch zu zu größeren Ausreißern, die teilweise bis auf 11\% heruntergehen.
+Dies spiegelt die Entwicklungen im F-Maß wieder.
+
+Die Ursachen hierfür sind unklar.
+Typischerweise bedeutet mehr Trainingszeit und -daten auch genauere Ergebnisse \cite{lernkurve}.
+Es könnte sein, dass dies ein Fall von Überanpassung ist \cite{overunderfitting}, d.h. es sind zu viele ähnliche Trainingsfragen,
+das Modell spezialisiert sich zu sehr auf sie und kann die Testfragen daher nicht mehr beantworten.
+Dagegen spricht jedoch, dass das Trainingsset genauso wie das Testset randomisiert aus einer Menge ähnlicher Fragen eingeteilt wurde.
+Es erklärt aber die sinkende Genauigkeit bei den Lehrbuchfragen.
 
 Die Graphen der Lehrbuchfragen sehen denen der automatisch generierten auf den ersten Blick nicht sehr ähnlich aus,
 es lassen sich aber doch einige Gemeinsamkeiten erkennen.
@@ -495,6 +503,24 @@ Anfangs sind die Ergebnisse auch hier schlechter.
 Die durchschnittliche Varianz ist hier aber größer als bei den generierten Fragen, und außerdem sind die Werte deutlich niedriger.
 Bei den automatisch generierten Fragen waren die Werte konstant bei und über 90\%, hier nur knapp über 25\%.
 Außerdem gibt die Verwendung des Lehrbuchfragen-Trainingssets deutlich schlechtere Ergebnisse, bei den generierten Fragen war dieser Unterschied auch deutlich geringer.
+
+Die Lehrbuchfragen sind in ihrer Art und Formulierung deutlich komplexer und schwieriger als die automatisch generierten Fragen.
+Es hilft dem System offenbar, über etwa 300 bis 500 Trainigsfragen das Vokabular der Ontologie besser zu erlernen und zu erkennen.
+Der Confidence-Wert sinkt mit  der Zeit durchschnittlich immer weiter.
+Dies spiegelt weniger die Entwicklungen des F-Maßes wider, welches anfangs größer wird und erst später wieder durchschnittlich sinkt.
+
+QAnswers Confidence-Wert nähert sich aber eher den realen Ergebnissen an.
+Es kann also durchschnittlich besser einschätzen, dass die Antworten etwa zu $25\%$ bis $30\%$ richtig sind und nicht zu $60\%$.
+
+Zusammenfassend lässt sich sagen, dass die automatisch generierten, grammatisch sehr simplen generierten Fragen mit sehr hoher Genauigkeit beantwortet werden können,
+wenn bis zu etwa 500 Fragen zum Training QAnswers verwendet werden.
+Danach werden die Ergebnisse teilweise sehr ungenau, möglicherweise wegen Überpräzisierung.
+Die grammatisch und vom verwendeten Vokabular her komplexen Lehrbuchfragen können bis etwa 500 Fragen eher ungenau beantwortet werden.
+Danach gibt es auch hier ähnliche Effekte wie bei den automatisch generierten Fragen.
+
+Sind Lehrbuchfragen mit im Trainingsset, fallen die Antworten besonders bei den Lehrbuchfragen deutlich ungenauer aus.
+Dies könnte daran liegen, dass QAnswer diese Art der Fragen zu kennen glaubt, subtile Änderungen der Formulierungen jedoch andere Antworten erfordern.
+Dieser Effekt ist besonders am Anfang stark zu sehen, danach wird er teilweise ausgeglichen.
 
 \section{Diskussion und Ausblick}
 
@@ -507,10 +533,6 @@ Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \c
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
 Wir planen zur Beantwortung allgemeiner Fragen, die über "Wer macht was womit" hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
 Ein hybrides System aus KGQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
-
-\begin{itemize}
-  \item Diskussion von Kurven etc.
-\end{itemize}
 
 \section{Danksagung}
 
