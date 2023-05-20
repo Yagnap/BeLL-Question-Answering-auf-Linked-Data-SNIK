@@ -8,12 +8,19 @@
 % If you use biblatex, you need to comment and uncomment the marked statements in the references as well.
 \usepackage{csquotes}
 \usepackage[style=numeric,backend=biber]{biblatex}
+\renewcommand*{\bibfont}{\tiny} % LESS SPACE FOR SOURCES
 \addbibresource{poster.bib}
+\addbibresource{../Dokumentation/Bibliography.bib}
 %*********************************************************************************************************
 \usepackage{graphicx}
 \usepackage{url}% do not use hyperref as its links are displaced with baposter because of the font scale 
 
-\usepackage{blindtext}% remove for production
+% PLOTS
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{groupplots}
 
 % Select Font %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\usepackage{helvet} % closest to arial
@@ -24,7 +31,7 @@
 \newcommand{\captionfont}{\footnotesize}
 \usepackage[font=small,labelfont=bf]{caption}
 
-\begin{document}
+\begin{document}\small
 
 \begin{poster}% Set grid to false for final print
   {grid=true,}
@@ -41,47 +48,234 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=background,column=0,row=0]{Hintergrund}
 
-Das Wissen, welches von Studenten der Medizininformatik erwartet wird, ist komplex und umfangreich.
-Es liegt in Lehrbüchern wie etwa \cite{bb}, \cite{ob} oder \cite{he} vor, oft aber verteilt und nicht den genauen Fragen der Studenten entsprechend,
-wodurch einfache Fragen zu beantworten viel Zeit und Arbeit benötigt.
-In SNIK liegt dieses Wissen strukturiert vor \cite{snik}.
-Konventionelle Methoden es zu durchsuchen sind jedoch sowohl in ihrer Intuitivität als auch ihrer Expressivität mangelhaft.
-Eine Lösung für dieses Problem ist Question Answering (QA), die Beantwortung von in natürlicher Sprache verfassten Fragen.
+Das Wissen in der Medizininformatik ist sehr komplex und kompliziert.
+Es liegt \textbf{in Lehrbüchern} wie etwa \cite{bb}, \cite{ob} oder \cite{he} \textbf{unstrukturiert} vor, spezifische Fragen zu beantworten kann viel Zeit kosten.
+\textbf{In SNIK} liegt dieses Wissen \textbf{strukturiert} vor \cite{snik}.
+Konventionelle Methoden SNIK zu durchsuchen sind jedoch sowohl in ihrer Intuitivität als auch ihrer Ausdrucksstärke mangelhaft.
+Eine Lösung für dieses Problem ist \textbf{Question Answering (QA)}, die Beantwortung von in natürlicher Sprache verfassten Fragen.
 Die Arbeit befasst sich mit folgendem:
 \begin{enumerate}
-  \item Erstellung von Frage-Antwort-Paaren als Benchmark und ggf. Trainingsdaten
-  \item Recherche von QA-Systemen sowie Evaluierung dieser anhand des Benchmarks
+  \item \textbf{Erstellung von Frage-Antwort-Paaren} als Benchmark und ggf. Trainingsdaten
+  \item \textbf{Recherche von QA-Systemen (QASen)} sowie Evaluierung dieser anhand des Benchmarks
 \end{enumerate}
 
-SNIK ist im Resource Description Format (RDF) modelliert.
-Dieses beschreibt das Strukturieren von Daten in der Form von Tripeln als \emph{Subjekt -- Prädikat --  Objekt}.
-Einzelne Glieder werden über URIs eindeutig identifiziert und als \emph{Ressourcen} bezeichnet.
-Gibt es etwa die Frage
-{\large\enquote{What is the Chief Information Officer responsible for?}}
-muss das QA-System anhand der Wortgruppen \enquote{Chief Information Officer} und \enquote{is responsible for}, im Tripel Subjekt und Prädikat, die als Objekt stehende Antwort finden.
-Zuerst muss das QA-System diese Wortgruppen identifizieren und ihnen Ressourcen zuordnen,
-dann muss es eine die Antwort lieferende Abfrage erstellen.
-Dazu gibt es Abfragesprachen wie SPARQL, mit welchen RDF-Daten etwa durchsucht werden können.
+\textbf{Resource Description Format (RDF)}: Darstellung von Informationen im Tripelformat \emph{Subjekt -- Prädikat --  Objekt}.
+RDF ist die Modellierungssprache SNIKs.
 
-\includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}
+\textbf{SPARQL Protocol and RDF Query Language (SPARQL)}: Abfragesprache für RDF.
+
+Bei der Frage \enquote{What is the Chief Information Officer responsible for?} muss das QAS anhand der Wortgruppen \enquote{Chief Information Officer} und \enquote{is responsible for} die Antwort über eine SPARQL-Abfrage finden.
+Dazu braucht es häufig \textbf{Training mittels Beispielfragen} und -antworten.
+
+\begin{figure}[H]\includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel.pdf}\caption{Im Metamodell SNIKs ist die Metaontologie visualisiert. \small{Quelle: \protect\url{https://www.snik.eu/public/SNIK_Metamodell_V10.svg}}}\end{figure}
+In SNIK wird dargestellt, \emph{wer} bezüglich Krankenhausinformationssystemen \emph{was} tut und \emph{welche Informationen} dafür benötigt werden.
+Die einzelnen Quellen, aus denen SNIK sich zusammensetzt, sind in unterschiedlichen sogenannten \textbf{Teilontologien} gespeichert.
 
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=methods,below=background]{Methodik}
 
+Es werden 995 Frage-Antwort-Paare automatisch mittels des Datensatzes generiert, 100 als \textbf{Testgruppe}, 895 als \textbf{Trainingsdaten}.
+Um den Einfluss der Anzahl der Trainingsfragen auf die Leistung des QAS zu untersuchen, wird die Größe der Trainingsgruppe in Schritten von 10 erhöht.
+Diese Fragen sind alle sehr \textbf{simpel}.
+Es werden aus dem \textbf{Lehrbuch \cite{bb} 36 Fragen} extrahiert, welche beantwortet und zu gleichen Teilen in Trainings- und Testgruppe eingeordnet werden.
+Diese sind \textbf{schwieriger}.
+Es wird überprüft, ob sie sich als Trainingsfragen eignen.
+Diese Arbeit \textbf{beschränkt sich auf} die das \textbf{Lehrbuch \cite{bb}} beschreibende Teilontologie.
+Es werden folgende \textbf{Indikatoren} verwendet:
+
+\textbf{Genauigkeit} (Precision): Anteil der richtigen gefundenen Antworten
+
+\textbf{Trefferquote} (Recall): Anteil der gegebenen Antworten die richtig sind
+
+\textbf{F-Maß} (F-Score): Harmonisches Mittel aus Genauigkeit und Trefferquote.
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=results,column=1]{Ergebnisse}
-  % PLOTS
-  
+
+Als QAS wird \textbf{QAnswer KG} \cite{qanswer} ausgewählt.
+Die Tests liefern folgende Ergebnisse:
+
+% PLOTS
+\begin{figure}[H]
+  \begin{tikzpicture}
+    \begin{groupplot}[
+      group style = {
+        xlabels at = edge bottom,
+        ylabels at = edge left,
+        horizontal sep = 2cm,
+        vertical sep = 1.5cm,
+        group size = 2 by 4,
+      },
+      width = 0.5\linewidth
+      ]
+      % F-Score
+      \nextgroupplot[
+        title=F-Maß autogenerierte Fragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=F-Maß,
+        label style={font=\scriptsize},
+                xtick distance=200,
+                mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,ymax=1,
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+      % F-Score TB
+      \nextgroupplot[
+        title=F-Maß Lehrbuchfragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=F-Maß,
+        label style={font=\scriptsize},
+                xtick distance=200,
+                mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=F-Score,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+      
+      % Precision
+      \nextgroupplot[
+        title=Genauigkeit autogenerierte Fragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Genauigkeit,
+                label style={font=\scriptsize},
+                xtick distance=200,
+                mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,ymax=1,
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+      % Precision TB
+      \nextgroupplot[
+        title = Genauigkeit Lehrbuchfragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Genauigkeit,
+        label style={font=\scriptsize},
+                xtick distance=200,
+                mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=Precision,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+      
+      % Recall
+      \nextgroupplot[
+        title=Trefferquote autogenerierte Fragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Trefferquote,
+        label style={font=\scriptsize},
+                xtick distance=200,
+                mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,ymax=1,
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+      % Recall TB
+      \nextgroupplot[
+        title=Trefferquote Textbuchfragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Trefferquote,
+        label style={font=\scriptsize},
+                xtick distance=200,
+                mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,
+        legend style={at={(-0.2,-0.3)},anchor=north}, % Put the legend below the plot
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=Recall,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+    
+      % Confidence
+      \nextgroupplot[
+        title=Confidence autogenerierte Fragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Confidence-Wert,
+        label style={font=\scriptsize},
+        xtick distance=200,
+        mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,ymax=1
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated.csv};
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/generated-withtb.csv}; 
+      % Confidence TB
+      \nextgroupplot[
+        title=Confidence Textbuchfragen,
+        grid=major, % Display a grid
+        grid style={dashed,gray!30}, % Set the style
+        xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
+        ylabel=Confidence-Wert,
+        label style={font=\scriptsize},
+        xtick distance=200,
+        mark size=0.6,
+        title style={
+          at={(0.5,0.95)}, above, %yshift=0,
+        },
+        xmin=0,xmax=895,
+        ymin=0,
+        legend style={at={(-0.2,-0.3)},anchor=north}, % Put the legend below the plot
+      ]
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av.csv};
+      \addlegendentry{Training ohne Lehrbuchfragen}
+      \addplot table[x=Anzahl Trainingsfragen,y=Confidence,col sep=comma] {../../Data/Tabellen/Training-Auswertung/textbook-av-withtb.csv}; 
+      \addlegendentry{Training mit Lehrbuchfragen}
+    \end{groupplot}
+  \end{tikzpicture}
+  \caption{Genauigkeit, Trefferquote, F-Maß und Confidence-Wert von Lehrbuchtestfragen und automatisch generierten Testfragen in Abhängigkeit zur Anzahl und Zusammensetzung der Trainingsfragen.}
+\end{figure}
+
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=discussion,column=1,below=results]{Diskussion}
 
+Das System ist unter \url{https://app.qanswer.ai/public-share?kb=SNIK_BB&type=graph&user=kirdie&lang=en} erreichbar.
+Zum Training werden 400 automatisch generierte Frage-Antwort-Paare und keine Lehrbuchfragen verwendet.
+Das System liefert bei sehr einfachen Fragen ein F-Maß von $90\%$, bei Lehrbuchfragen nur etwa $25\%$.
+SNIKs Eignung für QA ist aufgrund der allgemein gehaltenen Metaontologie teils fraglich.
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=references,column=0,below=methods]{Literatur}
-    \small
     \begingroup
     \renewcommand{\section}[2]{}%suppress heading
     % using bibtex ***********
