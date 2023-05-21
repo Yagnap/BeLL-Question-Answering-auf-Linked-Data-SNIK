@@ -34,7 +34,7 @@
 \begin{document}\small
 
 \begin{poster}% Set grid to false for final print
-  {grid=true,}
+  {grid=false,}
   % Eye Catcher
   {\hspace{3em}\includegraphics[height=4.5cm, width=10cm, keepaspectratio]{img/logos/wog-logo-mit-text.pdf}} 
   % Title
@@ -50,7 +50,7 @@
 
 Das Wissen in der Medizininformatik ist sehr komplex und kompliziert.
 Es liegt \textbf{in Lehrbüchern} wie etwa \cite{bb}, \cite{ob} oder \cite{he} \textbf{unstrukturiert} vor, spezifische Fragen zu beantworten kann viel Zeit kosten.
-\textbf{In SNIK} liegt dieses Wissen \textbf{strukturiert} vor \cite{snik}.
+\textbf{Im semantischen Netz des Informationsmanagements im Krankenhaus (SNIK)} liegt dieses Wissen \textbf{strukturiert} vor \cite{snik}.
 Konventionelle Methoden SNIK zu durchsuchen sind jedoch sowohl in ihrer Intuitivität als auch ihrer Ausdrucksstärke mangelhaft.
 Eine Lösung für dieses Problem ist \textbf{Question Answering (QA)}, die Beantwortung von in natürlicher Sprache verfassten Fragen.
 Die Arbeit befasst sich mit folgendem:
@@ -84,11 +84,11 @@ Es wird überprüft, ob sie sich als Trainingsfragen eignen.
 Diese Arbeit \textbf{beschränkt sich auf} die das \textbf{Lehrbuch \cite{bb}} beschreibende Teilontologie.
 Es werden folgende \textbf{Indikatoren} verwendet:
 
-\textbf{Genauigkeit} (Precision): Anteil der richtigen gefundenen Antworten
+\textbf{Genauigkeit}: Anteil der gefundenen richtigen Antworten an allen Richtigen,
 
-\textbf{Trefferquote} (Recall): Anteil der gegebenen Antworten die richtig sind
+\textbf{Trefferquote}: Anteil der gefundenen richtigen Antworten an allen Gefundenen,
 
-\textbf{F-Maß} (F-Score): Harmonisches Mittel aus Genauigkeit und Trefferquote.
+\textbf{F-Maß}: Harmonisches Mittel aus Genauigkeit und Trefferquote.
 \end{posterbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{posterbox}[name=results,column=1]{Ergebnisse}
@@ -289,7 +289,7 @@ SNIKs Eignung für QA ist aufgrund der allgemein gehaltenen Metaontologie teils 
     %Myproject is supported under the DFG grant numbers 1234/5-6 and 6543/2-1.
   \end{posterbox}
 %%%%%%%%%%%%%%% QAnswer Logo
-\node [anchor=south east, inner sep=1pt,xshift=-10em,yshift=7em] at (current page.south east)
+\node [anchor=south east, inner sep=1pt,xshift=-10em,yshift=7.5em] at (current page.south east)
 {\includegraphics[height=1.5cm]{img/logos/qanswer-logo.png}};
 %%%%%%%%%%%%%%% IMISE Logo
 \node [anchor=south east, inner sep=1pt,xshift=-3em,yshift=1em] at (current page.south east)
