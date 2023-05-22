@@ -144,9 +144,9 @@ So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Rel
 
 \subsection{QA-Systeme}
 
-Question Answering(Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
+Question Answering (Fragebeantwortung) behandelt die Beantwortung von Benutzerfragen \citep{qadefinition}.
 Ein QA-System muss eine Frage analysieren, eine oder mehrere Antworten bereitstellen und dem Nutzer diese präsentieren.
-Die Fragen sind in natürlicher Sprache gestellt
+Die Fragen sind in natürlicher Sprache gestellt.
 
 Das QA-Leaderboard \citep{leaderboardinproceedings} hat es sich zur Aufgabe gemacht,
 dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des KGQA eine vereinheitliche Liste mit verfügbaren QA-Systemen zu geben.
@@ -524,15 +524,19 @@ Dieser Effekt ist besonders am Anfang stark zu sehen, danach wird er teilweise a
 
 \section{Diskussion und Ausblick}
 
-Ein Modell ist immer für einen bestimmten Zweck erstellt und bildet nur einen Teil der Wirklichkeit ab.
-SNIK fokussiert sich auf das Beantworten der Fragestellung "Wer (Rolle) macht was (Aufgabe) womit (Objekttyp)?".
+Eine Wissensbasis oder Ontologie ist immer für einen bestimmten Zweck erstellt und bildet nur einen Teil der Wirklichkeit ab.
+SNIK fokussiert sich auf das Beantworten der Fragestellung \enquote{Wer (Rolle) macht was (Aufgabe) womit (Objekttyp)?}.
 Solche Fragen beantwortet das trainierte System auch sehr gut, die größte Herausforderung ist allerdings der Unterschied im verwendeten Vokabular eines menschlichen Nutzers zu den Properties der Ontologie.
 Während in einer Wissensbasis die Abbildung von Verben zu Properties einfacher ist, weicht besonders bei der Beschreibung von Subklassen und Teil-Ganzes-Beziehungen das Vokabular menschlicher Nutzer oft von den Labels in der Ontologie ab.
-Insgesamt erreicht das System bei dieser Art von Fragen  einen F-Score von 0.9... auf ..., siehe ...
+Insgesamt erreicht das System bei dieser Art von Fragen einen F-Score von 0.9... auf ..., siehe ...
 Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb} (fußnote zu link im zenodo archiv), können selbst nach dem Training nur selten richtig beantwortet werden (F-Score von ... auf ..., siehe ...).
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
-Wir planen zur Beantwortung allgemeiner Fragen, die über "Wer macht was womit" hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
+Wir planen zur Beantwortung allgemeiner Fragen, die über \enquote{Wer macht was womit?} hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
 Ein hybrides System aus KGQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
+
+ChatGPT \footnote{https://openai.com/blog/chatgpt} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit die öffentliche Diskussion beherrscht.
+In \cite{gptvsqa} wurde festgestellt, dass QA besonders bei sehr spezifischen Domänen besonders in der Trefferquote deutlich besser antwortet als z.B. ChatGPT.
+Zukünftige Arbeit befasst sich mit der Nutzung von Question Answering zu \cite{bb} auf vortrainierten Transformermodellen. 
 
 \section{Danksagung}
 
