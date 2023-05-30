@@ -625,7 +625,7 @@ async function evaluate_iteration(number_of_questions) {
     //console.groupEnd();
     evaluation_textbook.confidence += pair_evaluation.confidence;
     evaluation_textbook.precision += pair_evaluation.precision;
-    evaluation_textbook.recall += pair_evaluation.precision;
+    evaluation_textbook.recall += pair_evaluation.recall;
     evaluation_textbook.fscore += pair_evaluation.fscore;
     
     // if first eval for question
