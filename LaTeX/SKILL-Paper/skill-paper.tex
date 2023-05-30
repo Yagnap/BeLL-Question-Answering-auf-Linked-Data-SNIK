@@ -12,12 +12,14 @@
 %% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
 
-%% AURL
-%\usepackage{aurl}
-%\daurl{bb}{http://www.snik.eu/ontology/bb/}
-
 %% Akronyme
 \usepackage{acronym}
+
+% AURL
+\PassOptionsToPackage{bookmarks=false}{hyperref} % prevent option clash for hyperref with lni
+\usepackage{aurl}
+\daurl{bb}{http://www.snik.eu/ontology/bb/}
+\daurl{meta}{http://www.snik.eu/ontology/meta/}
 
 %% Plots
 \usepackage{tikz}
@@ -138,31 +140,31 @@ SPARQL ist ein World Wide Web Consortium (W3C)-Standard als Abfragesprache für 
 
 QAnswer KG versucht, sich auf eine Antwort zu konzentrieren und stellt nur die als am besten bewertete SPARQL-Abfrage dar.
 Hier wird das Problem der Ambiguität deutlich, da bei der Frage \enquote{What is the chief information officer responsible for?} sowohl
-\texttt{meta:isResponsibleForEntityType}, \texttt{meta:isResponsibleForFunction} und \texttt{meta:isResponsibleForRole} gemeint sein können.
+\aurl{meta}{isResponsibleForEntityType}, \aurl{meta}{isResponsibleForFunction} und \aurl{meta}{isResponsibleForRole} gemeint sein können.
 Der Ansatz für die Lösung dieses Problems ist es, das System alle drei ausführen zu lassen, oder ihm das zumindest zu ermöglichen.
 
 Dies kann zum Beispiel über SPARQL 1.1 Property Paths realisiert werden.
 In diesem Fall erlauben Property Paths dem Prädikat, in der Abfrage verschiedene Ressourcen darstellen zu können.
 Es werden letztendlich drei Abfragen ausgeführt, eine für jede mögliche Kombination der Attribute, also hier einmal pro Prädikat.
-Statt allein \texttt{meta:isResponsibleForEntityType} steht durch die Nutzung von Property Paths nun \texttt{meta:isResponsibleForRole | meta:isResponsibleForFunction | meta:isResponsibleForEntityType} dort.
+Statt allein \aurl{meta}{isResponsibleForEntityType} steht durch die Nutzung von Property Paths nun \aurl{meta}{isResponsibleForRole} | \aurl{meta}{isResponsibleForFunction} | \aurl{meta}{isResponsibleForEntityType} dort.
 Jedoch kann QAnswer keine Property Paths aufstellen, weshalb diese Option zur Lösung des Ambiguitätsproblems wegfällt.
 
-Eine andere Möglichkeit, die obige Frage mittels einer SPARQL-Abfrage zu beantworten, ist mittels der \texttt{rdfs:subPropertyOf}-Beziehung.
+Eine andere Möglichkeit, die obige Frage mittels einer SPARQL-Abfrage zu beantworten, ist mittels der \aurl{rdfs}{subPropertyOf}-Beziehung.
 Diese regelt die Hierarchie von Properties.
-So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \texttt{meta:subPropertyOf}.
+So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \aurl{meta}{subPropertyOf}.
 
-Deshalb müssen vor dem Training die \texttt{rdfs:subPropertyOf}+-Beziehung materialisiert werden.
+Deshalb müssen vor dem Training die \aurl{rdfs}{subPropertyOf}+-Beziehung materialisiert werden.
 Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/qanswerset.nt}}
 
-Zusätzlich werden auch die \texttt{rdfs:subClassOf}+-Beziehungen materialisiert.
+Zusätzlich werden auch die \aurl{rdfs}{subClassOf}+-Beziehungen materialisiert.
 Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
 
 Durch die Materialisierung kann beispielsweise für die Frage \enquote{How can quality of HIS be evaluated?}
-die Klasse \texttt{bb:CaseStudy} gefunden werden, obwohl diese eine direkte Subklasse von \texttt{bb:QualitativeEvaluationMethod} ist,
-welche wiederum eine direkte Subklasse von \texttt{bb:EvaluationMethod} ist, welche in der Abfrage gesucht wird.
-Die Abfrage, welche die \texttt{rdfs:subClassOf+}-Beziehung kann nicht durch QAnswer generiert werden, die materialisierte \texttt{rdfs:subClassOf} jedoch schon.
+die Klasse \aurl{bb}{CaseStudy} gefunden werden, obwohl diese eine direkte Subklasse von \aurl{bb}{QualitativeEvaluationMethod} ist,
+welche wiederum eine direkte Subklasse von \aurl{bb}{EvaluationMethod} ist, welche in der Abfrage gesucht wird.
+Die Abfrage, welche die \aurl{rdfs}{subClassOf+}-Beziehung kann nicht durch QAnswer generiert werden, die materialisierte \aurl{rdfs}{subClassOf} jedoch schon.
 
-Wenn keine Lösung für die Frage gefunden wird, gibt es als Ausgabe meist die Ressource selbst, also zum Beispiel \texttt{bb:ChiefInformationOfficer}.
+Wenn keine Lösung für die Frage gefunden wird, gibt es als Ausgabe meist die Ressource selbst, also zum Beispiel \aurl{bb}{ChiefInformationOfficer}.
 Dies kann zwar nützlich, aber auch verwirrend sein und soll mithilfe von Training verhindert werden.
 
 Praktisch für die Lokalisierung der Fehler ist die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
@@ -175,18 +177,18 @@ Hier muss diese Liste allerdings so modifiziert werden, dass das Wort \texttt{fo
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
 Entfernt wurden auch \texttt{define} und \texttt{describe}, da auch diese in Labels vorkommen.
 
-Zu den \emph{Hidden Properties} wurde \texttt{rdfs:subClassOf} hinzugefügt.
+Zu den \emph{Hidden Properties} wurde \aurl{rdfs}{subClassOf} hinzugefügt.
 Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem impliziert werden können.
 
-Es wurde \texttt{skos:altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
-Die Mappings müssen auch dahingehend verändert werden, als dass \texttt{skos:definition}
-und \texttt{rdfs:comment} als Beschreibung hinzugefügt werden.
+Es wurde \aurl{skos}{altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
+Die Mappings müssen auch dahingehend verändert werden, als dass \aurl{skos}{definition}
+und \aurl{rdfs}{comment} als Beschreibung hinzugefügt werden.
 Die Definition wird auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wird, wenn die zu definierende Ressource richtig erkannt wurde.
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für URIs zu nutzen.
 Bei den \emph{Property Mappings} können URIs und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
-Dies wird hier für \enquote{phases} und \enquote{methods} bei \texttt{meta:updates} sowie \enquote{tasks} und \texttt{meta:functionComponent} gemacht.
-Für \texttt{meta:entityTypeComponent} wird \enquote{facets} hinzugefügt.\todo{aurl benutzen}
+Dies wird hier für \enquote{phases} und \enquote{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
+Für \aurl{meta}{entityTypeComponent} wird \enquote{facets} hinzugefügt.\todo{aurl benutzen}
 Lexikalisierungen funktionieren ähnlich wie alternative Labels.
 Notwendig ist es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen weiß das Programm nicht, wofür die Ressourcen stehen.
 Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels mit ausreichend präziser Formulierung, mithilfe derer QAnswer auf die Ressource als Teil der Antwort schließen kann.
