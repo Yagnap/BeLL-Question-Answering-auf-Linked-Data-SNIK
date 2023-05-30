@@ -12,9 +12,9 @@
 %% Schöne Tabellen mittels \toprule, \midrule, \bottomrule
 \usepackage{booktabs}
 
-%% Zu Demonstrationszwecken
-\usepackage[math]{blindtext}
-\usepackage{mwe}
+%% AURL
+%\usepackage{aurl}
+%\daurl{bb}{http://www.snik.eu/ontology/bb/}
 
 %% Akronyme
 \usepackage{acronym}
@@ -92,9 +92,6 @@ Das System ist über die SNIK-Website frei erreichbar.
 Semantic Web \and Question Answering \and Knowledge Graph Question Answering \and Closed Domain Question Answering
 \end{keywords}
 
-%\input{Acronym.tex}
-\todo{ich weiss nicht warum, aber bei mir seite 1 als seite 11 angezeigt und das weitere verschiebt sich auch im PDF viewer, die letzte ist 22.}
-
 \section{Einleitung}
 Das semantische Netz des Informationsmanagements im Krankenhaus (SNIK) ist eine
 die Domäne des Informationsmanagements im Krankenhaus betreffende Ontologie \cite{domaene}.
@@ -120,8 +117,6 @@ Es ist ein großer Mehraufwand für Studierende, sich ganze Kapitel oder gar Bü
 Viele verfügen nicht über die Kenntnisse, SNIK effektiv zu verwenden.
 Als Folge müssen sie bei Fragen oft ihren Professor oder andere Studierende hinzuziehen.
 QA-Systeme sind immer leicht erreichbar und können sofort antworten.
-Besonders in Zeiten von immer weniger direkten Kontakten ist solch ein Werkzeug hilfreich.
-\todo{da die Corona Maßnahmen jetzt nicht mehr bestehen kann der Satz weg denke ich}
 
 \section{Grundlagen}
 
@@ -131,9 +126,7 @@ Die in RDF modellierten Quellen SNIKs werden alle in je einer Ontologie abgebild
 Teilontologien werden mittels der Metaontologie modelliert und miteinander verbunden.
 Deshalb ist SNIK sowohl eine Wissensbasis als auch Ontologie:
 Es werden zwar keine einzelnen Krankenhäuser abgebildet, aber das Wissen aus verschiedenen Lehrbüchern, die im allgemeinen davon handeln.
-Dadurch ist SNIK eine Ontologie mit Charakteristiken einer Wissensbasis.
-Es werden zwar keine wirklichen Individuen abgebildet, jedoch gibt die Metaontologie allem eine einer Wissensbasis ähnliche Struktur.
-\todo{die letzten Sätze zusammenfassen}
+Die Metaontologie gibt allem eine einer Wissensbasis ähnliche Struktur.
 
 \begin{figure}[h]
   \includegraphics[width=\linewidth]{../Dokumentation/Images/snik-metamodel-V10.pdf}\label{fig:snik-metamodel}
@@ -141,7 +134,7 @@ Es werden zwar keine wirklichen Individuen abgebildet, jedoch gibt die Metaontol
 \end{figure}
 In \cref{fig:snik-metamodel} ist die Metaontologie dargestellt.
 Von den drei Klassen \emph{Role}, \emph{EntityType} und \emph{Function} stammen alle anderen Klassen der Teilontologien ab.
-Sie beschreiben Personen, Informationen im Krankenhaus und Funktionen.\todo{respektive}
+Sie beschreiben respektive Personen, Informationen im Krankenhaus und Funktionen.
 Alle in der Ontologie vorhandenen Prädikate sind in der Metaontologie definiert.
 So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Relation gesetzt und die Beziehungen zwischen Ressourcen in den einzelnen Teilontologien dargestellt.
 
@@ -152,12 +145,12 @@ Ein QA-System muss eine Frage analysieren, eine oder mehrere Antworten bereitste
 Die Fragen sind in natürlicher Sprache gestellt.
 
 Das QA-Leaderboard \citep{leaderboardinproceedings} hat es sich zur Aufgabe gemacht,
-dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des KGQA eine vereinheitliche Liste mit verfügbaren QA-Systemen zu geben.
+dem häufig als sehr uneinheitlich und unübersichtlich \citep{diefenbachkbqa} beschriebenen Feld des QA auf Wissensbasen und Ontologien (KGQA) eine vereinheitliche Liste mit verfügbaren QA-Systemen zu geben.
 Hier werden Fragenkataloge wie QALD-9 \cite{qald9} als Benchmarks auf die verschiedenen KGQA-Systeme angewendet und die Ergebnisse aufgezeichnet.
 Mithilfe dieses Projektes konnten mehrere Kandidaten für das Question Answering auf SNIK ausgewählt werden.
 
 Das System gAnswer \cite{ganswerapproach} spaltet Fragen in Syntaxbäume auf und vergleicht später Subgraphen der möglichen Antworten, jedoch kommt es bei der komplexen Vorbereitung und Umwandlung der Daten der Ontologie immer wieder zu Fehlern.
-DeepPavlov \cite{deeppavlov} ist ein hochmodulares, hochflexibles System mit der Oberfläche eines Chatbots, leider aber nur für ODQA und deshalb nicht weiter nützlich für dieses Problem.\todo{der Satz ergibt keinen Sinn. open domain beinhaltet doch closed domain}
+DeepPavlov \cite{deeppavlov} ist ein hochmodulares, hochflexibles System mit der Oberfläche eines Chatbots, leider aber nicht mit eigenen Daten nutzbar.
 TeBaQA \cite{tebaqa} analysiert die Struktur einer Frage und versucht, sie einer Vorlage zuzuordnen, wodurch dann die SPARQL-Abfrage erstellt wird.
 Auch hier gibt es nicht behebbare Probleme bei der Einrichtung des Systems für SNIK.
 Betrachtet wird außerdem AskNow QA \cite{asknow}, welches mittels PoS-Tagging versucht, eine \emph{normalisierte Fragenstruktur} herzustellen und darüber eine SPARQL-Abfrage zu generieren.
@@ -227,12 +220,13 @@ und \texttt{rdfs:comment} als Beschreibung hinzugefügt werden.
 Die Definition wird auch bei den Ergebnissen angezeigt, sodass es bei Ergebnissen von Fragen nach der Definition als richtig erachtet wird, wenn die zu definierende Ressource richtig erkannt wurde.
 
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für URIs zu nutzen.
-Bei den \emph{Property Mapping} können URIs und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
+Bei den \emph{Property Mappings} können URIs und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
 Dies wird hier für \enquote{phases} und \enquote{methods} bei \texttt{meta:updates} sowie \enquote{tasks} und \texttt{meta:functionComponent} gemacht.
 Für \texttt{meta:entityTypeComponent} wird \enquote{facets} hinzugefügt.\todo{aurl benutzen}
+Lexikalisierungen funktionieren ähnlich wie alternative Labels.
 Notwendig ist es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen weiß das Programm nicht, wofür die Ressourcen stehen.
-Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels, mithilfe derer QAnswer auf die Ressource als Teil der Antwort schließen kann.
-Für diese stehen die Lexikalisierungen zur Verfügung.\todo{versuch mal möglichst die Absätze zu füllen, also hier zb ein wort entfernen oder einige hinzufügen}
+Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels mit ausreichend präziser Formulierung, mithilfe derer QAnswer auf die Ressource als Teil der Antwort schließen kann.
+Für diese stehen die Lexikalisierungen zur Verfügung.
 
 \section{Benchmark}
 
@@ -261,7 +255,6 @@ Das Frage-Antwort-Set aus dem Lehrbuch wurde in zwei Hälften geteilt, eine zum 
 Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 18 im Trainingsdatensatz und 18 im Testdatensatz sind.
 
 Von den automatisch generierten Paaren wurden 100 für das Testen und 895 für das Training genutzt.
-
 Das Training verläuft so ab, dass dem System automatisiert pro Schritt zehn weitere automatisch generierte Paare aus dem Trainingsdatensatz gegeben werden,
 wodurch jede Runde mit zehn zusätzlichen Fragen trainiert wird.
 Der Trainingssatz der Lehrbuchfragen wird in der ersten Runde nicht mit verwendet,
@@ -271,7 +264,6 @@ Dann wird QAnswer mithilfe der API-Methode trainiert.
 Auf das trainierte System wird der Testdatensatz zur Evaluierung angewandt.
 Über eine API-Abfrage wird die Antwort mit dem höchsten Confidence-Wert, eine SPARQL-Abfrage, geholt und auf dem SPARQL-Endpunkt von SNIK ausgeführt.
 Die Antworten der richtigen Lösung wurden schon vorher gespeichert und werden nun mit denen der Abfrage von QAnswer verglichen.
-
 Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paare bleiben jedoch erhalten.
 
 % PLOTS
@@ -498,13 +490,13 @@ das Modell spezialisiert sich zu sehr auf sie und kann die Testfragen daher nich
 Dagegen spricht jedoch, dass das Trainingsset genauso wie das Testset randomisiert aus einer Menge ähnlicher Fragen eingeteilt wurde.
 Es erklärt aber die sinkende Genauigkeit bei den Lehrbuchfragen.
 
-Die Graphen der Lehrbuchfragen sehen denen der automatisch generierten auf den ersten Blick nicht sehr ähnlich aus,\todo{Grammatik}
-es lassen sich aber doch einige Gemeinsamkeiten erkennen.
+Die Graphen der Lehrbuchfragen sehen denen der automatisch generierten auf den ersten Blick nicht sehr ähnlich,
+es lassen sich dennoch einige Gemeinsamkeiten erkennen.
 Sie sind über die Mitte auch recht konstant und haben mit mehr Trainingsfragen auch eine sehr viel größere Varianz.
 Anfangs sind die Ergebnisse auch hier schlechter.
 
 Die durchschnittliche Varianz ist hier aber größer als bei den generierten Fragen, und außerdem sind die Werte deutlich niedriger.
-Bei den automatisch generierten Fragen waren die Werte konstant bei und über 90\%, hier nur knapp über 25\%.
+Bei den automatisch generierten Fragen waren die Werte konstant bei und über $90\%$, hier nur knapp über $25\%$.
 Außerdem gibt die Verwendung des Lehrbuchfragen-Trainingssets deutlich schlechtere Ergebnisse, bei den generierten Fragen war dieser Unterschied auch deutlich geringer.
 
 Die Lehrbuchfragen sind in ihrer Art und Formulierung deutlich komplexer und schwieriger als die automatisch generierten Fragen.
@@ -521,31 +513,32 @@ Danach werden die Ergebnisse teilweise sehr ungenau, möglicherweise wegen Über
 Die grammatisch und vom verwendeten Vokabular her komplexen Lehrbuchfragen können bis etwa 500 Fragen eher ungenau beantwortet werden.
 Danach gibt es auch hier ähnliche Effekte wie bei den automatisch generierten Fragen.
 
-Sind Lehrbuchfragen mit im Trainingsset, fallen die Antworten besonders bei den Lehrbuchfragen deutlich ungenauer aus.
-Dies könnte daran liegen, dass QAnswer diese Art der Fragen zu kennen glaubt, subtile Änderungen der Formulierungen jedoch andere Antworten erfordern.
-Dieser Effekt ist besonders am Anfang stark zu sehen, danach wird er teilweise ausgeglichen.
-\todo{diskussion der ergebnisse aus diesem kapitel in das diskussionskapitel verschieben}
 \section{Diskussion und Ausblick}
-\todo{darauf hinweisen dass recall, precision und f-score identisch sind und erklärung versuchen zu finden. eventuell können die überflüssigen graphen dann weg, wenn die eh alle gleich sind.}
 
 Eine Wissensbasis oder Ontologie ist immer für einen bestimmten Zweck erstellt und bildet nur einen Teil der Wirklichkeit ab.
 SNIK fokussiert sich auf das Beantworten der Fragestellung \enquote{Wer (Rolle) macht was (Aufgabe) womit (Objekttyp)?}.
 Solche Fragen beantwortet das trainierte System auch sehr gut, die größte Herausforderung ist allerdings der Unterschied im verwendeten Vokabular eines menschlichen Nutzers zu den Properties der Ontologie.
 Während in einer Wissensbasis die Abbildung von Verben zu Properties einfacher ist, weicht besonders bei der Beschreibung von Subklassen und Teil-Ganzes-Beziehungen das Vokabular menschlicher Nutzer oft von den Labels in der Ontologie ab.
-Insgesamt erreicht das System bei dieser Art von Fragen einen F-Score von 0.9... auf ..., siehe ...
-Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb} (fußnote zu link im zenodo archiv), können selbst nach dem Training nur selten richtig beantwortet werden (F-Score von ... auf ..., siehe ...).
+
+Insgesamt erreicht das System bei dieser Art von Fragen einen durchschnittlichen F-Score von $0.91$ bei der Nutzung von 400 automatisch generierten Trainingsfragen\footnote{zenodo}.
+Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb}\footnote{zenodo}, können selbst nach dem Training nur selten richtig beantwortet werden (F-Maß von $0.28$)\footnote{zenodo}.
+Sind Lehrbuchfragen mit im Trainingsset, fallen die Antworten besonders bei den Lehrbuchfragen im Testset deutlich ungenauer aus.
+Dies könnte daran liegen, dass QAnswer diese Art der Fragen zu kennen glaubt, subtile Änderungen der Formulierungen jedoch andere Antworten erfordern.
+Dieser Effekt ist besonders am Anfang stark zu sehen, danach wird er teilweise ausgeglichen.
+Das online verfügbare System wurde daher ohne Lehrbuchfragen und mit 400 automatisch generierten Fragen trainiert.
+
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
 Wir planen zur Beantwortung allgemeiner Fragen, die über \enquote{Wer macht was womit?} hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
 Ein hybrides System aus KGQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
 
-ChatGPT \footnote{https://openai.com/blog/chatgpt} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit die öffentliche Diskussion beherrscht.
+ChatGPT \footnote{https://openai.com/blog/chatgpt} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit große Aufmerksamkeit erregt.
 In \cite{gptvsqa} wurde festgestellt, dass QA besonders bei sehr spezifischen Domänen besonders in der Trefferquote deutlich besser antwortet als z.B. ChatGPT.
-Zukünftige Arbeit befasst sich mit der Nutzung von Question Answering zu \cite{bb} auf vortrainierten Transformermodellen. 
+Zukünftige Arbeit befasst sich mit der Nutzung von Question Answering zu \cite{bb} auf vortrainierten Transformermodellen.
 
 \section{Danksagung}
 
 Dieses Paper basiert auf meiner besonderen Lernleistung am Ostwaldgymnasium.
-Ich möchte Dr. Konrad Höffner für seine enge Betreuung und das Korrekturlesen danken, sowie Dr. Dennis Diefenbach bei der Hilfe bei der Konfiguration QAnswers.\todo{dennis hat noch mehr gemacht, er hat es ja auch für uns bereitgestellt, würde da noch ein Wort hinzufügen}
+Ich möchte Dr. Konrad Höffner für seine enge Betreuung und das Korrekturlesen danken, sowie Dr. Dennis Diefenbach bei der Hilfe bei der Konfiguration und Bereitstellung QAnswers.
 Danke auch an Dr. Franziska Jahn für die Berichtigung der Antworten auf die Lehrbuchfragen. 
 
 %% \bibliography{lni-paper-example-de.tex} ist hier nicht erlaubt: biblatex erwartet dies bei der Preambel
