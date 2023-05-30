@@ -25,42 +25,6 @@
 \pgfplotsset{compat=1.18}
 \usepgfplotslibrary{groupplots}
 
-% Listings
-\definecolor{olivegreen}{rgb}{0.2,0.8,0.5}
-\lstdefinelanguage{SPARQL}{
-  language=SQL,
-  morekeywords={PREFIX, a, CONSTRUCT},
-  sensitive=true,
-  % DISABLE FOR PRINTING
-  morecomment=[l][\color{olivegreen}]{\#},
-  morestring=[b][\color{orange}]\",
-  % ENABLE FOR PRINTING
-  %morecomment=[l][\color{black}]{\#},
-  %morestring=[b][\color{black}]\",
-  %keywordstyle=\color{black}
-}
-
-%% BibLaTeX-Sonderkonfiguration,
-%% falls man schnell eine existierende Bibliographie wiederverwenden will, aber nicht die .bib-Datei händisch anpassen möchte.
-%% Bitte \iffalse und \fi entfernen, dann ist diese Konfiguration aktiviert.
-
-\AtEveryBibitem{%
-  \ifentrytype{article}{%
-  }{%
-    \clearfield{doi}%
-    \clearfield{issn}%
-    \clearfield{url}%
-    \clearfield{urldate}%
-  }%
-  \ifentrytype{inproceedings}{%
-  }{%
-    \clearfield{doi}%
-    \clearfield{issn}%
-    \clearfield{url}%
-    \clearfield{urldate}%
-  }%
-}
-
 \begin{document}
 %%% Mehrere Autoren werden durch \and voneinander getrennt.
 %%% Die Fußnote enthält die Adresse sowie eine E-Mail-Adresse.
