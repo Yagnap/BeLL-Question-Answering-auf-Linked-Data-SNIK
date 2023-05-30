@@ -613,7 +613,7 @@ async function evaluate_iteration(number_of_questions) {
     //console.groupEnd();
     evaluation_generated.confidence += pair_evaluation.confidence;
     evaluation_generated.precision += pair_evaluation.precision;
-    evaluation_generated.recall += pair_evaluation.precision;
+    evaluation_generated.recall += pair_evaluation.recall;
     evaluation_generated.fscore += pair_evaluation.fscore;
     i++;
   }
