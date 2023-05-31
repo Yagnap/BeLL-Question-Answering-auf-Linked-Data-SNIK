@@ -103,6 +103,7 @@ Von den drei Klassen \emph{Role}, \emph{EntityType} und \emph{Function} stammen 
 Sie beschreiben respektive Personen, Informationen im Krankenhaus und Funktionen.
 Alle in der Ontologie vorhandenen Prädikate sind in der Metaontologie definiert.
 So sind zwischen den in verschiedenen Teilontologien ähnliche Ressourcen in Relation gesetzt und die Beziehungen zwischen Ressourcen in den einzelnen Teilontologien dargestellt.
+Hier werden nur die Teilontologien namens bb \cite{bb} und meta (Metaontologie) betrachtet.
 
 \subsection{QA-Systeme}
 
@@ -158,7 +159,7 @@ Diese regelt die Hierarchie von Properties.
 So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \aurl{meta}{subPropertyOf}.
 
 Deshalb müssen vor dem Training die \aurl{rdfs}{subPropertyOf}+-Beziehung materialisiert werden.
-Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt.\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\url{https://github.com/Yagnap/BeLL-Question-Answering-auf-Linked-Data-SNIK/blob/main/Data/qanswerset.nt}}
+Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\href{https://doi.org/10.5281/zenodo.7989583}{DOI:10.5281/zenodo.7989583}}.
 
 Zusätzlich werden auch die \aurl{rdfs}{subClassOf}+-Beziehungen materialisiert.
 Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
@@ -491,14 +492,14 @@ Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \c
 Sind Lehrbuchfragen mit im Trainingsset, fallen die Antworten besonders bei den Lehrbuchfragen im Testset deutlich ungenauer aus.
 Dies könnte daran liegen, dass QAnswer diese Art der Fragen zu kennen glaubt, subtile Änderungen der Formulierungen jedoch andere Antworten erfordern.
 Dieser Effekt ist besonders am Anfang stark zu sehen, danach wird er teilweise ausgeglichen.
-Das online verfügbare System wurde daher ohne Lehrbuchfragen und mit 400 automatisch generierten Fragen trainiert.
+Das online unter \url{https://app.qanswer.ai/public-share?kb=SNIK_BB&type=graph&user=kirdie&lang=en} verfügbare System wurde daher ohne Lehrbuchfragen und mit 400 automatisch generierten Fragen trainiert.
 
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
 Wir planen zur Beantwortung allgemeiner Fragen, die über \enquote{Wer macht was womit?} hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
 Ein hybrides System aus KGQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
 
-ChatGPT \footnote{https://openai.com/blog/chatgpt} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit große Aufmerksamkeit erregt.
-In \cite{gptvsqa} wurde festgestellt, dass QA besonders bei sehr spezifischen Domänen besonders in der Trefferquote deutlich besser antwortet als z.B. ChatGPT.
+ChatGPT\footnote{https://openai.com/blog/chatgpt} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit große Aufmerksamkeit erregt.
+QA erreicht bei sehr spezifischen Domänen besonders in der Trefferquote deutlich besser Ergebnisse als z.B. ChatGPT \cite{gptvsqa}.
 Zukünftige Arbeit befasst sich mit der Nutzung von Question Answering zu \cite{bb} auf vortrainierten Transformermodellen.
 
 \section{Danksagung}
