@@ -130,11 +130,15 @@ welche große Mengen an Daten zur Verfügung stellen.
 Bei kleineren Datenmengen gibt es aber das Problem, das häufig zu wenige Trainingsdaten für das Abstimmen der Algorithmen auf die Wissensbasen zur Verfügung stehen, als dass man ein Sprachmodell zum Verstehen natürlichsprachiger Fragen von Grund auf trainieren kann.
 Deshalb verwendet QAnswer Sprachmodelle, welche schon vorher viel auf normale Texte trainiert wurden und nun mittels Nutzerfragen präzisiert werden.
 
-QAnswer erstellt alle für die gegebene Frage möglichen Kombinationen von Wörtern der Frage (N-Gramme), nachdem die sogenannten \emph{stop words}, eine vorgefertigte Liste an z.B. Artikeln, entfernt wurden.
+QAnswer erstellt alle für die gegebene Frage möglichen Kombinationen von Wörtern der Frage (N-Gramme), nachdem die sogenannten \emph{Stoppwörter}, eine vorgefertigte Liste an z.B. Artikeln, entfernt wurden.
 Diese N-Gramme versucht es dann auf mögliche Repräsentationen im Datensatz mittels Labels zu matchen.
 Daraus werden viele mögliche SPARQL-Abfragen kreiert, welche anhand bestimmter Kriterien einen \emph{Confidence}-Wert zwischen $0\%$ und $100\%$ erhalten.
 Die SPARQL-Abfrage mit dem höchsten Wert wird ausgewählt, ist er größer als $50\%$ gilt die Antwort als richtig, sonst wird keine ausgegeben.
 SPARQL ist ein World Wide Web Consortium (W3C)-Standard als Abfragesprache für RDF.
+
+Bei der Frage \enquote{How can quality of HIS be evaluated?} werden beispielsweise die Wörter \enquote{How}, \enquote{can}, \enquote{of} und \enquote{be} nicht betrachtet, sie bieten bei der Suche nach passenden Kombinationen kaum einen Mehrwert.
+Die Wörter \enquote{quality}, \enquote{HIS} und \enquote{evaluated} werden nun auf alle mögliche Arten kombiniert, hier sollten die Kombinationen \enquote{quality HIS} und \enquote{evaluated} herauskommen, welche die Ressource \aurl{bb}{EvaluationMethod} finden und das Prädikat \aurl{rdfs}{subClassOf} implizieren muss.
+Diese Frage wurde nie richtig beantwortet, da die Lösung anhand der Daten der Ontologie wenig plausibel erscheint.
 
 \section{Anpassung von QAnswer KG an SNIK}
 
@@ -166,20 +170,16 @@ Die Abfrage, welche die \aurl{rdfs}{subClassOf+}-Beziehung kann nicht durch QAns
 
 Wenn keine Lösung für die Frage gefunden wird, gibt es als Ausgabe meist die Ressource selbst, also zum Beispiel \aurl{bb}{ChiefInformationOfficer}.
 Dies kann zwar nützlich, aber auch verwirrend sein und soll mithilfe von Training verhindert werden.
-
 Praktisch für die Lokalisierung der Fehler ist die Funktion, sich alle generierten Anfragen anzeigen zu lassen.
 Somit kann erahnt werden, warum es das macht, was es macht.
 
 Mit der Konfiguration an sich können bereits viele Fehler behoben werden.
-Unter den \emph{stop words} sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
-Diese sollen verhindern, dass falsche Ressourcen gefunden werden.
+Unter den Stoppwörtern sind häufig verwendete Präpositionen, Konjunktionen, Verben oder Füllwörter wie \enquote{and} oder \enquote{many}.
 Hier muss diese Liste allerdings so modifiziert werden, dass das Wort \texttt{for} nicht mehr darin vorkommt, denn ohne es können Prädikate wie \enquote{responsible for} schwer erkannt werden,
 besonders, da die beiden Wörter oft getrennt im Satz vorkommen.
 Entfernt wurden auch \texttt{define} und \texttt{describe}, da auch diese in Labels vorkommen.
-
 Zu den \emph{Hidden Properties} wurde \aurl{rdfs}{subClassOf} hinzugefügt.
 Hidden Properties sind solche, die nicht explizit in der Frage benutzt werden, aber trotzdem impliziert werden können.
-
 Es wurde \aurl{skos}{altLabel} als weiteres Label für Ressourcen hinzugefügt, sodass QAnswer auch diese beachtet.
 Die Mappings müssen auch dahingehend verändert werden, als dass \aurl{skos}{definition}
 und \aurl{rdfs}{comment} als Beschreibung hinzugefügt werden.
@@ -188,7 +188,7 @@ Die Definition wird auch bei den Ergebnissen angezeigt, sodass es bei Ergebnisse
 Es gibt auch die Möglichkeit, direkt Wörter als Aliase für URIs zu nutzen.
 Bei den \emph{Property Mappings} können URIs und dafür stehende Lexikalisierungen in Abhängigkeit gebracht werden, wie bei einem Wörterbuch.
 Dies wird hier für \enquote{phases} und \enquote{methods} bei \aurl{meta}{updates} sowie \enquote{tasks} und \aurl{meta}{functionComponent} gemacht.
-Für \aurl{meta}{entityTypeComponent} wird \enquote{facets} hinzugefügt.\todo{aurl benutzen}
+Für \aurl{meta}{entityTypeComponent} wird \enquote{facets} hinzugefügt.
 Lexikalisierungen funktionieren ähnlich wie alternative Labels.
 Notwendig ist es aufgrund der Funktionsweise QAnswers; ohne Lexikalisierungen weiß das Programm nicht, wofür die Ressourcen stehen.
 Da die Properties in SNIK sehr allgemein gehalten sind, fehlen oft Labels mit ausreichend präziser Formulierung, mithilfe derer QAnswer auf die Ressource als Teil der Antwort schließen kann.
@@ -215,10 +215,12 @@ Insgesamt gibt es 36 Lehrbuchfragen und zugehörige Antworten.
 Da diese Fragen sowohl sehr kompliziert gestellt als auch viel zu wenige sind, werden aus dem Datenbestand der Teilontologie auch Fragen nach dem Schema \emph{Subjekt bzw. Objekt - Prädikat - Objekt bzw. Subjekt} gestellt.
 Diese und die zugehörigen Antworten lassen sich mittels SPARQL-Abfragen automatisch erstellen.
 Daraus entstehen 621 Fragen nach dem Subjekt und 374 Fragen nach dem Objekt, also insgesamt 995 weitere Frage-Antwort-Paare, mit denen das Training beginnen kann.
+
 \section{Ergebnisse}
 
 Das Frage-Antwort-Set aus dem Lehrbuch wurde in zwei Hälften geteilt, eine zum Training und eine zum Testen.
 Die Fragen wurden randomisiert in die Gruppen eingeteilt, sodass 18 im Trainingsdatensatz und 18 im Testdatensatz sind.
+Die Frage \enquote{How can quality of HIS be evaluated?} ist beispielsweise im Testsatz, wurde nie richtig beantwortet und hat deshalb immer eine Genauigkeit und Trefferquote von $0\%$ und zu Evaluationszwecken hier auch ein F-Maß von $0\%$.
 
 Von den automatisch generierten Paaren wurden 100 für das Testen und 895 für das Training genutzt.
 Das Training verläuft so ab, dass dem System automatisiert pro Schritt zehn weitere automatisch generierte Paare aus dem Trainingsdatensatz gegeben werden,
@@ -436,10 +438,8 @@ Am Anfang, als noch gar keine oder nur sehr wenige Fragen zum Training verwendet
 Besonders beim Training mit den Lehrbuchfragen liegt es bei dem Modell ohne Training deutlich unter 30\%.
 Ab 30 Fragen nähert es sich den Werten des Trainings ohne die Lehrbuchfragen an und übersteigt diese bei 40 Fragen erstmals.
 Bei 70 Fragen erreicht das F-Maß des Trainings mit den Lehrbuchfragen bei 90\% ein Maximum und bleibt sehr lange nahezu konstant.
-
 Bei 520 bzw. 570 Fragen sinken die Werte für beide Graphen aber sehr abrupt sehr stark ab, Varianz wird viel größer,
 mit Werten zwischen fast 10\% und mehr als 90\%.
-
 Auch die Graphen von Präzision und Recall bieten ein ähnliches Bild.
 Sie haben auch am Anfang kurz geringere Werte, eine starke, konstante Mitte und danach eine extreme Varianz.
 
