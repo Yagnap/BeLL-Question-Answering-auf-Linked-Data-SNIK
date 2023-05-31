@@ -159,7 +159,8 @@ Diese regelt die Hierarchie von Properties.
 So sind die drei, welche hier alle in einer Abfrage zusammengefasst werden sollen, alle ein Subproperty von \aurl{meta}{subPropertyOf}.
 
 Deshalb müssen vor dem Training die \aurl{rdfs}{subPropertyOf}+-Beziehung materialisiert werden.
-Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt\footnote{Verwendete n-Tripel-Datei verfügbar unter:\\\href{https://zenodo.org/record/7990554/files/snikmetabb.nt?download=1}}.
+Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt\footnote{Verwendete n-Tripel-Datei verfügbar unter:
+\url{https://zenodo.org/record/7990554/files/snikmetabb.nt}}.
 Zusätzlich werden auch die \aurl{rdfs}{subClassOf}+-Beziehungen materialisiert.
 Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
 
@@ -484,20 +485,21 @@ Danach gibt es auch hier ähnliche Effekte wie bei den automatisch generierten F
 Eine Wissensbasis oder Ontologie ist immer für einen bestimmten Zweck erstellt und bildet nur einen Teil der Wirklichkeit ab.
 SNIK fokussiert sich auf das Beantworten der Fragestellung \enquote{Wer (Rolle) macht was (Aufgabe) womit (Objekttyp)?}.
 Solche Fragen beantwortet das trainierte System auch sehr gut, die größte Herausforderung ist allerdings der Unterschied im verwendeten Vokabular eines menschlichen Nutzers zu den Properties der Ontologie.
-Während in einer Wissensbasis die Abbildung von Verben zu Properties einfacher ist, weicht besonders bei der Beschreibung von Subklassen und Teil-Ganzes-Beziehungen das Vokabular menschlicher Nutzer oft von den Labels in der Ontologie ab.
+Während in einer Wissensbasis die Abbildung von Verben zu Properties einfacher ist, weicht besonders bei der Beschreibung von Subklassen und Teil-Ganzes-Beziehungen das Vokabular menschlicher Nutzer oft von den Labels der Ontologie ab.
 
 Insgesamt erreicht das System bei dieser Art von Fragen einen durchschnittlichen F-Score von $0.91$ bei der Nutzung von 400 automatisch generierten Trainingsfragen\footnote{\url{https://doi.org/10.5281/zenodo.7990554}}\addtocounter{footnote}{-1}\addtocounter{Hfootnote}{-1}.
 Fragen, welche nicht diesem Schema folgen, wie die Leseverständnisfragen aus \cite{bb}\footnotemark{}\addtocounter{footnote}{-1}\addtocounter{Hfootnote}{-1}, können selbst nach dem Training nur selten richtig beantwortet werden (F-Maß von $0.28$)\footnotemark{}.
 Sind Lehrbuchfragen mit im Trainingsset, fallen die Antworten besonders bei den Lehrbuchfragen im Testset deutlich ungenauer aus.
 Dies könnte daran liegen, dass QAnswer diese Art der Fragen zu kennen glaubt, subtile Änderungen der Formulierungen jedoch andere Antworten erfordern.
 Dieser Effekt ist besonders am Anfang stark zu sehen, danach wird er teilweise ausgeglichen.
-Das online unter \url{https://app.qanswer.ai/public-share?kb=SNIK_BB&type=graph&user=kirdie&lang=en} verfügbare System wurde daher ohne Lehrbuchfragen und mit 400 automatisch generierten Fragen trainiert.
+Das online\footnotemark{} frei nutzbare aber nicht quelloffene System wurde daher ohne Lehrbuchfragen und mit 400 automatisch generierten Fragen trainiert.
+\footnotetext{\url{https://app.qanswer.ai/public-share?kb=SNIK_BB&type=graph&user=kirdie&lang=en}}
 
 Unserer Einschätzung nach ist dies eine grundlegende Limitierung der gewählten Modellierung, wir erwarten daher auch bei zukünftigen Systemen keine überwiegend richtige Beantwortung der Verständnisfragen.
 Wir planen zur Beantwortung allgemeiner Fragen, die über \enquote{Wer macht was womit?} hinausgehen, das Training von Sprachmodellen direkt auf den Lehrbüchern.
 Ein hybrides System aus KGQA und Sprachmodell hat das Potenzial, die Stärken beider Ansätze zu vereinen.
 
-ChatGPT\footnote{https://openai.com/blog/chatgpt} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit große Aufmerksamkeit erregt.
+ChatGPT\footnote{\footnote{https://openai.com/blog/chatgpt}} und andere auf künstlicher Intelligenz nutzende Dialogsysteme haben in letzter Zeit große Aufmerksamkeit erregt.
 QA erreicht bei sehr spezifischen Domänen besonders in der Trefferquote deutlich besser Ergebnisse als z.B. ChatGPT \cite{gptvsqa}.
 Zukünftige Arbeit befasst sich mit der Nutzung von Question Answering zu \cite{bb} auf vortrainierten Transformermodellen.
 
