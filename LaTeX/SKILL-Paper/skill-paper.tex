@@ -162,7 +162,7 @@ Deshalb müssen vor dem Training die \aurl{rdfs}{subPropertyOf}+-Beziehung mater
 Das heißt es werden alle transitiven Subpropertybeziehungen zu Trainingszwecken mittels dem SPARQL-Befehl \texttt{CONSTRUCT} zu direkten Subklassenbeziehungen umgeformt\footnote{Verwendete n-Tripel-Datei verfügbar unter:
 \url{https://zenodo.org/record/7990554/files/snikmetabb.nt}}.
 Zusätzlich werden auch die \aurl{rdfs}{subClassOf}+-Beziehungen materialisiert.
-Dies muss geschehen, da die Antworten für manche Textbuchfragen alle transitiven Subklassen sind.
+Dies muss geschehen, da die Antworten für manche Lehrbuchfragen alle transitiven Subklassen sind.
 
 Durch die Materialisierung kann beispielsweise für die Frage \enquote{How can quality of HIS be evaluated?}
 die Klasse \aurl{bb}{CaseStudy} gefunden werden, obwohl diese eine direkte Subklasse von \aurl{bb}{QualitativeEvaluationMethod} ist,
@@ -228,7 +228,7 @@ Von den automatisch generierten Paaren wurden 100 für das Testen und 895 für d
 Das Training verläuft so ab, dass dem System automatisiert pro Schritt zehn weitere automatisch generierte Paare aus dem Trainingsdatensatz gegeben werden,
 wodurch jede Runde mit zehn zusätzlichen Fragen trainiert wird.
 Der Trainingssatz der Lehrbuchfragen wird in der ersten Runde nicht mit verwendet,
-in der zweiten Runde werden von Anfang an alle Textbuchfragen verwendet.
+in der zweiten Runde werden von Anfang an alle Lehrbuchfragen verwendet.
 
 Dann wird QAnswer mithilfe der API-Methode trainiert.
 Auf das trainierte System wird der Testdatensatz zur Evaluierung angewandt.
@@ -348,7 +348,7 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
 
         % Recall TB
         \nextgroupplot[
-          title=Trefferquote Textbuchfragen,
+          title=Trefferquote Lehrbuchfragen,
           grid=major, % Display a grid
           grid style={dashed,gray!30}, % Set the style
           xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
@@ -408,7 +408,7 @@ Dann wird das trainierte Modell zurückgesetzt, die gegebenen Frage-Antwort-Paar
 
       % Confidence TB
       \nextgroupplot[
-        title=Confidence Textbuchfragen,
+        title=Confidence Lehrbuchfragen,
         grid=major, % Display a grid
         grid style={dashed,gray!30}, % Set the style
         xlabel=Anzahl der generierten Trainingsfragen, % Set the labels
